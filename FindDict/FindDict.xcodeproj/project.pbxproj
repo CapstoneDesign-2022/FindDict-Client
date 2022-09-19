@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,6 +16,8 @@
 		4DBDEC2C28D4F169002252B3 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDEC2B28D4F169002252B3 /* BaseVC.swift */; };
 		4DBDEC2F28D4F2B3002252B3 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDEC2E28D4F2B3002252B3 /* UIViewController+.swift */; };
 		4DBDEC3228D4F308002252B3 /* Colorsets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DBDEC3128D4F308002252B3 /* Colorsets.xcassets */; };
+		F8FBE39B28D8737F007068E4 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = F8FBE39A28D8737F007068E4 /* SnapKit */; };
+		F8FBE39D28D8737F007068E4 /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = F8FBE39C28D8737F007068E4 /* SnapKit-Dynamic */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +39,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8FBE39B28D8737F007068E4 /* SnapKit in Frameworks */,
+				F8FBE39D28D8737F007068E4 /* SnapKit-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,6 +176,10 @@
 			dependencies = (
 			);
 			name = FindDict;
+			packageProductDependencies = (
+				F8FBE39A28D8737F007068E4 /* SnapKit */,
+				F8FBE39C28D8737F007068E4 /* SnapKit-Dynamic */,
+			);
 			productName = FindDict;
 			productReference = 4DBDEC1028D4EFE2002252B3 /* FindDict.app */;
 			productType = "com.apple.product-type.application";
@@ -182,17 +190,16 @@
 		4DBDEC0828D4EFE2002252B3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1400;
-				LastUpgradeCheck = 1400;
+				LastUpgradeCheck = 1341;
 				TargetAttributes = {
 					4DBDEC0F28D4EFE2002252B3 = {
-						CreatedOnToolsVersion = 14.0;
+						CreatedOnToolsVersion = 13.4.1;
 					};
 				};
 			};
 			buildConfigurationList = 4DBDEC0B28D4EFE2002252B3 /* Build configuration list for PBXProject "FindDict" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -200,6 +207,9 @@
 				Base,
 			);
 			mainGroup = 4DBDEC0728D4EFE2002252B3;
+			packageReferences = (
+				F8FBE39928D8737F007068E4 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 4DBDEC1128D4EFE2002252B3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -308,7 +318,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -456,6 +466,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F8FBE39928D8737F007068E4 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F8FBE39A28D8737F007068E4 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F8FBE39928D8737F007068E4 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		F8FBE39C28D8737F007068E4 /* SnapKit-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F8FBE39928D8737F007068E4 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = "SnapKit-Dynamic";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4DBDEC0828D4EFE2002252B3 /* Project object */;
 }
