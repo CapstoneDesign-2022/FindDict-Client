@@ -478,6 +478,8 @@
 			requirement = {
 				branch = master;
 				kind = branch;
+            };
+        };
 		F8FBE39928D8737F007068E4 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -493,6 +495,7 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4D84BE2028D873C700BB21C4 /* XCRemoteSwiftPackageReference "Then" */;
 			productName = Then;
+        };
 		F8FBE39A28D8737F007068E4 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F8FBE39928D8737F007068E4 /* XCRemoteSwiftPackageReference "SnapKit" */;
