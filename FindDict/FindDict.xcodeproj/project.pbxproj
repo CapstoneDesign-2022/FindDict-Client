@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,6 +18,10 @@
 		4DBDEC2C28D4F169002252B3 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDEC2B28D4F169002252B3 /* BaseVC.swift */; };
 		4DBDEC2F28D4F2B3002252B3 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDEC2E28D4F2B3002252B3 /* UIViewController+.swift */; };
 		4DBDEC3228D4F308002252B3 /* Colorsets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DBDEC3128D4F308002252B3 /* Colorsets.xcassets */; };
+		F8DB7A5A28DB1D3100EE3D66 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DB7A5928DB1D3100EE3D66 /* SignInVC.swift */; };
+		F8DB7A5C28DB1FA700EE3D66 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DB7A5B28DB1FA700EE3D66 /* UIView+.swift */; };
+		F8DB7A5E28DB29F700EE3D66 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DB7A5D28DB29F700EE3D66 /* UIColor+.swift */; };
+		F8DB7A6028DB2E8600EE3D66 /* AuthBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DB7A5F28DB2E8600EE3D66 /* AuthBaseVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +36,10 @@
 		4DBDEC2B28D4F169002252B3 /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		4DBDEC2E28D4F2B3002252B3 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		4DBDEC3128D4F308002252B3 /* Colorsets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colorsets.xcassets; sourceTree = "<group>"; };
+		F8DB7A5928DB1D3100EE3D66 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
+		F8DB7A5B28DB1FA700EE3D66 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
+		F8DB7A5D28DB29F700EE3D66 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		F8DB7A5F28DB2E8600EE3D66 /* AuthBaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthBaseVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +125,8 @@
 			isa = PBXGroup;
 			children = (
 				4DBDEC2E28D4F2B3002252B3 /* UIViewController+.swift */,
+				F8DB7A5B28DB1FA700EE3D66 /* UIView+.swift */,
+				F8DB7A5D28DB29F700EE3D66 /* UIColor+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -125,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				4DBDEC2B28D4F169002252B3 /* BaseVC.swift */,
+				F8DB7A5F28DB2E8600EE3D66 /* AuthBaseVC.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -146,6 +157,7 @@
 		4DBDEC3528D4F35D002252B3 /* Scences */ = {
 			isa = PBXGroup;
 			children = (
+				F8DB7A5628DB1C7900EE3D66 /* SignIn */,
 				4DBDEC1728D4EFE2002252B3 /* ViewController.swift */,
 				4DBDEC1928D4EFE2002252B3 /* Main.storyboard */,
 				4DBDEC1E28D4EFE3002252B3 /* LaunchScreen.storyboard */,
@@ -158,6 +170,14 @@
 			children = (
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		F8DB7A5628DB1C7900EE3D66 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				F8DB7A5928DB1D3100EE3D66 /* SignInVC.swift */,
+			);
+			path = SignIn;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,7 +220,7 @@
 				};
 			};
 			buildConfigurationList = 4DBDEC0B28D4EFE2002252B3 /* Build configuration list for PBXProject "FindDict" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -241,7 +261,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DBDEC1828D4EFE2002252B3 /* ViewController.swift in Sources */,
+				F8DB7A5E28DB29F700EE3D66 /* UIColor+.swift in Sources */,
 				4DBDEC1428D4EFE2002252B3 /* AppDelegate.swift in Sources */,
+				F8DB7A6028DB2E8600EE3D66 /* AuthBaseVC.swift in Sources */,
+				F8DB7A5C28DB1FA700EE3D66 /* UIView+.swift in Sources */,
+				F8DB7A5A28DB1D3100EE3D66 /* SignInVC.swift in Sources */,
 				4DBDEC2F28D4F2B3002252B3 /* UIViewController+.swift in Sources */,
 				4DBDEC1628D4EFE2002252B3 /* SceneDelegate.swift in Sources */,
 				4DBDEC2C28D4F169002252B3 /* BaseVC.swift in Sources */,
