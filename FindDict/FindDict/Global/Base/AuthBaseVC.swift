@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import SnapKit
+import Then
 
 class AuthBaseVC: UIViewController {
     
@@ -14,11 +16,11 @@ class AuthBaseVC: UIViewController {
         $0.image = UIImage(named: "authImage")
     }
     // 흰색 배경
-    private let containerView = UIView().then{
+    internal let containerView = UIView().then{
         $0.backgroundColor = .white
+        $0.layer.cornerRadius = 24
+
     }
-        // 텍스트 필드 -> component
-        // 회원가입하기, 로그인 버튼
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +34,15 @@ class AuthBaseVC: UIViewController {
 
 extension AuthBaseVC {
     private func setLayout(){
-        view.addSubViews([logoImage, bgView])
+        view.addSubViews([logoImage, containerView])
+        
+        logoImage.snp.makeConstraints{
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(100)
+            $0.centerX.equalTo(view.safeAreaLayoutGuide)
+        }
+        containerView.snp.makeConstraints{
+            $0.top.equalTo(logoImage.snp.bottom).offset(70)
+            
+        }
     }
 }
