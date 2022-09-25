@@ -10,21 +10,27 @@ import UIKit
 class AuthBaseVC: UIViewController {
     
     // 로고
-    private let logoImage = UIImageView().then{
+    let logoImage = UIImageView().then{
         $0.image = UIImage(named: "authImage")
     }
+    
     // 흰색 배경
-    private let containerView = UIView().then{
+    let containerView = UIView().then{
         $0.backgroundColor = .white
+        $0.layer.cornerRadius = 24
     }
         // 텍스트 필드 -> component
         // 회원가입하기, 로그인 버튼
+    
+    // 홈 버튼
+    let homeImage = UIImageView().then {
+        $0.image = UIImage(named: "homeImage")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
         view.backgroundColor = .bgYellow
-
     }
     
 
@@ -32,6 +38,8 @@ class AuthBaseVC: UIViewController {
 
 extension AuthBaseVC {
     private func setLayout(){
-        view.addSubViews([logoImage, bgView])
+//        view.addSubViews([logoImage, bgView])
+        
+        
     }
 }
