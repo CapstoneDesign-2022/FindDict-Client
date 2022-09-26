@@ -41,7 +41,7 @@ class LogInVC: AuthBaseVC {
 
 extension LogInVC {
     private func setLayout() {
-        view.addSubViews([ super.containerView, super.homeImage, signInTextField, passwordTextField, signInButton])
+        view.addSubViews([signInTextField, passwordTextField, signInButton])
         
         super.containerView.snp.makeConstraints{
             $0.top.equalTo(super.logoImage.snp.bottom).offset(76)
