@@ -20,8 +20,7 @@ class AuthBaseVC: UIViewController {
         $0.layer.cornerRadius = 24
 
     }
-        // 텍스트 필드 -> component
-        // 회원가입하기, 로그인 버튼
+        //TODO: - 텍스트 필드 -> component
     
     // 홈 버튼
     let homeImage = UIImageView().then {
@@ -43,7 +42,7 @@ class AuthBaseVC: UIViewController {
 // MARK: - UI
 extension AuthBaseVC {
     private func setLayout(){
-        view.addSubViews([logoImage, containerView])
+        view.addSubViews([logoImage, containerView, homeImage])
         
         logoImage.snp.makeConstraints{
             $0.top.equalTo(view.safeAreaLayoutGuide).offset(100)
@@ -51,7 +50,10 @@ extension AuthBaseVC {
         }
         containerView.snp.makeConstraints{
             $0.top.equalTo(logoImage.snp.bottom).offset(70)
-            
+        }
+        homeImage.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(48)
+            $0.right.equalTo(view.safeAreaLayoutGuide.snp.right).offset(-47)
         }
     }
 }

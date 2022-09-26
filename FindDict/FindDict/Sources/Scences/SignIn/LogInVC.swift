@@ -41,20 +41,9 @@ extension LogInVC {
     private func setLayout() {
         view.addSubViews([ super.containerView, super.homeImage, signInTextField, passwordTextField, signInButton])
         
-        super.logoImage.snp.makeConstraints{
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(119)
-            $0.centerX.equalTo(view.safeAreaLayoutGuide)
-        }
-        
-        super.homeImage.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(48)
-            $0.right.equalTo(view.safeAreaLayoutGuide.snp.right).offset(-47)
-        }
-        
         super.containerView.snp.makeConstraints{
             $0.top.equalTo(super.logoImage.snp.bottom).offset(76)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(339)
-//            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-161)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-339)
         }
         
