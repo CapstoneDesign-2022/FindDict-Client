@@ -52,7 +52,7 @@ class SignUpVC: AuthBaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setLayOut()
+        setLayout()
         
     }
     
@@ -61,7 +61,7 @@ class SignUpVC: AuthBaseVC {
 }
 
 extension SignUpVC {
-    private func setLayOut(){
+    private func setLayout(){
         view.addSubViews([idTextField,idCheckButton,ageText, passwordText, passwordConfirmText, signUpButton])
     
     containerView.snp.makeConstraints{
