@@ -16,7 +16,6 @@ class BaseVC: UIViewController, UIGestureRecognizerDelegate {
     // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setBackGroundColor()
     }
 }
 
@@ -36,10 +35,5 @@ extension BaseVC {
         tap.delegate = self
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
-    }
-    
-    func setBackGroundColor() {
-        // TODO: - 컬러 넣기
-//        view.backgroundColor =
     }
 }
