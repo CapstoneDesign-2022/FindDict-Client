@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-class SignInVC: UIViewController {
+class BeforeSiginInVC: UIViewController {
     
     private let logoImage = UIImageView().then{
         $0.image = UIImage(named: "logoImage")
@@ -37,7 +37,7 @@ class SignInVC: UIViewController {
     
 }
 
-extension SignInVC {
+extension BeforeSiginInVC {
     private func setLayout(){
         view.addSubViews([logoImage, signInButton, signUpButton])
         

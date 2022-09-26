@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-class LogInVC: AuthBaseVC {
+class SignInVC: AuthBaseVC {
     private let signInTextField = UITextField().then{
         $0.textColor = .textGray
         $0.backgroundColor = .textFieldGray
@@ -39,7 +39,7 @@ class LogInVC: AuthBaseVC {
     }
 }
 
-extension LogInVC {
+extension SignInVC {
     private func setLayout() {
         view.addSubViews([signInTextField, passwordTextField, signInButton])
         
@@ -70,7 +70,5 @@ extension LogInVC {
             $0.trailing.equalTo(containerView.snp.trailing).offset(-85)
             $0.height.equalTo(56)
         }
-        
-        
     }
 }

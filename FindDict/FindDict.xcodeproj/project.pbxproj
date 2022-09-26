@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		4D53A66A28DAF9C0000E2AA2 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4D53A66928DAF9C0000E2AA2 /* SnapKit */; };
 		4D53A66D28DAF9C8000E2AA2 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 4D53A66C28DAF9C8000E2AA2 /* Then */; };
-		4D9ADC0728E018DB008CF9F3 /* LogInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9ADC0628E018DB008CF9F3 /* LogInVC.swift */; };
+		4D9ADC0728E018DB008CF9F3 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9ADC0628E018DB008CF9F3 /* SignInVC.swift */; };
 		4DBDEC1428D4EFE2002252B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDEC1328D4EFE2002252B3 /* AppDelegate.swift */; };
 		4DBDEC1628D4EFE2002252B3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDEC1528D4EFE2002252B3 /* SceneDelegate.swift */; };
 		4DBDEC1828D4EFE2002252B3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDEC1728D4EFE2002252B3 /* ViewController.swift */; };
@@ -21,14 +21,14 @@
 		4DBDEC3228D4F308002252B3 /* Colorsets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DBDEC3128D4F308002252B3 /* Colorsets.xcassets */; };
 		F8823AA128DFE99200798374 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8823AA028DFE99200798374 /* SignUpVC.swift */; };
 		F8823AA328E022CC00798374 /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8823AA228E022CC00798374 /* UITextField+.swift */; };
-		F8DB7A5A28DB1D3100EE3D66 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DB7A5928DB1D3100EE3D66 /* SignInVC.swift */; };
+		F8DB7A5A28DB1D3100EE3D66 /* BeforeSiginInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DB7A5928DB1D3100EE3D66 /* BeforeSiginInVC.swift */; };
 		F8DB7A5C28DB1FA700EE3D66 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DB7A5B28DB1FA700EE3D66 /* UIView+.swift */; };
 		F8DB7A5E28DB29F700EE3D66 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DB7A5D28DB29F700EE3D66 /* UIColor+.swift */; };
 		F8DB7A6028DB2E8600EE3D66 /* AuthBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DB7A5F28DB2E8600EE3D66 /* AuthBaseVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4D9ADC0628E018DB008CF9F3 /* LogInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInVC.swift; sourceTree = "<group>"; };
+		4D9ADC0628E018DB008CF9F3 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		4DBDEC1028D4EFE2002252B3 /* FindDict.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FindDict.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DBDEC1328D4EFE2002252B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4DBDEC1528D4EFE2002252B3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -42,7 +42,7 @@
 		4DBDEC3128D4F308002252B3 /* Colorsets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colorsets.xcassets; sourceTree = "<group>"; };
 		F8823AA028DFE99200798374 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		F8823AA228E022CC00798374 /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
-		F8DB7A5928DB1D3100EE3D66 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
+		F8DB7A5928DB1D3100EE3D66 /* BeforeSiginInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeforeSiginInVC.swift; sourceTree = "<group>"; };
 		F8DB7A5B28DB1FA700EE3D66 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		F8DB7A5D28DB29F700EE3D66 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		F8DB7A5F28DB2E8600EE3D66 /* AuthBaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthBaseVC.swift; sourceTree = "<group>"; };
@@ -61,6 +61,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D14BD6628E1B677002B2165 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				4D9ADC0628E018DB008CF9F3 /* SignInVC.swift */,
+				F8DB7A5928DB1D3100EE3D66 /* BeforeSiginInVC.swift */,
+				F8823AA028DFE99200798374 /* SignUpVC.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
 		4DBDEC0728D4EFE2002252B3 = {
 			isa = PBXGroup;
 			children = (
@@ -164,8 +174,7 @@
 		4DBDEC3528D4F35D002252B3 /* Scences */ = {
 			isa = PBXGroup;
 			children = (
-				F8823A9F28DFE96200798374 /* SignUp */,
-				F8DB7A5628DB1C7900EE3D66 /* SignIn */,
+				4D14BD6628E1B677002B2165 /* Auth */,
 				4DBDEC1728D4EFE2002252B3 /* ViewController.swift */,
 				4DBDEC1928D4EFE2002252B3 /* Main.storyboard */,
 				4DBDEC1E28D4EFE3002252B3 /* LaunchScreen.storyboard */,
@@ -178,23 +187,6 @@
 			children = (
 			);
 			path = Network;
-			sourceTree = "<group>";
-		};
-		F8823A9F28DFE96200798374 /* SignUp */ = {
-			isa = PBXGroup;
-			children = (
-				F8823AA028DFE99200798374 /* SignUpVC.swift */,
-			);
-			path = SignUp;
-			sourceTree = "<group>";
-		};
-		F8DB7A5628DB1C7900EE3D66 /* SignIn */ = {
-			isa = PBXGroup;
-			children = (
-				F8DB7A5928DB1D3100EE3D66 /* SignInVC.swift */,
-				4D9ADC0628E018DB008CF9F3 /* LogInVC.swift */,
-			);
-			path = SignIn;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,11 +274,11 @@
 				4DBDEC1428D4EFE2002252B3 /* AppDelegate.swift in Sources */,
 				F8DB7A6028DB2E8600EE3D66 /* AuthBaseVC.swift in Sources */,
 				F8DB7A5C28DB1FA700EE3D66 /* UIView+.swift in Sources */,
-				F8DB7A5A28DB1D3100EE3D66 /* SignInVC.swift in Sources */,
+				F8DB7A5A28DB1D3100EE3D66 /* BeforeSiginInVC.swift in Sources */,
 				4DBDEC2F28D4F2B3002252B3 /* UIViewController+.swift in Sources */,
 				4DBDEC1628D4EFE2002252B3 /* SceneDelegate.swift in Sources */,
 				F8823AA128DFE99200798374 /* SignUpVC.swift in Sources */,
-				4D9ADC0728E018DB008CF9F3 /* LogInVC.swift in Sources */,
+				4D9ADC0728E018DB008CF9F3 /* SignInVC.swift in Sources */,
 				4DBDEC2C28D4F169002252B3 /* BaseVC.swift in Sources */,
 				F8823AA328E022CC00798374 /* UITextField+.swift in Sources */,
 			);
