@@ -56,20 +56,19 @@ class SignUpVC: AuthBaseVC {
         
     }
     
-
-
 }
 
+// MARK: - UI
 extension SignUpVC {
     private func setLayout(){
-        view.addSubViews([idTextField,idCheckButton,ageText, passwordText, passwordConfirmText, signUpButton])
-    
-    containerView.snp.makeConstraints{
-        $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(317)
-        $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-317)
-        $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(151)
-    }
-    
+        view.addSubViews([idTextField,idCheckButton,textFieldStackView, signUpButton])
+        
+        containerView.snp.makeConstraints{
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(317)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-317)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(100)
+        }
+        
         idTextField.snp.makeConstraints{
             $0.top.equalTo(containerView.snp.top).offset(45)
             $0.leading.equalTo(containerView.snp.leading).offset(88)
@@ -77,35 +76,22 @@ extension SignUpVC {
             $0.height.equalTo(50)
         }
         idCheckButton.snp.makeConstraints{
-                $0.top.equalTo(containerView.snp.top).offset(45)
-                $0.bottom.equalTo(idTextField.snp.bottom).offset(0)
-                $0.leading.equalTo(idTextField.snp.trailing).offset(18)
-                $0.trailing.equalTo(containerView.snp.trailing).offset(-88)
+            $0.top.equalTo(containerView.snp.top).offset(45)
+            $0.bottom.equalTo(idTextField.snp.bottom).offset(0)
+            $0.leading.equalTo(idTextField.snp.trailing).offset(18)
+            $0.trailing.equalTo(containerView.snp.trailing).offset(-88)
             
         }
-        ageText.snp.makeConstraints{
-                $0.top.equalTo(idTextField.snp.bottom).offset(18)
-                $0.leading.equalTo(containerView.snp.leading).offset(88)
-                $0.trailing.equalTo(containerView.snp.trailing).offset(-88)
-            $0.height.equalTo(50)
-        }
-
-        passwordText.snp.makeConstraints{
-                $0.top.equalTo(ageText.snp.bottom).offset(18)
-                $0.leading.equalTo(containerView.snp.leading).offset(88)
-                $0.trailing.equalTo(containerView.snp.trailing).offset(-88)
-            $0.height.equalTo(50)
-        }
-        passwordConfirmText.snp.makeConstraints{
-                $0.top.equalTo(passwordText.snp.bottom).offset(18)
-                $0.leading.equalTo(containerView.snp.leading).offset(88)
-                $0.trailing.equalTo(containerView.snp.trailing).offset(-88)
-            $0.height.equalTo(50)
+        textFieldStackView.snp.makeConstraints{
+            $0.top.equalTo(idTextField.snp.bottom).offset(18)
+            $0.leading.equalTo(containerView.snp.leading).offset(88)
+            $0.trailing.equalTo(containerView.snp.trailing).offset(-88)
+            $0.height.equalTo(180)
         }
         signUpButton.snp.makeConstraints{
-                $0.top.equalTo(passwordConfirmText.snp.bottom).offset(21)
-                $0.leading.equalTo(containerView.snp.leading).offset(137)
-                $0.trailing.equalTo(containerView.snp.trailing).offset(-137)
+            $0.top.equalTo(textFieldStackView.snp.bottom).offset(21)
+            $0.leading.equalTo(containerView.snp.leading).offset(137)
+            $0.trailing.equalTo(containerView.snp.trailing).offset(-137)
             $0.height.equalTo(56)
         }
     }
