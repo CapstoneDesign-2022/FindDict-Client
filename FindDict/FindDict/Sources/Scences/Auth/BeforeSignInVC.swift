@@ -9,17 +9,20 @@ import UIKit
 import SnapKit
 import Then
 
-class BeforeSiginInVC: UIViewController {
+class BeforeSignInVC: UIViewController {
     
+    // MARK: - Properties
     private let logoImage = UIImageView().then{
         $0.image = UIImage(named: "logoImage")
     }
+    
     private let signInButton = UIButton().then{
         $0.setTitle("로그인", for: .normal)
         $0.backgroundColor = .buttonOrange
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 48, weight:  .bold)
         $0.layer.cornerRadius = 10
     }
+    
     private let signUpButton = UIButton().then{
         $0.setTitle("회원 가입", for: .normal)
         $0.backgroundColor = .buttonYellow
@@ -27,17 +30,32 @@ class BeforeSiginInVC: UIViewController {
         $0.layer.cornerRadius = 10
     }
     
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
         view.backgroundColor = .bgYellow
-        // Do any additional setup after loading the view.
+        setButtonActions()
+    }
+    
+    // MARK: - Functions
+    private func setButtonActions(){
+        signInButton.press{
+            let signInVC = SignInVC()
+            self.navigationController?.pushViewController(signInVC, animated: true)
+        }
+        signUpButton.press{
+            let signUpVC = SignUpVC()
+            self.navigationController?.pushViewController(signUpVC, animated: true)
+        }
     }
     
     
 }
 
-extension BeforeSiginInVC {
+
+// MARK: - UI
+extension BeforeSignInVC {
     private func setLayout(){
         view.addSubViews([logoImage, signInButton, signUpButton])
         

@@ -11,4 +11,10 @@ extension UIView {
     func addSubViews(_ views: [UIView]) {
         views.forEach { self.addSubview($0) }
     }
+    
+    func makeVibrate(degree : UIImpactFeedbackGenerator.FeedbackStyle = .medium)
+    {
+        let generator = UIImpactFeedbackGenerator(style: degree)
+        generator.impactOccurred()
+    }
 }
