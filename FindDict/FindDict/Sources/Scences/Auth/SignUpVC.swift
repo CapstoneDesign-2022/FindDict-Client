@@ -10,37 +10,37 @@ import SnapKit
 import Then
 
 class SignUpVC: AuthBaseVC {
-
-    private let idTextField = UITextField().then{
-        $0.backgroundColor = .textFieldGray
+    
+    // MARK: - Properties
+    private let idTextField = TextField().then{
         $0.placeholder = "아이디"
-        $0.layer.cornerRadius = 11
-        $0.addLeftPadding(10)
     }
+    
     private let idCheckButton = UIButton().then{
         $0.backgroundColor = .buttonOrange
         $0.setTitleColor(.black, for: .normal)
         $0.setTitle("중복 확인", for: .normal)
         $0.layer.cornerRadius = 24
     }
-    private let ageText = UITextField().then{
-        $0.backgroundColor = .textFieldGray
+    
+    lazy var textFieldStackView = UIStackView(arrangedSubviews: [ageTextField, passwordTextField,passwordConfirmTextField]).then {
+        $0.axis = .vertical
+        $0.spacing = 18
+        $0.distribution = .fillEqually
+    }
+    
+    private let ageTextField = TextField().then{
         $0.placeholder = "나이"
-        $0.layer.cornerRadius = 11
-        $0.addLeftPadding(10)
     }
-    private let passwordText = UITextField().then{
-        $0.backgroundColor = .textFieldGray
+    
+    private let passwordTextField = TextField().then{
         $0.placeholder = "비밀번호"
-        $0.layer.cornerRadius = 11
-        $0.addLeftPadding(10)
     }
-    private let passwordConfirmText = UITextField().then{
-        $0.backgroundColor = .textFieldGray
+    
+    private let passwordConfirmTextField = TextField().then{
         $0.placeholder = "비밀번호 확인"
-        $0.layer.cornerRadius = 11
-        $0.addLeftPadding(10)
     }
+    
     private let signUpButton = UIButton().then{
         $0.backgroundColor = .buttonYellow
         $0.setTitleColor(.black, for: .normal)
@@ -49,7 +49,7 @@ class SignUpVC: AuthBaseVC {
         
     }
     
-    
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
