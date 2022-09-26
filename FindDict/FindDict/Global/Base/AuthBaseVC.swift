@@ -11,17 +11,17 @@ import Then
 
 class AuthBaseVC: UIViewController {
     
-    // 로고
+    // MARK: - Properties
     private let logoImage = UIImageView().then{
         $0.image = UIImage(named: "authImage")
     }
-    // 흰색 배경
     internal let containerView = UIView().then{
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 24
 
     }
-
+    
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
@@ -32,6 +32,8 @@ class AuthBaseVC: UIViewController {
 
 }
 
+
+// MARK: - UI
 extension AuthBaseVC {
     private func setLayout(){
         view.addSubViews([logoImage, containerView])
