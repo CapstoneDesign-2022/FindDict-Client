@@ -11,7 +11,7 @@ import Then
 
 class SignUpVC: AuthBaseVC {
 
-    private let idText = UITextField().then{
+    private let idTextField = UITextField().then{
         $0.backgroundColor = .textFieldGray
         $0.placeholder = "아이디"
         $0.layer.cornerRadius = 11
@@ -62,7 +62,7 @@ class SignUpVC: AuthBaseVC {
 
 extension SignUpVC {
     private func setLayOut(){
-        view.addSubViews([idText,idCheckButton,ageText, passwordText, passwordConfirmText, signUpButton])
+        view.addSubViews([idTextField,idCheckButton,ageText, passwordText, passwordConfirmText, signUpButton])
     
     containerView.snp.makeConstraints{
         $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(317)
@@ -70,7 +70,7 @@ extension SignUpVC {
         $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(151)
     }
     
-        idText.snp.makeConstraints{
+        idTextField.snp.makeConstraints{
             $0.top.equalTo(containerView.snp.top).offset(45)
             $0.leading.equalTo(containerView.snp.leading).offset(88)
             $0.trailing.equalTo(containerView.snp.trailing).offset(-208)
@@ -78,13 +78,13 @@ extension SignUpVC {
         }
         idCheckButton.snp.makeConstraints{
                 $0.top.equalTo(containerView.snp.top).offset(45)
-                $0.bottom.equalTo(idText.snp.bottom).offset(0)
-                $0.leading.equalTo(idText.snp.trailing).offset(18)
+                $0.bottom.equalTo(idTextField.snp.bottom).offset(0)
+                $0.leading.equalTo(idTextField.snp.trailing).offset(18)
                 $0.trailing.equalTo(containerView.snp.trailing).offset(-88)
             
         }
         ageText.snp.makeConstraints{
-                $0.top.equalTo(idText.snp.bottom).offset(18)
+                $0.top.equalTo(idTextField.snp.bottom).offset(18)
                 $0.leading.equalTo(containerView.snp.leading).offset(88)
                 $0.trailing.equalTo(containerView.snp.trailing).offset(-88)
             $0.height.equalTo(50)
