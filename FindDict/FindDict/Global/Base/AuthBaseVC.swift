@@ -12,7 +12,7 @@ import Then
 class AuthBaseVC: UIViewController {
     
     // MARK: - Properties
-    private let logoImage = UIImageView().then{
+    internal let logoImage = UIImageView().then{
         $0.image = UIImage(named: "authImage")
     }
     internal let containerView = UIView().then{
