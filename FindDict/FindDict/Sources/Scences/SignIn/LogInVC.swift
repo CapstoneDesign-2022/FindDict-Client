@@ -15,6 +15,7 @@ class LogInVC: AuthBaseVC {
         $0.backgroundColor = .textFieldGray
         $0.placeholder = "아이디"
         $0.layer.cornerRadius = 11
+        $0.addLeftPadding(10)
     }
     
     private let passwordTextField = UITextField().then{
@@ -22,6 +23,7 @@ class LogInVC: AuthBaseVC {
         $0.backgroundColor = .textFieldGray
         $0.placeholder = "비밀번호"
         $0.layer.cornerRadius = 11
+        $0.addLeftPadding(10)
     }
     
     private let signInButton = UIButton().then{
