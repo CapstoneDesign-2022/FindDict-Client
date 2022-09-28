@@ -19,14 +19,16 @@ class BeforeSignInVC: UIViewController {
     private let signInButton = UIButton().then{
         $0.setTitle("로그인", for: .normal)
         $0.backgroundColor = .buttonOrange
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 48, weight:  .bold)
+        $0.titleLabel?.font = .findDictH4R35
+        $0.setTitleColor(.black, for: .normal)
         $0.layer.cornerRadius = 10
     }
     
     private let signUpButton = UIButton().then{
         $0.setTitle("회원 가입", for: .normal)
         $0.backgroundColor = .buttonYellow
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 48, weight:  .bold)
+        $0.titleLabel?.font = .findDictH4R35
+        $0.setTitleColor(.black, for: .normal)
         $0.layer.cornerRadius = 10
     }
     
@@ -60,16 +62,20 @@ extension BeforeSignInVC {
         view.addSubViews([logoImage, signInButton, signUpButton])
         
         logoImage.snp.makeConstraints{
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(137)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(100)
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
         }
         signInButton.snp.makeConstraints{
-            $0.top.equalTo(logoImage.snp.bottom).offset(70)
+            $0.top.equalTo(logoImage.snp.bottom).offset(50)
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
+            $0.width.equalTo(300)
+            $0.height.equalTo(120)
         }
         signUpButton.snp.makeConstraints{
             $0.top.equalTo(signInButton.snp.bottom).offset(40)
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
+            $0.width.equalTo(300)
+            $0.height.equalTo(120)
         }
     }
 }
