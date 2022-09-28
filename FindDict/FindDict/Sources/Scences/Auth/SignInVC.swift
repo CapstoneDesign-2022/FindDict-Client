@@ -32,6 +32,8 @@ class SignInVC: AuthBaseVC {
         super.viewDidLoad()
         setLayout()
         passwordTextField.setPWSecureButton()
+        setTextFieldDelegate()
+        setNotificationCenter()
     }
 }
 
@@ -67,5 +69,35 @@ extension SignInVC {
             $0.trailing.equalTo(containerView.snp.trailing).offset(-85)
             $0.height.equalTo(56)
         }
+    }
+}
+
+// MARK: - UITextFieldDelegate
+extension SignInVC: UITextFieldDelegate{
+    
+    func setTextFieldDelegate(){
+        signInTextField.delegate = self
+        passwordTextField.delegate = self
+    }
+
+    func setNotificationCenter(){
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name:  UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    @objc
+    func keyboardWillShow(_ sender:Notification) {
+        self.view.frame.origin.y = -300
+    }
+    
+    @objc
+    func keyboardWillHide(_ sender:Notification) {
+        self.view.frame.origin.y = 0 
     }
 }
