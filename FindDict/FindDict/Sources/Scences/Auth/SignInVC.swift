@@ -10,20 +10,14 @@ import SnapKit
 import Then
 
 class SignInVC: AuthBaseVC {
-    private let signInTextField = UITextField().then{
-        $0.textColor = .textGray
-        $0.backgroundColor = .textFieldGray
+    
+    // MARK: - Properties
+    private let signInTextField = TextField().then{
         $0.placeholder = "아이디"
-        $0.layer.cornerRadius = 11
-        $0.addLeftPadding(10)
     }
     
-    private let passwordTextField = UITextField().then{
-        $0.textColor = .textGray
-        $0.backgroundColor = .textFieldGray
+    private let passwordTextField = TextField().then{
         $0.placeholder = "비밀번호"
-        $0.layer.cornerRadius = 11
-        $0.addLeftPadding(10)
     }
     
     private let signInButton = UIButton().then{
@@ -33,12 +27,14 @@ class SignInVC: AuthBaseVC {
         $0.layer.cornerRadius = 24
     }
     
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
     }
 }
 
+// MARK: - UI
 extension SignInVC {
     private func setLayout() {
         view.addSubViews([signInTextField, passwordTextField, signInButton])
