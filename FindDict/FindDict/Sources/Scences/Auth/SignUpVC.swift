@@ -53,6 +53,8 @@ class SignUpVC: AuthBaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
+        passwordTextField.setPWSecureButton()
+        passwordConfirmTextField.setPWSecureButton()
         
     }
     
