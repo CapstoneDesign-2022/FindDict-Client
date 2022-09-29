@@ -60,9 +60,9 @@ extension UIFont {
 //        return UIFont(name: "NotoSans-Medium", size: 13.0)!
 //    }
 //
-//    class var mumentB7B12: UIFont {
-//        return UIFont(name: "NotoSans-Bold", size: 12.0)!
-//    }
+    class var findDictB7R12: UIFont {
+        return UIFont(name: "NotoSans-Regular", size: 12.0)!
+    }
 //
 //    class var mumentB8M12: UIFont {
 //        return UIFont(name: "NotoSans-Medium", size: 12.0)!
