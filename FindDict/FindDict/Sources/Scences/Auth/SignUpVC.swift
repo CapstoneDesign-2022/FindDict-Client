@@ -91,7 +91,7 @@ extension SignUpVC {
             
         }
         textFieldStackView.snp.makeConstraints{
-            $0.top.equalTo(idTextField.snp.bottom).offset(38)
+            $0.top.equalTo(idTextField.snp.bottom).offset(18)
             $0.leading.equalTo(containerView.snp.leading).offset(88)
             $0.trailing.equalTo(containerView.snp.trailing).offset(-88)
             $0.height.equalTo(180)
