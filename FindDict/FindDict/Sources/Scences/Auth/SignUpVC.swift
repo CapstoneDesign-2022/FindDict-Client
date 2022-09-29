@@ -91,7 +91,7 @@ extension SignUpVC {
             
         }
         textFieldStackView.snp.makeConstraints{
-            $0.top.equalTo(idTextField.snp.bottom).offset(18)
+            $0.top.equalTo(idTextField.snp.bottom).offset(38)
             $0.leading.equalTo(containerView.snp.leading).offset(88)
             $0.trailing.equalTo(containerView.snp.trailing).offset(-88)
             $0.height.equalTo(180)
@@ -134,7 +134,8 @@ extension SignUpVC: UITextFieldDelegate{
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if(passwordTextField.text == passwordConfirmTextField.text ){
+        if (passwordTextField.text?.isEmpty ?? true || passwordConfirmTextField.text?.isEmpty ?? true) {return};
+        if(passwordTextField.text == passwordConfirmTextField.text ) {
             passwordVerificationLabel.text = "입력한 비밀번호와 일치합니다."
             passwordVerificationLabel.textColor = .systemBlue
         }else{
