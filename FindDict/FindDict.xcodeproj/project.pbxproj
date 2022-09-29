@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		4D14BD6828E1B924002B2165 /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D14BD6728E1B924002B2165 /* UIButton+.swift */; };
 		4D14BD6A28E1C0F9002B2165 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D14BD6928E1C0F9002B2165 /* TextField.swift */; };
+		4D14BD6F28E2068B002B2165 /* PhotoSelectorVCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D14BD6E28E2068B002B2165 /* PhotoSelectorVCViewController.swift */; };
+		4D14BD7128E206BA002B2165 /* PhotoSelectorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D14BD7028E206BA002B2165 /* PhotoSelectorButton.swift */; };
+		4D14BD7728E20B8D002B2165 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D14BD7628E20B8D002B2165 /* UIFont+.swift */; };
+		4D14BD7828E20CA2002B2165 /* NotoSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D14BD7328E20A8C002B2165 /* NotoSans-Bold.ttf */; };
+		4D14BD7928E20CA4002B2165 /* NotoSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D14BD7428E20A8C002B2165 /* NotoSans-Medium.ttf */; };
+		4D14BD7A28E20CA6002B2165 /* NotoSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D14BD7528E20A8C002B2165 /* NotoSans-SemiBold.ttf */; };
+		4D14BD7B28E20CA8002B2165 /* NotoSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D14BD7228E20A8C002B2165 /* NotoSans-Regular.ttf */; };
 		4D53A66A28DAF9C0000E2AA2 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4D53A66928DAF9C0000E2AA2 /* SnapKit */; };
 		4D53A66D28DAF9C8000E2AA2 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 4D53A66C28DAF9C8000E2AA2 /* Then */; };
 		4D9ADC0728E018DB008CF9F3 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9ADC0628E018DB008CF9F3 /* SignInVC.swift */; };
@@ -32,6 +39,13 @@
 /* Begin PBXFileReference section */
 		4D14BD6728E1B924002B2165 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
 		4D14BD6928E1C0F9002B2165 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextField.swift; path = FindDict/Global/Extensions/TextField.swift; sourceTree = SOURCE_ROOT; };
+		4D14BD6E28E2068B002B2165 /* PhotoSelectorVCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorVCViewController.swift; sourceTree = "<group>"; };
+		4D14BD7028E206BA002B2165 /* PhotoSelectorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoSelectorButton.swift; path = FindDict/Sources/Scences/Game/PhotoSelectorButton.swift; sourceTree = SOURCE_ROOT; };
+		4D14BD7228E20A8C002B2165 /* NotoSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Regular.ttf"; sourceTree = "<group>"; };
+		4D14BD7328E20A8C002B2165 /* NotoSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Bold.ttf"; sourceTree = "<group>"; };
+		4D14BD7428E20A8C002B2165 /* NotoSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Medium.ttf"; sourceTree = "<group>"; };
+		4D14BD7528E20A8C002B2165 /* NotoSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		4D14BD7628E20B8D002B2165 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		4D9ADC0628E018DB008CF9F3 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		4DBDEC1028D4EFE2002252B3 /* FindDict.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FindDict.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DBDEC1328D4EFE2002252B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -73,6 +87,14 @@
 				F8823AA028DFE99200798374 /* SignUpVC.swift */,
 			);
 			path = Auth;
+			sourceTree = "<group>";
+		};
+		4D14BD6D28E20653002B2165 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				4D14BD6E28E2068B002B2165 /* PhotoSelectorVCViewController.swift */,
+			);
+			path = Game;
 			sourceTree = "<group>";
 		};
 		4DBDEC0728D4EFE2002252B3 = {
@@ -149,6 +171,7 @@
 				F8DB7A5D28DB29F700EE3D66 /* UIColor+.swift */,
 				F8823AA228E022CC00798374 /* UITextField+.swift */,
 				4D14BD6728E1B924002B2165 /* UIButton+.swift */,
+				4D14BD7628E20B8D002B2165 /* UIFont+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -165,6 +188,10 @@
 		4DBDEC3328D4F32F002252B3 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				4D14BD7328E20A8C002B2165 /* NotoSans-Bold.ttf */,
+				4D14BD7428E20A8C002B2165 /* NotoSans-Medium.ttf */,
+				4D14BD7228E20A8C002B2165 /* NotoSans-Regular.ttf */,
+				4D14BD7528E20A8C002B2165 /* NotoSans-SemiBold.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -173,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				4D14BD6928E1C0F9002B2165 /* TextField.swift */,
+				4D14BD7028E206BA002B2165 /* PhotoSelectorButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -180,6 +208,7 @@
 		4DBDEC3528D4F35D002252B3 /* Scences */ = {
 			isa = PBXGroup;
 			children = (
+				4D14BD6D28E20653002B2165 /* Game */,
 				4D14BD6628E1B677002B2165 /* Auth */,
 				4DBDEC1728D4EFE2002252B3 /* ViewController.swift */,
 				4DBDEC1928D4EFE2002252B3 /* Main.storyboard */,
@@ -263,7 +292,11 @@
 			files = (
 				4DBDEC3228D4F308002252B3 /* Colorsets.xcassets in Resources */,
 				4DBDEC2028D4EFE3002252B3 /* LaunchScreen.storyboard in Resources */,
+				4D14BD7A28E20CA6002B2165 /* NotoSans-SemiBold.ttf in Resources */,
+				4D14BD7928E20CA4002B2165 /* NotoSans-Medium.ttf in Resources */,
+				4D14BD7B28E20CA8002B2165 /* NotoSans-Regular.ttf in Resources */,
 				4DBDEC1D28D4EFE3002252B3 /* Assets.xcassets in Resources */,
+				4D14BD7828E20CA2002B2165 /* NotoSans-Bold.ttf in Resources */,
 				4DBDEC1B28D4EFE2002252B3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -276,15 +309,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DBDEC1828D4EFE2002252B3 /* ViewController.swift in Sources */,
+				4D14BD7728E20B8D002B2165 /* UIFont+.swift in Sources */,
 				F8DB7A5E28DB29F700EE3D66 /* UIColor+.swift in Sources */,
 				4DBDEC1428D4EFE2002252B3 /* AppDelegate.swift in Sources */,
 				4D14BD6A28E1C0F9002B2165 /* TextField.swift in Sources */,
 				F8DB7A6028DB2E8600EE3D66 /* AuthBaseVC.swift in Sources */,
 				F8DB7A5C28DB1FA700EE3D66 /* UIView+.swift in Sources */,
+				4D14BD6F28E2068B002B2165 /* PhotoSelectorVCViewController.swift in Sources */,
 				F8DB7A5A28DB1D3100EE3D66 /* BeforeSignInVC.swift in Sources */,
 				4DBDEC2F28D4F2B3002252B3 /* UIViewController+.swift in Sources */,
 				4D14BD6828E1B924002B2165 /* UIButton+.swift in Sources */,
 				4DBDEC1628D4EFE2002252B3 /* SceneDelegate.swift in Sources */,
+				4D14BD7128E206BA002B2165 /* PhotoSelectorButton.swift in Sources */,
 				F8823AA128DFE99200798374 /* SignUpVC.swift in Sources */,
 				4D9ADC0728E018DB008CF9F3 /* SignInVC.swift in Sources */,
 				4DBDEC2C28D4F169002252B3 /* BaseVC.swift in Sources */,
@@ -435,11 +471,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3BJK5D777T;
+				DEVELOPMENT_TEAM = T24N5ZR2DS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FindDict/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Find DIct";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_KEY_NSCameraUsageDescription = "카메라로 사진 찍기";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "앨범에서 사진 선택";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -451,7 +489,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = CapstoneDesign.FindDict;
+				PRODUCT_BUNDLE_IDENTIFIER = CapstoneDesign22.FindDict;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -466,11 +504,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3BJK5D777T;
+				DEVELOPMENT_TEAM = T24N5ZR2DS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FindDict/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Find DIct";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_KEY_NSCameraUsageDescription = "카메라로 사진 찍기";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "앨범에서 사진 선택";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -482,7 +522,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = CapstoneDesign.FindDict;
+				PRODUCT_BUNDLE_IDENTIFIER = CapstoneDesign22.FindDict;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
