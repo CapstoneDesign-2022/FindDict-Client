@@ -9,10 +9,9 @@ import UIKit
 import SnapKit
 import Then
 
-class PhotoSelectorVCViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+class PhotoSelectorVCViewController: UIViewController {
     
-   
-    
+    // MARK: - Properties
     private let takingPictureButton = PhotoSelectorButton().then{
         $0.setTitle("사진 찍기", for: .normal)
         $0.backgroundColor = .buttonOrange
@@ -30,13 +29,14 @@ class PhotoSelectorVCViewController: UIViewController, UIImagePickerControllerDe
     
     private let selectedImage = UIImageView()
     
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
         setButtonActions()
-        // Do any additional setup after loading the view.
     }
 
+    // MARK: - Functions
     func setButtonActions(){
         takingPictureButton.press{
             let imagePickerController = UIImagePickerController()
@@ -54,30 +54,6 @@ class PhotoSelectorVCViewController: UIViewController, UIImagePickerControllerDe
             self.present(imagePickerController, animated: true, completion: nil)
         }
     }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-          dismiss(animated: true, completion: nil)
-      }
-    
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-      
-                if let image = info[.editedImage] as? UIImage {
-                    selectedImage.image = image
-                }
-             dismiss(animated: true, completion: nil)
-
-        }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -114,4 +90,21 @@ extension PhotoSelectorVCViewController {
             $0.height.equalTo(250)
         }
     }
+}
+
+// MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
+extension PhotoSelectorVCViewController:UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+      
+                if let image = info[.editedImage] as? UIImage {
+                    selectedImage.image = image
+                }
+             dismiss(animated: true, completion: nil)
+
+        }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+          dismiss(animated: true, completion: nil)
+      }
 }
