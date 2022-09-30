@@ -28,6 +28,7 @@
 		4DBDEC2C28D4F169002252B3 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDEC2B28D4F169002252B3 /* BaseVC.swift */; };
 		4DBDEC2F28D4F2B3002252B3 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDEC2E28D4F2B3002252B3 /* UIViewController+.swift */; };
 		4DBDEC3228D4F308002252B3 /* Colorsets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DBDEC3128D4F308002252B3 /* Colorsets.xcassets */; };
+		F860B79D28E6CFBC0032A39B /* DictionaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F860B79C28E6CFBC0032A39B /* DictionaryVC.swift */; };
 		F8823AA128DFE99200798374 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8823AA028DFE99200798374 /* SignUpVC.swift */; };
 		F8823AA328E022CC00798374 /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8823AA228E022CC00798374 /* UITextField+.swift */; };
 		F8823AA728E5740F00798374 /* mainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8823AA628E5740F00798374 /* mainVC.swift */; };
@@ -60,6 +61,7 @@
 		4DBDEC2B28D4F169002252B3 /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		4DBDEC2E28D4F2B3002252B3 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		4DBDEC3128D4F308002252B3 /* Colorsets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colorsets.xcassets; sourceTree = "<group>"; };
+		F860B79C28E6CFBC0032A39B /* DictionaryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryVC.swift; sourceTree = "<group>"; };
 		F8823AA028DFE99200798374 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		F8823AA228E022CC00798374 /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
 		F8823AA628E5740F00798374 /* mainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainVC.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 		4DBDEC3528D4F35D002252B3 /* Scences */ = {
 			isa = PBXGroup;
 			children = (
+				F860B79B28E6CF870032A39B /* Dictionary */,
 				4D14BD6D28E20653002B2165 /* Game */,
 				F8823AAA28E590E400798374 /* Main */,
 				4D14BD6628E1B677002B2165 /* Auth */,
@@ -228,6 +231,14 @@
 			children = (
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		F860B79B28E6CF870032A39B /* Dictionary */ = {
+			isa = PBXGroup;
+			children = (
+				F860B79C28E6CFBC0032A39B /* DictionaryVC.swift */,
+			);
+			path = Dictionary;
 			sourceTree = "<group>";
 		};
 		F8823AAA28E590E400798374 /* Main */ = {
@@ -338,6 +349,7 @@
 				4D14BD7128E206BA002B2165 /* PhotoSelectorButton.swift in Sources */,
 				F8823AA128DFE99200798374 /* SignUpVC.swift in Sources */,
 				F8823AA928E575D300798374 /* MainButton.swift in Sources */,
+				F860B79D28E6CFBC0032A39B /* DictionaryVC.swift in Sources */,
 				4D9ADC0728E018DB008CF9F3 /* SignInVC.swift in Sources */,
 				4DBDEC2C28D4F169002252B3 /* BaseVC.swift in Sources */,
 				F8823AA328E022CC00798374 /* UITextField+.swift in Sources */,
