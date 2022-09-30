@@ -18,7 +18,6 @@ class mainVC: UIViewController {
     private let gameStartButton = MainButton().then{
         $0.backgroundColor = .buttonOrange
         $0.setTitle("게임 시작", for: .normal)
-        $0.titleLabel?.font = UIFont.systemFont(ofSize: 48, weight:  .bold)
     }
     
     lazy var buttonStackView = UIStackView(arrangedSubviews: [gameRuleButton, dictionaryButton]).then {

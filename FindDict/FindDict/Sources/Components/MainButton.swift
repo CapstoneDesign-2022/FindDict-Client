@@ -23,6 +23,6 @@ class MainButton: UIButton {
     private func setUI(){
         self.setTitleColor(.black, for: .normal)
         self.layer.cornerRadius = 10
-        self.titleLabel?.font = UIFont.systemFont(ofSize: 48, weight:  .bold)
+        self.titleLabel?.font = .findDictH4M48
     }
 }
