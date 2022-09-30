@@ -8,10 +8,21 @@
 import Foundation
 import UIKit
 import Vision
+import SnapKit
+import Then
 
-class ObjectDetection {
+
+class ObjectDetectionVC:ViewController {
     
-    //    private let
+    var pixelBuffer:CVPixelBuffer? = nil {
+        didSet{
+            setUpModel()
+            print("pixelBuffer")
+            handleImage(pixelBuffer: pixelBuffer)
+        }
+    }
+    var image = UIImageView()
+    let boxesView = DrawingBoundingBoxView()
     
     let objectDectectionModel = yolov5m()
     var predictions: [VNRecognizedObjectObservation] = []
@@ -22,6 +33,15 @@ class ObjectDetection {
     var isInferencing = false
     
     let semaphore = DispatchSemaphore(value: 1)
+    
+    // MARK: - View Life Cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+//        setUpModel()
+        setLayout()
+//        setButtonActions()
+    }
+
     
     // MARK: - Setup Core ML
     func setUpModel() {
@@ -46,6 +66,7 @@ class ObjectDetection {
     func handleImage(pixelBuffer: CVPixelBuffer?){
         if !self.isInferencing, let pixelBuffer = pixelBuffer {
             self.isInferencing = true
+            print("handleImage")
             self.predictUsingVision(pixelBuffer: pixelBuffer)
         }
     }
@@ -67,10 +88,22 @@ class ObjectDetection {
         
         // 결과 가져온 걸 처리, 뷰에 보여주기
         if let predictions = request.results as? [VNRecognizedObjectObservation] {
-                        print(predictions.first?.labels.first?.identifier ?? "nil")
-                        print(predictions.first?.labels.first?.confidence ?? -1)
+            print(predictions.first?.labels.first?.identifier ?? "nil")
+            print(predictions.first?.labels.first?.confidence ?? -1)
+//            print(predictions.)
+//            print(predictions.)
+            DispatchQueue.main.async {
+                self.boxesView.predictedObjects = predictions
+//                self.labelsTableView.reloadData()
+
+                // end of measure
+//                self.👨‍🔧.🎬🤚()
+                
+                self.isInferencing = false
+            }
             
             self.predictions = predictions
+//            self.boxesView.predictedObjects = predictions
             print(predictions)
             
         }
@@ -78,4 +111,29 @@ class ObjectDetection {
         self.semaphore.signal()
     }
     
+}
+// MARK: - UI
+extension ObjectDetectionVC {
+    func setLayout() {
+        view.addSubViews([image,boxesView])
+        image.snp.makeConstraints{
+            //            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(17)
+            //            $0.centerX.equalTo(view.safeAreaLayoutGuide)
+                        $0.center.equalTo(view.safeAreaLayoutGuide)
+            //            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(60)
+            //            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-60)
+            //            $0.bottom.lessThanOrEqualTo(view.safeAreaLayoutGuide.snp.bottom).inset(50)
+                        $0.height.equalTo(250)
+                    }
+        
+        boxesView.snp.makeConstraints{
+//            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(17)
+//            $0.centerX.equalTo(view.safeAreaLayoutGuide)
+            $0.center.equalTo(view.safeAreaLayoutGuide)
+//            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(60)
+//            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-60)
+//            $0.bottom.lessThanOrEqualTo(view.safeAreaLayoutGuide.snp.bottom).inset(50)
+            $0.height.equalTo(250)
+        }
+    }
 }
