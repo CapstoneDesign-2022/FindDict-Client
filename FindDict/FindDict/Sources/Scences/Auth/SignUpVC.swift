@@ -41,6 +41,10 @@ class SignUpVC: AuthBaseVC {
         $0.placeholder = "비밀번호 확인"
     }
     
+    private let passwordVerificationLabel = UILabel().then{
+        $0.font = .findDictB7R12
+    }
+    
     private let signUpButton = UIButton().then{
         $0.backgroundColor = .buttonYellow
         $0.setTitleColor(.black, for: .normal)
@@ -53,7 +57,11 @@ class SignUpVC: AuthBaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
+        passwordTextField.setPWSecureButton()
+        passwordConfirmTextField.setPWSecureButton()
         
+        setTextFieldDelegate()
+        setNotificationCenter()
     }
     
 }
@@ -61,12 +69,12 @@ class SignUpVC: AuthBaseVC {
 // MARK: - UI
 extension SignUpVC {
     private func setLayout(){
-        view.addSubViews([idTextField,idCheckButton,textFieldStackView, signUpButton])
+        view.addSubViews([idTextField,idCheckButton,textFieldStackView,passwordVerificationLabel,signUpButton])
         
         containerView.snp.makeConstraints{
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(317)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-317)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(100)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(80)
         }
         
         idTextField.snp.makeConstraints{
@@ -88,11 +96,61 @@ extension SignUpVC {
             $0.trailing.equalTo(containerView.snp.trailing).offset(-88)
             $0.height.equalTo(180)
         }
+        
+        passwordVerificationLabel.snp.makeConstraints{
+            $0.top.equalTo(textFieldStackView.snp.bottom).offset(10)
+            $0.leading.equalTo(containerView.snp.leading).offset(88)
+            $0.height.equalTo(15)
+        }
+        
         signUpButton.snp.makeConstraints{
-            $0.top.equalTo(textFieldStackView.snp.bottom).offset(21)
+            $0.top.equalTo(passwordVerificationLabel.snp.bottom).offset(10)
             $0.leading.equalTo(containerView.snp.leading).offset(137)
             $0.trailing.equalTo(containerView.snp.trailing).offset(-137)
             $0.height.equalTo(56)
         }
+    }
+}
+
+// MARK: - UITextFieldDelegate
+extension SignUpVC: UITextFieldDelegate{
+    
+    func setTextFieldDelegate(){
+        idTextField.delegate = self
+        ageTextField.delegate = self
+        passwordTextField.delegate = self
+        passwordConfirmTextField.delegate = self
+    }
+    
+    func setNotificationCenter(){
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name:  UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if (passwordTextField.text?.isEmpty ?? true || passwordConfirmTextField.text?.isEmpty ?? true) {return};
+        if(passwordTextField.text == passwordConfirmTextField.text ) {
+            passwordVerificationLabel.text = "입력한 비밀번호와 일치합니다."
+            passwordVerificationLabel.textColor = .systemBlue
+        }else{
+            passwordVerificationLabel.text = "입력한 비밀번호와 일치하지 않습니다."
+            passwordVerificationLabel.textColor = .systemRed
+        }
+    }
+    
+    @objc
+    func keyboardWillShow(_ sender:Notification) {
+        self.view.frame.origin.y = -300
+    }
+    
+    @objc
+    func keyboardWillHide(_ sender:Notification) {
+        self.view.frame.origin.y = 0 
     }
 }
