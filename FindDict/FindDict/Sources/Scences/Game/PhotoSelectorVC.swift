@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-class PhotoSelectorVCViewController: UIViewController {
+class PhotoSelectorVC: UIViewController {
     
     // MARK: - Properties
     private let takingPictureButton = PhotoSelectorButton().then{
@@ -28,6 +28,8 @@ class PhotoSelectorVCViewController: UIViewController {
     }
     
     private let selectedImage = UIImageView()
+    
+    let objectDetection = ObjectDetection()
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -58,7 +60,7 @@ class PhotoSelectorVCViewController: UIViewController {
 }
 
 // MARK: - UI
-extension PhotoSelectorVCViewController {
+extension PhotoSelectorVC {
     private func setLayout() {
         view.addSubViews([takingPictureButton, selectingPictureButton,fetchingPictureButton,selectedImage])
         
@@ -93,15 +95,18 @@ extension PhotoSelectorVCViewController {
 }
 
 // MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
-extension PhotoSelectorVCViewController:UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+extension PhotoSelectorVC:UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
       
                 if let image = info[.editedImage] as? UIImage {
                     selectedImage.image = image
+                    let imagePixelBuffer = image.pixelBufferFromImage()
+                    objectDetection.setUpModel()
+                    objectDetection.handleImage(pixelBuffer: imagePixelBuffer)
                 }
              dismiss(animated: true, completion: nil)
-
+        
         }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
