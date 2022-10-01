@@ -19,6 +19,18 @@
 		4D53A66A28DAF9C0000E2AA2 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4D53A66928DAF9C0000E2AA2 /* SnapKit */; };
 		4D53A66D28DAF9C8000E2AA2 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 4D53A66C28DAF9C8000E2AA2 /* Then */; };
 		4D9ADC0728E018DB008CF9F3 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9ADC0628E018DB008CF9F3 /* SignInVC.swift */; };
+		4DA65AAE28E86914002DEFE3 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA65AAD28E86914002DEFE3 /* TargetType.swift */; };
+		4DA65AB128E86A55002DEFE3 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4DA65AB028E86A55002DEFE3 /* Alamofire */; };
+		4DA65AB328E86A7A002DEFE3 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA65AB228E86A7A002DEFE3 /* NetworkResult.swift */; };
+		4DA65AB628E86AB0002DEFE3 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA65AB528E86AB0002DEFE3 /* APIConstants.swift */; };
+		4DA65AB828E86ABB002DEFE3 /* GenericResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA65AB728E86ABB002DEFE3 /* GenericResponse.swift */; };
+		4DA65ABA28E86AC8002DEFE3 /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA65AB928E86AC8002DEFE3 /* NetworkConstants.swift */; };
+		4DA65ABD28E86B25002DEFE3 /* SignInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA65ABC28E86B25002DEFE3 /* SignInService.swift */; };
+		4DA65AC028E86B57002DEFE3 /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA65ABF28E86B57002DEFE3 /* BaseAPI.swift */; };
+		4DA65AC228E86B6B002DEFE3 /* SignInAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA65AC128E86B6A002DEFE3 /* SignInAPI.swift */; };
+		4DA65AC428E86B8C002DEFE3 /* EvenLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA65AC328E86B8C002DEFE3 /* EvenLogger.swift */; };
+		4DA65AC728E86C46002DEFE3 /* SignInBodyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA65AC628E86C46002DEFE3 /* SignInBodyModel.swift */; };
+		4DA65AC928E86CE0002DEFE3 /* SignInDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA65AC828E86CE0002DEFE3 /* SignInDataModel.swift */; };
 		4DBDEC1428D4EFE2002252B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDEC1328D4EFE2002252B3 /* AppDelegate.swift */; };
 		4DBDEC1628D4EFE2002252B3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDEC1528D4EFE2002252B3 /* SceneDelegate.swift */; };
 		4DBDEC1828D4EFE2002252B3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDEC1728D4EFE2002252B3 /* ViewController.swift */; };
@@ -47,6 +59,17 @@
 		4D14BD7528E20A8C002B2165 /* NotoSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		4D14BD7628E20B8D002B2165 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		4D9ADC0628E018DB008CF9F3 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
+		4DA65AAD28E86914002DEFE3 /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
+		4DA65AB228E86A7A002DEFE3 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
+		4DA65AB528E86AB0002DEFE3 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
+		4DA65AB728E86ABB002DEFE3 /* GenericResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericResponse.swift; sourceTree = "<group>"; };
+		4DA65AB928E86AC8002DEFE3 /* NetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
+		4DA65ABC28E86B25002DEFE3 /* SignInService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInService.swift; sourceTree = "<group>"; };
+		4DA65ABF28E86B57002DEFE3 /* BaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPI.swift; sourceTree = "<group>"; };
+		4DA65AC128E86B6A002DEFE3 /* SignInAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInAPI.swift; sourceTree = "<group>"; };
+		4DA65AC328E86B8C002DEFE3 /* EvenLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvenLogger.swift; sourceTree = "<group>"; };
+		4DA65AC628E86C46002DEFE3 /* SignInBodyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInBodyModel.swift; sourceTree = "<group>"; };
+		4DA65AC828E86CE0002DEFE3 /* SignInDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInDataModel.swift; sourceTree = "<group>"; };
 		4DBDEC1028D4EFE2002252B3 /* FindDict.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FindDict.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DBDEC1328D4EFE2002252B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4DBDEC1528D4EFE2002252B3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DA65AB128E86A55002DEFE3 /* Alamofire in Frameworks */,
 				4D53A66A28DAF9C0000E2AA2 /* SnapKit in Frameworks */,
 				4D53A66D28DAF9C8000E2AA2 /* Then in Frameworks */,
 			);
@@ -97,6 +121,51 @@
 			path = Game;
 			sourceTree = "<group>";
 		};
+		4DA65AAC28E86908002DEFE3 /* Bases */ = {
+			isa = PBXGroup;
+			children = (
+				4DA65AAD28E86914002DEFE3 /* TargetType.swift */,
+				4DA65AB228E86A7A002DEFE3 /* NetworkResult.swift */,
+			);
+			path = Bases;
+			sourceTree = "<group>";
+		};
+		4DA65AB428E86A9E002DEFE3 /* APIEssentials */ = {
+			isa = PBXGroup;
+			children = (
+				4DA65AB528E86AB0002DEFE3 /* APIConstants.swift */,
+				4DA65AB728E86ABB002DEFE3 /* GenericResponse.swift */,
+				4DA65AB928E86AC8002DEFE3 /* NetworkConstants.swift */,
+			);
+			path = APIEssentials;
+			sourceTree = "<group>";
+		};
+		4DA65ABB28E86AF4002DEFE3 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				4DA65ABC28E86B25002DEFE3 /* SignInService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		4DA65ABE28E86B41002DEFE3 /* APIManagers */ = {
+			isa = PBXGroup;
+			children = (
+				4DA65ABF28E86B57002DEFE3 /* BaseAPI.swift */,
+				4DA65AC128E86B6A002DEFE3 /* SignInAPI.swift */,
+			);
+			path = APIManagers;
+			sourceTree = "<group>";
+		};
+		4DA65AC528E86C1F002DEFE3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4DA65AC628E86C46002DEFE3 /* SignInBodyModel.swift */,
+				4DA65AC828E86CE0002DEFE3 /* SignInDataModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		4DBDEC0728D4EFE2002252B3 = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				4DBDEC2128D4EFE3002252B3 /* Info.plist */,
+				4DA65AC528E86C1F002DEFE3 /* Model */,
 				4DBDEC2728D4F020002252B3 /* Application */,
 				4DBDEC3628D4F393002252B3 /* Network */,
 				4DBDEC2828D4F028002252B3 /* Global */,
@@ -220,6 +290,11 @@
 		4DBDEC3628D4F393002252B3 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				4DA65ABE28E86B41002DEFE3 /* APIManagers */,
+				4DA65AAC28E86908002DEFE3 /* Bases */,
+				4DA65AB428E86A9E002DEFE3 /* APIEssentials */,
+				4DA65ABB28E86AF4002DEFE3 /* Services */,
+				4DA65AC328E86B8C002DEFE3 /* EvenLogger.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -243,6 +318,7 @@
 			packageProductDependencies = (
 				4D53A66928DAF9C0000E2AA2 /* SnapKit */,
 				4D53A66C28DAF9C8000E2AA2 /* Then */,
+				4DA65AB028E86A55002DEFE3 /* Alamofire */,
 			);
 			productName = FindDict;
 			productReference = 4DBDEC1028D4EFE2002252B3 /* FindDict.app */;
@@ -275,6 +351,7 @@
 			packageReferences = (
 				4D53A66828DAF9C0000E2AA2 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				4D53A66B28DAF9C8000E2AA2 /* XCRemoteSwiftPackageReference "Then" */,
+				4DA65AAF28E86A55002DEFE3 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 4DBDEC1128D4EFE2002252B3 /* Products */;
 			projectDirPath = "";
@@ -310,21 +387,32 @@
 			files = (
 				4DBDEC1828D4EFE2002252B3 /* ViewController.swift in Sources */,
 				4D14BD7728E20B8D002B2165 /* UIFont+.swift in Sources */,
+				4DA65ABA28E86AC8002DEFE3 /* NetworkConstants.swift in Sources */,
 				F8DB7A5E28DB29F700EE3D66 /* UIColor+.swift in Sources */,
 				4DBDEC1428D4EFE2002252B3 /* AppDelegate.swift in Sources */,
 				4D14BD6A28E1C0F9002B2165 /* TextField.swift in Sources */,
 				F8DB7A6028DB2E8600EE3D66 /* AuthBaseVC.swift in Sources */,
+				4DA65AB828E86ABB002DEFE3 /* GenericResponse.swift in Sources */,
 				F8DB7A5C28DB1FA700EE3D66 /* UIView+.swift in Sources */,
 				4D14BD6F28E2068B002B2165 /* PhotoSelectorVCViewController.swift in Sources */,
 				F8DB7A5A28DB1D3100EE3D66 /* BeforeSignInVC.swift in Sources */,
 				4DBDEC2F28D4F2B3002252B3 /* UIViewController+.swift in Sources */,
+				4DA65AC728E86C46002DEFE3 /* SignInBodyModel.swift in Sources */,
 				4D14BD6828E1B924002B2165 /* UIButton+.swift in Sources */,
 				4DBDEC1628D4EFE2002252B3 /* SceneDelegate.swift in Sources */,
+				4DA65AAE28E86914002DEFE3 /* TargetType.swift in Sources */,
 				4D14BD7128E206BA002B2165 /* PhotoSelectorButton.swift in Sources */,
+				4DA65ABD28E86B25002DEFE3 /* SignInService.swift in Sources */,
 				F8823AA128DFE99200798374 /* SignUpVC.swift in Sources */,
 				4D9ADC0728E018DB008CF9F3 /* SignInVC.swift in Sources */,
+				4DA65AC228E86B6B002DEFE3 /* SignInAPI.swift in Sources */,
+				4DA65AB628E86AB0002DEFE3 /* APIConstants.swift in Sources */,
 				4DBDEC2C28D4F169002252B3 /* BaseVC.swift in Sources */,
+				4DA65AC028E86B57002DEFE3 /* BaseAPI.swift in Sources */,
 				F8823AA328E022CC00798374 /* UITextField+.swift in Sources */,
+				4DA65AB328E86A7A002DEFE3 /* NetworkResult.swift in Sources */,
+				4DA65AC428E86B8C002DEFE3 /* EvenLogger.swift in Sources */,
+				4DA65AC928E86CE0002DEFE3 /* SignInDataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -570,6 +658,14 @@
 				kind = branch;
 			};
 		};
+		4DA65AAF28E86A55002DEFE3 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -582,6 +678,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4D53A66B28DAF9C8000E2AA2 /* XCRemoteSwiftPackageReference "Then" */;
 			productName = Then;
+		};
+		4DA65AB028E86A55002DEFE3 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4DA65AAF28E86A55002DEFE3 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
