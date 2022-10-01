@@ -37,11 +37,11 @@ class ObjectDetectionVC:ViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-//        setUpModel()
+        //        setUpModel()
         setLayout()
-//        setButtonActions()
+        //        setButtonActions()
     }
-
+    
     
     // MARK: - Setup Core ML
     func setUpModel() {
@@ -57,7 +57,8 @@ class ObjectDetectionVC:ViewController {
             request = VNCoreMLRequest(model: visionModel, completionHandler: visionRequestDidComplete) //1. 요청 정의
             
             // .centerCrop으로 하면 가로세로 비율 유지하면서 크기 조정하는데 필요한 경우 이미지 중앙을 기준으로 긴 쪽을 자른다.
-            request?.imageCropAndScaleOption = .scaleFill
+            request?.imageCropAndScaleOption = .scaleFit
+//                .scaleFill
         } else {
             fatalError("fail to create vision model")
         }
@@ -90,20 +91,21 @@ class ObjectDetectionVC:ViewController {
         if let predictions = request.results as? [VNRecognizedObjectObservation] {
             print(predictions.first?.labels.first?.identifier ?? "nil")
             print(predictions.first?.labels.first?.confidence ?? -1)
-//            print(predictions.)
-//            print(predictions.)
+            //            print(predictions.)
+            //            print(predictions.)
             DispatchQueue.main.async {
+                self.boxesView.frame = self.image.bounds
                 self.boxesView.predictedObjects = predictions
-//                self.labelsTableView.reloadData()
-
+                //                self.labelsTableView.reloadData()
+                
                 // end of measure
-//                self.👨‍🔧.🎬🤚()
+                //                self.👨‍🔧.🎬🤚()
                 
                 self.isInferencing = false
             }
             
             self.predictions = predictions
-//            self.boxesView.predictedObjects = predictions
+            //            self.boxesView.predictedObjects = predictions
             print(predictions)
             
         }
@@ -115,25 +117,32 @@ class ObjectDetectionVC:ViewController {
 // MARK: - UI
 extension ObjectDetectionVC {
     func setLayout() {
-        view.addSubViews([image,boxesView])
+        view.addSubViews([image
+                          ,boxesView
+                         ])
         image.snp.makeConstraints{
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(17)
+            //            $0.centerX.equalTo(view.safeAreaLayoutGuide)
+            //                        $0.center.equalTo(view.safeAreaLayoutGuide)
+//            $0.leading.greaterThanOrEqualTo(view.safeAreaLayoutGuide.snp.leading).offset(60)
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(60)
+//            $0.trailing.greaterThanOrEqualTo(view.safeAreaLayoutGuide.snp.trailing).offset(-60)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(60)
+            $0.bottom.lessThanOrEqualTo(view.safeAreaLayoutGuide.snp.bottom).inset(50)
+            //                        $0.height.equalTo(250)
+        }
+        
+        boxesView.snp.makeConstraints{
             //            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(17)
             //            $0.centerX.equalTo(view.safeAreaLayoutGuide)
-                        $0.center.equalTo(view.safeAreaLayoutGuide)
+            $0.edges.equalTo(image)
+            //            $0.height.equalTo(image)
+            //            $0.width.equalTo(image)
+            //            $0.center.equalTo(image)
             //            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(60)
             //            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-60)
             //            $0.bottom.lessThanOrEqualTo(view.safeAreaLayoutGuide.snp.bottom).inset(50)
-                        $0.height.equalTo(250)
-                    }
-        
-        boxesView.snp.makeConstraints{
-//            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(17)
-//            $0.centerX.equalTo(view.safeAreaLayoutGuide)
-            $0.center.equalTo(view.safeAreaLayoutGuide)
-//            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(60)
-//            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-60)
-//            $0.bottom.lessThanOrEqualTo(view.safeAreaLayoutGuide.snp.bottom).inset(50)
-            $0.height.equalTo(250)
+            //            $0.height.equalTo(250)
         }
     }
 }
