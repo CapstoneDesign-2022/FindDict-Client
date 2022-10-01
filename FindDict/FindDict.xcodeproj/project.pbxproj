@@ -32,6 +32,7 @@
 		F860B79F28E7D0AB0032A39B /* DictionaryTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F860B79E28E7D0AB0032A39B /* DictionaryTVC.swift */; };
 		F860B7A128E832DB0032A39B /* UITableViewCell+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F860B7A028E832DB0032A39B /* UITableViewCell+.swift */; };
 		F860B7A328E835860032A39B /* DictionaryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F860B7A228E835860032A39B /* DictionaryCard.swift */; };
+		F860B7A528E84F5D0032A39B /* WordDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F860B7A428E84F5D0032A39B /* WordDataModel.swift */; };
 		F8823AA128DFE99200798374 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8823AA028DFE99200798374 /* SignUpVC.swift */; };
 		F8823AA328E022CC00798374 /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8823AA228E022CC00798374 /* UITextField+.swift */; };
 		F8823AA728E5740F00798374 /* mainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8823AA628E5740F00798374 /* mainVC.swift */; };
@@ -68,6 +69,7 @@
 		F860B79E28E7D0AB0032A39B /* DictionaryTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryTVC.swift; sourceTree = "<group>"; };
 		F860B7A028E832DB0032A39B /* UITableViewCell+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+.swift"; sourceTree = "<group>"; };
 		F860B7A228E835860032A39B /* DictionaryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryCard.swift; sourceTree = "<group>"; };
+		F860B7A428E84F5D0032A39B /* WordDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDataModel.swift; sourceTree = "<group>"; };
 		F8823AA028DFE99200798374 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		F8823AA228E022CC00798374 /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
 		F8823AA628E5740F00798374 /* mainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainVC.swift; sourceTree = "<group>"; };
@@ -243,9 +245,10 @@
 		F860B79B28E6CF870032A39B /* Dictionary */ = {
 			isa = PBXGroup;
 			children = (
-				F860B79E28E7D0AB0032A39B /* DictionaryTVC.swift */,
 				F860B79C28E6CFBC0032A39B /* DictionaryVC.swift */,
+				F860B79E28E7D0AB0032A39B /* DictionaryTVC.swift */,
 				F860B7A228E835860032A39B /* DictionaryCard.swift */,
+				F860B7A428E84F5D0032A39B /* WordDataModel.swift */,
 			);
 			path = Dictionary;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 				4D14BD6F28E2068B002B2165 /* PhotoSelectorVCViewController.swift in Sources */,
 				F8DB7A5A28DB1D3100EE3D66 /* BeforeSignInVC.swift in Sources */,
 				4DBDEC2F28D4F2B3002252B3 /* UIViewController+.swift in Sources */,
+				F860B7A528E84F5D0032A39B /* WordDataModel.swift in Sources */,
 				4D14BD6828E1B924002B2165 /* UIButton+.swift in Sources */,
 				F860B7A128E832DB0032A39B /* UITableViewCell+.swift in Sources */,
 				4DBDEC1628D4EFE2002252B3 /* SceneDelegate.swift in Sources */,

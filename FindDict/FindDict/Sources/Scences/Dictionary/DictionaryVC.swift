@@ -40,8 +40,6 @@ class DictionaryVC: UIViewController {
         dictionaryTV.dataSource = self
         dictionaryTV.showsVerticalScrollIndicator = false
         dictionaryTV.register(DictionaryTVC.self, forCellReuseIdentifier: "DictionaryTVC")
-        // forCellReuseIdentifier: TV애서 여러 개의 TVC를 사용할 수 있기 때문에 identifier로 구분한다.
-        // 나중에 UITableViewDataSource에서 identifier로 필요한 셀을 사용한다.
     }
     
     // MARK: - View Life Cycle
@@ -87,23 +85,18 @@ extension DictionaryVC {
 extension DictionaryVC: UITableViewDataSource {
     // @required: 특정 위치에 표시할 셀을 요청하는 메서드
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // dequeueReusableCell의 반환값이 optional(UITableViewCell?)이기 때문에 guard else{}문을 사용
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "DictionaryTVC", for: indexPath) as? DictionaryTVC else {
             return UITableViewCell()
         }
         
+        cell.setData(WordDataModel.sampleData[indexPath.row])
         return cell
     }
     
     // @required: 각 섹션에 표시할 행의 개수를 묻는 메서드
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //        return self.tableArray.count
-        return 10
+        return WordDataModel.sampleData.count
     }
-    
-    // 표현할 데이터 리스트의 count를 return 해주고 cell을 dequeueReusableCell 한 다음
-    // textLabel에 값을 넣고 return해주면 끝 ??
-    // widthIdentifier는 아까 사용할 TV셀을 등록할 때 정했던 String을 넣어야 함
 }
 
 // MARK: - UITableViewDelegate

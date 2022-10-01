@@ -25,6 +25,11 @@ class DictionaryTVC: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: Functions
+    func setData(_ cellData: WordDataModel) {
+        TVCView.koreanWordLabel.text = cellData.koreanWord
+        TVCView.englishWordLabel.text = cellData.englishWord
+    }
 }
 
 // MARK: - UI
