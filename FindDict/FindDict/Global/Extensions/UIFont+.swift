@@ -36,40 +36,44 @@ extension UIFont {
         return UIFont(name: "NotoSans-Regular", size: 35.0)!
     }
     
+    class var findDictH4R28: UIFont {
+        return UIFont(name: "NotoSans-Regular", size: 28.0)!
+    }
+    
     class var findDictB1B15: UIFont {
         return UIFont(name: "NotoSans-Bold", size: 15.0)!
     }
     
-//    class var mumentB2B14: UIFont {
-//        return UIFont(name: "NotoSans-Bold", size: 14.0)!
-//    }
-//
-//    class var mumentB3M14: UIFont {
-//        return UIFont(name: "NotoSans-Medium", size: 14.0)!
-//    }
-//
-//    class var mumentB4M14: UIFont {
-//        return UIFont(name: "NotoSans-Medium", size: 14.0)!
-//    }
-//
-//    class var mumentB5B13: UIFont {
-//        return UIFont(name: "NotoSans-Bold", size: 13.0)!
-//    }
-//
-//    class var mumentB6M13: UIFont {
-//        return UIFont(name: "NotoSans-Medium", size: 13.0)!
-//    }
-//
+    //    class var mumentB2B14: UIFont {
+    //        return UIFont(name: "NotoSans-Bold", size: 14.0)!
+    //    }
+    //
+    //    class var mumentB3M14: UIFont {
+    //        return UIFont(name: "NotoSans-Medium", size: 14.0)!
+    //    }
+    //
+    //    class var mumentB4M14: UIFont {
+    //        return UIFont(name: "NotoSans-Medium", size: 14.0)!
+    //    }
+    //
+    //    class var mumentB5B13: UIFont {
+    //        return UIFont(name: "NotoSans-Bold", size: 13.0)!
+    //    }
+    //
+    //    class var mumentB6M13: UIFont {
+    //        return UIFont(name: "NotoSans-Medium", size: 13.0)!
+    //    }
+    //
     class var findDictB7R12: UIFont {
         return UIFont(name: "NotoSans-Regular", size: 12.0)!
     }
-//
-//    class var mumentB8M12: UIFont {
-//        return UIFont(name: "NotoSans-Medium", size: 12.0)!
-//    }
-//
-//    class var mumentC1R12: UIFont {
-//        return UIFont(name: "NotoSans-Regular", size: 12.0)!
-//    }
+    //
+    //    class var mumentB8M12: UIFont {
+    //        return UIFont(name: "NotoSans-Medium", size: 12.0)!
+    //    }
+    //
+    //    class var mumentC1R12: UIFont {
+    //        return UIFont(name: "NotoSans-Regular", size: 12.0)!
+    //    }
     
 }

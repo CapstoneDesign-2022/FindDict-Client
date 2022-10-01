@@ -30,6 +30,8 @@
 		4DBDEC3228D4F308002252B3 /* Colorsets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DBDEC3128D4F308002252B3 /* Colorsets.xcassets */; };
 		F860B79D28E6CFBC0032A39B /* DictionaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F860B79C28E6CFBC0032A39B /* DictionaryVC.swift */; };
 		F860B79F28E7D0AB0032A39B /* DictionaryTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F860B79E28E7D0AB0032A39B /* DictionaryTVC.swift */; };
+		F860B7A128E832DB0032A39B /* UITableViewCell+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F860B7A028E832DB0032A39B /* UITableViewCell+.swift */; };
+		F860B7A328E835860032A39B /* DictionaryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F860B7A228E835860032A39B /* DictionaryCard.swift */; };
 		F8823AA128DFE99200798374 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8823AA028DFE99200798374 /* SignUpVC.swift */; };
 		F8823AA328E022CC00798374 /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8823AA228E022CC00798374 /* UITextField+.swift */; };
 		F8823AA728E5740F00798374 /* mainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8823AA628E5740F00798374 /* mainVC.swift */; };
@@ -64,6 +66,8 @@
 		4DBDEC3128D4F308002252B3 /* Colorsets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colorsets.xcassets; sourceTree = "<group>"; };
 		F860B79C28E6CFBC0032A39B /* DictionaryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryVC.swift; sourceTree = "<group>"; };
 		F860B79E28E7D0AB0032A39B /* DictionaryTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryTVC.swift; sourceTree = "<group>"; };
+		F860B7A028E832DB0032A39B /* UITableViewCell+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+.swift"; sourceTree = "<group>"; };
+		F860B7A228E835860032A39B /* DictionaryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryCard.swift; sourceTree = "<group>"; };
 		F8823AA028DFE99200798374 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		F8823AA228E022CC00798374 /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
 		F8823AA628E5740F00798374 /* mainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainVC.swift; sourceTree = "<group>"; };
@@ -180,6 +184,7 @@
 				F8823AA228E022CC00798374 /* UITextField+.swift */,
 				4D14BD6728E1B924002B2165 /* UIButton+.swift */,
 				4D14BD7628E20B8D002B2165 /* UIFont+.swift */,
+				F860B7A028E832DB0032A39B /* UITableViewCell+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -210,7 +215,6 @@
 				F8823AA828E575D300798374 /* MainButton.swift */,
 				4D14BD6928E1C0F9002B2165 /* TextField.swift */,
 				4D14BD7028E206BA002B2165 /* PhotoSelectorButton.swift */,
-				F860B79E28E7D0AB0032A39B /* DictionaryTVC.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -239,7 +243,9 @@
 		F860B79B28E6CF870032A39B /* Dictionary */ = {
 			isa = PBXGroup;
 			children = (
+				F860B79E28E7D0AB0032A39B /* DictionaryTVC.swift */,
 				F860B79C28E6CFBC0032A39B /* DictionaryVC.swift */,
+				F860B7A228E835860032A39B /* DictionaryCard.swift */,
 			);
 			path = Dictionary;
 			sourceTree = "<group>";
@@ -340,6 +346,7 @@
 				4D14BD7728E20B8D002B2165 /* UIFont+.swift in Sources */,
 				F8DB7A5E28DB29F700EE3D66 /* UIColor+.swift in Sources */,
 				F8823AA728E5740F00798374 /* mainVC.swift in Sources */,
+				F860B7A328E835860032A39B /* DictionaryCard.swift in Sources */,
 				4DBDEC1428D4EFE2002252B3 /* AppDelegate.swift in Sources */,
 				4D14BD6A28E1C0F9002B2165 /* TextField.swift in Sources */,
 				F8DB7A6028DB2E8600EE3D66 /* AuthBaseVC.swift in Sources */,
@@ -349,6 +356,7 @@
 				F8DB7A5A28DB1D3100EE3D66 /* BeforeSignInVC.swift in Sources */,
 				4DBDEC2F28D4F2B3002252B3 /* UIViewController+.swift in Sources */,
 				4D14BD6828E1B924002B2165 /* UIButton+.swift in Sources */,
+				F860B7A128E832DB0032A39B /* UITableViewCell+.swift in Sources */,
 				4DBDEC1628D4EFE2002252B3 /* SceneDelegate.swift in Sources */,
 				4D14BD7128E206BA002B2165 /* PhotoSelectorButton.swift in Sources */,
 				F8823AA128DFE99200798374 /* SignUpVC.swift in Sources */,

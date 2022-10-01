@@ -28,10 +28,10 @@ class DictionaryVC: UIViewController {
         $0.font = .findDictH5R48
     }
     
-//    private let dictionaryTV = UITableView(frame: CGRect.zero)
     private let dictionaryTV = UITableView().then{
         $0.rowHeight = 107
         $0.estimatedRowHeight = UITableView.automaticDimension
+        $0.backgroundColor = .bgBeige
     }
     
     // MARK: - Functions
@@ -39,8 +39,9 @@ class DictionaryVC: UIViewController {
         dictionaryTV.delegate = self
         dictionaryTV.dataSource = self
         dictionaryTV.showsVerticalScrollIndicator = false
-        // DictionaryTVC라는 identifier을 가진 DictionaryTVC 클래스를 dictionaryTV에 등록하는 것??
         dictionaryTV.register(DictionaryTVC.self, forCellReuseIdentifier: "DictionaryTVC")
+        // forCellReuseIdentifier: TV애서 여러 개의 TVC를 사용할 수 있기 때문에 identifier로 구분한다.
+        // 나중에 UITableViewDataSource에서 identifier로 필요한 셀을 사용한다.
     }
     
     // MARK: - View Life Cycle
@@ -58,19 +59,19 @@ extension DictionaryVC {
     private func setLayout() {
         view.addSubViews([titleView, dictionaryTV])
         titleView.addSubViews([titleLabel])
-
+        
         titleView.snp.makeConstraints{
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(52)
             $0.width.equalTo(601)
             $0.height.equalTo(119)
         }
-
+        
         titleLabel.snp.makeConstraints{
             $0.centerX.equalTo(titleView)
             $0.centerY.equalTo(titleView)
         }
-
+        
         dictionaryTV.snp.makeConstraints{
             $0.top.equalTo(titleView.snp.bottom).offset(97)
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(0)
@@ -96,7 +97,7 @@ extension DictionaryVC: UITableViewDataSource {
     
     // @required: 각 섹션에 표시할 행의 개수를 묻는 메서드
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return self.tableArray.count
+        //        return self.tableArray.count
         return 10
     }
     
@@ -107,5 +108,7 @@ extension DictionaryVC: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension DictionaryVC: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 107
+    }
 }
