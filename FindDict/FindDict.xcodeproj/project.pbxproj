@@ -29,6 +29,7 @@
 		4DBDEC2F28D4F2B3002252B3 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDEC2E28D4F2B3002252B3 /* UIViewController+.swift */; };
 		4DBDEC3228D4F308002252B3 /* Colorsets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DBDEC3128D4F308002252B3 /* Colorsets.xcassets */; };
 		F860B79D28E6CFBC0032A39B /* DictionaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F860B79C28E6CFBC0032A39B /* DictionaryVC.swift */; };
+		F860B79F28E7D0AB0032A39B /* DictionaryTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F860B79E28E7D0AB0032A39B /* DictionaryTVC.swift */; };
 		F8823AA128DFE99200798374 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8823AA028DFE99200798374 /* SignUpVC.swift */; };
 		F8823AA328E022CC00798374 /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8823AA228E022CC00798374 /* UITextField+.swift */; };
 		F8823AA728E5740F00798374 /* mainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8823AA628E5740F00798374 /* mainVC.swift */; };
@@ -62,6 +63,7 @@
 		4DBDEC2E28D4F2B3002252B3 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		4DBDEC3128D4F308002252B3 /* Colorsets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colorsets.xcassets; sourceTree = "<group>"; };
 		F860B79C28E6CFBC0032A39B /* DictionaryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryVC.swift; sourceTree = "<group>"; };
+		F860B79E28E7D0AB0032A39B /* DictionaryTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryTVC.swift; sourceTree = "<group>"; };
 		F8823AA028DFE99200798374 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		F8823AA228E022CC00798374 /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
 		F8823AA628E5740F00798374 /* mainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainVC.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 				F8823AA828E575D300798374 /* MainButton.swift */,
 				4D14BD6928E1C0F9002B2165 /* TextField.swift */,
 				4D14BD7028E206BA002B2165 /* PhotoSelectorButton.swift */,
+				F860B79E28E7D0AB0032A39B /* DictionaryTVC.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 				4DBDEC1428D4EFE2002252B3 /* AppDelegate.swift in Sources */,
 				4D14BD6A28E1C0F9002B2165 /* TextField.swift in Sources */,
 				F8DB7A6028DB2E8600EE3D66 /* AuthBaseVC.swift in Sources */,
+				F860B79F28E7D0AB0032A39B /* DictionaryTVC.swift in Sources */,
 				F8DB7A5C28DB1FA700EE3D66 /* UIView+.swift in Sources */,
 				4D14BD6F28E2068B002B2165 /* PhotoSelectorVCViewController.swift in Sources */,
 				F8DB7A5A28DB1D3100EE3D66 /* BeforeSignInVC.swift in Sources */,
