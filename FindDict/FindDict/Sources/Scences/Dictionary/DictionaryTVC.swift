@@ -12,7 +12,7 @@ import Then
 class DictionaryTVC: UITableViewCell {
     
     // MARK: - Properties
-    private let TVCView = DictionaryCard()
+    private let dictionaryCard = DictionaryCard()
     
     // MARK: Initialization
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -27,17 +27,17 @@ class DictionaryTVC: UITableViewCell {
     
     // MARK: Functions
     func setData(_ cellData: WordDataModel) {
-        TVCView.koreanWordLabel.text = cellData.koreanWord
-        TVCView.englishWordLabel.text = cellData.englishWord
+        dictionaryCard.koreanWordLabel.text = cellData.koreanWord
+        dictionaryCard.englishWordLabel.text = cellData.englishWord
     }
 }
 
 // MARK: - UI
 extension DictionaryTVC {
     func setLayout(){
-        self.addSubViews([TVCView])
+        self.addSubViews([dictionaryCard])
         
-        TVCView.snp.makeConstraints{
+        dictionaryCard.snp.makeConstraints{
             $0.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(10)
             $0.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(-10)
             $0.leading.equalTo(self.safeAreaLayoutGuide.snp.leading).offset(0)
