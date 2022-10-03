@@ -25,7 +25,7 @@ extension UIColor {
     }
     
     @nonobjc class var buttonApricot: UIColor {
-      return UIColor(red: 249.0 / 255.0, green: 222.0 / 255.0, blue: 181.0 / 255.0, alpha: 1.0)
+        return UIColor(red: 249.0 / 255.0, green: 222.0 / 255.0, blue: 181.0 / 255.0, alpha: 1.0)
     }
     
     @nonobjc class var textFieldGray: UIColor {
@@ -34,6 +34,14 @@ extension UIColor {
     
     @nonobjc class var textGray: UIColor {
         return UIColor(white: 131.0 / 255.0, alpha: 1.0)
+    }
+    
+    @nonobjc class var bgBeige: UIColor {
+        return UIColor(red: 1.0, green: 1.0, blue: 244.0 / 255.0, alpha: 1.0)
+    }
+    
+    @nonobjc class var dictionayGray: UIColor {
+        return UIColor(white: 0.0, alpha: 0.15)
     }
     
 }
