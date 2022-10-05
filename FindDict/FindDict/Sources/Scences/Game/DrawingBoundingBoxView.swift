@@ -22,44 +22,96 @@ class DrawingBoundingBoxView: UIView {
         }
     }
     
+//    public var predictedObjects: [VNRecognizedObjectObservation] = [] {
+//        didSet {
+//            self.drawBoxs(with: predictedObjects)
+//            self.setNeedsDisplay()
+//        }
+//    }
+    
     public var predictedObjects: [VNRecognizedObjectObservation] = [] {
         didSet {
-            self.drawBoxs(with: predictedObjects)
+            self.putButtons(with: predictedObjects)
             self.setNeedsDisplay()
         }
     }
     
-    func drawBoxs(with predictions: [VNRecognizedObjectObservation]) {
+//    func drawBoxs(with predictions: [VNRecognizedObjectObservation]) {
+//        subviews.forEach({ $0.removeFromSuperview() })
+//
+//        for prediction in predictions {
+////            createLabelAndBox(prediction: prediction)
+//            createButton(prediction: prediction)
+//        }
+//    }
+    
+    func putButtons(with predictions: [VNRecognizedObjectObservation]) {
         subviews.forEach({ $0.removeFromSuperview() })
         
         for prediction in predictions {
-            createLabelAndBox(prediction: prediction)
+//            createLabelAndBox(prediction: prediction)
+            createButton(prediction: prediction)
         }
     }
     
-    func createLabelAndBox(prediction: VNRecognizedObjectObservation) {
-        let labelString: String? = prediction.label
-        print("labelString",labelString)
-        let color: UIColor = labelColor(with: labelString ?? "N/A")
+//    func createLabelAndBox(prediction: VNRecognizedObjectObservation) {
+//        print(prediction)
+//        let labelString: String? = prediction.label
+//        print("labelString",labelString)
+//        let color: UIColor = labelColor(with: labelString ?? "N/A")
+//
+//        let scale = CGAffineTransform.identity.scaledBy(x: bounds.width, y: bounds.height)
+//        print("scale",scale)
+//        let transform = CGAffineTransform(scaleX: 1, y: -1).translatedBy(x: 0, y: -1)
+//        print(labelString,"boundingBox",prediction.boundingBox)
+//        let bgRect = prediction.boundingBox.applying(transform).applying(scale)
+//        print(labelString,bgRect)
+//        let bgView = UIView(frame: bgRect)
+//        bgView.layer.borderColor = color.cgColor
+//        bgView.layer.borderWidth = 4
+//        bgView.backgroundColor = UIColor.clear
+//        addSubview(bgView)
+//
+//        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
+//        label.text = labelString ?? "N/A"
+//        label.font = UIFont.systemFont(ofSize: 13)
+//        label.textColor = UIColor.black
+//        label.backgroundColor = color
+//        label.sizeToFit()
+//        label.frame = CGRect(x: bgRect.origin.x, y: bgRect.origin.y - label.frame.height,
+//                             width: label.frame.width, height: label.frame.height)
+//        print("label.frame",label.frame)
+//        addSubview(label)
+//    }
+    func createButton(prediction: VNRecognizedObjectObservation) {
+//        print(prediction)
+        let buttonTitle: String? = prediction.label
+//        print("labelString",labelString)
+//        let color: UIColor = labelColor(with: labelString ?? "N/A")
         
         let scale = CGAffineTransform.identity.scaledBy(x: bounds.width, y: bounds.height)
+//        print("scale",scale)
         let transform = CGAffineTransform(scaleX: 1, y: -1).translatedBy(x: 0, y: -1)
-        let bgRect = prediction.boundingBox.applying(transform).applying(scale)
-        
-        let bgView = UIView(frame: bgRect)
-        bgView.layer.borderColor = color.cgColor
-        bgView.layer.borderWidth = 4
-        bgView.backgroundColor = UIColor.clear
-        addSubview(bgView)
+//        print(labelString,"boundingBox",prediction.boundingBox)
+        let buttonRect = prediction.boundingBox.applying(transform).applying(scale)
+//        print(labelString,bgRect)
+        let button = UIButton(frame: buttonRect)
+//        bgView.layer.borderColor = color.cgColor
+        button.backgroundColor = .systemBlue
+//        button.
+//        bgView.layer.borderWidth = 4
+//        bgView.backgroundColor = UIColor.clear
+//        addSubview(bgView)
         
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
-        label.text = labelString ?? "N/A"
+        label.text = buttonTitle ?? "N/A"
         label.font = UIFont.systemFont(ofSize: 13)
         label.textColor = UIColor.black
-        label.backgroundColor = color
+//        label.backgroundColor = color
         label.sizeToFit()
-        label.frame = CGRect(x: bgRect.origin.x, y: bgRect.origin.y - label.frame.height,
+        label.frame = CGRect(x: buttonRect.origin.x, y: buttonRect.origin.y - label.frame.height,
                              width: label.frame.width, height: label.frame.height)
+//        print("label.frame",label.frame)
         addSubview(label)
     }
 }
