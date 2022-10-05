@@ -38,7 +38,17 @@ class ObjectDetectionVC:ViewController {
         super.viewDidLoad()
         setLayout()
     }
+    static private var colors: [String: UIColor] = [:]
     
+    public func labelColor(with label: String) -> UIColor {
+        if let color = ObjectDetectionVC.colors[label] {
+            return color
+        } else {
+            let color = UIColor(hue: .random(in: 0...1), saturation: 1, brightness: 1, alpha: 0.8)
+            ObjectDetectionVC.colors[label] = color
+            return color
+        }
+    }
     
     // MARK: - Setup Core ML
     func setUpModel() {
@@ -84,11 +94,6 @@ class ObjectDetectionVC:ViewController {
                 self.predictedObjects = predictions
                 self.isInferencing = false
             }
-            
-//            self.predictions = predictions
-            
-//            print(predictions)
-            
         }
         self.isInferencing = false
         self.semaphore.signal()
@@ -109,46 +114,45 @@ class ObjectDetectionVC:ViewController {
 //        subviews.forEach({ $0.removeFromSuperview() })
         
         for prediction in predictions {
-//            createLabelAndBox(prediction: prediction)
             createButton(prediction: prediction)
         }
     }
     
     func createButton(prediction: VNRecognizedObjectObservation) {
         let buttonTitle: String? = prediction.label
-        
+        let color: UIColor = labelColor(with: buttonTitle ?? "N/A")
 //        let scale = CGAffineTransform.identity.scaledBy(x: image.bounds.width, y: image.bounds.height)
 //        print("scale",scale)
 //        let transform = CGAffineTransform(scaleX: 1, y: -1).translatedBy(x: 0, y: -1)
-//        print(buttonTitle,"boundingBox",prediction.boundingBox)
-//        print(prediction.boundingBox.origin.x,prediction.boundingBox.origin.y, prediction.boundingBox.width,prediction.boundingBox.height)
+        print(prediction.boundingBox.origin.x,prediction.boundingBox.origin.y, prediction.boundingBox.width,prediction.boundingBox.height)
 //        let buttonRect = prediction.boundingBox.applying(scale)
 //        print(buttonRect)
 //        print(labelString,bgRect)
 //        let buttonRect = CGRect(x: prediction.boundingBox.origin.x, y: prediction.boundingBox.origin.y, width: prediction.boundingBox.width, height: prediction.boundingBox.height)
         
-        let buttonRect = CGRect(x: prediction.boundingBox.origin.x*300, y: prediction.boundingBox.origin.y*300, width: 30, height: 30)
+        let buttonRect = CGRect(x: prediction.boundingBox.origin.x*500, y: prediction.boundingBox.origin.y*500, width: prediction.boundingBox.width*500, height: prediction.boundingBox.height*500)
         print(buttonRect)
         let button = UIButton(frame: buttonRect)
-//        bgView.layer.borderColor = color.cgColor
+        button.layer.borderColor = color.cgColor
         button.backgroundColor = .systemBlue
-//        button.
-//        bgView.layer.borderWidth = 4
-//        bgView.backgroundColor = UIColor.clear
-//        addSubview(bgView)
+        button.layer.borderWidth = 4
+        button.backgroundColor = UIColor.clear
+//        button.titleLabel?.text = buttonTitle
+//        button.titleLabel?.font = .findDictH4M48
+//        button.titleLabel?.textColor = .black
+        button.setTitle(buttonTitle, for: .normal)
         image.addSubview(button)
-        
-        let label = UILabel()
-        label.text = buttonTitle ?? "N/A"
-        label.font = UIFont.systemFont(ofSize: 13)
-        label.textColor = UIColor.black
-//        label.backgroundColor = color
-        label.sizeToFit()
-        label.frame = CGRect(x: buttonRect.origin.x, y: buttonRect.origin.y - label.frame.height,
-                             width: label.frame.width, height: label.frame.height)
-//        print("label.frame",label.frame)
-        image.addSubview(label)
-//        addSubview(label)
+        button.press{
+            print(buttonTitle)
+        }
+//        let label = UILabel()
+//        label.text = buttonTitle ?? "N/A"
+//        label.font = UIFont.systemFont(ofSize: 13)
+//        label.textColor = UIColor.black
+//        label.sizeToFit()
+//        label.frame = CGRect(x: buttonRect.origin.x, y: buttonRect.origin.y - label.frame.height,
+//                             width: label.frame.width, height: label.frame.height)
+//        image.addSubview(label)
     }
 }
 // MARK: - UI
