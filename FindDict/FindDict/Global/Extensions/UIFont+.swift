@@ -40,6 +40,10 @@ extension UIFont {
         return UIFont(name: "NotoSans-Regular", size: 28.0)!
     }
     
+    class var findDictH4R24: UIFont {
+        return UIFont(name: "NotoSans-Regular", size: 24.0)!
+    }
+    
     class var findDictB1B15: UIFont {
         return UIFont(name: "NotoSans-Bold", size: 15.0)!
     }
