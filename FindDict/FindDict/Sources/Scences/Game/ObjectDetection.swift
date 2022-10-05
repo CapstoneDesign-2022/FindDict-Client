@@ -54,7 +54,6 @@ class ObjectDetectionVC:ViewController {
     func handleImage(pixelBuffer: CVPixelBuffer?){
         if !self.isInferencing, let pixelBuffer = pixelBuffer {
             self.isInferencing = true
-//            print("handleImage")
             self.predictUsingVision(pixelBuffer: pixelBuffer)
         }
     }
@@ -82,12 +81,12 @@ class ObjectDetectionVC:ViewController {
                 //                self.boxesView.bounds = self.image.frame
                 
 //                self.boxesView.predictedObjects = predictions
-                
+                self.predictedObjects = predictions
                 self.isInferencing = false
             }
             
 //            self.predictions = predictions
-            predictedObjects = predictions
+            
 //            print(predictions)
             
         }
@@ -116,10 +115,7 @@ class ObjectDetectionVC:ViewController {
     }
     
     func createButton(prediction: VNRecognizedObjectObservation) {
-//        print(prediction)
         let buttonTitle: String? = prediction.label
-//        print("labelString",labelString)
-//        let color: UIColor = labelColor(with: labelString ?? "N/A")
         
 //        let scale = CGAffineTransform.identity.scaledBy(x: image.bounds.width, y: image.bounds.height)
 //        print("scale",scale)
@@ -131,7 +127,7 @@ class ObjectDetectionVC:ViewController {
 //        print(labelString,bgRect)
 //        let buttonRect = CGRect(x: prediction.boundingBox.origin.x, y: prediction.boundingBox.origin.y, width: prediction.boundingBox.width, height: prediction.boundingBox.height)
         
-        let buttonRect = CGRect(x: prediction.boundingBox.origin.x, y: prediction.boundingBox.origin.y, width: 30, height: 30)
+        let buttonRect = CGRect(x: prediction.boundingBox.origin.x*300, y: prediction.boundingBox.origin.y*300, width: 30, height: 30)
         print(buttonRect)
         let button = UIButton(frame: buttonRect)
 //        bgView.layer.borderColor = color.cgColor
@@ -163,8 +159,7 @@ extension ObjectDetectionVC {
                          ])
         image.snp.makeConstraints{
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(17)
-            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(60)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(60)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             $0.bottom.lessThanOrEqualTo(view.safeAreaLayoutGuide.snp.bottom).inset(50)
         }
         
