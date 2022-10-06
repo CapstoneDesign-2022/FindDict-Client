@@ -34,6 +34,7 @@ class ModalBaseVC: UIViewController {
     internal let retryButton = UIButton().then {
         $0.layer.cornerRadius = 10
         $0.setTitle("다시 게임하기", for: .normal)
+        $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = .findDictH4R35
         $0.backgroundColor = .buttonGray
         $0.layer.shadowRadius = 4
@@ -48,6 +49,7 @@ class ModalBaseVC: UIViewController {
     internal let dictionaryButton = UIButton().then{
         $0.layer.cornerRadius = 10
         $0.setTitle("단어장", for: .normal)
+        $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = .findDictH4R24
         $0.backgroundColor = .buttonGray
         $0.layer.shadowRadius = 4
@@ -58,6 +60,7 @@ class ModalBaseVC: UIViewController {
     internal let mainViewButton = UIButton().then{
         $0.layer.cornerRadius = 10
         $0.setTitle("메인화면", for: .normal)
+        $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = .findDictH4R24
         $0.backgroundColor = .buttonGray
         $0.layer.shadowRadius = 4
