@@ -13,7 +13,12 @@ class GameResultFailVC: ModalBaseVC {
     // MARK: - UI
     func setUI(){
         resultImage.image = UIImage(named: "failureImage")?.withAlignmentRectInsets(UIEdgeInsets(top: -40, left: 0, bottom: 0, right: -65))
-        resultTitleLabel.text = "하트를 모두 사용했어요"
+        
+        resultTitleLabel.then{
+            $0.text = "하트를 모두 사용했어요"
+            $0.textColor = .white
+            $0.backgroundColor = .modalBrown
+        }
     }
     
     override func viewDidLoad() {

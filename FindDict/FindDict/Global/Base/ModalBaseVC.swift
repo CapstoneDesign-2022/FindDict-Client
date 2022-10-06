@@ -21,7 +21,8 @@ class ModalBaseVC: UIViewController {
     }
     internal let resultTitleLabel = UILabel().then{
         $0.font = .findDictH5R48
-        $0.textColor = .white
+        $0.textColor = .modalBrown
+        $0.backgroundColor = .modalButtonLightYellow
         $0.clipsToBounds = true
         $0.layer.cornerRadius = 10
         $0.textAlignment = .center
@@ -36,7 +37,7 @@ class ModalBaseVC: UIViewController {
         $0.setTitle("다시 게임하기", for: .normal)
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = .findDictH4R35
-        $0.backgroundColor = .buttonGray
+        $0.backgroundColor = .modalButtonDarkYellow
         $0.layer.shadowRadius = 4
         $0.layer.shadowOffset = CGSize(width: 0, height: 4)
         $0.layer.shadowColor = UIColor.black.cgColor
@@ -51,7 +52,7 @@ class ModalBaseVC: UIViewController {
         $0.setTitle("단어장", for: .normal)
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = .findDictH4R24
-        $0.backgroundColor = .buttonGray
+        $0.backgroundColor = .modalButtonLightYellow
         $0.layer.shadowRadius = 4
         $0.layer.shadowOffset = CGSize(width: 0, height: 4)
         $0.layer.shadowColor = UIColor.black.cgColor
@@ -62,7 +63,7 @@ class ModalBaseVC: UIViewController {
         $0.setTitle("메인화면", for: .normal)
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = .findDictH4R24
-        $0.backgroundColor = .buttonGray
+        $0.backgroundColor = .modalButtonLightYellow
         $0.layer.shadowRadius = 4
         $0.layer.shadowOffset = CGSize(width: 0, height: 4)
         $0.layer.shadowColor = UIColor.black.cgColor
