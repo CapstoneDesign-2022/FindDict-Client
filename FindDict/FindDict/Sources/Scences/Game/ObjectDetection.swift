@@ -21,25 +21,40 @@ class ObjectDetectionVC:ViewController {
             handleImage(pixelBuffer: pixelBuffer)
         }
     }
-    var image = UIImageView()
+    var image = UIImageView().then{
+        $0.isUserInteractionEnabled = true
+    }
     
-    let objectDectectionModel = yolov5m()
+    let objectDectectionModel = yolov7()
     //    yolov7()
     //yolov5m()
     var predictions: [VNRecognizedObjectObservation] = []
     var label: String? {
         return predictions.first?.labels.first?.identifier
     }
+//    lazy var button : UIButton? = nil {
+//        didSet{
+//            button?.addTarget(self,action: #selector(buttonClicked), for: .touchUpInside)
+//        }
+//    }
+    
     lazy var buttons: [UIButton] = [] {
         
         didSet{
+//            button = buttons[0]
+//            buttons[0].isUserInteractionEnabled = true
+//            buttons[0].addTarget(self,action: #selector(buttonClicked), for: .touchUpInside)
+//            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(buttonClicked))
+//            buttons[0].addGestureRecognizer(tapGestureRecognizer)
+//            print("buttons[0]",buttons[0])
 //            print("buttons",buttons)
             for button in buttons {
-                print(button.titleLabel?.text)
+//                button.userInter
+//                print("for",button.titleLabel?.text)
 //                print("buttonTitle",image.subviews)
 //                button.addTarget(nil,action: #selector(buttonClicked), for: .touchUpInside)
                 button.press{
-                    
+                    print("button clicked")
                     button.setImage(UIImage(named: "icon"), for: .normal)
                 }
                 image.addSubview(button)
@@ -185,8 +200,8 @@ class ObjectDetectionVC:ViewController {
         return button
     }
     @objc func buttonClicked(_ sender:UIButton) -> Void {
-//        print(sender.titleLabel?.text)
-        print("Clicked")
+        print(sender.titleLabel?.text)
+//        print("Clicked")
     }
 }
 // MARK: - UI

@@ -22,8 +22,8 @@
 		4D14BD7B28E20CA8002B2165 /* NotoSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D14BD7228E20A8C002B2165 /* NotoSans-Regular.ttf */; };
 		4D53A66A28DAF9C0000E2AA2 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4D53A66928DAF9C0000E2AA2 /* SnapKit */; };
 		4D53A66D28DAF9C8000E2AA2 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 4D53A66C28DAF9C8000E2AA2 /* Then */; };
+		4D8E9F3328F001C00013B7E7 /* yolov7.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 4D8E9F3228F001C00013B7E7 /* yolov7.mlmodel */; };
 		4D9ADC0728E018DB008CF9F3 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9ADC0628E018DB008CF9F3 /* SignInVC.swift */; };
-		4DA65AAB28E84A2D002DEFE3 /* yolov7.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 4DA65AAA28E84A2D002DEFE3 /* yolov7.mlmodel */; };
 		4DBDEC1428D4EFE2002252B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDEC1328D4EFE2002252B3 /* AppDelegate.swift */; };
 		4DBDEC1628D4EFE2002252B3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDEC1528D4EFE2002252B3 /* SceneDelegate.swift */; };
 		4DBDEC1828D4EFE2002252B3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDEC1728D4EFE2002252B3 /* ViewController.swift */; };
@@ -43,7 +43,7 @@
 
 /* Begin PBXFileReference section */
 		4D0B1E1128E5A9A4007F16DB /* ObjectDetection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectDetection.swift; sourceTree = "<group>"; };
-		4D0B1E1328E5AA2C007F16DB /* yolov5m.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = yolov5m.mlmodel; sourceTree = "<group>"; };
+		4D0B1E1328E5AA2C007F16DB /* yolov5m.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = yolov5m.mlmodel; path = "../../../../../../../2022/2022-2/캡스톤 디자인/mlmodel/yolov5m.mlmodel"; sourceTree = "<group>"; };
 		4D0B1E1528E5B213007F16DB /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		4D0B1E1728E6D5BA007F16DB /* DrawingBoundingBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingBoundingBoxView.swift; sourceTree = "<group>"; };
 		4D14BD6728E1B924002B2165 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
@@ -55,8 +55,8 @@
 		4D14BD7428E20A8C002B2165 /* NotoSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Medium.ttf"; sourceTree = "<group>"; };
 		4D14BD7528E20A8C002B2165 /* NotoSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		4D14BD7628E20B8D002B2165 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
+		4D8E9F3228F001C00013B7E7 /* yolov7.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = yolov7.mlmodel; sourceTree = "<group>"; };
 		4D9ADC0628E018DB008CF9F3 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
-		4DA65AAA28E84A2D002DEFE3 /* yolov7.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = yolov7.mlmodel; sourceTree = "<group>"; };
 		4DBDEC1028D4EFE2002252B3 /* FindDict.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FindDict.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DBDEC1328D4EFE2002252B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4DBDEC1528D4EFE2002252B3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -103,8 +103,8 @@
 			isa = PBXGroup;
 			children = (
 				4D14BD6E28E2068B002B2165 /* PhotoSelectorVC.swift */,
+				4D8E9F3228F001C00013B7E7 /* yolov7.mlmodel */,
 				4D0B1E1328E5AA2C007F16DB /* yolov5m.mlmodel */,
-				4DA65AAA28E84A2D002DEFE3 /* yolov7.mlmodel */,
 				4D0B1E1128E5A9A4007F16DB /* ObjectDetection.swift */,
 				4D0B1E1728E6D5BA007F16DB /* DrawingBoundingBoxView.swift */,
 			);
@@ -325,7 +325,7 @@
 			files = (
 				4D0B1E1428E5AA2C007F16DB /* yolov5m.mlmodel in Sources */,
 				4D0B1E1628E5B213007F16DB /* UIImage+.swift in Sources */,
-				4DA65AAB28E84A2D002DEFE3 /* yolov7.mlmodel in Sources */,
+				4D8E9F3328F001C00013B7E7 /* yolov7.mlmodel in Sources */,
 				4DBDEC1828D4EFE2002252B3 /* ViewController.swift in Sources */,
 				4D14BD7728E20B8D002B2165 /* UIFont+.swift in Sources */,
 				F8DB7A5E28DB29F700EE3D66 /* UIColor+.swift in Sources */,
