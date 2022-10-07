@@ -28,6 +28,11 @@
 		4DBDEC2C28D4F169002252B3 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDEC2B28D4F169002252B3 /* BaseVC.swift */; };
 		4DBDEC2F28D4F2B3002252B3 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDEC2E28D4F2B3002252B3 /* UIViewController+.swift */; };
 		4DBDEC3228D4F308002252B3 /* Colorsets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DBDEC3128D4F308002252B3 /* Colorsets.xcassets */; };
+		F8560AC228EEF11B00C52203 /* GameTutorialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8560AC128EEF11B00C52203 /* GameTutorialVC.swift */; };
+		F8560AC428EEF16200C52203 /* GameTutorialCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8560AC328EEF16200C52203 /* GameTutorialCVC.swift */; };
+		F8560AC628EEF17800C52203 /* GameTutorialCVCModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8560AC528EEF17800C52203 /* GameTutorialCVCModel.swift */; };
+		F8560AC928EEF40200C52203 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8560AC828EEF40200C52203 /* Reusable.swift */; };
+		F8560ACB28EEF43A00C52203 /* UICollectionViewCell+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8560ACA28EEF43A00C52203 /* UICollectionViewCell+.swift */; };
 		F860B79D28E6CFBC0032A39B /* DictionaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F860B79C28E6CFBC0032A39B /* DictionaryVC.swift */; };
 		F860B79F28E7D0AB0032A39B /* DictionaryTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F860B79E28E7D0AB0032A39B /* DictionaryTVC.swift */; };
 		F860B7A128E832DB0032A39B /* UITableViewCell+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F860B7A028E832DB0032A39B /* UITableViewCell+.swift */; };
@@ -65,6 +70,11 @@
 		4DBDEC2B28D4F169002252B3 /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		4DBDEC2E28D4F2B3002252B3 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		4DBDEC3128D4F308002252B3 /* Colorsets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colorsets.xcassets; sourceTree = "<group>"; };
+		F8560AC128EEF11B00C52203 /* GameTutorialVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTutorialVC.swift; sourceTree = "<group>"; };
+		F8560AC328EEF16200C52203 /* GameTutorialCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTutorialCVC.swift; sourceTree = "<group>"; };
+		F8560AC528EEF17800C52203 /* GameTutorialCVCModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTutorialCVCModel.swift; sourceTree = "<group>"; };
+		F8560AC828EEF40200C52203 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		F8560ACA28EEF43A00C52203 /* UICollectionViewCell+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewCell+.swift"; sourceTree = "<group>"; };
 		F860B79C28E6CFBC0032A39B /* DictionaryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryVC.swift; sourceTree = "<group>"; };
 		F860B79E28E7D0AB0032A39B /* DictionaryTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryTVC.swift; sourceTree = "<group>"; };
 		F860B7A028E832DB0032A39B /* UITableViewCell+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+.swift"; sourceTree = "<group>"; };
@@ -130,6 +140,7 @@
 		4DBDEC1228D4EFE2002252B3 /* FindDict */ = {
 			isa = PBXGroup;
 			children = (
+				F8560AC728EEF3D500C52203 /* Protocols */,
 				4DBDEC2128D4EFE3002252B3 /* Info.plist */,
 				4DBDEC2728D4F020002252B3 /* Application */,
 				4DBDEC3628D4F393002252B3 /* Network */,
@@ -187,6 +198,7 @@
 				4D14BD6728E1B924002B2165 /* UIButton+.swift */,
 				4D14BD7628E20B8D002B2165 /* UIFont+.swift */,
 				F860B7A028E832DB0032A39B /* UITableViewCell+.swift */,
+				F8560ACA28EEF43A00C52203 /* UICollectionViewCell+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -242,6 +254,14 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		F8560AC728EEF3D500C52203 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				F8560AC828EEF40200C52203 /* Reusable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		F860B79B28E6CF870032A39B /* Dictionary */ = {
 			isa = PBXGroup;
 			children = (
@@ -257,6 +277,9 @@
 			isa = PBXGroup;
 			children = (
 				F8823AA628E5740F00798374 /* mainVC.swift */,
+				F8560AC128EEF11B00C52203 /* GameTutorialVC.swift */,
+				F8560AC328EEF16200C52203 /* GameTutorialCVC.swift */,
+				F8560AC528EEF17800C52203 /* GameTutorialCVCModel.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -349,6 +372,7 @@
 				4D14BD7728E20B8D002B2165 /* UIFont+.swift in Sources */,
 				F8DB7A5E28DB29F700EE3D66 /* UIColor+.swift in Sources */,
 				F8823AA728E5740F00798374 /* mainVC.swift in Sources */,
+				F8560AC228EEF11B00C52203 /* GameTutorialVC.swift in Sources */,
 				F860B7A328E835860032A39B /* DictionaryCard.swift in Sources */,
 				4DBDEC1428D4EFE2002252B3 /* AppDelegate.swift in Sources */,
 				4D14BD6A28E1C0F9002B2165 /* TextField.swift in Sources */,
@@ -358,14 +382,18 @@
 				4D14BD6F28E2068B002B2165 /* PhotoSelectorVCViewController.swift in Sources */,
 				F8DB7A5A28DB1D3100EE3D66 /* BeforeSignInVC.swift in Sources */,
 				4DBDEC2F28D4F2B3002252B3 /* UIViewController+.swift in Sources */,
+				F8560AC628EEF17800C52203 /* GameTutorialCVCModel.swift in Sources */,
 				F860B7A528E84F5D0032A39B /* WordDataModel.swift in Sources */,
 				4D14BD6828E1B924002B2165 /* UIButton+.swift in Sources */,
 				F860B7A128E832DB0032A39B /* UITableViewCell+.swift in Sources */,
 				4DBDEC1628D4EFE2002252B3 /* SceneDelegate.swift in Sources */,
 				4D14BD7128E206BA002B2165 /* PhotoSelectorButton.swift in Sources */,
+				F8560AC928EEF40200C52203 /* Reusable.swift in Sources */,
 				F8823AA128DFE99200798374 /* SignUpVC.swift in Sources */,
+				F8560AC428EEF16200C52203 /* GameTutorialCVC.swift in Sources */,
 				F8823AA928E575D300798374 /* MainButton.swift in Sources */,
 				F860B79D28E6CFBC0032A39B /* DictionaryVC.swift in Sources */,
+				F8560ACB28EEF43A00C52203 /* UICollectionViewCell+.swift in Sources */,
 				4D9ADC0728E018DB008CF9F3 /* SignInVC.swift in Sources */,
 				4DBDEC2C28D4F169002252B3 /* BaseVC.swift in Sources */,
 				F8823AA328E022CC00798374 /* UITextField+.swift in Sources */,
