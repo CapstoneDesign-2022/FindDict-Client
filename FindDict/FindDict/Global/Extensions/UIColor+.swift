@@ -44,4 +44,27 @@ extension UIColor {
         return UIColor(white: 0.0, alpha: 0.15)
     }
     
+    @nonobjc class var modalGray: UIColor {
+        return UIColor(red: 243.0 / 255.0, green: 243.0 / 255.0, blue: 241.0 / 255.0, alpha: 1.0)
+    }
+    
+    @nonobjc class var buttonGray: UIColor {
+        return UIColor(white: 0.0, alpha: 0.25)
+    }
+    
+    @nonobjc class var bgModal: UIColor {
+        return UIColor(red: 243.0 / 255.0, green: 243.0 / 255.0, blue: 241.0 / 255.0, alpha: 0.5)
+    }
+    
+    @nonobjc class var modalBrown: UIColor {
+        return UIColor(red: 190.0 / 255.0, green: 122.0 / 255.0, blue: 16.0 / 255.0, alpha: 1.0)
+    }
+    @nonobjc class var modalButtonDarkYellow: UIColor {
+        return UIColor(red: 1.0, green: 207.0 / 255.0, blue: 92.0 / 255.0, alpha: 1.0)
+    }
+    @nonobjc class var modalButtonLightYellow: UIColor {
+        return UIColor(red: 248.0 / 255.0, green: 227.0 / 255.0, blue: 133.0 / 255.0, alpha: 1.0)
+    }
+    
+    
 }
