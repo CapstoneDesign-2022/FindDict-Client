@@ -31,42 +31,24 @@ class ModalBaseVC: UIViewController {
         $0.layer.shadowOpacity = 0.25
     }
     internal let resultImage = UIImageView()
-    internal let retryButton = UIButton().then {
+    internal let retryButton = GameResultButton().then {
         $0.layer.cornerRadius = 10
         $0.setTitle("다시 게임하기", for: .normal)
-        $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = .findDictH4R35
-        $0.backgroundColor = .buttonGray
-        $0.layer.shadowRadius = 4
-        $0.layer.shadowOffset = CGSize(width: 0, height: 4)
-        $0.layer.shadowColor = UIColor.black.cgColor
-        $0.layer.shadowOpacity = 0.25
         $0.snp.makeConstraints{
             $0.height.equalTo(129)
         }
         
     }
-    internal let dictionaryButton = UIButton().then{
+    internal let dictionaryButton = GameResultButton().then{
         $0.layer.cornerRadius = 10
         $0.setTitle("단어장", for: .normal)
-        $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = .findDictH4R24
-        $0.backgroundColor = .buttonGray
-        $0.layer.shadowRadius = 4
-        $0.layer.shadowOffset = CGSize(width: 0, height: 4)
-        $0.layer.shadowColor = UIColor.black.cgColor
-        $0.layer.shadowOpacity = 0.25
     }
-    internal let mainViewButton = UIButton().then{
+    internal let mainViewButton = GameResultButton().then{
         $0.layer.cornerRadius = 10
         $0.setTitle("메인화면", for: .normal)
-        $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = .findDictH4R24
-        $0.backgroundColor = .buttonGray
-        $0.layer.shadowRadius = 4
-        $0.layer.shadowOffset = CGSize(width: 0, height: 4)
-        $0.layer.shadowColor = UIColor.black.cgColor
-        $0.layer.shadowOpacity = 0.25
     }
     
     lazy var bottomButtonStackView = UIStackView(arrangedSubviews: [dictionaryButton, mainViewButton]).then{
