@@ -16,7 +16,6 @@ class ObjectDetectionVC:ViewController {
     
     var pixelBuffer:CVPixelBuffer? = nil {
         didSet{
-//            print("pixel buffer set")
             setUpModel()
             handleImage(pixelBuffer: pixelBuffer)
         }
@@ -32,36 +31,16 @@ class ObjectDetectionVC:ViewController {
     var label: String? {
         return predictions.first?.labels.first?.identifier
     }
-//    lazy var button : UIButton? = nil {
-//        didSet{
-//            button?.addTarget(self,action: #selector(buttonClicked), for: .touchUpInside)
-//        }
-//    }
     
     lazy var buttons: [UIButton] = [] {
-        
         didSet{
-//            button = buttons[0]
-//            buttons[0].isUserInteractionEnabled = true
-//            buttons[0].addTarget(self,action: #selector(buttonClicked), for: .touchUpInside)
-//            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(buttonClicked))
-//            buttons[0].addGestureRecognizer(tapGestureRecognizer)
-//            print("buttons[0]",buttons[0])
-//            print("buttons",buttons)
             for button in buttons {
-//                button.userInter
-//                print("for",button.titleLabel?.text)
-//                print("buttonTitle",image.subviews)
-//                button.addTarget(nil,action: #selector(buttonClicked), for: .touchUpInside)
                 button.press{
-                    print("button clicked")
+                    // TODO: 이미지 바꾸기
                     button.setImage(UIImage(named: "icon"), for: .normal)
                 }
                 image.addSubview(button)
             }
-            
-            
-            
         }
     }
     
@@ -75,21 +54,7 @@ class ObjectDetectionVC:ViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-//        print("view did load")
         setLayout()
-//        print(image.subviews) //???: 빈 배열 나옴
-//        image.subviews.forEach({view in
-//                        type(of: view) == UIButton.self
-//                        if (view is UIButton) {
-//                            view.addTarget(self,action: #selector(buttonClicked), for: .touchUpInside)
-//                        }
-//            print(view)
-//            if let button = view as? UIButton {
-//                print(button.titleLabel?.text)
-//                button.addTarget(self,action: #selector(buttonClicked), for: .touchUpInside)
-//
-//            }
-//        }) //???: subviews가 빈 배열이라 수행 안 됨
     }
     static private var colors: [String: UIColor] = [:]
     
@@ -121,7 +86,6 @@ class ObjectDetectionVC:ViewController {
         }
     }
     
-    
     func predictUsingVision(pixelBuffer: CVPixelBuffer) {
         guard let request = request else { fatalError() }
         self.semaphore.wait()
@@ -148,24 +112,23 @@ class ObjectDetectionVC:ViewController {
     public var predictedObjects: [VNRecognizedObjectObservation] = [] {
         didSet {
             putButtons(with: predictedObjects)
-//            image.setNeedsDisplay()
         }
     }
     
     func putButtons(with predictions: [VNRecognizedObjectObservation]) {
-        //        subviews.forEach({ $0.removeFromSuperview() })
         var createdButtons:[UIButton]=[]
         for prediction in predictions {
             createdButtons.append(createButton(prediction: prediction))
-            
         }
         buttons = createdButtons
     }
     
     func createButton(prediction: VNRecognizedObjectObservation)-> UIButton {
-//        print("create button")
         let buttonTitle: String? = prediction.label
         let color: UIColor = labelColor(with: buttonTitle ?? "N/A")
+        print(prediction.boundingBox)
+        print("image.frame",image.frame)
+        print("image.bounds",image.bounds)
         //        let scale = CGAffineTransform.identity.scaledBy(x: image.bounds.width, y: image.bounds.height)
         //        print("scale",scale)
         //        let transform = CGAffineTransform(scaleX: 1, y: -1).translatedBy(x: 0, y: -1)
@@ -173,51 +136,37 @@ class ObjectDetectionVC:ViewController {
         //        let buttonRect = prediction.boundingBox.applying(scale)
         //        print(buttonRect)
         //        print(labelString,bgRect)
-        //        let buttonRect = CGRect(x: prediction.boundingBox.origin.x, y: prediction.boundingBox.origin.y, width: prediction.boundingBox.width, height: prediction.boundingBox.height)
+//                let buttonRect = CGRect(x: prediction.boundingBox.origin.x, y: prediction.boundingBox.origin.y, width: prediction.boundingBox.width, height: prediction.boundingBox.height)
+        let scale = CGAffineTransform.identity.scaledBy(x: image.bounds.width, y: image.bounds.height)
+        print("scale",scale)
+        let transform = CGAffineTransform(scaleX: 1, y: -1).translatedBy(x: 0, y: -1)
+        let bgRect = prediction.boundingBox.applying(transform).applying(scale)
+        
+        
         //TODO: 스케일 맞추기
-        let buttonRect = CGRect(x: prediction.boundingBox.origin.x*500, y: prediction.boundingBox.origin.y*500, width: prediction.boundingBox.width*500, height: prediction.boundingBox.height*500)
-//        let button = UIButton(frame: buttonRect)
+//        let buttonRect = CGRect(x: prediction.boundingBox.origin.x*500, y: prediction.boundingBox.origin.y*500, width: prediction.boundingBox.width*500, height: prediction.boundingBox.height*500)
         let button = UIButton(type: .custom)
-        button.frame = buttonRect
+        button.frame = bgRect
         button.layer.borderColor = color.cgColor
         button.backgroundColor = .systemBlue
         button.layer.borderWidth = 4
         button.backgroundColor = UIColor.clear
         button.setTitle(buttonTitle, for: .normal)
-        button.titleLabel?.alpha = 0
-        
-//        buttons.append(button)
-        
-//        button.addTarget(nil,action: #selector(buttonClicked), for: .touchUpInside)
-//        image.addSubview(button)
-//        print("buttonTitle",image.subviews)
-//                button.press{
-//                    print(buttonTitle)
-//                    button.setImage(UIImage(named: "icon"), for: .normal)
-//                }
-//        image.setNeedsDisplay()
-//        image.layoutIfNeeded()
+//        button.titleLabel?.alpha = 0
         return button
     }
     @objc func buttonClicked(_ sender:UIButton) -> Void {
         print(sender.titleLabel?.text)
-//        print("Clicked")
     }
 }
 // MARK: - UI
 extension ObjectDetectionVC {
     func setLayout() {
-        view.addSubViews([image
-                          //                          ,boxesView
-                         ])
+        view.addSubViews([image])
         image.snp.makeConstraints{
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(17)
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
             $0.bottom.lessThanOrEqualTo(view.safeAreaLayoutGuide.snp.bottom).inset(50)
         }
-        
-        //        boxesView.snp.makeConstraints{
-        //            $0.edges.equalTo(image)
-        //        }
     }
 }
