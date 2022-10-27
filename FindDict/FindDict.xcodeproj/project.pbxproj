@@ -7,17 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D0B1E1028E59178007F16DB /* NotoSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D14BD7328E20A8C002B2165 /* NotoSans-Bold.ttf */; };
+		4D0B1E1228E5A9A4007F16DB /* ObjectDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0B1E1128E5A9A4007F16DB /* ObjectDetection.swift */; };
+		4D0B1E1428E5AA2C007F16DB /* yolov5m.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 4D0B1E1328E5AA2C007F16DB /* yolov5m.mlmodel */; };
+		4D0B1E1628E5B213007F16DB /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0B1E1528E5B213007F16DB /* UIImage+.swift */; };
+		4D0B1E1828E6D5BA007F16DB /* DrawingBoundingBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0B1E1728E6D5BA007F16DB /* DrawingBoundingBoxView.swift */; };
 		4D14BD6828E1B924002B2165 /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D14BD6728E1B924002B2165 /* UIButton+.swift */; };
 		4D14BD6A28E1C0F9002B2165 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D14BD6928E1C0F9002B2165 /* TextField.swift */; };
-		4D14BD6F28E2068B002B2165 /* PhotoSelectorVCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D14BD6E28E2068B002B2165 /* PhotoSelectorVCViewController.swift */; };
+		4D14BD6F28E2068B002B2165 /* PhotoSelectorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D14BD6E28E2068B002B2165 /* PhotoSelectorVC.swift */; };
 		4D14BD7128E206BA002B2165 /* PhotoSelectorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D14BD7028E206BA002B2165 /* PhotoSelectorButton.swift */; };
 		4D14BD7728E20B8D002B2165 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D14BD7628E20B8D002B2165 /* UIFont+.swift */; };
-		4D14BD7828E20CA2002B2165 /* NotoSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D14BD7328E20A8C002B2165 /* NotoSans-Bold.ttf */; };
 		4D14BD7928E20CA4002B2165 /* NotoSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D14BD7428E20A8C002B2165 /* NotoSans-Medium.ttf */; };
 		4D14BD7A28E20CA6002B2165 /* NotoSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D14BD7528E20A8C002B2165 /* NotoSans-SemiBold.ttf */; };
 		4D14BD7B28E20CA8002B2165 /* NotoSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D14BD7228E20A8C002B2165 /* NotoSans-Regular.ttf */; };
 		4D53A66A28DAF9C0000E2AA2 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4D53A66928DAF9C0000E2AA2 /* SnapKit */; };
 		4D53A66D28DAF9C8000E2AA2 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 4D53A66C28DAF9C8000E2AA2 /* Then */; };
+		4D8E9F3328F001C00013B7E7 /* yolov7.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 4D8E9F3228F001C00013B7E7 /* yolov7.mlmodel */; };
 		4D9ADC0728E018DB008CF9F3 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9ADC0628E018DB008CF9F3 /* SignInVC.swift */; };
 		4DBDEC1428D4EFE2002252B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDEC1328D4EFE2002252B3 /* AppDelegate.swift */; };
 		4DBDEC1628D4EFE2002252B3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDEC1528D4EFE2002252B3 /* SceneDelegate.swift */; };
@@ -47,15 +52,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D0B1E1128E5A9A4007F16DB /* ObjectDetection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectDetection.swift; sourceTree = "<group>"; };
+		4D0B1E1328E5AA2C007F16DB /* yolov5m.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = yolov5m.mlmodel; path = "../../../../../../../2022/2022-2/캡스톤 디자인/mlmodel/yolov5m.mlmodel"; sourceTree = "<group>"; };
+		4D0B1E1528E5B213007F16DB /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
+		4D0B1E1728E6D5BA007F16DB /* DrawingBoundingBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingBoundingBoxView.swift; sourceTree = "<group>"; };
 		4D14BD6728E1B924002B2165 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
 		4D14BD6928E1C0F9002B2165 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextField.swift; path = FindDict/Global/Extensions/TextField.swift; sourceTree = SOURCE_ROOT; };
-		4D14BD6E28E2068B002B2165 /* PhotoSelectorVCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorVCViewController.swift; sourceTree = "<group>"; };
+		4D14BD6E28E2068B002B2165 /* PhotoSelectorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorVC.swift; sourceTree = "<group>"; };
 		4D14BD7028E206BA002B2165 /* PhotoSelectorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoSelectorButton.swift; path = FindDict/Sources/Scences/Game/PhotoSelectorButton.swift; sourceTree = SOURCE_ROOT; };
 		4D14BD7228E20A8C002B2165 /* NotoSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Regular.ttf"; sourceTree = "<group>"; };
 		4D14BD7328E20A8C002B2165 /* NotoSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Bold.ttf"; sourceTree = "<group>"; };
 		4D14BD7428E20A8C002B2165 /* NotoSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Medium.ttf"; sourceTree = "<group>"; };
 		4D14BD7528E20A8C002B2165 /* NotoSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		4D14BD7628E20B8D002B2165 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
+		4D8E9F3228F001C00013B7E7 /* yolov7.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = yolov7.mlmodel; sourceTree = "<group>"; };
 		4D9ADC0628E018DB008CF9F3 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		4DBDEC1028D4EFE2002252B3 /* FindDict.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FindDict.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DBDEC1328D4EFE2002252B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -112,8 +122,12 @@
 		4D14BD6D28E20653002B2165 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				4D14BD6E28E2068B002B2165 /* PhotoSelectorVC.swift */,
+				4D8E9F3228F001C00013B7E7 /* yolov7.mlmodel */,
+				4D0B1E1328E5AA2C007F16DB /* yolov5m.mlmodel */,
+				4D0B1E1128E5A9A4007F16DB /* ObjectDetection.swift */,
+				4D0B1E1728E6D5BA007F16DB /* DrawingBoundingBoxView.swift */,
 				F82979BD28EEB1ED0031BBC3 /* GameResultModal */,
-				4D14BD6E28E2068B002B2165 /* PhotoSelectorVCViewController.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -193,6 +207,7 @@
 				F8823AA228E022CC00798374 /* UITextField+.swift */,
 				4D14BD6728E1B924002B2165 /* UIButton+.swift */,
 				4D14BD7628E20B8D002B2165 /* UIFont+.swift */,
+				4D0B1E1528E5B213007F16DB /* UIImage+.swift */,
 				F860B7A028E832DB0032A39B /* UITableViewCell+.swift */,
 			);
 			path = Extensions;
@@ -344,13 +359,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D0B1E1028E59178007F16DB /* NotoSans-Bold.ttf in Resources */,
 				4DBDEC3228D4F308002252B3 /* Colorsets.xcassets in Resources */,
 				4DBDEC2028D4EFE3002252B3 /* LaunchScreen.storyboard in Resources */,
 				4D14BD7A28E20CA6002B2165 /* NotoSans-SemiBold.ttf in Resources */,
 				4D14BD7928E20CA4002B2165 /* NotoSans-Medium.ttf in Resources */,
 				4D14BD7B28E20CA8002B2165 /* NotoSans-Regular.ttf in Resources */,
 				4DBDEC1D28D4EFE3002252B3 /* Assets.xcassets in Resources */,
-				4D14BD7828E20CA2002B2165 /* NotoSans-Bold.ttf in Resources */,
 				4DBDEC1B28D4EFE2002252B3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -362,6 +377,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D0B1E1428E5AA2C007F16DB /* yolov5m.mlmodel in Sources */,
+				4D0B1E1628E5B213007F16DB /* UIImage+.swift in Sources */,
+				4D8E9F3328F001C00013B7E7 /* yolov7.mlmodel in Sources */,
 				4DBDEC1828D4EFE2002252B3 /* ViewController.swift in Sources */,
 				4D14BD7728E20B8D002B2165 /* UIFont+.swift in Sources */,
 				F8DB7A5E28DB29F700EE3D66 /* UIColor+.swift in Sources */,
@@ -371,11 +389,14 @@
 				4DBDEC1428D4EFE2002252B3 /* AppDelegate.swift in Sources */,
 				4D14BD6A28E1C0F9002B2165 /* TextField.swift in Sources */,
 				F8DB7A6028DB2E8600EE3D66 /* AuthBaseVC.swift in Sources */,
+				4D0B1E1228E5A9A4007F16DB /* ObjectDetection.swift in Sources */,
+				F8DB7A5C28DB1FA700EE3D66 /* UIView+.swift in Sources */,
+				4D14BD6F28E2068B002B2165 /* PhotoSelectorVC.swift in Sources */,
 				F860B79F28E7D0AB0032A39B /* DictionaryTVC.swift in Sources */,
 				F8DB7A5C28DB1FA700EE3D66 /* UIView+.swift in Sources */,
-				4D14BD6F28E2068B002B2165 /* PhotoSelectorVCViewController.swift in Sources */,
 				F82979BF28EEB2220031BBC3 /* GameResultSuccessVC.swift in Sources */,
 				F8DB7A5A28DB1D3100EE3D66 /* BeforeSignInVC.swift in Sources */,
+				4D0B1E1828E6D5BA007F16DB /* DrawingBoundingBoxView.swift in Sources */,
 				4DBDEC2F28D4F2B3002252B3 /* UIViewController+.swift in Sources */,
 				F82979B728ED5C030031BBC3 /* ModalBaseVC.swift in Sources */,
 				F860B7A528E84F5D0032A39B /* WordDataModel.swift in Sources */,
