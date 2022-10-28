@@ -15,10 +15,15 @@ import Then
 class ObjectDetectionVC:ViewController {
     
     private let logoImage = UIImageView().then{
+        $0.contentMode = .scaleAspectFit
         $0.image = UIImage(named: "logoImage")
     }
     
-    private let targetListContainerView = UIStackView()
+    private let targetListContainerView = UIStackView().then{
+        $0.axis = .horizontal
+//        $0.spacing = 10
+//        $0.distribution = .fillProportionally
+    }
     
     var pixelBuffer:CVPixelBuffer? = nil {
         didSet{
@@ -28,6 +33,7 @@ class ObjectDetectionVC:ViewController {
     }
     var image = UIImageView().then{
         $0.isUserInteractionEnabled = true
+        $0.contentMode = .scaleAspectFit
     }
     var buttonLayer = UIView()
     
@@ -127,12 +133,15 @@ class ObjectDetectionVC:ViewController {
         var createdButtons:[UIButton]=[]
         for prediction in predictions {
             createdButtons.append(createButton(prediction: prediction))
+            createTargetListComponents(prediction: prediction)
         }
         buttons = createdButtons
     }
     
-    func createTargetListComponents(){
+    func createTargetListComponents(prediction: VNRecognizedObjectObservation){
         let component = TargetListComponentView()
+        component.setData(korean: prediction.label ?? "개미", english: prediction.label ?? "ant")
+        targetListContainerView.addArrangedSubview(component)
         
     }
     
@@ -180,11 +189,15 @@ extension ObjectDetectionVC {
         logoImage.snp.makeConstraints{
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(17)
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
+            $0.height.equalTo(80)
         }
         
         targetListContainerView.snp.makeConstraints{
             $0.top.equalTo(logoImage.snp.bottom).offset(40)
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
+//            $0.leading.lessThanOrEqualTo(view.safeAreaLayoutGuide.snp.leading).inset(50)
+//            $0.trailing.lessThanOrEqualTo(view.safeAreaLayoutGuide.snp.trailing).inset(50)
+            $0.height.equalTo(100)
         }
         
         image.snp.makeConstraints{
