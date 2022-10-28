@@ -33,6 +33,8 @@
 		4DBDEC2C28D4F169002252B3 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDEC2B28D4F169002252B3 /* BaseVC.swift */; };
 		4DBDEC2F28D4F2B3002252B3 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDEC2E28D4F2B3002252B3 /* UIViewController+.swift */; };
 		4DBDEC3228D4F308002252B3 /* Colorsets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DBDEC3128D4F308002252B3 /* Colorsets.xcassets */; };
+		4DF76EB8290A61FF00AA79D2 /* GameResultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF76EB7290A61FF00AA79D2 /* GameResultButton.swift */; };
+		4DF76EBC290A680F00AA79D2 /* TargetListComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF76EBB290A680F00AA79D2 /* TargetListComponentView.swift */; };
 		F82979B728ED5C030031BBC3 /* ModalBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82979B628ED5C030031BBC3 /* ModalBaseVC.swift */; };
 		F82979BF28EEB2220031BBC3 /* GameResultSuccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82979BE28EEB2220031BBC3 /* GameResultSuccessVC.swift */; };
 		F82979C128EEC3A40031BBC3 /* GameResultFailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82979C028EEC3A40031BBC3 /* GameResultFailVC.swift */; };
@@ -78,6 +80,8 @@
 		4DBDEC2B28D4F169002252B3 /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		4DBDEC2E28D4F2B3002252B3 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		4DBDEC3128D4F308002252B3 /* Colorsets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colorsets.xcassets; sourceTree = "<group>"; };
+		4DF76EB7290A61FF00AA79D2 /* GameResultButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameResultButton.swift; sourceTree = "<group>"; };
+		4DF76EBB290A680F00AA79D2 /* TargetListComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetListComponentView.swift; sourceTree = "<group>"; };
 		F82979B628ED5C030031BBC3 /* ModalBaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalBaseVC.swift; sourceTree = "<group>"; };
 		F82979BE28EEB2220031BBC3 /* GameResultSuccessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultSuccessVC.swift; sourceTree = "<group>"; };
 		F82979C028EEC3A40031BBC3 /* GameResultFailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultFailVC.swift; sourceTree = "<group>"; };
@@ -126,6 +130,7 @@
 				4D8E9F3228F001C00013B7E7 /* yolov7.mlmodel */,
 				4D0B1E1328E5AA2C007F16DB /* yolov5m.mlmodel */,
 				4D0B1E1128E5A9A4007F16DB /* ObjectDetection.swift */,
+				4DF76EBB290A680F00AA79D2 /* TargetListComponentView.swift */,
 				4D0B1E1728E6D5BA007F16DB /* DrawingBoundingBoxView.swift */,
 				F82979BD28EEB1ED0031BBC3 /* GameResultModal */,
 			);
@@ -239,6 +244,7 @@
 			children = (
 				F8823AA828E575D300798374 /* MainButton.swift */,
 				4D14BD6928E1C0F9002B2165 /* TextField.swift */,
+				4DF76EB7290A61FF00AA79D2 /* GameResultButton.swift */,
 				4D14BD7028E206BA002B2165 /* PhotoSelectorButton.swift */,
 			);
 			path = Components;
@@ -378,6 +384,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D0B1E1428E5AA2C007F16DB /* yolov5m.mlmodel in Sources */,
+				4DF76EBC290A680F00AA79D2 /* TargetListComponentView.swift in Sources */,
 				4D0B1E1628E5B213007F16DB /* UIImage+.swift in Sources */,
 				4D8E9F3328F001C00013B7E7 /* yolov7.mlmodel in Sources */,
 				4DBDEC1828D4EFE2002252B3 /* ViewController.swift in Sources */,
@@ -387,6 +394,7 @@
 				F8823AA728E5740F00798374 /* mainVC.swift in Sources */,
 				F860B7A328E835860032A39B /* DictionaryCard.swift in Sources */,
 				4DBDEC1428D4EFE2002252B3 /* AppDelegate.swift in Sources */,
+				4DF76EB8290A61FF00AA79D2 /* GameResultButton.swift in Sources */,
 				4D14BD6A28E1C0F9002B2165 /* TextField.swift in Sources */,
 				F8DB7A6028DB2E8600EE3D66 /* AuthBaseVC.swift in Sources */,
 				4D0B1E1228E5A9A4007F16DB /* ObjectDetection.swift in Sources */,
@@ -559,7 +567,7 @@
 				DEVELOPMENT_TEAM = T24N5ZR2DS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FindDict/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Find DIct";
+				INFOPLIST_KEY_CFBundleDisplayName = "Find Dict";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_NSCameraUsageDescription = "카메라로 사진 찍기";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "앨범에서 사진 선택";
@@ -592,7 +600,7 @@
 				DEVELOPMENT_TEAM = T24N5ZR2DS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FindDict/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Find DIct";
+				INFOPLIST_KEY_CFBundleDisplayName = "Find Dict";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_NSCameraUsageDescription = "카메라로 사진 찍기";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "앨범에서 사진 선택";

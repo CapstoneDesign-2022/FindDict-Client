@@ -14,6 +14,12 @@ import Then
 
 class ObjectDetectionVC:ViewController {
     
+    private let logoImage = UIImageView().then{
+        $0.image = UIImage(named: "logoImage")
+    }
+    
+    private let targetListContainerView = UIStackView()
+    
     var pixelBuffer:CVPixelBuffer? = nil {
         didSet{
             setUpModel()
@@ -23,8 +29,9 @@ class ObjectDetectionVC:ViewController {
     var image = UIImageView().then{
         $0.isUserInteractionEnabled = true
     }
+    var buttonLayer = UIView()
     
-    let objectDectectionModel = yolov7()
+    let objectDectectionModel = yolov5m()
     //    yolov7()
     //yolov5m()
     var predictions: [VNRecognizedObjectObservation] = []
@@ -36,10 +43,10 @@ class ObjectDetectionVC:ViewController {
         didSet{
             for button in buttons {
                 button.press{
-                    // TODO: 이미지 바꾸기
                     button.setImage(UIImage(named: "icon"), for: .normal)
+                    button.isUserInteractionEnabled = false
                 }
-                image.addSubview(button)
+                buttonLayer.addSubview(button)
             }
         }
     }
@@ -98,9 +105,10 @@ class ObjectDetectionVC:ViewController {
     func visionRequestDidComplete(request: VNRequest, error: Error?) {
         if let predictions = request.results as? [VNRecognizedObjectObservation] {
             DispatchQueue.main.async {
-                //                self.image.layer.addSublayer(boxesView)
-                //                self.boxesView.bounds = self.image.bounds
-                //                self.boxesView.bounds = self.image.frame
+                self.image.addSubview(self.buttonLayer)
+//                                self.image.layer.addSublayer(buttonLayer)
+//                                self.buttonLayer.bounds = self.image.bounds
+                                self.buttonLayer.frame = self.image.bounds
                 self.predictedObjects = predictions
                 self.isInferencing = false
             }
@@ -123,6 +131,11 @@ class ObjectDetectionVC:ViewController {
         buttons = createdButtons
     }
     
+    func createTargetListComponents(){
+        let component = TargetListComponentView()
+        
+    }
+    
     func createButton(prediction: VNRecognizedObjectObservation)-> UIButton {
         let buttonTitle: String? = prediction.label
         let color: UIColor = labelColor(with: buttonTitle ?? "N/A")
@@ -137,7 +150,7 @@ class ObjectDetectionVC:ViewController {
         //        print(buttonRect)
         //        print(labelString,bgRect)
 //                let buttonRect = CGRect(x: prediction.boundingBox.origin.x, y: prediction.boundingBox.origin.y, width: prediction.boundingBox.width, height: prediction.boundingBox.height)
-        let scale = CGAffineTransform.identity.scaledBy(x: image.bounds.width, y: image.bounds.height)
+        let scale = CGAffineTransform.identity.scaledBy(x: buttonLayer.bounds.width, y: buttonLayer.bounds.height)
         print("scale",scale)
         let transform = CGAffineTransform(scaleX: 1, y: -1).translatedBy(x: 0, y: -1)
         let bgRect = prediction.boundingBox.applying(transform).applying(scale)
@@ -159,13 +172,24 @@ class ObjectDetectionVC:ViewController {
         print(sender.titleLabel?.text)
     }
 }
+
 // MARK: - UI
 extension ObjectDetectionVC {
     func setLayout() {
-        view.addSubViews([image])
-        image.snp.makeConstraints{
+        view.addSubViews([logoImage, targetListContainerView, image])
+        logoImage.snp.makeConstraints{
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(17)
-            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            $0.centerX.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        targetListContainerView.snp.makeConstraints{
+            $0.top.equalTo(logoImage.snp.bottom).offset(40)
+            $0.centerX.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        image.snp.makeConstraints{
+            $0.top.equalTo(targetListContainerView.snp.bottom).offset(60)
+            $0.centerX.equalTo(view.safeAreaLayoutGuide)
             $0.bottom.lessThanOrEqualTo(view.safeAreaLayoutGuide.snp.bottom).inset(50)
         }
     }
