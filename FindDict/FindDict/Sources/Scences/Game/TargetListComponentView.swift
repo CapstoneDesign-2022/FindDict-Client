@@ -14,13 +14,26 @@ class TargetListComponentView: UIView {
     private var guessedRight = true
 
     private let koreanButton = UIButton().then{
-        $0.makeRounded(cornerRadius: nil)
+        if #available(iOS 15.0, *) {
+            $0.configuration = .plain()
+            $0.configuration?.buttonSize = .large
+        } else {
+            // Fallback on earlier versions
+        }
+        
+        $0.makeRounded(cornerRadius: 20)
+        
+        $0.backgroundColor = .buttonYellow
+        $0.setTitleColor(.black, for: .normal)
     }
     
     private let englishLabel = UILabel().then{
         $0.addShadow(location: .bottom)
         $0.addShadow(location: .left)
         $0.addShadow(location: .right)
+        $0.makeRounded(cornerRadius: 15)
+//        $0.sizeToFit()
+        $0.textAlignment = .center
         $0.backgroundColor = .white
         $0.textColor = .black
         $0.text = "-"
@@ -58,12 +71,13 @@ extension TargetListComponentView {
         
         koreanButton.snp.makeConstraints {
             $0.top.equalTo(self.safeAreaLayoutGuide).offset(11)
-            $0.centerX.equalTo(self.safeAreaLayoutGuide)
+            $0.leading.trailing.equalTo(self.safeAreaLayoutGuide)
         }
         
         englishLabel.snp.makeConstraints{
             $0.top.equalTo(koreanButton.snp.bottom).offset(15)
-            $0.centerX.equalTo(self.safeAreaLayoutGuide)
+            $0.leading.trailing.equalTo(self.safeAreaLayoutGuide)
+            $0.height.equalTo(30)
         }
         
     }

@@ -21,7 +21,8 @@ class ObjectDetectionVC:ViewController {
     
     private let targetListContainerView = UIStackView().then{
         $0.axis = .horizontal
-//        $0.spacing = 10
+//        $0.alignment = .fill
+        $0.spacing = 20
 //        $0.distribution = .fillProportionally
     }
     
