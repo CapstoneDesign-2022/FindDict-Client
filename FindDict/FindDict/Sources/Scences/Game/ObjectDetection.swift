@@ -51,6 +51,7 @@ class ObjectDetectionVC:ViewController {
             for button in buttons {
                 button.press{
                     button.setImage(UIImage(named: "icon"), for: .normal)
+                    button.imageView?.contentMode = .scaleAspectFit
                     button.isUserInteractionEnabled = false
                 }
                 buttonLayer.addSubview(button)
