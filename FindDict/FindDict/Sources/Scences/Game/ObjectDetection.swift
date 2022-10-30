@@ -128,6 +128,18 @@ class ObjectDetectionVC:ViewController {
     public var predictedObjects: [VNRecognizedObjectObservation] = [] {
         didSet {
             putButtons(with: predictedObjects)
+//            predictedObjectsSet = Set(predictedObjects)
+            var predectedObjectLabels = Set<String>()
+            for predictedObject in predictedObjects {
+                predectedObjectLabels.insert(predictedObject.label ?? "레이블오류")
+            }
+            predictedObjectLablesSet = predectedObjectLabels
+        }
+    }
+    
+    public var predictedObjectLablesSet = Set<String>() {
+        didSet {
+            createTargetListComponents(with: predictedObjectLablesSet)
         }
     }
     
@@ -135,16 +147,18 @@ class ObjectDetectionVC:ViewController {
         var createdButtons:[UIButton]=[]
         for prediction in predictions {
             createdButtons.append(createButton(prediction: prediction))
-            createTargetListComponents(prediction: prediction)
+//            predictedObjectsSet.insert(prediction.label ?? "no label")
         }
         buttons = createdButtons
     }
     
-    func createTargetListComponents(prediction: VNRecognizedObjectObservation){
-        let component = TargetListComponentView()
-        component.setData(korean: prediction.label ?? "개미", english: prediction.label ?? "ant")
-        targetListContainerView.addArrangedSubview(component)
-        
+    func createTargetListComponents(with predictions: Set<String>){
+//        print(predictions)
+        for prediction in predictions {
+            let component = TargetListComponentView()
+            component.setData(korean: prediction, english: prediction)
+            targetListContainerView.addArrangedSubview(component)
+        }
     }
     
     func createButton(prediction: VNRecognizedObjectObservation)-> UIButton {
