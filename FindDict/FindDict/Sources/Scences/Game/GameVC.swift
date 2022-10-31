@@ -47,7 +47,16 @@ class GameVC:ViewController {
     
     // TODO: - 버튼 위치 잘 잡고 나면 삭제할 프로퍼티
     private var colors: [String: UIColor] = [:]
-    
+    private var theNumberOfTargetsGuessedRight = 0 {
+        didSet{
+            if theNumberOfTargetsGuessedRight == wordTargets.count {
+                let gameResultSuccessVC = GameResultSuccessVC()
+                gameResultSuccessVC.modalTransitionStyle = .crossDissolve
+                gameResultSuccessVC.modalPresentationStyle = .overFullScreen
+                self.present(gameResultSuccessVC, animated: true)
+            }
+        }
+    }
     
     // MARK: - UI Properties
     private let logoImage = UIImageView().then{
@@ -79,12 +88,13 @@ class GameVC:ViewController {
     private lazy var buttons: [UIButton] = [] {
         didSet{
             for button in buttons {
-                button.press{
+                button.press{ [self] in 
                     button.setImage(UIImage(named: "icon"), for: .normal)
                     button.imageView?.contentMode = .scaleAspectFit
                     button.isUserInteractionEnabled = false
                     self.disableButtons(label:button.titleLabel?.text ?? "레이블 오류")
                     self.handleGuessedRightView(label:button.titleLabel?.text ?? "레이블 오류")
+                    self.theNumberOfTargetsGuessedRight += 1
                 }
                 buttonLayer.addSubview(button)
             }
@@ -120,6 +130,7 @@ class GameVC:ViewController {
             
         }
         wordTargets = createdTargets
+//        numberOfTargetWords = wordTargets.count
     }
     
     /// 인식된 객체마다 이에 맞는 버튼을 생성합니다.

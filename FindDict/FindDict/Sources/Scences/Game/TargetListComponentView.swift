@@ -122,21 +122,11 @@ extension TargetListComponentView {
             $0.height.equalTo(40)
             $0.bottom.equalTo(self.safeAreaLayoutGuide).inset(10)
         }
+        
         englishLabel.snp.makeConstraints{
-//            $0.top.equalTo(koreanButton.snp.bottom).offset(15)
             $0.leading.equalTo(englishLabelBoundaryView).offset(10)
             $0.trailing.equalTo(englishLabelBoundaryView).inset(10)
             $0.center.equalTo(englishLabelBoundaryView)
-//            $0.height.equalTo(40)
-//            $0.bottom.equalTo(self.safeAreaLayoutGuide).inset(10)
         }
-        
-//        englishLabel.snp.makeConstraints{
-//            $0.top.equalTo(koreanButton.snp.bottom).offset(15)
-//            $0.leading.trailing.equalTo(self.safeAreaLayoutGuide)
-//            $0.height.equalTo(40)
-//            $0.bottom.equalTo(self.safeAreaLayoutGuide).inset(10)
-//        }
-        
     }
 }
