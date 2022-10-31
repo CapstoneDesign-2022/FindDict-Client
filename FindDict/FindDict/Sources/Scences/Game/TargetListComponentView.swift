@@ -63,6 +63,16 @@ class TargetListComponentView: UIView {
             print("힌트 보기")
         }
     }
+    
+    func getTargetLabel()->String{
+        return englishLabelText
+    }
+    
+    func handleGussedRightView(){
+        koreanButton.isUserInteractionEnabled = false
+        englishLabel.text = englishLabelText
+        
+    }
 
 }
 

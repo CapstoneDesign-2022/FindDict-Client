@@ -54,9 +54,7 @@ class ObjectDetectionVC:ViewController {
                     button.imageView?.contentMode = .scaleAspectFit
                     button.isUserInteractionEnabled = false
                     self.disableButtons(label:button.titleLabel?.text ?? "레이블 오류")
-                    // TODO: 객체 리스트에서 같은 label인 버튼 비활성화
-                    
-                    // TODO: 객체 리스트에서 같은 label인 레이블 영어 단어 보여주기
+                    self.handleGuessedRightView(label:button.titleLabel?.text ?? "레이블 오류")
                     
                 }
                 buttonLayer.addSubview(button)
@@ -76,6 +74,14 @@ class ObjectDetectionVC:ViewController {
         for button in buttons{
             if button.titleLabel?.text == label{
                 button.isUserInteractionEnabled = false
+            }
+        }
+    }
+    
+    func handleGuessedRightView(label:String){
+        for wordTarget in wordTargets{
+            if wordTarget.getTargetLabel() == label {
+                wordTarget.handleGussedRightView()
             }
         }
     }
