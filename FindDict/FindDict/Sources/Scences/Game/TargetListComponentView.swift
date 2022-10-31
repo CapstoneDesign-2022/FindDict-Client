@@ -27,16 +27,44 @@ class TargetListComponentView: UIView {
         $0.setTitleColor(.black, for: .normal)
     }
     
-    private let englishLabel = UILabel().then{
-        $0.addShadow(location: .bottom)
-        $0.addShadow(location: .left)
-        $0.addShadow(location: .right)
+    private let englishLabelBoundaryView = UIView().then {
+//        $0.addShadow(location: .bottom)
+//                $0.addShadow(location: .left)
+//                $0.addShadow(location: .right)
+//        $0.addShadow(offset: CGSize(width: 0, height: -2),opacity: 0.2,radius: 2.0)
+        $0.layer.shadowRadius = 4
+                $0.layer.shadowOffset = CGSize(width: 0, height: 4)
+                $0.layer.shadowColor = UIColor.black.cgColor
+                $0.layer.shadowOpacity = 0.25
+        $0.backgroundColor = .white
         $0.makeRounded(cornerRadius: 15)
+    }
+    
+    private let englishLabel = UILabel().then{
+//        $0.addShadow(location: .bottom)
+//        $0.addShadow(location: .left)
+//        $0.addShadow(location: .right)
+//        $0.addShadow(offset: CGSize(width: 0, height: -2),opacity: 0.2,radius: 2.0)
+//        $0.shadowColor
+//        $0.shadowColor = .black
+//        $0.shadowOffset = CGSize(width: 0, height: 4)
+        
+//        $0.layer.shadowRadius = 4
+//        $0.layer.shadowOffset = CGSize(width: 0, height: 4)
+//        $0.layer.shadowColor = UIColor.black.cgColor
+//        $0.layer.shadowOpacity = 0.25
+//        $0.makeRounded(cornerRadius: 15)
 //        $0.sizeToFit()
         $0.textAlignment = .center
-        $0.backgroundColor = .white
+//        $0.backgroundColor = .white
         $0.textColor = .black
         $0.text = "-"
+//
+//        $0.addShadow(location: .bottom)
+//                $0.addShadow(location: .left)
+//                $0.addShadow(location: .right)
+//        $0.backgroundColor = .white
+//        $0.makeRounded(cornerRadius: 15)
     }
     
     private var englishLabelText :String = ""
@@ -71,25 +99,44 @@ class TargetListComponentView: UIView {
     func handleGussedRightView(){
         koreanButton.isUserInteractionEnabled = false
         englishLabel.text = englishLabelText
-        
+        koreanButton.backgroundColor = .buttonGray
     }
 
 }
 
 extension TargetListComponentView {
     func setLayout() {
-        self.addSubViews([koreanButton,englishLabel])
+        self.addSubViews([koreanButton
+                          ,englishLabelBoundaryView
+                          ,englishLabel])
         
         koreanButton.snp.makeConstraints {
             $0.top.equalTo(self.safeAreaLayoutGuide).offset(11)
+            $0.height.equalTo(40)
             $0.leading.trailing.equalTo(self.safeAreaLayoutGuide)
         }
         
-        englishLabel.snp.makeConstraints{
+        englishLabelBoundaryView.snp.makeConstraints{
             $0.top.equalTo(koreanButton.snp.bottom).offset(15)
             $0.leading.trailing.equalTo(self.safeAreaLayoutGuide)
-            $0.height.equalTo(30)
+            $0.height.equalTo(40)
+            $0.bottom.equalTo(self.safeAreaLayoutGuide).inset(10)
         }
+        englishLabel.snp.makeConstraints{
+//            $0.top.equalTo(koreanButton.snp.bottom).offset(15)
+            $0.leading.equalTo(englishLabelBoundaryView).offset(10)
+            $0.trailing.equalTo(englishLabelBoundaryView).inset(10)
+            $0.center.equalTo(englishLabelBoundaryView)
+//            $0.height.equalTo(40)
+//            $0.bottom.equalTo(self.safeAreaLayoutGuide).inset(10)
+        }
+        
+//        englishLabel.snp.makeConstraints{
+//            $0.top.equalTo(koreanButton.snp.bottom).offset(15)
+//            $0.leading.trailing.equalTo(self.safeAreaLayoutGuide)
+//            $0.height.equalTo(40)
+//            $0.bottom.equalTo(self.safeAreaLayoutGuide).inset(10)
+//        }
         
     }
 }
