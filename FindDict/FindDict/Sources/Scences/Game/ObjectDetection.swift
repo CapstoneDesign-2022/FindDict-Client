@@ -53,8 +53,22 @@ class ObjectDetectionVC:ViewController {
                     button.setImage(UIImage(named: "icon"), for: .normal)
                     button.imageView?.contentMode = .scaleAspectFit
                     button.isUserInteractionEnabled = false
+                    // TODO: 같은 label인 버튼들 비활성화
+                    self.disableButtons(label:button.titleLabel?.text ?? "레이블 오류")
+                    // TODO: 객체 리스트에서 같은 label인 버튼 비활성화
+                    
+                    // TODO: 객체 리스트에서 같은 label인 레이블 영어 단어 보여주기
+                    
                 }
                 buttonLayer.addSubview(button)
+            }
+        }
+    }
+    
+    func disableButtons(label:String){
+        for button in buttons{
+            if button.titleLabel?.text == label{
+                button.isUserInteractionEnabled = false
             }
         }
     }
@@ -190,12 +204,14 @@ class ObjectDetectionVC:ViewController {
         button.layer.borderWidth = 4
         button.backgroundColor = UIColor.clear
         button.setTitle(buttonTitle, for: .normal)
+//        button.setTitleColor(.black, for: .normal)
+//        button.setTitleColor(.systemRed, for: .disabled)
 //        button.titleLabel?.alpha = 0
         return button
     }
-    @objc func buttonClicked(_ sender:UIButton) -> Void {
-        print(sender.titleLabel?.text)
-    }
+//    @objc func buttonClicked(_ sender:UIButton) -> Void {
+//        print(sender.titleLabel?.text)
+//    }
 }
 
 // MARK: - UI

@@ -45,6 +45,7 @@ class TargetListComponentView: UIView {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         setLayout()
+        setButtonActions()
     }
     
     required init(coder aDecoder: NSCoder) {
