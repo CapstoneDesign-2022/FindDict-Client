@@ -12,7 +12,7 @@ import SnapKit
 import Then
 
 
-class ObjectDetectionVC:ViewController {
+class GameVC:ViewController {
     
     private let logoImage = UIImageView().then{
         $0.contentMode = .scaleAspectFit
@@ -21,9 +21,7 @@ class ObjectDetectionVC:ViewController {
     
     private let targetListContainerView = UIStackView().then{
         $0.axis = .horizontal
-//        $0.alignment = .fill
         $0.spacing = 20
-//        $0.distribution = .fillProportionally
     }
     
     var pixelBuffer:CVPixelBuffer? = nil {
@@ -85,6 +83,9 @@ class ObjectDetectionVC:ViewController {
             }
         }
     }
+    // TODO: 모든 객체 리스트 비활성화됐을 경우 게임 종료
+    // TODO: 버튼 부분 아닌 곳 클릭했을 경우 x표시 나타나기
+    
     
     // MARK: - Vision Properties
     var request: VNCoreMLRequest?
@@ -156,7 +157,6 @@ class ObjectDetectionVC:ViewController {
     public var predictedObjects: [VNRecognizedObjectObservation] = [] {
         didSet {
             putButtons(with: predictedObjects)
-//            predictedObjectsSet = Set(predictedObjects)
             var predectedObjectLabels = Set<String>()
             for predictedObject in predictedObjects {
                 predectedObjectLabels.insert(predictedObject.label ?? "레이블오류")
@@ -175,13 +175,11 @@ class ObjectDetectionVC:ViewController {
         var createdButtons:[UIButton]=[]
         for prediction in predictions {
             createdButtons.append(createButton(prediction: prediction))
-//            predictedObjectsSet.insert(prediction.label ?? "no label")
         }
         buttons = createdButtons
     }
     
     func createTargetListComponents(with predictions: Set<String>){
-//        print(predictions)
         var createdTargets:[TargetListComponentView]=[]
         for prediction in predictions {
             let component = TargetListComponentView()
@@ -226,13 +224,10 @@ class ObjectDetectionVC:ViewController {
 //        button.titleLabel?.alpha = 0
         return button
     }
-//    @objc func buttonClicked(_ sender:UIButton) -> Void {
-//        print(sender.titleLabel?.text)
-//    }
 }
 
 // MARK: - UI
-extension ObjectDetectionVC {
+extension GameVC {
     func setLayout() {
         view.addSubViews([logoImage, targetListContainerView, image])
         logoImage.snp.makeConstraints{
@@ -244,9 +239,6 @@ extension ObjectDetectionVC {
         targetListContainerView.snp.makeConstraints{
             $0.top.equalTo(logoImage.snp.bottom).offset(40)
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
-//            $0.leading.lessThanOrEqualTo(view.safeAreaLayoutGuide.snp.leading).inset(50)
-//            $0.trailing.lessThanOrEqualTo(view.safeAreaLayoutGuide.snp.trailing).inset(50)
-//            $0.height.equalTo(100)
         }
         
         image.snp.makeConstraints{

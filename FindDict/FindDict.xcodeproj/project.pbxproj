@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4D0B1E1028E59178007F16DB /* NotoSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D14BD7328E20A8C002B2165 /* NotoSans-Bold.ttf */; };
-		4D0B1E1228E5A9A4007F16DB /* ObjectDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0B1E1128E5A9A4007F16DB /* ObjectDetection.swift */; };
+		4D0B1E1228E5A9A4007F16DB /* GameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0B1E1128E5A9A4007F16DB /* GameVC.swift */; };
 		4D0B1E1428E5AA2C007F16DB /* yolov5m.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 4D0B1E1328E5AA2C007F16DB /* yolov5m.mlmodel */; };
 		4D0B1E1628E5B213007F16DB /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0B1E1528E5B213007F16DB /* UIImage+.swift */; };
 		4D0B1E1828E6D5BA007F16DB /* DrawingBoundingBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0B1E1728E6D5BA007F16DB /* DrawingBoundingBoxView.swift */; };
@@ -55,7 +55,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4D0B1E1128E5A9A4007F16DB /* ObjectDetection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectDetection.swift; sourceTree = "<group>"; };
+		4D0B1E1128E5A9A4007F16DB /* GameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVC.swift; sourceTree = "<group>"; };
 		4D0B1E1328E5AA2C007F16DB /* yolov5m.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = yolov5m.mlmodel; path = "../../../../../../../2022/2022-2/캡스톤 디자인/mlmodel/yolov5m.mlmodel"; sourceTree = "<group>"; };
 		4D0B1E1528E5B213007F16DB /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		4D0B1E1728E6D5BA007F16DB /* DrawingBoundingBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingBoundingBoxView.swift; sourceTree = "<group>"; };
@@ -131,7 +131,7 @@
 				4D14BD6E28E2068B002B2165 /* PhotoSelectorVC.swift */,
 				4D8E9F3228F001C00013B7E7 /* yolov7.mlmodel */,
 				4D0B1E1328E5AA2C007F16DB /* yolov5m.mlmodel */,
-				4D0B1E1128E5A9A4007F16DB /* ObjectDetection.swift */,
+				4D0B1E1128E5A9A4007F16DB /* GameVC.swift */,
 				4DF76EBB290A680F00AA79D2 /* TargetListComponentView.swift */,
 				4D0B1E1728E6D5BA007F16DB /* DrawingBoundingBoxView.swift */,
 				F82979BD28EEB1ED0031BBC3 /* GameResultModal */,
@@ -400,7 +400,7 @@
 				4DF76EB8290A61FF00AA79D2 /* GameResultButton.swift in Sources */,
 				4D14BD6A28E1C0F9002B2165 /* TextField.swift in Sources */,
 				F8DB7A6028DB2E8600EE3D66 /* AuthBaseVC.swift in Sources */,
-				4D0B1E1228E5A9A4007F16DB /* ObjectDetection.swift in Sources */,
+				4D0B1E1228E5A9A4007F16DB /* GameVC.swift in Sources */,
 				F8DB7A5C28DB1FA700EE3D66 /* UIView+.swift in Sources */,
 				4D14BD6F28E2068B002B2165 /* PhotoSelectorVC.swift in Sources */,
 				F860B79F28E7D0AB0032A39B /* DictionaryTVC.swift in Sources */,
