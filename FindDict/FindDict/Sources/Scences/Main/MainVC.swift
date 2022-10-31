@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-class mainVC: UIViewController {
+class MainVC: UIViewController {
     
     // MARK: - Properties
     private let logoImage = UIImageView().then{
@@ -39,13 +39,29 @@ class mainVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
+        setButtonActions()
         view.backgroundColor = .bgYellow
     }
 
+    func setButtonActions(){
+        gameStartButton.press{
+            let initiatingGameVC = PhotoSelectorVC()
+            self.navigationController?.pushViewController(initiatingGameVC, animated: true)
+        }
+        
+        gameRuleButton.press{
+            print("게임 방법 뷰로 이동")
+        }
+        
+        dictionaryButton.press{
+            let dictionaryVC = DictionaryVC()
+            self.navigationController?.pushViewController(dictionaryVC, animated: true)
+        }
+    }
 }
 
 // MARK: - UI
-extension mainVC {
+extension MainVC {
     private func setLayout(){
         view.addSubViews([logoImage,gameStartButton, buttonStackView])
         

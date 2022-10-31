@@ -43,6 +43,7 @@ class PhotoSelectorVC: UIViewController {
         super.viewDidLoad()
         setLayout()
         setButtonActions()
+        view.backgroundColor = .bgBeige
     }
     
     // MARK: - Functions

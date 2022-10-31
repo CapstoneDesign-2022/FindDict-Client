@@ -69,10 +69,32 @@ class ModalBaseVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
+        setButtonActions()
         view.backgroundColor = .bgBeige
     }
     
-
+    func setButtonActions(){
+        retryButton.press{
+//            self.view.window?.rootViewController?.dismiss(animated: false, completion: {
+//              let initiatingGameVC = PhotoSelectorVC()
+//                guard let presentingVC = self.presentingViewController as? UINavigationController else { return }
+//                self.view.window?.rootViewController?.dismiss(animated: false){
+//                           presentingVC.popToRootViewController(animated: true)}
+//            })
+        }
+        
+        dictionaryButton.press{
+//            let dictionaryVC = DictionaryVC()
+//            self.navigationController?.pushViewController(dictionaryVC, animated: true)
+        }
+        
+        mainViewButton.press{
+//            guard let pvc = self.presentingViewController else { return }
+//            self.dismiss(animated: true, completion: {
+//                pvc.navigationController?.pushViewController(MainVC(), animated: true)
+//            })
+        }
+    }
 }
 
 
@@ -86,6 +108,7 @@ extension ModalBaseVC {
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(91)
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(116)
         }
+        
         resultTitleLabel.snp.makeConstraints{
             $0.top.equalTo(modalView).offset(53)
             $0.centerX.equalTo(modalView)
@@ -93,7 +116,7 @@ extension ModalBaseVC {
             $0.trailing.equalTo(modalView.snp.trailing).inset(183)
             $0.height.equalTo(102)
         }
-
+        
         buttonStackView.snp.makeConstraints{
             $0.top.equalTo(resultTitleLabel.snp.bottom).offset(29)
             $0.leading.equalTo(modalView.snp.leading).inset(570)
@@ -101,12 +124,10 @@ extension ModalBaseVC {
             $0.height.equalTo(231)
             $0.width.equalTo(312)
         }
+        
         resultImage.snp.makeConstraints{
             $0.top.equalTo(modalView.snp.top).inset(113)
             $0.trailing.equalTo(buttonStackView.snp.leading).offset(-21)
-
         }
-        
-
     }
 }
