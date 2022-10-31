@@ -13,7 +13,6 @@ enum VerticalLocation {
     case left
     case right
     case bottomRight
-    case nadoBotttom
 }
 
 extension UIView {
@@ -60,9 +59,6 @@ extension UIView {
             addShadow(offset: CGSize(width: 10, height: 0), color: color, opacity: opacity, radius: radius)
         case .bottomRight:
             addShadow(offset: CGSize(width: 3, height: 3), color: color, opacity: opacity, radius: radius)
-        case .nadoBotttom:
-            addShadow(offset: CGSize(width: 0, height: 4), color: color, opacity: opacity, radius: radius)
         }
-        
     }
 }

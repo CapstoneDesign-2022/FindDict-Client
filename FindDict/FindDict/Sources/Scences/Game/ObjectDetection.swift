@@ -96,6 +96,7 @@ class ObjectDetectionVC:ViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .bgBeige
         setLayout()
     }
     static private var colors: [String: UIColor] = [:]
@@ -245,11 +246,11 @@ extension ObjectDetectionVC {
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
 //            $0.leading.lessThanOrEqualTo(view.safeAreaLayoutGuide.snp.leading).inset(50)
 //            $0.trailing.lessThanOrEqualTo(view.safeAreaLayoutGuide.snp.trailing).inset(50)
-            $0.height.equalTo(100)
+//            $0.height.equalTo(100)
         }
         
         image.snp.makeConstraints{
-            $0.top.equalTo(targetListContainerView.snp.bottom).offset(60)
+            $0.top.equalTo(targetListContainerView.snp.bottom).offset(30)
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
             $0.bottom.lessThanOrEqualTo(view.safeAreaLayoutGuide.snp.bottom).inset(50)
         }

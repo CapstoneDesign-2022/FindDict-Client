@@ -69,7 +69,7 @@ class ModalBaseVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
-        view.backgroundColor = .bgModal
+        view.backgroundColor = .bgBeige
     }
     
 
