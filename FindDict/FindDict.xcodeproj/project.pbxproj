@@ -33,6 +33,7 @@
 		4DBDEC2C28D4F169002252B3 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDEC2B28D4F169002252B3 /* BaseVC.swift */; };
 		4DBDEC2F28D4F2B3002252B3 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDEC2E28D4F2B3002252B3 /* UIViewController+.swift */; };
 		4DBDEC3228D4F308002252B3 /* Colorsets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DBDEC3128D4F308002252B3 /* Colorsets.xcassets */; };
+		4DEE7166290F53EE000C5D9A /* WordDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEE7165290F53EE000C5D9A /* WordDictionary.swift */; };
 		4DF76EB8290A61FF00AA79D2 /* GameResultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF76EB7290A61FF00AA79D2 /* GameResultButton.swift */; };
 		4DF76EBC290A680F00AA79D2 /* TargetListComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF76EBB290A680F00AA79D2 /* TargetListComponentView.swift */; };
 		F82979B728ED5C030031BBC3 /* ModalBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82979B628ED5C030031BBC3 /* ModalBaseVC.swift */; };
@@ -80,6 +81,7 @@
 		4DBDEC2B28D4F169002252B3 /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		4DBDEC2E28D4F2B3002252B3 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		4DBDEC3128D4F308002252B3 /* Colorsets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colorsets.xcassets; sourceTree = "<group>"; };
+		4DEE7165290F53EE000C5D9A /* WordDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDictionary.swift; sourceTree = "<group>"; };
 		4DF76EB7290A61FF00AA79D2 /* GameResultButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameResultButton.swift; sourceTree = "<group>"; };
 		4DF76EBB290A680F00AA79D2 /* TargetListComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetListComponentView.swift; sourceTree = "<group>"; };
 		F82979B628ED5C030031BBC3 /* ModalBaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalBaseVC.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				4DBDEC3328D4F32F002252B3 /* Fonts */,
 				4DBDEC1C28D4EFE3002252B3 /* Assets.xcassets */,
 				4DBDEC3128D4F308002252B3 /* Colorsets.xcassets */,
+				4DEE7165290F53EE000C5D9A /* WordDictionary.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 				4DBDEC2F28D4F2B3002252B3 /* UIViewController+.swift in Sources */,
 				F82979B728ED5C030031BBC3 /* ModalBaseVC.swift in Sources */,
 				F860B7A528E84F5D0032A39B /* WordDataModel.swift in Sources */,
+				4DEE7166290F53EE000C5D9A /* WordDictionary.swift in Sources */,
 				4D14BD6828E1B924002B2165 /* UIButton+.swift in Sources */,
 				F860B7A128E832DB0032A39B /* UITableViewCell+.swift in Sources */,
 				4DBDEC1628D4EFE2002252B3 /* SceneDelegate.swift in Sources */,

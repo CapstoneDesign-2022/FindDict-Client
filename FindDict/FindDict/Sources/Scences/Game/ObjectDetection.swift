@@ -156,7 +156,7 @@ class ObjectDetectionVC:ViewController {
 //        print(predictions)
         for prediction in predictions {
             let component = TargetListComponentView()
-            component.setData(korean: prediction, english: prediction)
+            component.setData(korean: wordDictionary[prediction] ?? "사전 매칭 오류", english: prediction)
             targetListContainerView.addArrangedSubview(component)
         }
     }
