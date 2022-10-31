@@ -12,7 +12,6 @@ import Then
 class PhotoSelectorVC: UIViewController {
     
     // MARK: - Properties
-    private let boxesView = DrawingBoundingBoxView()
     private let takingPictureButton = PhotoSelectorButton().then{
         $0.setTitle("사진 찍기", for: .normal)
         $0.backgroundColor = .buttonOrange
@@ -29,26 +28,15 @@ class PhotoSelectorVC: UIViewController {
     }
     
     private var selectedImage = UIImageView()
-//    {
-//        didSet{
-//            print("imagesdsdsada")
-//            let objectDetectionTestVC = ObjectDetectionVC()
-//            objectDetectionTestVC.pixelBuffer = selectedImage.image?.pixelBufferFromImage()
-//            self.navigationController?.pushViewController(objectDetectionTestVC, animated: true)
-//        }
-//    }
-//
+    
     private var pixelBuffer:CVPixelBuffer? = nil  {
         didSet{
-            let objectDetectionTestVC = ObjectDetectionVC()
+            let objectDetectionTestVC = GameVC()
             objectDetectionTestVC.image.image = selectedImage.image
-                        objectDetectionTestVC.pixelBuffer = selectedImage.image?.pixelBufferFromImage()
-                        self.navigationController?.pushViewController(objectDetectionTestVC, animated: true)
-            
+            objectDetectionTestVC.pixelBuffer = selectedImage.image?.pixelBufferFromImage()
+            self.navigationController?.pushViewController(objectDetectionTestVC, animated: true)
         }
     }
-    
-//    let objectDetection = ObjectDetection()
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -56,7 +44,7 @@ class PhotoSelectorVC: UIViewController {
         setLayout()
         setButtonActions()
     }
-
+    
     // MARK: - Functions
     func setButtonActions(){
         takingPictureButton.press{
@@ -75,16 +63,12 @@ class PhotoSelectorVC: UIViewController {
             self.present(imagePickerController, animated: true, completion: nil)
         }
     }
-
 }
 
 // MARK: - UI
 extension PhotoSelectorVC {
     private func setLayout() {
-        view.addSubViews([takingPictureButton, selectingPictureButton,fetchingPictureButton,
-//                          boxesView
-                          selectedImage
-                         ])
+        view.addSubViews([takingPictureButton, selectingPictureButton,fetchingPictureButton])
         
         takingPictureButton.snp.makeConstraints{
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(67)
@@ -92,7 +76,7 @@ extension PhotoSelectorVC {
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-60)
             $0.height.equalTo(100)
         }
-
+        
         selectingPictureButton.snp.makeConstraints{
             $0.top.equalTo(takingPictureButton.snp.bottom).offset(17)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(60)
@@ -106,22 +90,6 @@ extension PhotoSelectorVC {
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-60)
             $0.height.equalTo(100)
         }
-        
-        selectedImage.snp.makeConstraints{
-            $0.top.equalTo(fetchingPictureButton.snp.bottom).offset(17)
-            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(60)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-60)
-            $0.bottom.lessThanOrEqualTo(view.safeAreaLayoutGuide.snp.bottom).inset(50)
-            $0.height.equalTo(250)
-        }
-        
-//        boxesView.snp.makeConstraints{
-//            $0.top.equalTo(fetchingPictureButton.snp.bottom).offset(17)
-//            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(60)
-//            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-60)
-//            $0.bottom.lessThanOrEqualTo(view.safeAreaLayoutGuide.snp.bottom).inset(50)
-//            $0.height.equalTo(250)
-//        }
     }
 }
 
@@ -129,25 +97,16 @@ extension PhotoSelectorVC {
 extension PhotoSelectorVC:UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-      
-                if let image = info[.editedImage] as? UIImage
+        
+        if let image = info[.editedImage] as? UIImage
         {
-                   
-                    selectedImage.image = image
-                    pixelBuffer = selectedImage.image?.pixelBufferFromImage()
-//                    let imagePixelBuffer = image.pixelBufferFromImage()
-//                    objectDetection.setUpModel()
-//                    objectDetection.handleImage(pixelBuffer: imagePixelBuffer)
-                }
-        
-             dismiss(animated: true, completion: nil)
-//        let objectDetectionTestVC = ObjectDetectionVC()
-//        objectDetectionTestVC.pixelBuffer = image?.pixelBufferFromImage()
-//        self.navigationController?.pushViewController(objectDetectionTestVC, animated: true)
-        
+            selectedImage.image = image
+            pixelBuffer = selectedImage.image?.pixelBufferFromImage()
         }
+        dismiss(animated: true, completion: nil)
+    }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-          dismiss(animated: true, completion: nil)
-      }
+        dismiss(animated: true, completion: nil)
+    }
 }

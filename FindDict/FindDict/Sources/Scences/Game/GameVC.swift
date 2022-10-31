@@ -14,6 +14,42 @@ import Then
 
 class GameVC:ViewController {
     
+    // MARK: - Vision Properties
+    var request: VNCoreMLRequest?
+    var visionModel: VNCoreMLModel?
+    var isInferencing = false
+    let semaphore = DispatchSemaphore(value: 1)
+    private let objectDectectionModel = yolov5m() //yolov7()
+    // TODO: - private으로 바꾸고 setter 만들기
+    var pixelBuffer:CVPixelBuffer? = nil {
+        didSet{
+            setUpModel()
+            handleImage(pixelBuffer: pixelBuffer)
+        }
+    }
+    
+    private var predictedObjects: [VNRecognizedObjectObservation] = [] {
+        didSet {
+            putButtons(with: predictedObjects)
+            var predectedObjectLabels = Set<String>()
+            for predictedObject in predictedObjects {
+                predectedObjectLabels.insert(predictedObject.label ?? "레이블오류")
+            }
+            predictedObjectLableSet = predectedObjectLabels
+        }
+    }
+    
+    private var predictedObjectLableSet = Set<String>() {
+        didSet {
+            createTargetListComponents(with: predictedObjectLableSet)
+        }
+    }
+    
+    // TODO: - 버튼 위치 잘 잡고 나면 삭제할 프로퍼티
+    private var colors: [String: UIColor] = [:]
+    
+    
+    // MARK: - UI Properties
     private let logoImage = UIImageView().then{
         $0.contentMode = .scaleAspectFit
         $0.image = UIImage(named: "logoImage")
@@ -24,27 +60,23 @@ class GameVC:ViewController {
         $0.spacing = 20
     }
     
-    var pixelBuffer:CVPixelBuffer? = nil {
+    private lazy var wordTargets: [TargetListComponentView] = []{
         didSet{
-            setUpModel()
-            handleImage(pixelBuffer: pixelBuffer)
+            for wordTarget in wordTargets{
+                targetListContainerView.addArrangedSubview(wordTarget)
+            }
         }
     }
+    
+    // TODO: - private으로 만들고 setter만들기
     var image = UIImageView().then{
         $0.isUserInteractionEnabled = true
         $0.contentMode = .scaleAspectFit
     }
-    var buttonLayer = UIView()
     
-    let objectDectectionModel = yolov5m()
-    //    yolov7()
-    //yolov5m()
-    var predictions: [VNRecognizedObjectObservation] = []
-    var label: String? {
-        return predictions.first?.labels.first?.identifier
-    }
+    private var buttonLayer = UIView()
     
-    lazy var buttons: [UIButton] = [] {
+    private lazy var buttons: [UIButton] = [] {
         didSet{
             for button in buttons {
                 button.press{
@@ -53,46 +85,15 @@ class GameVC:ViewController {
                     button.isUserInteractionEnabled = false
                     self.disableButtons(label:button.titleLabel?.text ?? "레이블 오류")
                     self.handleGuessedRightView(label:button.titleLabel?.text ?? "레이블 오류")
-                    
                 }
                 buttonLayer.addSubview(button)
             }
         }
     }
     
-    lazy var wordTargets: [TargetListComponentView] = []{
-        didSet{
-            for wordTarget in wordTargets{
-                targetListContainerView.addArrangedSubview(wordTarget)
-            }
-        }
-    }
-    
-    func disableButtons(label:String){
-        for button in buttons{
-            if button.titleLabel?.text == label{
-                button.isUserInteractionEnabled = false
-            }
-        }
-    }
-    
-    func handleGuessedRightView(label:String){
-        for wordTarget in wordTargets{
-            if wordTarget.getTargetLabel() == label {
-                wordTarget.handleGussedRightView()
-            }
-        }
-    }
     // TODO: 모든 객체 리스트 비활성화됐을 경우 게임 종료
     // TODO: 버튼 부분 아닌 곳 클릭했을 경우 x표시 나타나기
     
-    
-    // MARK: - Vision Properties
-    var request: VNCoreMLRequest?
-    var visionModel: VNCoreMLModel?
-    var isInferencing = false
-    
-    let semaphore = DispatchSemaphore(value: 1)
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -100,77 +101,8 @@ class GameVC:ViewController {
         view.backgroundColor = .bgBeige
         setLayout()
     }
-    static private var colors: [String: UIColor] = [:]
     
-    public func labelColor(with label: String) -> UIColor {
-        if let color = ObjectDetectionVC.colors[label] {
-            return color
-        } else {
-            let color = UIColor(hue: .random(in: 0...1), saturation: 1, brightness: 1, alpha: 0.8)
-            ObjectDetectionVC.colors[label] = color
-            return color
-        }
-    }
-    
-    // MARK: - Setup Core ML
-    func setUpModel() {
-        if let visionModel = try? VNCoreMLModel(for: objectDectectionModel.model) {
-            self.visionModel = visionModel
-            request = VNCoreMLRequest(model: visionModel, completionHandler: visionRequestDidComplete)
-            request?.imageCropAndScaleOption = .scaleFit
-        } else {
-            fatalError("fail to create vision model")
-        }
-    }
-    
-    func handleImage(pixelBuffer: CVPixelBuffer?){
-        if !self.isInferencing, let pixelBuffer = pixelBuffer {
-            self.isInferencing = true
-            self.predictUsingVision(pixelBuffer: pixelBuffer)
-        }
-    }
-    
-    func predictUsingVision(pixelBuffer: CVPixelBuffer) {
-        guard let request = request else { fatalError() }
-        self.semaphore.wait()
-        let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer)
-        try? handler.perform([request])
-    }
-    
-    // MARK: - Post-processing
-    // 요청 실행 후
-    func visionRequestDidComplete(request: VNRequest, error: Error?) {
-        if let predictions = request.results as? [VNRecognizedObjectObservation] {
-            DispatchQueue.main.async {
-                self.image.addSubview(self.buttonLayer)
-//                                self.image.layer.addSublayer(buttonLayer)
-//                                self.buttonLayer.bounds = self.image.bounds
-                                self.buttonLayer.frame = self.image.bounds
-                self.predictedObjects = predictions
-                self.isInferencing = false
-            }
-        }
-        self.isInferencing = false
-        self.semaphore.signal()
-    }
-    
-    public var predictedObjects: [VNRecognizedObjectObservation] = [] {
-        didSet {
-            putButtons(with: predictedObjects)
-            var predectedObjectLabels = Set<String>()
-            for predictedObject in predictedObjects {
-                predectedObjectLabels.insert(predictedObject.label ?? "레이블오류")
-            }
-            predictedObjectLablesSet = predectedObjectLabels
-        }
-    }
-    
-    public var predictedObjectLablesSet = Set<String>() {
-        didSet {
-            createTargetListComponents(with: predictedObjectLablesSet)
-        }
-    }
-    
+    // MARK: - Functions
     func putButtons(with predictions: [VNRecognizedObjectObservation]) {
         var createdButtons:[UIButton]=[]
         for prediction in predictions {
@@ -190,6 +122,7 @@ class GameVC:ViewController {
         wordTargets = createdTargets
     }
     
+    /// 인식된 객체마다 이에 맞는 버튼을 생성합니다.
     func createButton(prediction: VNRecognizedObjectObservation)-> UIButton {
         let buttonTitle: String? = prediction.label
         let color: UIColor = labelColor(with: buttonTitle ?? "N/A")
@@ -199,11 +132,11 @@ class GameVC:ViewController {
         //        let scale = CGAffineTransform.identity.scaledBy(x: image.bounds.width, y: image.bounds.height)
         //        print("scale",scale)
         //        let transform = CGAffineTransform(scaleX: 1, y: -1).translatedBy(x: 0, y: -1)
-//        print(prediction.boundingBox.origin.x,prediction.boundingBox.origin.y, prediction.boundingBox.width,prediction.boundingBox.height)
+        //        print(prediction.boundingBox.origin.x,prediction.boundingBox.origin.y, prediction.boundingBox.width,prediction.boundingBox.height)
         //        let buttonRect = prediction.boundingBox.applying(scale)
         //        print(buttonRect)
         //        print(labelString,bgRect)
-//                let buttonRect = CGRect(x: prediction.boundingBox.origin.x, y: prediction.boundingBox.origin.y, width: prediction.boundingBox.width, height: prediction.boundingBox.height)
+        //                let buttonRect = CGRect(x: prediction.boundingBox.origin.x, y: prediction.boundingBox.origin.y, width: prediction.boundingBox.width, height: prediction.boundingBox.height)
         let scale = CGAffineTransform.identity.scaledBy(x: buttonLayer.bounds.width, y: buttonLayer.bounds.height)
         print("scale",scale)
         let transform = CGAffineTransform(scaleX: 1, y: -1).translatedBy(x: 0, y: -1)
@@ -211,7 +144,7 @@ class GameVC:ViewController {
         
         
         //TODO: 스케일 맞추기
-//        let buttonRect = CGRect(x: prediction.boundingBox.origin.x*500, y: prediction.boundingBox.origin.y*500, width: prediction.boundingBox.width*500, height: prediction.boundingBox.height*500)
+        //        let buttonRect = CGRect(x: prediction.boundingBox.origin.x*500, y: prediction.boundingBox.origin.y*500, width: prediction.boundingBox.width*500, height: prediction.boundingBox.height*500)
         let button = UIButton(type: .custom)
         button.frame = bgRect
         button.layer.borderColor = color.cgColor
@@ -219,10 +152,33 @@ class GameVC:ViewController {
         button.layer.borderWidth = 4
         button.backgroundColor = UIColor.clear
         button.setTitle(buttonTitle, for: .normal)
-//        button.setTitleColor(.black, for: .normal)
-//        button.setTitleColor(.systemRed, for: .disabled)
-//        button.titleLabel?.alpha = 0
         return button
+    }
+    
+    func labelColor(with label: String) -> UIColor {
+        if let color = colors[label] {
+            return color
+        } else {
+            let color = UIColor(hue: .random(in: 0...1), saturation: 1, brightness: 1, alpha: 0.8)
+            colors[label] = color
+            return color
+        }
+    }
+    
+    func disableButtons(label:String){
+        for button in buttons{
+            if button.titleLabel?.text == label{
+                button.isUserInteractionEnabled = false
+            }
+        }
+    }
+    
+    func handleGuessedRightView(label:String){
+        for wordTarget in wordTargets{
+            if wordTarget.getTargetLabel() == label {
+                wordTarget.handleGussedRightView()
+            }
+        }
     }
 }
 
@@ -246,5 +202,49 @@ extension GameVC {
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
             $0.bottom.lessThanOrEqualTo(view.safeAreaLayoutGuide.snp.bottom).inset(50)
         }
+    }
+}
+
+// MARK: - Core ML
+extension GameVC {
+    func setUpModel() {
+        if let visionModel = try? VNCoreMLModel(for: objectDectectionModel.model) {
+            self.visionModel = visionModel
+            request = VNCoreMLRequest(model: visionModel, completionHandler: visionRequestDidComplete)
+            request?.imageCropAndScaleOption = .scaleFit
+        } else {
+            fatalError("fail to create vision model")
+        }
+    }
+    
+    /// 사진이 선택되면 pixelBuffer 값 역시 할당됩니다. 할당된 값을 이용하여 객체 인식을 시작합니다.
+    func handleImage(pixelBuffer: CVPixelBuffer?){
+        if !self.isInferencing, let pixelBuffer = pixelBuffer {
+            self.isInferencing = true
+            self.predictUsingVision(pixelBuffer: pixelBuffer)
+        }
+    }
+    
+    func predictUsingVision(pixelBuffer: CVPixelBuffer) {
+        guard let request = request else { fatalError() }
+        self.semaphore.wait()
+        let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer)
+        try? handler.perform([request])
+    }
+    
+    /// 객체 인식이 끝나고 나면 인식 결과를 프로퍼티에 저장하고 버튼을 올릴 레이어를 준비합니다.
+    func visionRequestDidComplete(request: VNRequest, error: Error?) {
+        if let predictions = request.results as? [VNRecognizedObjectObservation] {
+            DispatchQueue.main.async {
+                //  self.buttonLayer.bounds = self.image.bounds
+                self.image.addSubview(self.buttonLayer)
+                // self.image.layer.addSublayer(buttonLayer)
+                self.buttonLayer.frame = self.image.bounds
+                self.predictedObjects = predictions
+                self.isInferencing = false
+            }
+        }
+        self.isInferencing = false
+        self.semaphore.signal()
     }
 }
