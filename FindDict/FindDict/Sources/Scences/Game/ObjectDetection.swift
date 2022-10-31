@@ -53,7 +53,6 @@ class ObjectDetectionVC:ViewController {
                     button.setImage(UIImage(named: "icon"), for: .normal)
                     button.imageView?.contentMode = .scaleAspectFit
                     button.isUserInteractionEnabled = false
-                    // TODO: 같은 label인 버튼들 비활성화
                     self.disableButtons(label:button.titleLabel?.text ?? "레이블 오류")
                     // TODO: 객체 리스트에서 같은 label인 버튼 비활성화
                     
@@ -61,6 +60,14 @@ class ObjectDetectionVC:ViewController {
                     
                 }
                 buttonLayer.addSubview(button)
+            }
+        }
+    }
+    
+    lazy var wordTargets: [TargetListComponentView] = []{
+        didSet{
+            for wordTarget in wordTargets{
+                targetListContainerView.addArrangedSubview(wordTarget)
             }
         }
     }
@@ -168,11 +175,14 @@ class ObjectDetectionVC:ViewController {
     
     func createTargetListComponents(with predictions: Set<String>){
 //        print(predictions)
+        var createdTargets:[TargetListComponentView]=[]
         for prediction in predictions {
             let component = TargetListComponentView()
             component.setData(korean: wordDictionary[prediction] ?? "사전 매칭 오류", english: prediction)
-            targetListContainerView.addArrangedSubview(component)
+            createdTargets.append(component)
+            
         }
+        wordTargets = createdTargets
     }
     
     func createButton(prediction: VNRecognizedObjectObservation)-> UIButton {
