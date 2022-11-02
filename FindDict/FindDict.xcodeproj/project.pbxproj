@@ -7,17 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D0B1E1028E59178007F16DB /* NotoSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D14BD7328E20A8C002B2165 /* NotoSans-Bold.ttf */; };
+		4D0B1E1228E5A9A4007F16DB /* GameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0B1E1128E5A9A4007F16DB /* GameVC.swift */; };
+		4D0B1E1428E5AA2C007F16DB /* yolov5m.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 4D0B1E1328E5AA2C007F16DB /* yolov5m.mlmodel */; };
+		4D0B1E1628E5B213007F16DB /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0B1E1528E5B213007F16DB /* UIImage+.swift */; };
+		4D0B1E1828E6D5BA007F16DB /* DrawingBoundingBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0B1E1728E6D5BA007F16DB /* DrawingBoundingBoxView.swift */; };
 		4D14BD6828E1B924002B2165 /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D14BD6728E1B924002B2165 /* UIButton+.swift */; };
 		4D14BD6A28E1C0F9002B2165 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D14BD6928E1C0F9002B2165 /* TextField.swift */; };
-		4D14BD6F28E2068B002B2165 /* PhotoSelectorVCViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D14BD6E28E2068B002B2165 /* PhotoSelectorVCViewController.swift */; };
+		4D14BD6F28E2068B002B2165 /* PhotoSelectorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D14BD6E28E2068B002B2165 /* PhotoSelectorVC.swift */; };
 		4D14BD7128E206BA002B2165 /* PhotoSelectorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D14BD7028E206BA002B2165 /* PhotoSelectorButton.swift */; };
 		4D14BD7728E20B8D002B2165 /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D14BD7628E20B8D002B2165 /* UIFont+.swift */; };
-		4D14BD7828E20CA2002B2165 /* NotoSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D14BD7328E20A8C002B2165 /* NotoSans-Bold.ttf */; };
 		4D14BD7928E20CA4002B2165 /* NotoSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D14BD7428E20A8C002B2165 /* NotoSans-Medium.ttf */; };
 		4D14BD7A28E20CA6002B2165 /* NotoSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D14BD7528E20A8C002B2165 /* NotoSans-SemiBold.ttf */; };
 		4D14BD7B28E20CA8002B2165 /* NotoSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D14BD7228E20A8C002B2165 /* NotoSans-Regular.ttf */; };
 		4D53A66A28DAF9C0000E2AA2 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4D53A66928DAF9C0000E2AA2 /* SnapKit */; };
 		4D53A66D28DAF9C8000E2AA2 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 4D53A66C28DAF9C8000E2AA2 /* Then */; };
+		4D8E9F3328F001C00013B7E7 /* yolov7.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 4D8E9F3228F001C00013B7E7 /* yolov7.mlmodel */; };
 		4D9ADC0728E018DB008CF9F3 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9ADC0628E018DB008CF9F3 /* SignInVC.swift */; };
 		4DA65AAE28E86914002DEFE3 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA65AAD28E86914002DEFE3 /* TargetType.swift */; };
 		4DA65AB128E86A55002DEFE3 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4DA65AB028E86A55002DEFE3 /* Alamofire */; };
@@ -40,8 +45,21 @@
 		4DBDEC2C28D4F169002252B3 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDEC2B28D4F169002252B3 /* BaseVC.swift */; };
 		4DBDEC2F28D4F2B3002252B3 /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDEC2E28D4F2B3002252B3 /* UIViewController+.swift */; };
 		4DBDEC3228D4F308002252B3 /* Colorsets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DBDEC3128D4F308002252B3 /* Colorsets.xcassets */; };
+		4DEE7166290F53EE000C5D9A /* WordDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEE7165290F53EE000C5D9A /* WordDictionary.swift */; };
+		4DF76EB8290A61FF00AA79D2 /* GameResultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF76EB7290A61FF00AA79D2 /* GameResultButton.swift */; };
+		4DF76EBC290A680F00AA79D2 /* TargetListComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DF76EBB290A680F00AA79D2 /* TargetListComponentView.swift */; };
+		F82979B728ED5C030031BBC3 /* ModalBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82979B628ED5C030031BBC3 /* ModalBaseVC.swift */; };
+		F82979BF28EEB2220031BBC3 /* GameResultSuccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82979BE28EEB2220031BBC3 /* GameResultSuccessVC.swift */; };
+		F82979C128EEC3A40031BBC3 /* GameResultFailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82979C028EEC3A40031BBC3 /* GameResultFailVC.swift */; };
+		F860B79D28E6CFBC0032A39B /* DictionaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F860B79C28E6CFBC0032A39B /* DictionaryVC.swift */; };
+		F860B79F28E7D0AB0032A39B /* DictionaryTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F860B79E28E7D0AB0032A39B /* DictionaryTVC.swift */; };
+		F860B7A128E832DB0032A39B /* UITableViewCell+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F860B7A028E832DB0032A39B /* UITableViewCell+.swift */; };
+		F860B7A328E835860032A39B /* DictionaryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F860B7A228E835860032A39B /* DictionaryCard.swift */; };
+		F860B7A528E84F5D0032A39B /* WordDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F860B7A428E84F5D0032A39B /* WordDataModel.swift */; };
 		F8823AA128DFE99200798374 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8823AA028DFE99200798374 /* SignUpVC.swift */; };
 		F8823AA328E022CC00798374 /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8823AA228E022CC00798374 /* UITextField+.swift */; };
+		F8823AA728E5740F00798374 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8823AA628E5740F00798374 /* MainVC.swift */; };
+		F8823AA928E575D300798374 /* MainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8823AA828E575D300798374 /* MainButton.swift */; };
 		F8DB7A5A28DB1D3100EE3D66 /* BeforeSignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DB7A5928DB1D3100EE3D66 /* BeforeSignInVC.swift */; };
 		F8DB7A5C28DB1FA700EE3D66 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DB7A5B28DB1FA700EE3D66 /* UIView+.swift */; };
 		F8DB7A5E28DB29F700EE3D66 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DB7A5D28DB29F700EE3D66 /* UIColor+.swift */; };
@@ -49,15 +67,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D0B1E1128E5A9A4007F16DB /* GameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVC.swift; sourceTree = "<group>"; };
+		4D0B1E1328E5AA2C007F16DB /* yolov5m.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = yolov5m.mlmodel; path = "../../../../../../../2022/2022-2/캡스톤 디자인/mlmodel/yolov5m.mlmodel"; sourceTree = "<group>"; };
+		4D0B1E1528E5B213007F16DB /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
+		4D0B1E1728E6D5BA007F16DB /* DrawingBoundingBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingBoundingBoxView.swift; sourceTree = "<group>"; };
 		4D14BD6728E1B924002B2165 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
 		4D14BD6928E1C0F9002B2165 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextField.swift; path = FindDict/Global/Extensions/TextField.swift; sourceTree = SOURCE_ROOT; };
-		4D14BD6E28E2068B002B2165 /* PhotoSelectorVCViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorVCViewController.swift; sourceTree = "<group>"; };
+		4D14BD6E28E2068B002B2165 /* PhotoSelectorVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorVC.swift; sourceTree = "<group>"; };
 		4D14BD7028E206BA002B2165 /* PhotoSelectorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoSelectorButton.swift; path = FindDict/Sources/Scences/Game/PhotoSelectorButton.swift; sourceTree = SOURCE_ROOT; };
 		4D14BD7228E20A8C002B2165 /* NotoSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Regular.ttf"; sourceTree = "<group>"; };
 		4D14BD7328E20A8C002B2165 /* NotoSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Bold.ttf"; sourceTree = "<group>"; };
 		4D14BD7428E20A8C002B2165 /* NotoSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Medium.ttf"; sourceTree = "<group>"; };
 		4D14BD7528E20A8C002B2165 /* NotoSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		4D14BD7628E20B8D002B2165 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
+		4D8E9F3228F001C00013B7E7 /* yolov7.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = yolov7.mlmodel; sourceTree = "<group>"; };
 		4D9ADC0628E018DB008CF9F3 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		4DA65AAD28E86914002DEFE3 /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
 		4DA65AB228E86A7A002DEFE3 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
@@ -81,8 +104,21 @@
 		4DBDEC2B28D4F169002252B3 /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 		4DBDEC2E28D4F2B3002252B3 /* UIViewController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		4DBDEC3128D4F308002252B3 /* Colorsets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colorsets.xcassets; sourceTree = "<group>"; };
+		4DEE7165290F53EE000C5D9A /* WordDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDictionary.swift; sourceTree = "<group>"; };
+		4DF76EB7290A61FF00AA79D2 /* GameResultButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameResultButton.swift; sourceTree = "<group>"; };
+		4DF76EBB290A680F00AA79D2 /* TargetListComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetListComponentView.swift; sourceTree = "<group>"; };
+		F82979B628ED5C030031BBC3 /* ModalBaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalBaseVC.swift; sourceTree = "<group>"; };
+		F82979BE28EEB2220031BBC3 /* GameResultSuccessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultSuccessVC.swift; sourceTree = "<group>"; };
+		F82979C028EEC3A40031BBC3 /* GameResultFailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultFailVC.swift; sourceTree = "<group>"; };
+		F860B79C28E6CFBC0032A39B /* DictionaryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryVC.swift; sourceTree = "<group>"; };
+		F860B79E28E7D0AB0032A39B /* DictionaryTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryTVC.swift; sourceTree = "<group>"; };
+		F860B7A028E832DB0032A39B /* UITableViewCell+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+.swift"; sourceTree = "<group>"; };
+		F860B7A228E835860032A39B /* DictionaryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryCard.swift; sourceTree = "<group>"; };
+		F860B7A428E84F5D0032A39B /* WordDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDataModel.swift; sourceTree = "<group>"; };
 		F8823AA028DFE99200798374 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		F8823AA228E022CC00798374 /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
+		F8823AA628E5740F00798374 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
+		F8823AA828E575D300798374 /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
 		F8DB7A5928DB1D3100EE3D66 /* BeforeSignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeforeSignInVC.swift; sourceTree = "<group>"; };
 		F8DB7A5B28DB1FA700EE3D66 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		F8DB7A5D28DB29F700EE3D66 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
@@ -116,7 +152,13 @@
 		4D14BD6D28E20653002B2165 /* Game */ = {
 			isa = PBXGroup;
 			children = (
-				4D14BD6E28E2068B002B2165 /* PhotoSelectorVCViewController.swift */,
+				4D14BD6E28E2068B002B2165 /* PhotoSelectorVC.swift */,
+				4D8E9F3228F001C00013B7E7 /* yolov7.mlmodel */,
+				4D0B1E1328E5AA2C007F16DB /* yolov5m.mlmodel */,
+				4D0B1E1128E5A9A4007F16DB /* GameVC.swift */,
+				4DF76EBB290A680F00AA79D2 /* TargetListComponentView.swift */,
+				4D0B1E1728E6D5BA007F16DB /* DrawingBoundingBoxView.swift */,
+				F82979BD28EEB1ED0031BBC3 /* GameResultModal */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -220,6 +262,7 @@
 				4DBDEC3328D4F32F002252B3 /* Fonts */,
 				4DBDEC1C28D4EFE3002252B3 /* Assets.xcassets */,
 				4DBDEC3128D4F308002252B3 /* Colorsets.xcassets */,
+				4DEE7165290F53EE000C5D9A /* WordDictionary.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -242,6 +285,8 @@
 				F8823AA228E022CC00798374 /* UITextField+.swift */,
 				4D14BD6728E1B924002B2165 /* UIButton+.swift */,
 				4D14BD7628E20B8D002B2165 /* UIFont+.swift */,
+				4D0B1E1528E5B213007F16DB /* UIImage+.swift */,
+				F860B7A028E832DB0032A39B /* UITableViewCell+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -251,6 +296,7 @@
 			children = (
 				4DBDEC2B28D4F169002252B3 /* BaseVC.swift */,
 				F8DB7A5F28DB2E8600EE3D66 /* AuthBaseVC.swift */,
+				F82979B628ED5C030031BBC3 /* ModalBaseVC.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -269,7 +315,9 @@
 		4DBDEC3428D4F351002252B3 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				F8823AA828E575D300798374 /* MainButton.swift */,
 				4D14BD6928E1C0F9002B2165 /* TextField.swift */,
+				4DF76EB7290A61FF00AA79D2 /* GameResultButton.swift */,
 				4D14BD7028E206BA002B2165 /* PhotoSelectorButton.swift */,
 			);
 			path = Components;
@@ -278,7 +326,9 @@
 		4DBDEC3528D4F35D002252B3 /* Scences */ = {
 			isa = PBXGroup;
 			children = (
+				F860B79B28E6CF870032A39B /* Dictionary */,
 				4D14BD6D28E20653002B2165 /* Game */,
+				F8823AAA28E590E400798374 /* Main */,
 				4D14BD6628E1B677002B2165 /* Auth */,
 				4DBDEC1728D4EFE2002252B3 /* ViewController.swift */,
 				4DBDEC1928D4EFE2002252B3 /* Main.storyboard */,
@@ -297,6 +347,34 @@
 				4DA65AC328E86B8C002DEFE3 /* EvenLogger.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		F82979BD28EEB1ED0031BBC3 /* GameResultModal */ = {
+			isa = PBXGroup;
+			children = (
+				F82979BE28EEB2220031BBC3 /* GameResultSuccessVC.swift */,
+				F82979C028EEC3A40031BBC3 /* GameResultFailVC.swift */,
+			);
+			path = GameResultModal;
+			sourceTree = "<group>";
+		};
+		F860B79B28E6CF870032A39B /* Dictionary */ = {
+			isa = PBXGroup;
+			children = (
+				F860B79C28E6CFBC0032A39B /* DictionaryVC.swift */,
+				F860B79E28E7D0AB0032A39B /* DictionaryTVC.swift */,
+				F860B7A228E835860032A39B /* DictionaryCard.swift */,
+				F860B7A428E84F5D0032A39B /* WordDataModel.swift */,
+			);
+			path = Dictionary;
+			sourceTree = "<group>";
+		};
+		F8823AAA28E590E400798374 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				F8823AA628E5740F00798374 /* MainVC.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -367,13 +445,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D0B1E1028E59178007F16DB /* NotoSans-Bold.ttf in Resources */,
 				4DBDEC3228D4F308002252B3 /* Colorsets.xcassets in Resources */,
 				4DBDEC2028D4EFE3002252B3 /* LaunchScreen.storyboard in Resources */,
 				4D14BD7A28E20CA6002B2165 /* NotoSans-SemiBold.ttf in Resources */,
 				4D14BD7928E20CA4002B2165 /* NotoSans-Medium.ttf in Resources */,
 				4D14BD7B28E20CA8002B2165 /* NotoSans-Regular.ttf in Resources */,
 				4DBDEC1D28D4EFE3002252B3 /* Assets.xcassets in Resources */,
-				4D14BD7828E20CA2002B2165 /* NotoSans-Bold.ttf in Resources */,
 				4DBDEC1B28D4EFE2002252B3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -385,25 +463,44 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D0B1E1428E5AA2C007F16DB /* yolov5m.mlmodel in Sources */,
+				4DF76EBC290A680F00AA79D2 /* TargetListComponentView.swift in Sources */,
+				4D0B1E1628E5B213007F16DB /* UIImage+.swift in Sources */,
+				4D8E9F3328F001C00013B7E7 /* yolov7.mlmodel in Sources */,
 				4DBDEC1828D4EFE2002252B3 /* ViewController.swift in Sources */,
 				4D14BD7728E20B8D002B2165 /* UIFont+.swift in Sources */,
 				4DA65ABA28E86AC8002DEFE3 /* NetworkConstants.swift in Sources */,
 				F8DB7A5E28DB29F700EE3D66 /* UIColor+.swift in Sources */,
+				F82979C128EEC3A40031BBC3 /* GameResultFailVC.swift in Sources */,
+				F8823AA728E5740F00798374 /* MainVC.swift in Sources */,
+				F860B7A328E835860032A39B /* DictionaryCard.swift in Sources */,
 				4DBDEC1428D4EFE2002252B3 /* AppDelegate.swift in Sources */,
+				4DF76EB8290A61FF00AA79D2 /* GameResultButton.swift in Sources */,
 				4D14BD6A28E1C0F9002B2165 /* TextField.swift in Sources */,
 				F8DB7A6028DB2E8600EE3D66 /* AuthBaseVC.swift in Sources */,
 				4DA65AB828E86ABB002DEFE3 /* GenericResponse.swift in Sources */,
+				4D0B1E1228E5A9A4007F16DB /* GameVC.swift in Sources */,
 				F8DB7A5C28DB1FA700EE3D66 /* UIView+.swift in Sources */,
-				4D14BD6F28E2068B002B2165 /* PhotoSelectorVCViewController.swift in Sources */,
+				4D14BD6F28E2068B002B2165 /* PhotoSelectorVC.swift in Sources */,
+				F860B79F28E7D0AB0032A39B /* DictionaryTVC.swift in Sources */,
+				F8DB7A5C28DB1FA700EE3D66 /* UIView+.swift in Sources */,
+				F82979BF28EEB2220031BBC3 /* GameResultSuccessVC.swift in Sources */,
 				F8DB7A5A28DB1D3100EE3D66 /* BeforeSignInVC.swift in Sources */,
+				4D0B1E1828E6D5BA007F16DB /* DrawingBoundingBoxView.swift in Sources */,
 				4DBDEC2F28D4F2B3002252B3 /* UIViewController+.swift in Sources */,
 				4DA65AC728E86C46002DEFE3 /* SignInBodyModel.swift in Sources */,
+				F82979B728ED5C030031BBC3 /* ModalBaseVC.swift in Sources */,
+				F860B7A528E84F5D0032A39B /* WordDataModel.swift in Sources */,
+				4DEE7166290F53EE000C5D9A /* WordDictionary.swift in Sources */,
 				4D14BD6828E1B924002B2165 /* UIButton+.swift in Sources */,
+				F860B7A128E832DB0032A39B /* UITableViewCell+.swift in Sources */,
 				4DBDEC1628D4EFE2002252B3 /* SceneDelegate.swift in Sources */,
 				4DA65AAE28E86914002DEFE3 /* TargetType.swift in Sources */,
 				4D14BD7128E206BA002B2165 /* PhotoSelectorButton.swift in Sources */,
 				4DA65ABD28E86B25002DEFE3 /* SignInService.swift in Sources */,
 				F8823AA128DFE99200798374 /* SignUpVC.swift in Sources */,
+				F8823AA928E575D300798374 /* MainButton.swift in Sources */,
+				F860B79D28E6CFBC0032A39B /* DictionaryVC.swift in Sources */,
 				4D9ADC0728E018DB008CF9F3 /* SignInVC.swift in Sources */,
 				4DA65AC228E86B6B002DEFE3 /* SignInAPI.swift in Sources */,
 				4DA65AB628E86AB0002DEFE3 /* APIConstants.swift in Sources */,
@@ -562,7 +659,7 @@
 				DEVELOPMENT_TEAM = T24N5ZR2DS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FindDict/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Find DIct";
+				INFOPLIST_KEY_CFBundleDisplayName = "Find Dict";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_NSCameraUsageDescription = "카메라로 사진 찍기";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "앨범에서 사진 선택";
@@ -595,7 +692,7 @@
 				DEVELOPMENT_TEAM = T24N5ZR2DS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FindDict/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Find DIct";
+				INFOPLIST_KEY_CFBundleDisplayName = "Find Dict";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_NSCameraUsageDescription = "카메라로 사진 찍기";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "앨범에서 사진 선택";
