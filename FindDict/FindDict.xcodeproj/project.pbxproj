@@ -64,9 +64,12 @@
 		F8DB7A5C28DB1FA700EE3D66 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DB7A5B28DB1FA700EE3D66 /* UIView+.swift */; };
 		F8DB7A5E28DB29F700EE3D66 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DB7A5D28DB29F700EE3D66 /* UIColor+.swift */; };
 		F8DB7A6028DB2E8600EE3D66 /* AuthBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DB7A5F28DB2E8600EE3D66 /* AuthBaseVC.swift */; };
+		F8E32BB4290FCAB9009B0749 /* HintModalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E32BB3290FCAB9009B0749 /* HintModalVC.swift */; };
+		F8E32BB6290FCBB2009B0749 /* GameResultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E32BB5290FCBB2009B0749 /* GameResultButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+
 		4D0B1E1128E5A9A4007F16DB /* GameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVC.swift; sourceTree = "<group>"; };
 		4D0B1E1328E5AA2C007F16DB /* yolov5m.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = yolov5m.mlmodel; path = "../../../../../../../2022/2022-2/캡스톤 디자인/mlmodel/yolov5m.mlmodel"; sourceTree = "<group>"; };
 		4D0B1E1528E5B213007F16DB /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
@@ -80,7 +83,7 @@
 		4D14BD7428E20A8C002B2165 /* NotoSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Medium.ttf"; sourceTree = "<group>"; };
 		4D14BD7528E20A8C002B2165 /* NotoSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		4D14BD7628E20B8D002B2165 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
-		4D8E9F3228F001C00013B7E7 /* yolov7.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = yolov7.mlmodel; sourceTree = "<group>"; };
+		4D8E9F3228F001C00013B7E7 /* yolov7.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = yolov7.mlmodel; path = ../../../../../../../../Downloads/yolov7.mlmodel; sourceTree = "<group>"; };
 		4D9ADC0628E018DB008CF9F3 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		4DA65AAD28E86914002DEFE3 /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
 		4DA65AB228E86A7A002DEFE3 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
@@ -123,6 +126,8 @@
 		F8DB7A5B28DB1FA700EE3D66 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		F8DB7A5D28DB29F700EE3D66 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		F8DB7A5F28DB2E8600EE3D66 /* AuthBaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthBaseVC.swift; sourceTree = "<group>"; };
+		F8E32BB3290FCAB9009B0749 /* HintModalVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintModalVC.swift; sourceTree = "<group>"; };
+		F8E32BB5290FCBB2009B0749 /* GameResultButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameResultButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +164,7 @@
 				4DF76EBB290A680F00AA79D2 /* TargetListComponentView.swift */,
 				4D0B1E1728E6D5BA007F16DB /* DrawingBoundingBoxView.swift */,
 				F82979BD28EEB1ED0031BBC3 /* GameResultModal */,
+				F8E32BB3290FCAB9009B0749 /* HintModalVC.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -316,6 +322,7 @@
 			isa = PBXGroup;
 			children = (
 				F8823AA828E575D300798374 /* MainButton.swift */,
+				F8E32BB5290FCBB2009B0749 /* GameResultButton.swift */,
 				4D14BD6928E1C0F9002B2165 /* TextField.swift */,
 				4DF76EB7290A61FF00AA79D2 /* GameResultButton.swift */,
 				4D14BD7028E206BA002B2165 /* PhotoSelectorButton.swift */,
@@ -474,6 +481,7 @@
 				F82979C128EEC3A40031BBC3 /* GameResultFailVC.swift in Sources */,
 				F8823AA728E5740F00798374 /* MainVC.swift in Sources */,
 				F860B7A328E835860032A39B /* DictionaryCard.swift in Sources */,
+				F8E32BB4290FCAB9009B0749 /* HintModalVC.swift in Sources */,
 				4DBDEC1428D4EFE2002252B3 /* AppDelegate.swift in Sources */,
 				4DF76EB8290A61FF00AA79D2 /* GameResultButton.swift in Sources */,
 				4D14BD6A28E1C0F9002B2165 /* TextField.swift in Sources */,
@@ -490,6 +498,7 @@
 				4DBDEC2F28D4F2B3002252B3 /* UIViewController+.swift in Sources */,
 				4DA65AC728E86C46002DEFE3 /* SignInBodyModel.swift in Sources */,
 				F82979B728ED5C030031BBC3 /* ModalBaseVC.swift in Sources */,
+				F8E32BB6290FCBB2009B0749 /* GameResultButton.swift in Sources */,
 				F860B7A528E84F5D0032A39B /* WordDataModel.swift in Sources */,
 				4DEE7166290F53EE000C5D9A /* WordDictionary.swift in Sources */,
 				4D14BD6828E1B924002B2165 /* UIButton+.swift in Sources */,
@@ -656,7 +665,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T24N5ZR2DS;
+				DEVELOPMENT_TEAM = 3BJK5D777T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FindDict/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Find Dict";
@@ -689,7 +698,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = T24N5ZR2DS;
+				DEVELOPMENT_TEAM = 3BJK5D777T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FindDict/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Find Dict";
