@@ -64,6 +64,7 @@ class ModalBaseVC: UIViewController {
         $0.spacing = 33
     }
     
+    var navigation : UINavigationController?
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -73,28 +74,48 @@ class ModalBaseVC: UIViewController {
         view.backgroundColor = .bgModal
     }
     
+    init(navigationController : UINavigationController?){
+        
+        navigation = navigationController
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     func setButtonActions(){
         retryButton.press{
-            guard let pvc = self.presentingViewController as? UINavigationController else { return }
-            print(pvc.viewControllers)
-            pvc.dismiss(animated: true) {
-                pvc.navigationController?.popToViewController(PhotoSelectorVC(), animated: true) // push 되어 있는 뷰컨들 중에서 사진 고르는 뷰컨까지 팝하며 이동. (특정 뷰컨으로 돌아가기)
+//            guard let pvc = self.presentingViewController as? UINavigationController else { return }
+//            print(pvc.viewControllers)
+//            pvc.dismiss(animated: true) {
+//                pvc.navigationController?.popToViewController(PhotoSelectorVC(), animated: true) // push 되어 있는 뷰컨들 중에서 사진 고르는 뷰컨까지 팝하며 이동. (특정 뷰컨으로 돌아가기)
+//            }
+            print(self.navigation?.viewControllers)
+            self.dismiss(animated: true){
+                self.navigation?.pushViewController(PhotoSelectorVC(), animated: true)
             }
         }
         
         dictionaryButton.press{
-            guard let pvc = self.presentingViewController as? UINavigationController else { return }
-            print(pvc.viewControllers)
-            pvc.dismiss(animated: true) {
-                pvc.navigationController?.pushViewController(DictionaryVC(), animated: true) // push 한 적 없는 뷰컨으로의 이동.
+//            guard let pvc = self.presentingViewController as? UINavigationController else { return }
+//            print(pvc.viewControllers)
+//            pvc.dismiss(animated: true) {
+//                pvc.navigationController?.pushViewController(DictionaryVC(), animated: true) // push 한 적 없는 뷰컨으로의 이동.
+//            }
+            self.dismiss(animated: true){
+                self.navigation?.pushViewController(DictionaryVC(), animated: true)
             }
         }
         
         mainViewButton.press{
-            guard let pvc = self.presentingViewController as? UINavigationController else { return }
-            print(pvc.viewControllers)
-            pvc.dismiss(animated: true) {
-                pvc.navigationController?.popToRootViewController(animated: true) // root 뷰컨(MainVC)까지 모두 팝하며 이동. (특정 뷰컨으로 돌아가기)
+//            guard let pvc = self.presentingViewController as? UINavigationController else { return }
+//            print(pvc.viewControllers)
+//            pvc.dismiss(animated: true) {
+//                pvc.navigationController?.popToRootViewController(animated: true) // root 뷰컨(MainVC)까지 모두 팝하며 이동. (특정 뷰컨으로 돌아가기)
+//            }
+            self.dismiss(animated: true){
+                self.navigation?.pushViewController(MainVC(), animated: true)
             }
         }
     }
