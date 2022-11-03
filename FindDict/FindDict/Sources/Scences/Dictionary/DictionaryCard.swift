@@ -50,7 +50,7 @@ class DictionaryCard: UIView {
     
     // MARK: Funtions
     private func setUI() {
-        self.backgroundColor = .dictionayGray
+        self.backgroundColor = .dictionaryGray
         self.layer.cornerRadius = 10.0
     }
 }
