@@ -31,10 +31,10 @@ class PhotoSelectorVC: UIViewController {
     
     private var pixelBuffer:CVPixelBuffer? = nil  {
         didSet{
-            let objectDetectionTestVC = GameVC()
-            objectDetectionTestVC.image.image = selectedImage.image
-            objectDetectionTestVC.pixelBuffer = selectedImage.image?.pixelBufferFromImage()
-            self.navigationController?.pushViewController(objectDetectionTestVC, animated: true)
+            let gameVC = GameVC()
+            gameVC.image.image = selectedImage.image
+            gameVC.pixelBuffer = selectedImage.image?.pixelBufferFromImage()
+            self.navigationController?.pushViewController(gameVC, animated: true)
         }
     }
     

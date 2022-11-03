@@ -70,29 +70,32 @@ class ModalBaseVC: UIViewController {
         super.viewDidLoad()
         setLayout()
         setButtonActions()
-        view.backgroundColor = .bgBeige
+        view.backgroundColor = .bgModal
     }
     
     func setButtonActions(){
         retryButton.press{
-//            self.view.window?.rootViewController?.dismiss(animated: false, completion: {
-//              let initiatingGameVC = PhotoSelectorVC()
-//                guard let presentingVC = self.presentingViewController as? UINavigationController else { return }
-//                self.view.window?.rootViewController?.dismiss(animated: false){
-//                           presentingVC.popToRootViewController(animated: true)}
-//            })
+            guard let pvc = self.presentingViewController as? UINavigationController else { return }
+            print(pvc.viewControllers)
+            pvc.dismiss(animated: true) {
+                pvc.navigationController?.popToViewController(PhotoSelectorVC(), animated: true) // push 되어 있는 뷰컨들 중에서 사진 고르는 뷰컨까지 팝하며 이동. (특정 뷰컨으로 돌아가기)
+            }
         }
         
         dictionaryButton.press{
-//            let dictionaryVC = DictionaryVC()
-//            self.navigationController?.pushViewController(dictionaryVC, animated: true)
+            guard let pvc = self.presentingViewController as? UINavigationController else { return }
+            print(pvc.viewControllers)
+            pvc.dismiss(animated: true) {
+                pvc.navigationController?.pushViewController(DictionaryVC(), animated: true) // push 한 적 없는 뷰컨으로의 이동.
+            }
         }
         
         mainViewButton.press{
-//            guard let pvc = self.presentingViewController else { return }
-//            self.dismiss(animated: true, completion: {
-//                pvc.navigationController?.pushViewController(MainVC(), animated: true)
-//            })
+            guard let pvc = self.presentingViewController as? UINavigationController else { return }
+            print(pvc.viewControllers)
+            pvc.dismiss(animated: true) {
+                pvc.navigationController?.popToRootViewController(animated: true) // root 뷰컨(MainVC)까지 모두 팝하며 이동. (특정 뷰컨으로 돌아가기)
+            }
         }
     }
 }
