@@ -49,14 +49,20 @@ class GameVC:ViewController {
     private var colors: [String: UIColor] = [:]
     private var theNumberOfTargetsGuessedRight = 0 {
         didSet{
+            print(theNumberOfTargetsGuessedRight)
             if theNumberOfTargetsGuessedRight == wordTargets.count {
-                let gameResultSuccessVC = GameResultSuccessVC(navigationController: self.navigationController)
-                gameResultSuccessVC.modalPresentationStyle = .overCurrentContext
-                self.present(gameResultSuccessVC, animated: true)
+//                self.dismiss(animated: true) {
+                print(theNumberOfTargetsGuessedRight)
+                    let gameResultSuccessVC = GameResultSuccessVC(navigationController: self.navigationController)
+                    gameResultSuccessVC.modalPresentationStyle = .overCurrentContext
+                    self.present(gameResultSuccessVC, animated: true)
+//                }
             }
         }
     }
-    
+    func increasetheNumberOfTargetsGuessedRight(){
+        self.theNumberOfTargetsGuessedRight += 1
+    }
     // MARK: - UI Properties
     private let logoImage = UIImageView().then{
         $0.contentMode = .scaleAspectFit
@@ -93,8 +99,8 @@ class GameVC:ViewController {
                     button.isUserInteractionEnabled = false
                     self.disableButtons(label:button.titleLabel?.text ?? "레이블 오류")
                     self.handleGuessedRightView(label:button.titleLabel?.text ?? "레이블 오류")
-                    self.theNumberOfTargetsGuessedRight += 1
                     self.presentGuessedRightWordModal(text:button.titleLabel?.text ?? "레이블 오류")
+                    
                 }
                 buttonLayer.addSubview(button)
             }
@@ -196,6 +202,7 @@ class GameVC:ViewController {
         let guessedRightWordVC = GuessedRightWordVC()
         guessedRightWordVC.setEnglishText(text: text)
         guessedRightWordVC.modalPresentationStyle = .overCurrentContext
+        guessedRightWordVC.presentingVC = self
         self.present(guessedRightWordVC, animated: true)
     }
 }

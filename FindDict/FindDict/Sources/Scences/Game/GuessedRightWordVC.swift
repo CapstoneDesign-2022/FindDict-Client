@@ -37,6 +37,8 @@ class GuessedRightWordVC: UIViewController {
         $0.setImage(UIImage(named: "closeImage"), for: .normal)
     }
     
+    var presentingVC:UIViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .bgModal
@@ -57,7 +59,17 @@ class GuessedRightWordVC: UIViewController {
     
     private func setButtonActions(){
         closeButton.press{
-            self.dismiss(animated: true, completion: nil)
+            guard let pvc = self.presentingVC as? GameVC else {return}
+            pvc.dismiss(animated: true){
+                pvc.increasetheNumberOfTargetsGuessedRight()
+            }
+//            self.dismiss(animated: true) {
+//                guard let pvc = self.presentingViewController else { return }
+//                pvc.increasetheNumberOfTargetsGuessedRight()
+                
+//                let gameVC = GameVC()
+//                gameVC.increasetheNumberOfTargetsGuessedRight()
+//            }
         }
     }
 }
