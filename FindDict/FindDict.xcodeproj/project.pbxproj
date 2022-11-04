@@ -22,6 +22,7 @@
 		4D14BD7B28E20CA8002B2165 /* NotoSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D14BD7228E20A8C002B2165 /* NotoSans-Regular.ttf */; };
 		4D53A66A28DAF9C0000E2AA2 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4D53A66928DAF9C0000E2AA2 /* SnapKit */; };
 		4D53A66D28DAF9C8000E2AA2 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 4D53A66C28DAF9C8000E2AA2 /* Then */; };
+		4D6943E42914F11300974B71 /* GuessedRightWordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6943E32914F11300974B71 /* GuessedRightWordVC.swift */; };
 		4D8E9F3328F001C00013B7E7 /* yolov7.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 4D8E9F3228F001C00013B7E7 /* yolov7.mlmodel */; };
 		4D9ADC0728E018DB008CF9F3 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9ADC0628E018DB008CF9F3 /* SignInVC.swift */; };
 		4DA65AAE28E86914002DEFE3 /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA65AAD28E86914002DEFE3 /* TargetType.swift */; };
@@ -69,7 +70,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-
 		4D0B1E1128E5A9A4007F16DB /* GameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVC.swift; sourceTree = "<group>"; };
 		4D0B1E1328E5AA2C007F16DB /* yolov5m.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = yolov5m.mlmodel; path = "../../../../../../../2022/2022-2/캡스톤 디자인/mlmodel/yolov5m.mlmodel"; sourceTree = "<group>"; };
 		4D0B1E1528E5B213007F16DB /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
@@ -83,7 +83,8 @@
 		4D14BD7428E20A8C002B2165 /* NotoSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Medium.ttf"; sourceTree = "<group>"; };
 		4D14BD7528E20A8C002B2165 /* NotoSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		4D14BD7628E20B8D002B2165 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
-		4D8E9F3228F001C00013B7E7 /* yolov7.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = yolov7.mlmodel; path = ../../../../../../../../Downloads/yolov7.mlmodel; sourceTree = "<group>"; };
+		4D6943E32914F11300974B71 /* GuessedRightWordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessedRightWordVC.swift; sourceTree = "<group>"; };
+		4D8E9F3228F001C00013B7E7 /* yolov7.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = yolov7.mlmodel; path = "../../../../../../../2022/2022-2/캡스톤 디자인/mlmodel/yolov7.mlmodel"; sourceTree = "<group>"; };
 		4D9ADC0628E018DB008CF9F3 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		4DA65AAD28E86914002DEFE3 /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
 		4DA65AB228E86A7A002DEFE3 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
@@ -162,6 +163,7 @@
 				4D0B1E1328E5AA2C007F16DB /* yolov5m.mlmodel */,
 				4D0B1E1128E5A9A4007F16DB /* GameVC.swift */,
 				4DF76EBB290A680F00AA79D2 /* TargetListComponentView.swift */,
+				4D6943E32914F11300974B71 /* GuessedRightWordVC.swift */,
 				4D0B1E1728E6D5BA007F16DB /* DrawingBoundingBoxView.swift */,
 				F82979BD28EEB1ED0031BBC3 /* GameResultModal */,
 				F8E32BB3290FCAB9009B0749 /* HintModalVC.swift */,
@@ -510,6 +512,7 @@
 				F8823AA128DFE99200798374 /* SignUpVC.swift in Sources */,
 				F8823AA928E575D300798374 /* MainButton.swift in Sources */,
 				F860B79D28E6CFBC0032A39B /* DictionaryVC.swift in Sources */,
+				4D6943E42914F11300974B71 /* GuessedRightWordVC.swift in Sources */,
 				4D9ADC0728E018DB008CF9F3 /* SignInVC.swift in Sources */,
 				4DA65AC228E86B6B002DEFE3 /* SignInAPI.swift in Sources */,
 				4DA65AB628E86AB0002DEFE3 /* APIConstants.swift in Sources */,
@@ -665,7 +668,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3BJK5D777T;
+				DEVELOPMENT_TEAM = T24N5ZR2DS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FindDict/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Find Dict";
@@ -698,7 +701,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3BJK5D777T;
+				DEVELOPMENT_TEAM = T24N5ZR2DS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FindDict/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Find Dict";

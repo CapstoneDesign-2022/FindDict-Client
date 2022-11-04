@@ -51,8 +51,6 @@ class GameVC:ViewController {
         didSet{
             if theNumberOfTargetsGuessedRight == wordTargets.count {
                 let gameResultSuccessVC = GameResultSuccessVC(navigationController: self.navigationController)
-//                gameResultSuccessVC.modalTransitionStyle = .crossDissolve
-//                gameResultSuccessVC.modalPresentationStyle = .overFullScreen
                 gameResultSuccessVC.modalPresentationStyle = .overCurrentContext
                 self.present(gameResultSuccessVC, animated: true)
             }
@@ -96,6 +94,7 @@ class GameVC:ViewController {
                     self.disableButtons(label:button.titleLabel?.text ?? "레이블 오류")
                     self.handleGuessedRightView(label:button.titleLabel?.text ?? "레이블 오류")
                     self.theNumberOfTargetsGuessedRight += 1
+                    self.presentGuessedRightWordModal(text:button.titleLabel?.text ?? "레이블 오류")
                 }
                 buttonLayer.addSubview(button)
             }
@@ -191,6 +190,13 @@ class GameVC:ViewController {
                 wordTarget.handleGussedRightView()
             }
         }
+    }
+    
+    private func presentGuessedRightWordModal(text: String){
+        let guessedRightWordVC = GuessedRightWordVC()
+        guessedRightWordVC.setEnglishText(text: text)
+        guessedRightWordVC.modalPresentationStyle = .overCurrentContext
+        self.present(guessedRightWordVC, animated: true)
     }
 }
 

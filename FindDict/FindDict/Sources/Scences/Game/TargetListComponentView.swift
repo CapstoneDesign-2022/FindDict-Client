@@ -11,8 +11,6 @@ import Then
 
 class TargetListComponentView: UIView {
     
-    private var guessedRight = true
-
     private let koreanButton = UIButton().then{
         if #available(iOS 15.0, *) {
             $0.configuration = .plain()
@@ -28,43 +26,43 @@ class TargetListComponentView: UIView {
     }
     
     private let englishLabelBoundaryView = UIView().then {
-//        $0.addShadow(location: .bottom)
-//                $0.addShadow(location: .left)
-//                $0.addShadow(location: .right)
-//        $0.addShadow(offset: CGSize(width: 0, height: -2),opacity: 0.2,radius: 2.0)
+        //        $0.addShadow(location: .bottom)
+        //                $0.addShadow(location: .left)
+        //                $0.addShadow(location: .right)
+        //        $0.addShadow(offset: CGSize(width: 0, height: -2),opacity: 0.2,radius: 2.0)
         $0.layer.shadowRadius = 4
-                $0.layer.shadowOffset = CGSize(width: 0, height: 4)
-                $0.layer.shadowColor = UIColor.black.cgColor
-                $0.layer.shadowOpacity = 0.25
+        $0.layer.shadowOffset = CGSize(width: 0, height: 4)
+        $0.layer.shadowColor = UIColor.black.cgColor
+        $0.layer.shadowOpacity = 0.25
         $0.backgroundColor = .white
         $0.makeRounded(cornerRadius: 15)
     }
     
     private let englishLabel = UILabel().then{
-//        $0.addShadow(location: .bottom)
-//        $0.addShadow(location: .left)
-//        $0.addShadow(location: .right)
-//        $0.addShadow(offset: CGSize(width: 0, height: -2),opacity: 0.2,radius: 2.0)
-//        $0.shadowColor
-//        $0.shadowColor = .black
-//        $0.shadowOffset = CGSize(width: 0, height: 4)
+        //        $0.addShadow(location: .bottom)
+        //        $0.addShadow(location: .left)
+        //        $0.addShadow(location: .right)
+        //        $0.addShadow(offset: CGSize(width: 0, height: -2),opacity: 0.2,radius: 2.0)
+        //        $0.shadowColor
+        //        $0.shadowColor = .black
+        //        $0.shadowOffset = CGSize(width: 0, height: 4)
         
-//        $0.layer.shadowRadius = 4
-//        $0.layer.shadowOffset = CGSize(width: 0, height: 4)
-//        $0.layer.shadowColor = UIColor.black.cgColor
-//        $0.layer.shadowOpacity = 0.25
-//        $0.makeRounded(cornerRadius: 15)
-//        $0.sizeToFit()
+        //        $0.layer.shadowRadius = 4
+        //        $0.layer.shadowOffset = CGSize(width: 0, height: 4)
+        //        $0.layer.shadowColor = UIColor.black.cgColor
+        //        $0.layer.shadowOpacity = 0.25
+        //        $0.makeRounded(cornerRadius: 15)
+        //        $0.sizeToFit()
         $0.textAlignment = .center
-//        $0.backgroundColor = .white
+        //        $0.backgroundColor = .white
         $0.textColor = .black
         $0.text = "-"
-//
-//        $0.addShadow(location: .bottom)
-//                $0.addShadow(location: .left)
-//                $0.addShadow(location: .right)
-//        $0.backgroundColor = .white
-//        $0.makeRounded(cornerRadius: 15)
+        //
+        //        $0.addShadow(location: .bottom)
+        //                $0.addShadow(location: .left)
+        //                $0.addShadow(location: .right)
+        //        $0.backgroundColor = .white
+        //        $0.makeRounded(cornerRadius: 15)
     }
     
     private var englishLabelText :String = ""
@@ -101,7 +99,7 @@ class TargetListComponentView: UIView {
         englishLabel.text = englishLabelText
         koreanButton.backgroundColor = .buttonGray
     }
-
+    
 }
 
 extension TargetListComponentView {
