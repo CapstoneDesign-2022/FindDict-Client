@@ -13,17 +13,18 @@ import Then
 class GuessedRightWordVC: UIViewController {
     
     // MARK: - Properties
-    private let englishLabel = UILabel().then{
+    private let englishLabel = UILabel().then {
         $0.font = .findDictH4R35
         $0.textColor = .black
-//        $0.sizeToFit()
     }
-    private var englishText:String = ""{
+    
+    private var englishText : String = "" {
         didSet{
             englishLabel.text = englishText
             printOutAmericanSpeech()
         }
     }
+    
     private let synthesizer = AVSpeechSynthesizer()
     
     private let modalView = UIView().then{
@@ -54,9 +55,9 @@ class GuessedRightWordVC: UIViewController {
         $0.distribution = .fillEqually
     }
     
-    
     var presentingVC:UIViewController?
     
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .bgModal
@@ -64,6 +65,7 @@ class GuessedRightWordVC: UIViewController {
         setButtonActions()
     }
     
+    // MARK: - Functions
     func setEnglishText(text:String){
         englishText = text
     }
@@ -75,12 +77,15 @@ class GuessedRightWordVC: UIViewController {
                 pvc.increasetheNumberOfTargetsGuessedRight()
             }
         }
+        
         americanSpeeachButton.press{
             self.printOutAmericanSpeech()
         }
+        
         englishSpeeachButton.press{
             self.printOutEnglishSpeech()
         }
+        
         australianSpeeachButton.press{
             self.printOutAustralianSpeech()
         }
@@ -89,7 +94,6 @@ class GuessedRightWordVC: UIViewController {
     private func printOutAmericanSpeech(){
         let utterance = AVSpeechUtterance(string: englishText)
         utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
-        //        utterance.voice?.gender = .female
         utterance.rate = 0.4
         synthesizer.speak(utterance)
     }
@@ -131,30 +135,13 @@ extension GuessedRightWordVC {
         closeButton.snp.makeConstraints{
             $0.top.equalTo(modalView.snp.top).offset(16)
             $0.trailing.equalTo(modalView.snp.trailing).inset(20)
-            
         }
         
         buttonStackView.snp.makeConstraints{
             $0.top.equalTo(englishLabel.snp.bottom).offset(30)
-//            $0.centerX.equalTo(modalView)
             $0.leading.equalTo(modalView.snp.leading).offset(30)
             $0.trailing.equalTo(modalView.snp.trailing).inset(30)
             $0.bottom.equalTo(modalView.snp.bottom).inset(30)
-//            $0.centerY.equalTo(modalView)
-            
         }
-//
-//        americanSpeeachButton.snp.makeConstraints{
-//            $0.height.equalTo(40)
-//        }
-//
-//        englishSpeeachButton.snp.makeConstraints{
-//            $0.height.equalTo(40)
-//
-//        }
-//        australianSpeeachButton.snp.makeConstraints{
-//            $0.height.equalTo(40)
-//        }
-        
     }
 }

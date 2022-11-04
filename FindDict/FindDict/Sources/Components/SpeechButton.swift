@@ -9,7 +9,7 @@ import UIKit
 
 class SpeechButton: UIButton {
     
-
+    // MARK: - View Life Cycle
     override init(frame: CGRect) {
         super.init(frame: .zero)
         setUI()
@@ -20,6 +20,7 @@ class SpeechButton: UIButton {
         setUI()
     }
 
+    // MARK: - Functions
     func setUI(){
         self.titleLabel?.font = .findDictH4R24
         self.setTitleColor(.black, for: .normal)

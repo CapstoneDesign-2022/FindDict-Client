@@ -51,12 +51,9 @@ class GameVC:ViewController {
         didSet{
             print(theNumberOfTargetsGuessedRight)
             if theNumberOfTargetsGuessedRight == wordTargets.count {
-//                self.dismiss(animated: true) {
-                print(theNumberOfTargetsGuessedRight)
-                    let gameResultSuccessVC = GameResultSuccessVC(navigationController: self.navigationController)
-                    gameResultSuccessVC.modalPresentationStyle = .overCurrentContext
-                    self.present(gameResultSuccessVC, animated: true)
-//                }
+                let gameResultSuccessVC = GameResultSuccessVC(navigationController: self.navigationController)
+                gameResultSuccessVC.modalPresentationStyle = .overCurrentContext
+                self.present(gameResultSuccessVC, animated: true)
             }
         }
     }
@@ -93,7 +90,7 @@ class GameVC:ViewController {
     private lazy var buttons: [UIButton] = [] {
         didSet{
             for button in buttons {
-                button.press{ [self] in 
+                button.press{ [self] in
                     button.setImage(UIImage(named: "icon"), for: .normal)
                     button.imageView?.contentMode = .scaleAspectFit
                     button.isUserInteractionEnabled = false
@@ -107,7 +104,6 @@ class GameVC:ViewController {
         }
     }
     
-    // TODO: 모든 객체 리스트 비활성화됐을 경우 게임 종료
     // TODO: 버튼 부분 아닌 곳 클릭했을 경우 x표시 나타나기
     
     
@@ -136,7 +132,6 @@ class GameVC:ViewController {
             
         }
         wordTargets = createdTargets
-//        numberOfTargetWords = wordTargets.count
     }
     
     /// 인식된 객체마다 이에 맞는 버튼을 생성합니다.
