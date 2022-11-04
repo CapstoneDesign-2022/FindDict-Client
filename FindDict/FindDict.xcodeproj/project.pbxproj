@@ -182,6 +182,7 @@
 		4DBDEC2A28D4F046002252B3 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				F8D68A792915334D0032F04B /* Tutorial */,
 				4DBDEC3428D4F351002252B3 /* Components */,
 				4DBDEC3528D4F35D002252B3 /* Scences */,
 			);
@@ -277,11 +278,18 @@
 			isa = PBXGroup;
 			children = (
 				F8823AA628E5740F00798374 /* mainVC.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		F8D68A792915334D0032F04B /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
 				F8560AC128EEF11B00C52203 /* GameTutorialVC.swift */,
 				F8560AC328EEF16200C52203 /* GameTutorialCVC.swift */,
 				F8560AC528EEF17800C52203 /* GameTutorialCVCModel.swift */,
 			);
-			path = Main;
+			path = Tutorial;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
