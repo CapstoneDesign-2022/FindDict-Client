@@ -20,7 +20,7 @@ class GuessedRightWordVC: UIViewController {
     private var englishText:String = ""{
         didSet{
             englishLabel.text = englishText
-            printOutSpeech()
+            printOutAmericanSpeech()
         }
     }
     private let synthesizer = AVSpeechSynthesizer()
@@ -37,6 +37,22 @@ class GuessedRightWordVC: UIViewController {
         $0.setImage(UIImage(named: "closeImage"), for: .normal)
     }
     
+    private let americanSpeeachButton = UIButton().then{
+        $0.setTitle("🗣🇺🇸", for: .normal)
+    }
+    private let englishSpeeachButton = UIButton().then{
+        $0.setTitle("🗣🇬🇧", for: .normal)
+    }
+    private let australianSpeeachButton = UIButton().then{
+        $0.setTitle("🗣🇦🇺", for: .normal)
+    }
+    
+    private lazy var buttonStackView = UIStackView(arrangedSubviews: [americanSpeeachButton,englishSpeeachButton,australianSpeeachButton]).then{
+        $0.axis = .horizontal
+        $0.spacing = 33
+    }
+    
+    
     var presentingVC:UIViewController?
     
     override func viewDidLoad() {
@@ -50,27 +66,44 @@ class GuessedRightWordVC: UIViewController {
         englishText = text
     }
     
-    private func printOutSpeech(){
-        let utterance = AVSpeechUtterance(string: englishText)
-        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
-        utterance.rate = 0.4
-        synthesizer.speak(utterance)
-    }
-    
     private func setButtonActions(){
         closeButton.press{
             guard let pvc = self.presentingVC as? GameVC else {return}
             pvc.dismiss(animated: true){
                 pvc.increasetheNumberOfTargetsGuessedRight()
             }
-//            self.dismiss(animated: true) {
-//                guard let pvc = self.presentingViewController else { return }
-//                pvc.increasetheNumberOfTargetsGuessedRight()
-                
-//                let gameVC = GameVC()
-//                gameVC.increasetheNumberOfTargetsGuessedRight()
-//            }
         }
+        americanSpeeachButton.press{
+            self.printOutAmericanSpeech()
+        }
+        englishSpeeachButton.press{
+            self.printOutEnglishSpeech()
+        }
+        australianSpeeachButton.press{
+            self.printOutAustralianSpeech()
+        }
+    }
+    
+    private func printOutAmericanSpeech(){
+        let utterance = AVSpeechUtterance(string: englishText)
+        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+        //        utterance.voice?.gender = .female
+        utterance.rate = 0.4
+        synthesizer.speak(utterance)
+    }
+    
+    private func printOutEnglishSpeech(){
+        let utterance = AVSpeechUtterance(string: englishText)
+        utterance.voice = AVSpeechSynthesisVoice(language: "en-GB")
+        utterance.rate = 0.4
+        synthesizer.speak(utterance)
+    }
+    
+    private func printOutAustralianSpeech(){
+        let utterance = AVSpeechUtterance(string: englishText)
+        utterance.voice = AVSpeechSynthesisVoice(language: "en-AU")
+        utterance.rate = 0.4
+        synthesizer.speak(utterance)
     }
 }
 
@@ -78,7 +111,7 @@ class GuessedRightWordVC: UIViewController {
 // MARK: - UI
 extension GuessedRightWordVC {
     private func setLayout() {
-        view.addSubViews([modalView, englishLabel, closeButton])
+        view.addSubViews([modalView, englishLabel, closeButton,buttonStackView])
         
         modalView.snp.makeConstraints{
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(236)
@@ -93,7 +126,11 @@ extension GuessedRightWordVC {
         closeButton.snp.makeConstraints{
             $0.top.equalTo(modalView.snp.top).offset(16)
             $0.trailing.equalTo(modalView.snp.trailing).inset(20)
-      
+            
+        }
+        buttonStackView.snp.makeConstraints{
+            $0.top.equalTo(englishLabel.snp.bottom).offset(30)
+            $0.centerX.equalTo(modalView)
         }
         
     }
