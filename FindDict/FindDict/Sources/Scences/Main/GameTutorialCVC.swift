@@ -23,7 +23,7 @@ class GameTutorialCVC: UICollectionViewCell {
     
     private let tutorialTitleView = UIView().then{
         //TODO: merge 후 backgroundColor 수정
-        $0.backgroundColor = .orange
+        $0.backgroundColor = .lightGray
         $0.layer.cornerRadius = 10
     }
     
@@ -35,14 +35,8 @@ class GameTutorialCVC: UICollectionViewCell {
         $0.font = .findDictH2B18
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setLayout()
-    }
-    
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError()
+    private let homeButton = UIButton().then{
+        $0.setImage(UIImage(named: "homeImage"),for: .normal)
     }
     
     //MARK: - Functions
@@ -52,40 +46,53 @@ class GameTutorialCVC: UICollectionViewCell {
         tutorialTitleLabel.text = cellData.tutorialTitle
         tutorialTextLabel.text = cellData.tutorialText
     }
-}
-
-// MARK: - UI
-extension GameTutorialCVC {
-    private func setLayout() {
-        self.addSubViews([tutorialTitleView, tutorialTextLabel, tutorialImage])
-        tutorialTitleView.addSubViews([tutorialTitleLabel])
-        
-        tutorialTitleView.snp.makeConstraints{
-            $0.centerX.equalTo(self.safeAreaLayoutGuide)
-            $0.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(19)
-            $0.height.equalTo(50)
-            $0.width.equalTo(304)
-        }
-        
-        tutorialTitleLabel.snp.makeConstraints{
-            $0.centerX.equalTo(self.safeAreaLayoutGuide)
-            $0.centerY.equalTo(tutorialTitleView)
-        }
-        
-        tutorialTextLabel.snp.makeConstraints{
-            $0.centerX.equalTo(self.safeAreaLayoutGuide)
-            $0.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).inset(19)
-        }
-        
-        tutorialImage.snp.makeConstraints{
-            $0.centerX.equalTo(self.safeAreaLayoutGuide)
-            $0.top.equalTo(tutorialTitleView.snp.bottom).offset(40)
-            $0.bottom.equalTo(tutorialTextLabel.snp.top).inset(-21)
-            $0.leading.equalTo(self.safeAreaLayoutGuide.snp.leading).inset(203)
-            $0.trailing.equalTo(self.safeAreaLayoutGuide.snp.trailing).inset(203)
-        }
-        
-        //TODO: pageButton 넣을까 말까
-        //TODO: home icon 깜빡했다
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setLayout()
+    }
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError()
     }
 }
+
+    // MARK: - UI
+    extension GameTutorialCVC {
+        private func setLayout() {
+            self.addSubViews([tutorialTitleView, tutorialTextLabel, tutorialImage, homeButton])
+            tutorialTitleView.addSubViews([tutorialTitleLabel])
+            
+            tutorialTitleView.snp.makeConstraints{
+                $0.centerX.equalTo(self.safeAreaLayoutGuide)
+                $0.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(19)
+                $0.height.equalTo(50)
+                $0.width.equalTo(304)
+            }
+            
+            tutorialTitleLabel.snp.makeConstraints{
+                $0.centerX.equalTo(self.safeAreaLayoutGuide)
+                $0.centerY.equalTo(tutorialTitleView)
+            }
+            
+            tutorialTextLabel.snp.makeConstraints{
+                $0.centerX.equalTo(self.safeAreaLayoutGuide)
+                $0.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).inset(19)
+            }
+            
+            tutorialImage.snp.makeConstraints{
+                $0.centerX.equalTo(self.safeAreaLayoutGuide)
+                $0.top.equalTo(tutorialTitleView.snp.bottom).offset(40)
+                $0.bottom.equalTo(tutorialTextLabel.snp.top).inset(-21)
+                $0.leading.equalTo(self.safeAreaLayoutGuide.snp.leading).inset(203)
+                $0.trailing.equalTo(self.safeAreaLayoutGuide.snp.trailing).inset(203)
+            }
+            
+            homeButton.snp.makeConstraints{
+                $0.top.equalTo(self.safeAreaLayoutGuide).offset(20)
+                $0.trailing.equalTo(self.safeAreaLayoutGuide).inset(40)
+                $0.width.height.equalTo(50)
+            }
+        }
+    }
