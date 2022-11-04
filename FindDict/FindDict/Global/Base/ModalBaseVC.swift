@@ -64,35 +64,43 @@ class ModalBaseVC: UIViewController {
         $0.spacing = 33
     }
     
+    var navigation : UINavigationController?
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
         setButtonActions()
-        view.backgroundColor = .bgBeige
+        view.backgroundColor = .bgModal
     }
     
+    init(navigationController : UINavigationController?){
+        navigation = navigationController
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Functions
     func setButtonActions(){
         retryButton.press{
-//            self.view.window?.rootViewController?.dismiss(animated: false, completion: {
-//              let initiatingGameVC = PhotoSelectorVC()
-//                guard let presentingVC = self.presentingViewController as? UINavigationController else { return }
-//                self.view.window?.rootViewController?.dismiss(animated: false){
-//                           presentingVC.popToRootViewController(animated: true)}
-//            })
+            self.dismiss(animated: true){
+                self.navigation?.pushViewController(PhotoSelectorVC(), animated: false)
+            }
         }
         
         dictionaryButton.press{
-//            let dictionaryVC = DictionaryVC()
-//            self.navigationController?.pushViewController(dictionaryVC, animated: true)
+            self.dismiss(animated: true){
+                self.navigation?.pushViewController(DictionaryVC(), animated: false)
+            }
         }
         
         mainViewButton.press{
-//            guard let pvc = self.presentingViewController else { return }
-//            self.dismiss(animated: true, completion: {
-//                pvc.navigationController?.pushViewController(MainVC(), animated: true)
-//            })
+            self.dismiss(animated: true){
+                self.navigation?.pushViewController(MainVC(), animated: false)
+            }
         }
     }
 }

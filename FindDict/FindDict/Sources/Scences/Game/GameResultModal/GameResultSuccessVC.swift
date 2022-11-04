@@ -21,5 +21,4 @@ class GameResultSuccessVC: ModalBaseVC {
         super.viewDidLoad()
         setUI()
     }
-    
 }

@@ -34,6 +34,10 @@ class DictionaryVC: UIViewController {
         $0.backgroundColor = .bgBeige
     }
     
+    private let homeButton = UIButton().then{
+        $0.setImage(UIImage(named: "homeImage"),for: .normal)
+    }
+    
     // MARK: - Functions
     private func setTV() {
         dictionaryTV.delegate = self
@@ -47,7 +51,14 @@ class DictionaryVC: UIViewController {
         super.viewDidLoad()
         setLayout()
         setTV()
+        setButtonActions()
         view.backgroundColor = .bgBeige
+    }
+    
+    func setButtonActions(){
+        homeButton.press{
+            self.navigationController?.popToRootViewController(animated: false)
+        }
     }
     
 }
@@ -55,7 +66,7 @@ class DictionaryVC: UIViewController {
 // MARK: - UI
 extension DictionaryVC {
     private func setLayout() {
-        view.addSubViews([titleView, dictionaryTV])
+        view.addSubViews([titleView, dictionaryTV,homeButton])
         titleView.addSubViews([titleLabel])
         
         titleView.snp.makeConstraints{
@@ -76,6 +87,12 @@ extension DictionaryVC {
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
             $0.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(206)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-206)
+        }
+        
+        homeButton.snp.makeConstraints{
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(20)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide).inset(40)
+            $0.width.height.equalTo(50)
         }
     }
     

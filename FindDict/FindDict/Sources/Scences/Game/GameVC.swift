@@ -50,9 +50,10 @@ class GameVC:ViewController {
     private var theNumberOfTargetsGuessedRight = 0 {
         didSet{
             if theNumberOfTargetsGuessedRight == wordTargets.count {
-                let gameResultSuccessVC = GameResultSuccessVC()
-                gameResultSuccessVC.modalTransitionStyle = .crossDissolve
-                gameResultSuccessVC.modalPresentationStyle = .overFullScreen
+                let gameResultSuccessVC = GameResultSuccessVC(navigationController: self.navigationController)
+//                gameResultSuccessVC.modalTransitionStyle = .crossDissolve
+//                gameResultSuccessVC.modalPresentationStyle = .overFullScreen
+                gameResultSuccessVC.modalPresentationStyle = .overCurrentContext
                 self.present(gameResultSuccessVC, animated: true)
             }
         }
