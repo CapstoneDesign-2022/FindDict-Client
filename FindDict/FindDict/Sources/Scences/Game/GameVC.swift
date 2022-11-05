@@ -49,16 +49,17 @@ class GameVC:ViewController {
     private var colors: [String: UIColor] = [:]
     private var theNumberOfTargetsGuessedRight = 0 {
         didSet{
+            print(theNumberOfTargetsGuessedRight)
             if theNumberOfTargetsGuessedRight == wordTargets.count {
                 let gameResultSuccessVC = GameResultSuccessVC(navigationController: self.navigationController)
-//                gameResultSuccessVC.modalTransitionStyle = .crossDissolve
-//                gameResultSuccessVC.modalPresentationStyle = .overFullScreen
                 gameResultSuccessVC.modalPresentationStyle = .overCurrentContext
                 self.present(gameResultSuccessVC, animated: true)
             }
         }
     }
-    
+    func increasetheNumberOfTargetsGuessedRight(){
+        self.theNumberOfTargetsGuessedRight += 1
+    }
     // MARK: - UI Properties
     private let logoImage = UIImageView().then{
         $0.contentMode = .scaleAspectFit
@@ -89,20 +90,20 @@ class GameVC:ViewController {
     private lazy var buttons: [UIButton] = [] {
         didSet{
             for button in buttons {
-                button.press{ [self] in 
+                button.press{ [self] in
                     button.setImage(UIImage(named: "icon"), for: .normal)
                     button.imageView?.contentMode = .scaleAspectFit
                     button.isUserInteractionEnabled = false
                     self.disableButtons(label:button.titleLabel?.text ?? "레이블 오류")
                     self.handleGuessedRightView(label:button.titleLabel?.text ?? "레이블 오류")
-                    self.theNumberOfTargetsGuessedRight += 1
+                    self.presentGuessedRightWordModal(text:button.titleLabel?.text ?? "레이블 오류")
+                    
                 }
                 buttonLayer.addSubview(button)
             }
         }
     }
     
-    // TODO: 모든 객체 리스트 비활성화됐을 경우 게임 종료
     // TODO: 버튼 부분 아닌 곳 클릭했을 경우 x표시 나타나기
     
     
@@ -131,7 +132,6 @@ class GameVC:ViewController {
             
         }
         wordTargets = createdTargets
-//        numberOfTargetWords = wordTargets.count
     }
     
     /// 인식된 객체마다 이에 맞는 버튼을 생성합니다.
@@ -191,6 +191,14 @@ class GameVC:ViewController {
                 wordTarget.handleGussedRightView()
             }
         }
+    }
+    
+    private func presentGuessedRightWordModal(text: String){
+        let guessedRightWordVC = GuessedRightWordVC()
+        guessedRightWordVC.setEnglishText(text: text)
+        guessedRightWordVC.modalPresentationStyle = .overCurrentContext
+        guessedRightWordVC.presentingVC = self
+        self.present(guessedRightWordVC, animated: true)
     }
 }
 
