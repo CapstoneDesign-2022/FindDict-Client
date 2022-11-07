@@ -54,8 +54,8 @@ class DictionaryDetailVC: UIViewController{
     }
     var dataSource : [UIImage] = [
         UIImage(named: "globe")!,
-        UIImage(named: "globe")!,
-        UIImage(named: "globe")!,
+        UIImage(named: "authImage")!,
+        UIImage(named: "successImage")!,
 
     ]
     
