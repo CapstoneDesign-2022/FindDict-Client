@@ -12,16 +12,11 @@ import Then
 class DictionaryDetailCVC: UICollectionViewCell {
     
     // MARK: - Properties
-    lazy var pageButton = UIButton().then{
-        $0.layer.cornerRadius = 12
-        $0.setTitleColor(.black, for: .normal)
-    }
     private let wordImageView = UIImageView()
         
         
     //MARK: - Functions
     func setData(_ cellData: UIImage, index: Int){
-            pageButton.setTitle(" \(index)", for: .normal)
             wordImageView.image = cellData
         }
         
@@ -40,16 +35,11 @@ class DictionaryDetailCVC: UICollectionViewCell {
     // MARK: - UI
     extension DictionaryDetailCVC {
         private func setLayout() {
-            self.addSubViews([pageButton, wordImageView])
+            self.addSubViews([wordImageView])
 
             wordImageView.snp.makeConstraints{
                 $0.centerY.equalTo(self.safeAreaLayoutGuide)
                 $0.centerX.equalTo(self.safeAreaLayoutGuide)
-            }
-            pageButton.snp.makeConstraints{
-                $0.top.equalTo(wordImageView.snp.bottom).offset(10)
-                $0.centerX.equalTo(wordImageView)
-                $0.height.equalTo(10)
             }
         }
     }
