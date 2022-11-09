@@ -19,6 +19,7 @@ class DictionaryTVC: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setLayout()
         self.backgroundColor = .bgBeige
+        selectionStyle = .none
     }
     
     required init?(coder: NSCoder) {

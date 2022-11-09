@@ -24,22 +24,22 @@ class DictionaryCard: UIView {
         $0.font = .findDictH4R28
     }
     
-    private let koreanWordLabel = UILabel().then{
-        $0.textColor = .black
-        $0.text = "한글단어"
-        $0.font = .findDictH4R28
-    }
+//    private let koreanWordLabel = UILabel().then{
+//        $0.textColor = .black
+//        $0.text = "한글단어"
+//        $0.font = .findDictH4R28
+//    }
     
-    private lazy var wordStackView = UIStackView(arrangedSubviews: [englishWordLabel, koreanWordLabel]).then{
-        $0.axis = .horizontal
-        $0.spacing = 83
-        $0.distribution = .fillEqually
-    }
+//    private lazy var wordStackView = UIStackView(arrangedSubviews: [englishWordLabel, koreanWordLabel]).then{
+//        $0.axis = .horizontal
+//        $0.spacing = 83
+//        $0.distribution = .fillEqually
+//    }
     
     private let pictureButton = UIButton().then{
         $0.setTitle("사진 확인하기", for: .normal)
         $0.setTitleColor(.black, for: .normal)
-        $0.backgroundColor = .buttonApricot
+        $0.backgroundColor = .buttonYellow
         $0.layer.cornerRadius = 10
         $0.layer.shadowOffset = CGSize(width: 0, height: 4)
         $0.layer.shadowRadius = 5
@@ -60,7 +60,7 @@ class DictionaryCard: UIView {
     
     // MARK: Funtions
     private func setUI() {
-        self.backgroundColor = .dictionaryGray
+        self.backgroundColor = .modalButtonLightYellow
         self.layer.cornerRadius = 10.0
     }
     
@@ -71,7 +71,7 @@ class DictionaryCard: UIView {
     }
     
     func setData(english: String, korean: String, cellRowIndex: Int){
-        self.koreanWordLabel.text = korean
+//        self.koreanWordLabel.text = korean
         self.englishWordLabel.text = english
         self.cellRowIndex = cellRowIndex
     }
@@ -84,9 +84,9 @@ class DictionaryCard: UIView {
 // MARK: - UI
 extension DictionaryCard {
     private func setLayout(){
-        self.addSubViews([wordStackView, pictureButton])
+        self.addSubViews([englishWordLabel, pictureButton])
         
-        wordStackView.snp.makeConstraints{
+        englishWordLabel.snp.makeConstraints{
             $0.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(10)
             $0.leading.equalTo(self.safeAreaLayoutGuide.snp.leading).offset(27)
             $0.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).inset(10)
