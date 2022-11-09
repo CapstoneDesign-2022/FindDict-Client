@@ -9,9 +9,15 @@ import UIKit
 import Then
 import SnapKit
 
+protocol DictionaryCardDelegate: AnyObject {
+    func wordDetailViewButtonClicked(index: Int)
+}
+
 class DictionaryCard: UIView {
     
     // MARK: - Properties
+    private var index: Int = 0
+    var delegate: DictionaryCardDelegate?
     let englishWordLabel = UILabel().then{
         $0.textColor = .black
         $0.text = "영어단어"
@@ -42,6 +48,7 @@ class DictionaryCard: UIView {
         super.init(frame: .zero)
         setLayout()
         setUI()
+        setButtonActions()
     }
     
     required init?(coder: NSCoder) {
@@ -52,6 +59,17 @@ class DictionaryCard: UIView {
     private func setUI() {
         self.backgroundColor = .dictionaryGray
         self.layer.cornerRadius = 10.0
+    }
+    
+    private func setButtonActions(){
+        pictureButton.press {
+            print(">>>>>index",self.index)
+            self.delegate?.wordDetailViewButtonClicked(index: self.index)
+        }
+    }
+    
+    func setIndex(index:Int){
+        self.index = index
     }
 }
 

@@ -12,7 +12,7 @@ import Then
 class DictionaryTVC: UITableViewCell {
     
     // MARK: - Properties
-    private let dictionaryCard = DictionaryCard()
+    let dictionaryCard = DictionaryCard()
     
     // MARK: Initialization
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -26,9 +26,10 @@ class DictionaryTVC: UITableViewCell {
     }
     
     // MARK: Functions
-    func setData(_ cellData: WordDataModel) {
+    func setData(_ cellData: WordDataModel, index: Int) {
         dictionaryCard.koreanWordLabel.text = cellData.koreanWord
         dictionaryCard.englishWordLabel.text = cellData.englishWord
+        dictionaryCard.setIndex(index: index)
     }
 }
 

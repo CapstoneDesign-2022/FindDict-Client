@@ -24,13 +24,20 @@ class DictionaryDetailVC: UIViewController{
         $0.setImage(UIImage(named: "closeImage"), for: .normal)
     }
     private let wordLabel = UILabel().then{
-        $0.text = "globe"
+//        $0.text = "globe"
         $0.textColor = .black
         $0.font = .findDictH4M35
         $0.backgroundColor = .modalButtonDarkYellow
         $0.textAlignment = .center
         $0.layer.masksToBounds = true
         $0.layer.cornerRadius = 10
+    }
+    
+    private var worldLabelText = "" {
+        didSet{
+//            print(">>>>>>>",worldLabelText)
+            wordLabel.text = worldLabelText
+        }
     }
     
     private let synthesizer = AVSpeechSynthesizer()
@@ -139,6 +146,11 @@ class DictionaryDetailVC: UIViewController{
             self.printOutAustralianSpeech()
         }
     }
+    
+    func setWordLabelText(english: String){
+        worldLabelText = english
+    }
+    
 }
 
 // MARK: - UI

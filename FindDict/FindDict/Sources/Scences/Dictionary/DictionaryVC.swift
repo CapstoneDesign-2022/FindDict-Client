@@ -41,6 +41,7 @@ class DictionaryVC: UIViewController {
     // MARK: - Functions
     private func setTV() {
         dictionaryTV.delegate = self
+//        dictionaryTV.
         dictionaryTV.dataSource = self
         dictionaryTV.showsVerticalScrollIndicator = false
         dictionaryTV.register(DictionaryTVC.self, forCellReuseIdentifier: "DictionaryTVC")
@@ -106,7 +107,8 @@ extension DictionaryVC: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.setData(WordDataModel.sampleData[indexPath.row])
+        cell.setData(WordDataModel.sampleData[indexPath.row], index: indexPath.row)
+        cell.dictionaryCard.delegate = self
         return cell
     }
     
@@ -120,5 +122,14 @@ extension DictionaryVC: UITableViewDataSource {
 extension DictionaryVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 107
+    }
+}
+
+extension DictionaryVC: DictionaryCardDelegate {
+    func wordDetailViewButtonClicked(index: Int) {
+        print(">>>>>>>>",WordDataModel.sampleData[index].englishWord)
+        let dictionaryDetailVC = DictionaryDetailVC()
+        dictionaryDetailVC.setWordLabelText(english: WordDataModel.sampleData[index].englishWord)
+        self.navigationController?.pushViewController(dictionaryDetailVC, animated: true)
     }
 }
