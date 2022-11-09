@@ -127,6 +127,7 @@ extension DictionaryVC: DictionaryCardDelegate {
     func wordDetailViewButtonClicked(index: Int) {
         let dictionaryDetailVC = DictionaryDetailVC()
         dictionaryDetailVC.setWordLabelText(english: WordDataModel.sampleData[index].englishWord)
-        self.navigationController?.pushViewController(dictionaryDetailVC, animated: true)
+        dictionaryDetailVC.modalPresentationStyle = .overCurrentContext
+        self.present(dictionaryDetailVC, animated: true)
     }
 }
