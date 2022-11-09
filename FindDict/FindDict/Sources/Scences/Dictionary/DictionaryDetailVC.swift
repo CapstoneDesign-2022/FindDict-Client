@@ -170,8 +170,8 @@ extension DictionaryDetailVC {
         }
         wordLabel.snp.makeConstraints{
             $0.top.equalTo(modalView.snp.top).offset(35)
-            $0.bottom.equalTo(modalView.snp.bottom).inset(600)
-            $0.center.equalTo(modalView)
+//            $0.bottom.equalTo(modalView.snp.bottom).inset(600)
+            $0.centerX.equalTo(modalView)
             $0.width.equalTo(300)
         }
         dictionaryDetailCV.snp.makeConstraints{
