@@ -34,6 +34,13 @@ class SignInVC: AuthBaseVC {
         passwordTextField.setPWSecureButton()
         setTextFieldDelegate()
         setNotificationCenter()
+        setButtonActions()
+    }
+    
+    private func setButtonActions(){
+        signInButton.press{
+            self.requestGetSignIn(data: SignInBodyModel(user_id: self.signInTextField.text ?? "", password: self.passwordTextField.text ?? ""))
+        }
     }
 }
 
@@ -99,5 +106,25 @@ extension SignInVC: UITextFieldDelegate{
     @objc
     func keyboardWillHide(_ sender:Notification) {
         self.view.frame.origin.y = 0 
+    }
+}
+
+extension SignInVC{
+    private func requestGetSignIn(data: SignInBodyModel) {
+        
+        SignInAPI.shared.getSignIn(body: data) { networkResult in
+            switch networkResult {
+                
+            case .success(let response):
+                if let res = response as? SignInResponseModel {
+                    print(res)
+//                    UserToken.shared.accessToken =
+//                    self.carouselData = res
+//                    self.requestGetMumentForTodayData()
+                }
+            default:
+                self.makeAlert(title: MessageType.networkError.message)
+            }
+        }
     }
 }

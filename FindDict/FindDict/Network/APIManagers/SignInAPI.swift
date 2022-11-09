@@ -14,20 +14,20 @@ import Alamofire
  네트워크 결과를 받아와서 처리
  */
 
-class SignAPI: BaseAPI {
-    static let shared = SignAPI()
+class SignInAPI: BaseAPI {
+    static let shared = SignInAPI()
     
     private override init() { }
     
-    /// [POST] 로그인
-    func postSignIn(body: SignInBodyModel,
+    /// [GET] 로그인
+    func getSignIn(body: SignInBodyModel,
                     completion: @escaping (NetworkResult<Any>) -> (Void)) {
-        AFmanager.request(SignService.postSignIn(body: body)).responseData { response in
+        AFmanager.request(SignInService.getSignIn(body: body)).responseData { response in
             switch response.result {
             case .success:
                 guard let statusCode = response.response?.statusCode else { return }
                 guard let data = response.data else { return }
-                let networkResult = self.judgeStatus(by: statusCode, data, SignInDataModel.self)
+                let networkResult = self.judgeStatus(by: statusCode, data, SignInResponseModel.self)
                 completion(networkResult)
             case .failure(let err):
                 print(err.localizedDescription)
