@@ -13,9 +13,6 @@ class GameTutorialVC: UIViewController{
     
     // MARK: - Properties
     var dataSource: [GameTutorialCVCModel] = GameTutorialCVCModel.sampleData
-    private lazy var increasedDataSource: [GameTutorialCVCModel] = {
-        dataSource + dataSource + dataSource
-    }()
     
     private lazy var gameTutorialCV = UICollectionView(frame: .zero, collectionViewLayout: CVFlowLayout)
     
@@ -49,13 +46,8 @@ class GameTutorialVC: UIViewController{
         CVFlowLayout.scrollDirection = .horizontal
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        gameTutorialCV.scrollToItem(at: IndexPath(item: originalDataSourceCount,section: 0),
-                                at: .centeredHorizontally,
-                                animated: false)
-    }
 }
+
 
 // MARK: - UI
 extension GameTutorialVC {
@@ -85,34 +77,17 @@ extension GameTutorialVC : UICollectionViewDelegate, UICollectionViewDataSource 
         }
     }
     
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if scrollToBegin {
-            gameTutorialCV.scrollToItem(at: IndexPath(item: originalDataSourceCount, section: .zero),
-                                    at: .centeredHorizontally,
-                                    animated: false)
-            scrollToBegin.toggle()
-            return
-        }
-        if scrollToEnd {
-            gameTutorialCV.scrollToItem(at: IndexPath(item: originalDataSourceCount * 2 - 1, section: .zero),
-                                    at: .centeredHorizontally,
-                                    animated: false)
-            scrollToEnd.toggle()
-            return
-        }
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return increasedDataSource.count
+        return dataSource.count
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GameTutorialCVC", for: indexPath)
         if let cell = cell as? GameTutorialCVC {
-            cell.setData(increasedDataSource[indexPath.row],index:indexPath.row%3+1)
+            cell.setData(dataSource[indexPath.row],index:indexPath.row%5+1)
         }
-
+        
         return cell
     }
 }

@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SwiftUI
 
 extension UIViewController {
 
@@ -126,17 +125,6 @@ extension UIViewController {
     {
         let generator = UIImpactFeedbackGenerator(style: degree)
         generator.impactOccurred()
-    }
-    
-    private struct Preview: UIViewControllerRepresentable {
-        let viewController: UIViewController
-
-        func makeUIViewController(context: Context) -> UIViewController {
-            return viewController
-        }
-
-        func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-        }
     }
 
 }
