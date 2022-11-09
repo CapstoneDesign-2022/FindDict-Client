@@ -166,7 +166,7 @@ extension SignUpVC: UITextFieldDelegate{
 extension SignUpVC{
     private func requestPostSignUp(data: SignUpBodyModel) {
         
-        SignUpAPI.shared.postSignUp(body: data) { networkResult in
+        AuthAPI.shared.postSignUp(body: data) { networkResult in
             switch networkResult {
                 
             case .success(let response):
