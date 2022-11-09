@@ -20,11 +20,12 @@ class DictionaryDetailVC: UIViewController{
         $0.layer.shadowColor = UIColor.black.cgColor
         $0.layer.shadowOpacity = 0.25
     }
+    
     private let closeButton = UIButton().then{
         $0.setImage(UIImage(named: "closeImage"), for: .normal)
     }
+    
     private let wordLabel = UILabel().then{
-//        $0.text = "globe"
         $0.textColor = .black
         $0.font = .findDictH4M35
         $0.backgroundColor = .modalButtonDarkYellow
@@ -35,7 +36,6 @@ class DictionaryDetailVC: UIViewController{
     
     private var worldLabelText = "" {
         didSet{
-//            print(">>>>>>>",worldLabelText)
             wordLabel.text = worldLabelText
         }
     }
@@ -46,24 +46,27 @@ class DictionaryDetailVC: UIViewController{
         $0.setTitle("🇺🇸 미국식 발음으로 듣기", for: .normal)
         $0.backgroundColor = .modalButtonDarkYellow
     }
+    
     private let englishSpeeachButton = SpeechButton().then{
         $0.setTitle("🇬🇧 영국식 발음으로 듣기", for: .normal)
         $0.backgroundColor = .modalButtonDarkYellow
     }
+    
     private let australianSpeeachButton = SpeechButton().then{
         $0.setTitle("🇦🇺 호주식 발음으로 듣기", for: .normal)
         $0.backgroundColor = .modalButtonDarkYellow
     }
+    
     private lazy var buttonStackView = UIStackView(arrangedSubviews: [americanSpeeachButton,englishSpeeachButton,australianSpeeachButton]).then{
         $0.axis = .horizontal
         $0.spacing = 60
         $0.distribution = .fillEqually
     }
-    var dataSource : [UIImage] = [
+    
+    private var dataSource : [UIImage] = [
         UIImage(named: "globe")!,
         UIImage(named: "authImage")!,
         UIImage(named: "successImage")!,
-
     ]
     
     private lazy var increasedDataSource: [UIImage] = {
@@ -107,9 +110,10 @@ class DictionaryDetailVC: UIViewController{
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         dictionaryDetailCV.scrollToItem(at: IndexPath(item: originalDataSourceCount,section: 0),
-                                at: .centeredHorizontally,
-                                animated: false)
+                                        at: .centeredHorizontally,
+                                        animated: false)
     }
+    
     private func printOutAmericanSpeech(){
         let utterance = AVSpeechUtterance(string: wordLabel.text!)
         utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
@@ -130,7 +134,8 @@ class DictionaryDetailVC: UIViewController{
         utterance.rate = 0.4
         synthesizer.speak(utterance)
     }
-    func setButtonActions(){
+    
+    private func setButtonActions(){
         closeButton.press{
             self.dismiss(animated: true, completion: nil)
         }
@@ -150,7 +155,6 @@ class DictionaryDetailVC: UIViewController{
     func setWordLabelText(english: String){
         worldLabelText = english
     }
-    
 }
 
 // MARK: - UI
@@ -164,29 +168,30 @@ extension DictionaryDetailVC {
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(64)
             $0.height.equalTo(615)
         }
+        
         closeButton.snp.makeConstraints{
             $0.top.equalTo(modalView.snp.top).offset(10)
             $0.trailing.equalTo(modalView.snp.trailing).offset(-24)
         }
+        
         wordLabel.snp.makeConstraints{
             $0.top.equalTo(modalView.snp.top).offset(35)
-//            $0.bottom.equalTo(modalView.snp.bottom).inset(600)
             $0.centerX.equalTo(modalView)
             $0.width.equalTo(300)
         }
+        
         dictionaryDetailCV.snp.makeConstraints{
             $0.top.equalTo(wordLabel.snp.bottom).offset(30)
             $0.centerX.equalTo(modalView)
             $0.trailing.leading.equalTo(modalView)
             $0.bottom.equalTo(modalView.snp.bottom).inset(100)
-        
         }
+        
         buttonStackView.snp.makeConstraints{
             $0.top.equalTo(dictionaryDetailCV.snp.bottom).offset(10)
             $0.leading.leading.equalTo(modalView.snp.leading).offset(100)
             $0.trailing.leading.equalTo(modalView.snp.trailing).inset(100)
             $0.bottom.equalTo(modalView.snp.bottom).inset(20)
-            
         }
     }
 }
@@ -211,15 +216,16 @@ extension DictionaryDetailVC : UICollectionViewDelegate, UICollectionViewDataSou
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if scrollToBegin {
             dictionaryDetailCV.scrollToItem(at: IndexPath(item: originalDataSourceCount, section: .zero),
-                                    at: .centeredHorizontally,
-                                    animated: false)
+                                            at: .centeredHorizontally,
+                                            animated: false)
             scrollToBegin.toggle()
             return
         }
+        
         if scrollToEnd {
             dictionaryDetailCV.scrollToItem(at: IndexPath(item: originalDataSourceCount * 2 - 1, section: .zero),
-                                    at: .centeredHorizontally,
-                                    animated: false)
+                                            at: .centeredHorizontally,
+                                            animated: false)
             scrollToEnd.toggle()
             return
         }
@@ -235,7 +241,7 @@ extension DictionaryDetailVC : UICollectionViewDelegate, UICollectionViewDataSou
         if let cell = cell as? DictionaryDetailCVC {
             cell.setData(increasedDataSource[indexPath.row],index:indexPath.row%3+1)
         }
-
+        
         return cell
     }
 }
@@ -247,6 +253,7 @@ extension DictionaryDetailVC: UICollectionViewDelegateFlowLayout {
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return .zero
     }

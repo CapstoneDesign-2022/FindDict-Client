@@ -26,16 +26,14 @@ class DictionaryTVC: UITableViewCell {
     }
     
     // MARK: Functions
-    func setData(_ cellData: WordDataModel, index: Int) {
-        dictionaryCard.koreanWordLabel.text = cellData.koreanWord
-        dictionaryCard.englishWordLabel.text = cellData.englishWord
-        dictionaryCard.setIndex(index: index)
+    func setData(_ cellData: WordDataModel, cellRowIndex: Int) {
+        dictionaryCard.setData(english: cellData.englishWord, korean: cellData.koreanWord, cellRowIndex: cellRowIndex)
     }
 }
 
 // MARK: - UI
 extension DictionaryTVC {
-    func setLayout(){
+    private func setLayout(){
         self.addSubViews([dictionaryCard])
         
         dictionaryCard.snp.makeConstraints{

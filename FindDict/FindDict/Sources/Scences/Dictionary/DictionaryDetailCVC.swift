@@ -13,34 +13,34 @@ class DictionaryDetailCVC: UICollectionViewCell {
     
     // MARK: - Properties
     private let wordImageView = UIImageView()
-        
-        
+    
+    
     //MARK: - Functions
     func setData(_ cellData: UIImage, index: Int){
-            wordImageView.image = cellData
-        }
+        wordImageView.image = cellData
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setLayout()
+        self.backgroundColor = .modalButtonLightYellow
+    }
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+}
+
+// MARK: - UI
+extension DictionaryDetailCVC {
+    private func setLayout() {
+        self.addSubViews([wordImageView])
         
-        override init(frame: CGRect) {
-            super.init(frame: frame)
-            setLayout()
-            self.backgroundColor = .modalButtonLightYellow
-        }
-        
-        @available(*, unavailable)
-        required init?(coder: NSCoder) {
-            fatalError()
+        wordImageView.snp.makeConstraints{
+            $0.centerY.equalTo(self.safeAreaLayoutGuide)
+            $0.centerX.equalTo(self.safeAreaLayoutGuide)
         }
     }
-
-    // MARK: - UI
-    extension DictionaryDetailCVC {
-        private func setLayout() {
-            self.addSubViews([wordImageView])
-
-            wordImageView.snp.makeConstraints{
-                $0.centerY.equalTo(self.safeAreaLayoutGuide)
-                $0.centerX.equalTo(self.safeAreaLayoutGuide)
-            }
-        }
-    }
+}
 

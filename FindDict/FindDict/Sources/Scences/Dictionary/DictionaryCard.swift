@@ -16,23 +16,26 @@ protocol DictionaryCardDelegate: AnyObject {
 class DictionaryCard: UIView {
     
     // MARK: - Properties
-    private var index: Int = 0
-    var delegate: DictionaryCardDelegate?
-    let englishWordLabel = UILabel().then{
+    private var cellRowIndex: Int = 0
+    private var delegate: DictionaryCardDelegate?
+    private let englishWordLabel = UILabel().then{
         $0.textColor = .black
         $0.text = "영어단어"
         $0.font = .findDictH4R28
     }
-    let koreanWordLabel = UILabel().then{
+    
+    private let koreanWordLabel = UILabel().then{
         $0.textColor = .black
         $0.text = "한글단어"
         $0.font = .findDictH4R28
     }
-    lazy var wordStackView = UIStackView(arrangedSubviews: [englishWordLabel, koreanWordLabel]).then{
+    
+    private lazy var wordStackView = UIStackView(arrangedSubviews: [englishWordLabel, koreanWordLabel]).then{
         $0.axis = .horizontal
         $0.spacing = 83
         $0.distribution = .fillEqually
     }
+    
     private let pictureButton = UIButton().then{
         $0.setTitle("사진 확인하기", for: .normal)
         $0.setTitleColor(.black, for: .normal)
@@ -63,19 +66,24 @@ class DictionaryCard: UIView {
     
     private func setButtonActions(){
         pictureButton.press {
-            print(">>>>>index",self.index)
-            self.delegate?.wordDetailViewButtonClicked(index: self.index)
+            self.delegate?.wordDetailViewButtonClicked(index: self.cellRowIndex)
         }
     }
     
-    func setIndex(index:Int){
-        self.index = index
+    func setData(english: String, korean: String, cellRowIndex: Int){
+        self.koreanWordLabel.text = korean
+        self.englishWordLabel.text = english
+        self.cellRowIndex = cellRowIndex
+    }
+    
+    func setDelegate(delegate: DictionaryCardDelegate){
+        self.delegate = delegate
     }
 }
 
 // MARK: - UI
 extension DictionaryCard {
-    func setLayout(){
+    private func setLayout(){
         self.addSubViews([wordStackView, pictureButton])
         
         wordStackView.snp.makeConstraints{

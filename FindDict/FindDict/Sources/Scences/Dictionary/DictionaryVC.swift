@@ -41,7 +41,6 @@ class DictionaryVC: UIViewController {
     // MARK: - Functions
     private func setTV() {
         dictionaryTV.delegate = self
-//        dictionaryTV.
         dictionaryTV.dataSource = self
         dictionaryTV.showsVerticalScrollIndicator = false
         dictionaryTV.register(DictionaryTVC.self, forCellReuseIdentifier: "DictionaryTVC")
@@ -56,12 +55,11 @@ class DictionaryVC: UIViewController {
         view.backgroundColor = .bgBeige
     }
     
-    func setButtonActions(){
+    private func setButtonActions(){
         homeButton.press{
             self.navigationController?.popToRootViewController(animated: false)
         }
     }
-    
 }
 
 // MARK: - UI
@@ -96,19 +94,19 @@ extension DictionaryVC {
             $0.width.height.equalTo(50)
         }
     }
-    
 }
 
 // MARK: - UITableViewDataSource
 extension DictionaryVC: UITableViewDataSource {
+    
     // @required: 특정 위치에 표시할 셀을 요청하는 메서드
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "DictionaryTVC", for: indexPath) as? DictionaryTVC else {
             return UITableViewCell()
         }
         
-        cell.setData(WordDataModel.sampleData[indexPath.row], index: indexPath.row)
-        cell.dictionaryCard.delegate = self
+        cell.setData(WordDataModel.sampleData[indexPath.row], cellRowIndex: indexPath.row)
+        cell.dictionaryCard.setDelegate(delegate: self)
         return cell
     }
     
@@ -127,7 +125,6 @@ extension DictionaryVC: UITableViewDelegate {
 
 extension DictionaryVC: DictionaryCardDelegate {
     func wordDetailViewButtonClicked(index: Int) {
-        print(">>>>>>>>",WordDataModel.sampleData[index].englishWord)
         let dictionaryDetailVC = DictionaryDetailVC()
         dictionaryDetailVC.setWordLabelText(english: WordDataModel.sampleData[index].englishWord)
         self.navigationController?.pushViewController(dictionaryDetailVC, animated: true)
