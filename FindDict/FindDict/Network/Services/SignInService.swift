@@ -15,34 +15,34 @@
 import Alamofire
 
 enum SignInService {
-    case getSignIn(body: SignInBodyModel)
+    case postSignIn(body: SignInBodyModel)
 }
 
 extension SignInService: TargetType {
     var path: String {
         switch self {
-        case .getSignIn:
+        case .postSignIn:
             return "/auth/signIn"
         }
     }
     
     var method: HTTPMethod {
         switch self {
-        case .getSignIn:
-            return .get
+        case .postSignIn:
+            return .post
         }
     }
     
     var header: HeaderType {
         switch self {
-        case .getSignIn:
+        case .postSignIn:
             return .basic
         }
     }
     
     var parameters: RequestParams {
         switch self {
-        case .getSignIn(let body):
+        case .postSignIn(let body):
             return .requestBody(["user_id": body.user_id, "password": body.password])
         }
     }

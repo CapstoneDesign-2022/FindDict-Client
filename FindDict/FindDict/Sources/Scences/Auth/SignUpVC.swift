@@ -171,7 +171,7 @@ extension SignUpVC{
                 
             case .success(let response):
                 if let res = response as? SignUpResponseModel {
-//                    print()
+                    print(res)
 //                    UserToken.shared.accessToken = res.accessToken
 //                    self.carouselData = res
 //                    self.requestGetMumentForTodayData()

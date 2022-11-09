@@ -19,10 +19,10 @@ class SignInAPI: BaseAPI {
     
     private override init() { }
     
-    /// [GET] 로그인
-    func getSignIn(body: SignInBodyModel,
+    /// [POST] 로그인
+    func postSignIn(body: SignInBodyModel,
                     completion: @escaping (NetworkResult<Any>) -> (Void)) {
-        AFmanager.request(SignInService.getSignIn(body: body)).responseData { response in
+        AFmanager.request(SignInService.postSignIn(body: body)).responseData { response in
             switch response.result {
             case .success:
                 guard let statusCode = response.response?.statusCode else { return }

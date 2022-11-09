@@ -112,12 +112,11 @@ extension SignInVC: UITextFieldDelegate{
 extension SignInVC{
     private func requestGetSignIn(data: SignInBodyModel) {
         
-        SignInAPI.shared.getSignIn(body: data) { networkResult in
+        SignInAPI.shared.postSignIn(body: data) { networkResult in
             switch networkResult {
-                
             case .success(let response):
                 if let res = response as? SignInResponseModel {
-                    print(res)
+                    print(">>>>>>>res",res)
 //                    UserToken.shared.accessToken =
 //                    self.carouselData = res
 //                    self.requestGetMumentForTodayData()
