@@ -28,7 +28,7 @@ class DictionaryTVC: UITableViewCell {
     
     // MARK: Functions
     func setData(_ cellData: WordDataModel, cellRowIndex: Int) {
-        dictionaryCard.setData(english: cellData.englishWord, korean: cellData.koreanWord, cellRowIndex: cellRowIndex)
+        dictionaryCard.setData(english: cellData.englishWord, cellRowIndex: cellRowIndex)
     }
 }
 

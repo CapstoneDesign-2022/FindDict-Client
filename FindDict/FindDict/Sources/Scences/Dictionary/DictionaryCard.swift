@@ -23,19 +23,7 @@ class DictionaryCard: UIView {
         $0.text = "영어단어"
         $0.font = .findDictH4R28
     }
-    
-//    private let koreanWordLabel = UILabel().then{
-//        $0.textColor = .black
-//        $0.text = "한글단어"
-//        $0.font = .findDictH4R28
-//    }
-    
-//    private lazy var wordStackView = UIStackView(arrangedSubviews: [englishWordLabel, koreanWordLabel]).then{
-//        $0.axis = .horizontal
-//        $0.spacing = 83
-//        $0.distribution = .fillEqually
-//    }
-    
+
     private let pictureButton = UIButton().then{
         $0.setTitle("사진 확인하기", for: .normal)
         $0.setTitleColor(.black, for: .normal)
@@ -70,8 +58,7 @@ class DictionaryCard: UIView {
         }
     }
     
-    func setData(english: String, korean: String, cellRowIndex: Int){
-//        self.koreanWordLabel.text = korean
+    func setData(english: String, cellRowIndex: Int){
         self.englishWordLabel.text = english
         self.cellRowIndex = cellRowIndex
     }
