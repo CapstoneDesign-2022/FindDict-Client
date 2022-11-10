@@ -14,19 +14,21 @@ import Alamofire
 
 enum HeaderType {
     case basic
-    case auth
+    case withToken
     case multiPart
-    case multiPartWithAuth
+    case multiPartWithToken
 }
 
 enum HTTPHeaderField: String {
     case authentication = "Authorization"
     case contentType = "Content-Type"
-    case accesstoken = "accesstoken"
+    case accesstoken = "authorization"
 }
 
 enum ContentType: String {
     case json = "Application/json"
-    case tokenSerial = ""
     case multiPart = "multipart/form-data"
+    
+    /// 임의로 고정시켜두는 accessToken 값입니다.
+    case tokenSerial = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo1M30sImlhdCI6MTY2ODA1MjQ4NCwiZXhwIjoxNjY4MDU5Njg0fQ.ncItpBLfAE1wxr2W4VLbFfYpRZInWG89CtZolbVkAoE"
 }

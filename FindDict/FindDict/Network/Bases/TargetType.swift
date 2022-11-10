@@ -48,15 +48,19 @@ extension TargetType {
         case .basic:
             request.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
             
-        case .auth:
+        case .withToken:
             request.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
+            
+            // TODO: - accessToken 관리 시작하면 수정할 부분
             request.setValue(ContentType.tokenSerial.rawValue, forHTTPHeaderField: HTTPHeaderField.accesstoken.rawValue)
             
         case .multiPart:
             request.setValue(ContentType.multiPart.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
             
-        case .multiPartWithAuth:
+        case .multiPartWithToken:
             request.setValue(ContentType.multiPart.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
+            
+            // TODO: - accessToken 관리 시작하면 수정할 부분
             request.setValue(ContentType.tokenSerial.rawValue, forHTTPHeaderField: HTTPHeaderField.accesstoken.rawValue)
         }
         
