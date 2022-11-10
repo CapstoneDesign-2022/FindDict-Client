@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-class PhotoSelectorVCViewController: UIViewController {
+class PhotoSelectorVC: UIViewController {
     
     // MARK: - Properties
     private let takingPictureButton = PhotoSelectorButton().then{
@@ -27,15 +27,25 @@ class PhotoSelectorVCViewController: UIViewController {
         $0.backgroundColor = .buttonYellow
     }
     
-    private let selectedImage = UIImageView()
+    private var selectedImage = UIImageView()
+    
+    private var pixelBuffer:CVPixelBuffer? = nil  {
+        didSet{
+            let gameVC = GameVC()
+            gameVC.image.image = selectedImage.image
+            gameVC.pixelBuffer = selectedImage.image?.pixelBufferFromImage()
+            self.navigationController?.pushViewController(gameVC, animated: true)
+        }
+    }
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
         setButtonActions()
+        view.backgroundColor = .bgBeige
     }
-
+    
     // MARK: - Functions
     func setButtonActions(){
         takingPictureButton.press{
@@ -54,13 +64,12 @@ class PhotoSelectorVCViewController: UIViewController {
             self.present(imagePickerController, animated: true, completion: nil)
         }
     }
-
 }
 
 // MARK: - UI
-extension PhotoSelectorVCViewController {
+extension PhotoSelectorVC {
     private func setLayout() {
-        view.addSubViews([takingPictureButton, selectingPictureButton,fetchingPictureButton,selectedImage])
+        view.addSubViews([takingPictureButton, selectingPictureButton,fetchingPictureButton])
         
         takingPictureButton.snp.makeConstraints{
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(67)
@@ -68,7 +77,7 @@ extension PhotoSelectorVCViewController {
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-60)
             $0.height.equalTo(100)
         }
-
+        
         selectingPictureButton.snp.makeConstraints{
             $0.top.equalTo(takingPictureButton.snp.bottom).offset(17)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(60)
@@ -82,29 +91,23 @@ extension PhotoSelectorVCViewController {
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-60)
             $0.height.equalTo(100)
         }
-        
-        selectedImage.snp.makeConstraints{
-            $0.top.equalTo(fetchingPictureButton.snp.bottom).offset(17)
-            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(60)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-60)
-            $0.height.equalTo(250)
-        }
     }
 }
 
 // MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
-extension PhotoSelectorVCViewController:UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+extension PhotoSelectorVC:UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-      
-                if let image = info[.editedImage] as? UIImage {
-                    selectedImage.image = image
-                }
-             dismiss(animated: true, completion: nil)
-
+        
+        if let image = info[.editedImage] as? UIImage
+        {
+            selectedImage.image = image
+            pixelBuffer = selectedImage.image?.pixelBufferFromImage()
         }
+        dismiss(animated: true, completion: nil)
+    }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-          dismiss(animated: true, completion: nil)
-      }
+        dismiss(animated: true, completion: nil)
+    }
 }
