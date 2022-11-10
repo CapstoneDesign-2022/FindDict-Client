@@ -22,6 +22,11 @@ class GameTutorialVC: UIViewController{
         dataSource.count
     }
     
+    private let homeButton = UIButton().then{
+        $0.setImage(UIImage(named: "homeImage"),for: .normal)
+    }
+    
+    
     private var scrollToEnd: Bool = false
     private var scrollToBegin: Bool = false
     
@@ -30,9 +35,18 @@ class GameTutorialVC: UIViewController{
         super.viewDidLoad()
         setLayout()
         setCV()
+        setButtonActions()
+        view.backgroundColor = .bgYellow
     }
     
     // MARK: - Functions
+    func setButtonActions() {
+        homeButton.press{
+            let mainView = mainVC()
+            self.navigationController?.pushViewController(mainView, animated: true)
+        }
+    }
+    
     private func setCV() {
         gameTutorialCV.delegate = self
         gameTutorialCV.dataSource = self
@@ -52,13 +66,20 @@ class GameTutorialVC: UIViewController{
 // MARK: - UI
 extension GameTutorialVC {
     private func setLayout() {
-        view.addSubview(gameTutorialCV)
+        view.addSubViews([gameTutorialCV, homeButton])
+        
         gameTutorialCV.snp.makeConstraints{
-            $0.center.leading.trailing.equalTo(self.view.safeAreaLayoutGuide)
-            $0.height.equalTo(789)
+            $0.center.top.bottom.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        homeButton.snp.makeConstraints{
+            $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide).inset(40)
+            $0.width.height.equalTo(72)
         }
     }
 }
+
 
 
 // MARK: - UICollectionViewDelegate, UICollectionViewDataSource
@@ -85,7 +106,7 @@ extension GameTutorialVC : UICollectionViewDelegate, UICollectionViewDataSource 
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GameTutorialCVC", for: indexPath)
         if let cell = cell as? GameTutorialCVC {
-            cell.setData(dataSource[indexPath.row],index:indexPath.row%5+1)
+            cell.setData(dataSource[indexPath.row], index:indexPath.row%6+1)
         }
         
         return cell
@@ -97,7 +118,7 @@ extension GameTutorialVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width, height: collectionView.frame.height)
+        return CGSize(width: collectionView.frame.width, height: UIScreen.main.bounds.height)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return .zero

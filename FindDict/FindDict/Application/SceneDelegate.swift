@@ -20,8 +20,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        let navigationController = UINavigationController(rootViewController: BeforeSignInVC())
-        window?.rootViewController = GameTutorialVC()
+        let navigationController = UINavigationController(rootViewController: GameTutorialVC())
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
 
