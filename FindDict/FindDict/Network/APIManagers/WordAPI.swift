@@ -24,4 +24,19 @@ class WordAPI: BaseAPI {
             }
         }
     }
+    
+    /// [GET] 힌트 이미지 조회
+    func getHint(search: String, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        AFmanager.request(WordService.getHint(search: search)).responseData { response in
+            switch response.result {
+            case .success:
+                guard let statusCode = response.response?.statusCode else { return }
+                guard let data = response.data else { return }
+                let networkResult = self.judgeStatus(by: statusCode, data, WordListResponseModel.self)
+                completion(networkResult)
+            case .failure(let err):
+                print(err.localizedDescription)
+            }
+        }
+}
 }
