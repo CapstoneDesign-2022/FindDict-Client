@@ -24,15 +24,9 @@ struct WordListResponseModel: Codable {
         }
     }
 }
-//words: [
-//{
-//  korean: string;
-//  english: string;
-//},
-//];
+
 
 extension WordListResponseModel {
-    // 더미 데이터
     static let sampleData: [Word] = [
         Word(korean: "사전", english: "dictionary"),
         Word(korean: "사과", english: "apple"),

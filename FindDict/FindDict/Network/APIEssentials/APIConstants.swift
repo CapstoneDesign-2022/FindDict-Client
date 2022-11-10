@@ -9,5 +9,5 @@ import Alamofire
 
 struct APIConstants {
     // MARK: Base URL
-    static let baseURL = "http://43.201.82.232:8000"
+    static let baseURL = "http://43.201.84.183:8000"
 }

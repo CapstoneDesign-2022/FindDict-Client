@@ -30,5 +30,5 @@ enum ContentType: String {
     case multiPart = "multipart/form-data"
     
     /// 임의로 고정시켜두는 accessToken 값입니다.
-    case tokenSerial = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo1M30sImlhdCI6MTY2ODA1MjQ4NCwiZXhwIjoxNjY4MDU5Njg0fQ.ncItpBLfAE1wxr2W4VLbFfYpRZInWG89CtZolbVkAoE"
+    case tokenSerial = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo1M30sImlhdCI6MTY2ODA3Mjg2MiwiZXhwIjoxNjY5MjgyNDYyfQ.bACihmLmxWxC_iWlvwKEjMVpW1pCdmuoUFgQphBGRWU"
 }
