@@ -5,28 +5,35 @@
 //  Created by 김지민 on 2022/10/01.
 //
 
-import Alamofire
 
 /*
  AuthRouter : 여러 Endpoint들을 갖고 있는 enum
  TargetType을 채택해서 path, method, header, parameter를 각 라우터에 맞게 request를 만든다.
  */
 
-enum SignService {
+
+import Alamofire
+
+enum AuthService {
     case postSignIn(body: SignInBodyModel)
+    case postSignUp(body: SignUpBodyModel)
 }
 
-extension SignService: TargetType {
+extension AuthService: TargetType {
     var path: String {
         switch self {
         case .postSignIn:
-            return "/auth/login"
+            return "/auth/signIn"
+        case .postSignUp:
+            return "/auth/signUp"
         }
     }
     
     var method: HTTPMethod {
         switch self {
         case .postSignIn:
+            return .post
+        case .postSignUp:
             return .post
         }
     }
@@ -35,13 +42,17 @@ extension SignService: TargetType {
         switch self {
         case .postSignIn:
             return .basic
+        case .postSignUp:
+            return .basic
         }
     }
     
     var parameters: RequestParams {
         switch self {
         case .postSignIn(let body):
-            return .requestBody(["profileId": body.profileId, "password": body.password])
+            return .requestBody(["user_id": body.user_id, "password": body.password])
+        case .postSignUp(let body):
+            return .requestBody(["user_id": body.user_id, "age": body.age, "password": body.password])
         }
     }
 }

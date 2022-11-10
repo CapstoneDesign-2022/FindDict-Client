@@ -62,6 +62,13 @@ class SignUpVC: AuthBaseVC {
         
         setTextFieldDelegate()
         setNotificationCenter()
+        setButtonActions()
+    }
+    
+    private func setButtonActions(){
+        signUpButton.press{
+            self.requestPostSignUp(data: SignUpBodyModel(user_id: self.idTextField.text ?? "", age: self.ageTextField.text ?? "", password: self.passwordTextField.text ?? ""))
+        }
     }
     
 }
@@ -152,5 +159,28 @@ extension SignUpVC: UITextFieldDelegate{
     @objc
     func keyboardWillHide(_ sender:Notification) {
         self.view.frame.origin.y = 0 
+    }
+}
+
+
+extension SignUpVC{
+    private func requestPostSignUp(data: SignUpBodyModel) {
+        
+        AuthAPI.shared.postSignUp(body: data) { networkResult in
+            switch networkResult {
+                
+            case .success(let response):
+                if let res = response as? SignUpResponseModel {
+                    print(res)
+//                    UserToken.shared.accessToken = res.accessToken
+//                    self.carouselData = res
+//                    self.requestGetMumentForTodayData()
+                // TODO: - 회원가입 성공 알러트 창 띄우기
+                    self.navigationController?.pushViewController(SignInVC(), animated: true)
+                }
+            default:
+                self.makeAlert(title: MessageType.networkError.message)
+            }
+        }
     }
 }
