@@ -32,6 +32,7 @@ class GameTutorialCVC: UICollectionViewCell {
     private let tutorialImage = UIImageView().then{
         $0.layer.cornerRadius = 43
         $0.clipsToBounds = true
+        $0.contentMode = .scaleAspectFit
     }
     
     private let tutorialTextLabel = UILabel().then{
@@ -78,23 +79,23 @@ class GameTutorialCVC: UICollectionViewCell {
             }
             
             tutorialImage.snp.makeConstraints{
-                $0.centerY.equalTo(self.safeAreaLayoutGuide).offset(50) // 중앙 정렬했을 때보다 조금 더 위로
-                $0.leading.equalTo(self.safeAreaLayoutGuide.snp.leading).offset(51)
-                $0.height.equalTo(625)
-                $0.width.equalTo(867)
+                $0.top.equalTo(tutorialTitleView.snp.bottom).offset(25)
+                $0.leading.equalTo(self.safeAreaLayoutGuide.snp.leading).offset(30)
+                $0.width.equalTo(750)
+                $0.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).inset(50)
             }
             
             tutorialTextLabel.snp.makeConstraints{
-                $0.width.equalTo(400)
                 $0.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(350)
                 $0.leading.equalTo(tutorialImage.snp.trailing).offset(25)
+                $0.trailing.equalTo(self.safeAreaLayoutGuide.snp.trailing).inset(25)
             }
             
             pageButton.snp.makeConstraints{
                 $0.height.equalTo(60)
                 $0.width.equalTo(126)
                 $0.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).inset(150)
-                $0.leading.equalTo(tutorialImage.snp.trailing).offset(250)
+                $0.trailing.equalTo(self.safeAreaLayoutGuide.snp.trailing).inset(40)
             }
         }
     }
