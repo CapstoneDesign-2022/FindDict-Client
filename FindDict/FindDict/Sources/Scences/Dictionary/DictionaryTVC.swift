@@ -26,9 +26,9 @@ class DictionaryTVC: UITableViewCell {
     }
     
     // MARK: Functions
-    func setData(_ cellData: WordDataModel) {
-        dictionaryCard.koreanWordLabel.text = cellData.koreanWord
-        dictionaryCard.englishWordLabel.text = cellData.englishWord
+    func setData(_ cellData: WordListResponseModel.Word) {
+        dictionaryCard.koreanWordLabel.text = cellData.korean
+        dictionaryCard.englishWordLabel.text = cellData.english
     }
 }
 
