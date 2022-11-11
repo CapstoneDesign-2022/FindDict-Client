@@ -12,6 +12,7 @@ import SnapKit
 class DictionaryCard: UIView {
     
     // MARK: - Properties
+    private var dictionaryDetailData: [WordDetailResponseModel.ImageURL]?
     let englishWordLabel = UILabel().then{
         $0.textColor = .black
         $0.text = "영어단어"
@@ -42,6 +43,7 @@ class DictionaryCard: UIView {
         super.init(frame: .zero)
         setLayout()
         setUI()
+        setButtonActions()
     }
     
     required init?(coder: NSCoder) {
@@ -52,6 +54,33 @@ class DictionaryCard: UIView {
     private func setUI() {
         self.backgroundColor = .dictionaryGray
         self.layer.cornerRadius = 10.0
+    }
+    
+    func setButtonActions(){
+        pictureButton.press{
+//            self.navigationController?.popToRootViewController(animated: false)
+            self.requestGetWordDetail()
+        }
+    }
+}
+
+extension DictionaryCard {
+    private func requestGetWordDetail() {
+        WordAPI.shared.getWordDetail(word: "book") { NetworkResult in
+            switch NetworkResult {
+            case .success(let response):
+                if let res = response as?
+                    WordDetailResponseModel {
+                    print(">>>>>>res", res)
+//                    print("_______헤이_______")
+//                    print(res.urls)
+                }
+            default:
+                print(MessageType.networkError.message)
+//                self.makeAlert(title: MessageType.networkError.message)
+            }
+        
+        }
     }
 }
 
