@@ -77,8 +77,6 @@ extension DictionaryCard {
             $0.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(10)
             $0.leading.equalTo(self.safeAreaLayoutGuide.snp.leading).offset(27)
             $0.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).inset(10)
-            $0.height.equalTo(40)
-            $0.width.equalTo(480)
         }
         
         pictureButton.snp.makeConstraints{
