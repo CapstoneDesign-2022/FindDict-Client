@@ -8,6 +8,6 @@
 import Foundation
 
 struct SignInBodyModel: Codable {
-    var profileId: String
+    var user_id: String
     var password: String
 }

@@ -12,6 +12,7 @@ import Then
 class DictionaryVC: UIViewController {
     
     // MARK: - Properties
+    private var dictionaryData: [WordListResponseModel.Word]?
     private let titleView = UIView().then{
         $0.backgroundColor = .modalButtonDarkYellow
         $0.layer.shadowRadius = 4
@@ -48,6 +49,11 @@ class DictionaryVC: UIViewController {
     }
     
     // MARK: - View Life Cycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        requestGetWordList()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
@@ -59,6 +65,29 @@ class DictionaryVC: UIViewController {
     private func setButtonActions(){
         homeButton.press{
             self.navigationController?.popToRootViewController(animated: false)
+        }
+    }
+}
+
+extension DictionaryVC {
+    private func requestGetWordList() {
+        WordAPI.shared.getWordList { networkResult in
+            switch networkResult {
+            case .success(let response):
+                if let res = response as? WordListResponseModel {
+                    print(">>>>>>res",res)
+                    self.dictionaryData = res.words
+                    self.setTV()
+                    self.dictionaryTV.reloadData()
+                    
+//                    self.dataSource = result
+//                    self.setData()
+//                    self.mumentCardView.setData(result,mumentId: self.mumentId ?? "")
+                }
+                
+            default:
+                self.makeAlert(title: MessageType.networkError.message)
+            }
         }
     }
 }
@@ -108,12 +137,15 @@ extension DictionaryVC: UITableViewDataSource {
         
         cell.setData(WordDataModel.sampleData[indexPath.row], cellRowIndex: indexPath.row)
         cell.dictionaryCard.setDelegate(delegate: self)
+      
+        let data = dictionaryData?[indexPath.row] ?? WordListResponseModel.sampleData[indexPath.row]
+        cell.setData(data)
         return cell
     }
     
     // @required: 각 섹션에 표시할 행의 개수를 묻는 메서드
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return WordDataModel.sampleData.count
+        return dictionaryData?.count ?? WordListResponseModel.sampleData.count
     }
 }
 
