@@ -21,7 +21,6 @@ class GameResultButton: UIButton {
     
     private func setUI(){
         self.setTitleColor(.black, for: .normal)
-        self.backgroundColor = .modalButtonLightYellow
         self.layer.shadowRadius = 4
         self.layer.shadowOffset = CGSize(width: 0, height: 4)
         self.layer.shadowColor = UIColor.black.cgColor
