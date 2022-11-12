@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-class DictionaryVC: UIViewController {
+final class DictionaryVC: UIViewController {
     
     // MARK: - Properties
     private var dictionaryData: [WordListResponseModel.Word]?
@@ -75,14 +75,8 @@ extension DictionaryVC {
             switch networkResult {
             case .success(let response):
                 if let res = response as? WordListResponseModel {
-                    print(">>>>>>res",res)
                     self.dictionaryData = res.words
-                    self.setTV()
                     self.dictionaryTV.reloadData()
-                    
-//                    self.dataSource = result
-//                    self.setData()
-//                    self.mumentCardView.setData(result,mumentId: self.mumentId ?? "")
                 }
                 
             default:
@@ -113,9 +107,8 @@ extension DictionaryVC {
         dictionaryTV.snp.makeConstraints{
             $0.top.equalTo(titleView.snp.bottom).offset(50)
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
-            $0.centerX.equalTo(view.safeAreaLayoutGuide)
-            $0.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(206)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-206)
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(206)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(206)
         }
         
         homeButton.snp.makeConstraints{
@@ -134,12 +127,10 @@ extension DictionaryVC: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "DictionaryTVC", for: indexPath) as? DictionaryTVC else {
             return UITableViewCell()
         }
-        
-        cell.setData(WordDataModel.sampleData[indexPath.row], cellRowIndex: indexPath.row)
         cell.dictionaryCard.setDelegate(delegate: self)
       
         let data = dictionaryData?[indexPath.row] ?? WordListResponseModel.sampleData[indexPath.row]
-        cell.setData(data)
+        cell.setData(data, cellRowIndex: indexPath.row)
         return cell
     }
     
@@ -156,10 +147,11 @@ extension DictionaryVC: UITableViewDelegate {
     }
 }
 
+// MARK: - DictionaryCardDelegate
 extension DictionaryVC: DictionaryCardDelegate {
     func wordDetailViewButtonClicked(index: Int) {
         let dictionaryDetailVC = DictionaryDetailVC()
-        dictionaryDetailVC.setWordLabelText(english: WordDataModel.sampleData[index].englishWord)
+        dictionaryDetailVC.setWordLabelText(english: dictionaryData?[index].english ?? WordListResponseModel.sampleData[index].english)
         dictionaryDetailVC.modalPresentationStyle = .overCurrentContext
         self.present(dictionaryDetailVC, animated: true)
     }

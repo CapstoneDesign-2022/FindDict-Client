@@ -8,7 +8,7 @@
 import Foundation
 
 struct WordListResponseModel: Codable {
-    let words: [Word] = []
+    let words: [Word]
 
     enum CodingKeys: String, CodingKey {
         case words = "words"
