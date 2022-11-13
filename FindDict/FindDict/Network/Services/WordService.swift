@@ -10,6 +10,7 @@ import Alamofire
 enum WordService {
     case getWordList
     case getHint(search: String)
+    case postWord(body: CreateWordBodyModel)
 }
 
 extension WordService: TargetType {
@@ -19,6 +20,8 @@ extension WordService: TargetType {
             return "/word/list"
         case .getHint:
             return "/word"
+        case .postWord:
+            return "/word/new"
         }
     }
     
@@ -28,6 +31,8 @@ extension WordService: TargetType {
             return .get
         case .getHint:
             return .get
+        case .postWord:
+            return .post
         }
     }
     
@@ -37,6 +42,8 @@ extension WordService: TargetType {
             return .withToken
         case .getHint:
             return .withToken
+        case .postWord:
+            return .multiPartWithToken
         }
     }
     
@@ -46,6 +53,8 @@ extension WordService: TargetType {
             return .requestPlain
         case .getHint(let search):
             return .query(["search": search])
+        case .postWord(let body):
+            return .requestBody(["words": body.words])
         }
     }
 }

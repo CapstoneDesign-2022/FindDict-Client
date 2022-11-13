@@ -42,7 +42,7 @@ class GameTutorialVC: UIViewController{
     // MARK: - Functions
     func setButtonActions() {
         homeButton.press{
-            let mainView = mainVC()
+            let mainView = MainVC()
             self.navigationController?.pushViewController(mainView, animated: true)
         }
     }
