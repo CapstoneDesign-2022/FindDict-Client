@@ -10,6 +10,7 @@ import Foundation
 enum MessageType {
     case networkError
     case modelErrorForDebug
+    case signUpSuccess
 }
 
 extension MessageType {
@@ -22,6 +23,9 @@ extension MessageType {
 """
         case .modelErrorForDebug:
             return "🚨당신 모델이 이상해열~🚨"
+            
+        case .signUpSuccess:
+            return "회원가입 성공입니다 😄"
         }
     }
 }

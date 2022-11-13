@@ -50,4 +50,19 @@ class AuthAPI: BaseAPI {
             }
         }
     }
+    
+    /// [GET] 아이디 중복확인
+    func confirmId(user_id: String, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        AFmanager.request(AuthService.confirmId(user_id: user_id)).responseData { response in
+            switch response.result {
+            case .success:
+                guard let statusCode = response.response?.statusCode else { return }
+                guard let data = response.data else { return }
+                let networkResult = self.judgeStatus(by: statusCode, data, ConfirmIdResponseModel.self)
+                completion(networkResult)
+            case .failure(let err):
+                print(err.localizedDescription)
+            }
+        }
+    }
 }
