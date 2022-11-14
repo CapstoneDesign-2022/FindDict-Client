@@ -118,8 +118,6 @@ extension SignInVC{
                 if let res = response as? SignInResponseModel {
                     print(res)
                     UserToken.shared.accessToken = res.accessToken
-//                    self.carouselData = res
-//                    self.requestGetMumentForTodayData()
                 }
             default:
                 self.makeAlert(title: MessageType.networkError.message)

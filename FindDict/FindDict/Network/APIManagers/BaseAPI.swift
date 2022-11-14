@@ -42,4 +42,19 @@ class BaseAPI {
             return .networkFail
         }
     }
+    
+    func judgeStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
+        switch statusCode {
+        case 200...201:
+            return .success(data ?? "None-Data")
+        case 202..<300:
+            return .success(statusCode)
+        case 400..<500:
+            return .requestErr(statusCode)
+        case 500:
+            return .serverErr
+        default:
+            return .networkFail
+        }
+    }
 }

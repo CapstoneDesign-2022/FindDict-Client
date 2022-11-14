@@ -53,6 +53,8 @@ class SignUpVC: AuthBaseVC {
         
     }
     
+    private var isIdConfirmed = false   // 아이디 중복 검사 했는지
+    
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,10 +69,55 @@ class SignUpVC: AuthBaseVC {
     
     private func setButtonActions(){
         signUpButton.press{
-            self.requestPostSignUp(data: SignUpBodyModel(user_id: self.idTextField.text ?? "", age: self.ageTextField.text ?? "", password: self.passwordTextField.text ?? ""))
+            if (self.isIdConfirmed == false) {
+                self.passwordVerificationLabel.text = "아이디 중복확인을 해주세요."
+                self.passwordVerificationLabel.textColor = .systemRed
+            } else {
+                self.requestPostSignUp(data: SignUpBodyModel(user_id: self.idTextField.text ?? "", age: self.ageTextField.text ?? "", password: self.passwordTextField.text ?? ""))
+            }
+        }
+        
+        idCheckButton.press{
+            self.requestConfirmId()
         }
     }
     
+}
+
+//MARK: - Network
+extension SignUpVC {
+    private func requestConfirmId() {
+        AuthAPI.shared.confirmId(user_id: self.idTextField.text ?? "") { NetworkResult in
+            switch NetworkResult {
+            case .success:
+                self.isIdConfirmed = true
+                self.passwordVerificationLabel.text = "사용 가능한 아이디입니다."
+                self.passwordVerificationLabel.textColor = .systemBlue
+            default:
+                print(MessageType.networkError.message)
+                self.passwordVerificationLabel.text = "중복된 아이디입니다."
+                self.passwordVerificationLabel.textColor = .systemRed
+            }
+            
+        }
+    }
+    
+    private func requestPostSignUp(data: SignUpBodyModel) {
+        AuthAPI.shared.postSignUp(body: data) { networkResult in
+            switch networkResult {
+                
+            case .success(let response):
+                if let res = response as? SignUpResponseModel {
+//                    UserToken.shared.accessToken = res.accessToken
+                    self.makeAlert(title: MessageType.signUpSuccess.message, okAction: {_ in
+                        self.navigationController?.pushViewController(SignInVC(), animated: true)
+                    })
+                }
+            default:
+                self.makeAlert(title: MessageType.networkError.message)
+            }
+        }
+    }
 }
 
 // MARK: - UI
@@ -159,28 +206,5 @@ extension SignUpVC: UITextFieldDelegate{
     @objc
     func keyboardWillHide(_ sender:Notification) {
         self.view.frame.origin.y = 0 
-    }
-}
-
-
-extension SignUpVC{
-    private func requestPostSignUp(data: SignUpBodyModel) {
-        
-        AuthAPI.shared.postSignUp(body: data) { networkResult in
-            switch networkResult {
-                
-            case .success(let response):
-                if let res = response as? SignUpResponseModel {
-                    print(res)
-//                    UserToken.shared.accessToken = res.accessToken
-//                    self.carouselData = res
-//                    self.requestGetMumentForTodayData()
-                // TODO: - 회원가입 성공 알러트 창 띄우기
-                    self.navigationController?.pushViewController(SignInVC(), animated: true)
-                }
-            default:
-                self.makeAlert(title: MessageType.networkError.message)
-            }
-        }
     }
 }
