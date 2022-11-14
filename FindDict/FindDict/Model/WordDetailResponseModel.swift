@@ -7,7 +7,7 @@
 import Foundation
 
 struct WordDetailResponseModel: Codable {
-    let urls: [ImageURL] = []
+    let urls: [ImageURL]
     
     enum CodingKeys: String, CodingKey {
         case urls = "urls"

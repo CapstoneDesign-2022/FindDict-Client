@@ -66,18 +66,15 @@ class DictionaryCard: UIView {
 
 extension DictionaryCard {
     private func requestGetWordDetail() {
-        WordAPI.shared.getWordDetail(word: "book") { NetworkResult in
+        WordAPI.shared.getWordDetail(word: "apple") { NetworkResult in
             switch NetworkResult {
             case .success(let response):
                 if let res = response as?
                     WordDetailResponseModel {
                     print(">>>>>>res", res)
-//                    print("_______헤이_______")
-//                    print(res.urls)
                 }
             default:
                 print(MessageType.networkError.message)
-//                self.makeAlert(title: MessageType.networkError.message)
             }
         
         }
