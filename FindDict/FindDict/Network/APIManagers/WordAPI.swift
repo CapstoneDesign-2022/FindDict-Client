@@ -40,18 +40,18 @@ class WordAPI: BaseAPI {
         }
 }
     /// [POST] 단어 추가
-    func postWord(body: CreateWordBodyModel,
-                    completion: @escaping (NetworkResult<Any>) -> (Void)) {
-        AFmanager.request(WordService.postWord(body: body)).responseData { response in
-            switch response.result {
-            case .success:
-                guard let statusCode = response.response?.statusCode else { return }
-                guard let data = response.data else { return }
-                let networkResult = self.judgeStatus(by: statusCode, data, CreateWordResponseModel.self)
-                completion(networkResult)
-            case .failure(let err):
-                print(err.localizedDescription)
-            }
-        }
-    }
+//    func postWord(body: CreateWordBodyModel,
+//                    completion: @escaping (NetworkResult<Any>) -> (Void)) {
+//        AFmanager.request(WordService.postWord(body: body)).responseData { response in
+//            switch response.result {
+//            case .success:
+//                guard let statusCode = response.response?.statusCode else { return }
+//                guard let data = response.data else { return }
+//                let networkResult = self.judgeStatus(by: statusCode, data, CreateWordResponseModel.self)
+//                completion(networkResult)
+//            case .failure(let err):
+//                print(err.localizedDescription)
+//            }
+//        }
+//    }
 }

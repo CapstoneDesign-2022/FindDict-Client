@@ -12,6 +12,11 @@ import Then
 
 class HintModalVC: UIViewController {
     // MARK: - Properties
+    private var korean: String = "" {
+        didSet{
+            requestGetHint(search: korean)
+        }
+    }
     private let modalView = UIView().then{
         $0.backgroundColor = .bgBeige
         $0.layer.shadowRadius = 4
@@ -19,23 +24,29 @@ class HintModalVC: UIViewController {
         $0.layer.shadowColor = UIColor.black.cgColor
         $0.layer.shadowOpacity = 0.25
     }
+    
     private let hintLabel = UILabel().then{
         $0.text = "HINT"
         $0.textColor = .black
         $0.font = .findDictH4R35
     }
+    
     private let closeButton = UIButton().then{
         $0.setImage(UIImage(named: "closeImage"), for: .normal)
     }
+    
     private let hintImageView1 = UIImageView().then{
         $0.image = UIImage(named: "globe")
     }
+    
     private let hintImageView2 = UIImageView().then{
         $0.image = UIImage(named: "globe")
     }
+    
     private let hintImageView3 = UIImageView().then{
         $0.image = UIImage(named: "globe")
     }
+    
     private let hintImageView4 = UIImageView().then{
         $0.image = UIImage(named: "globe")
     }
@@ -72,9 +83,34 @@ class HintModalVC: UIViewController {
             self.dismiss(animated: true, completion: nil)
         }
     }
+    
+    func setKoreanText(korean: String){
+        self.korean = korean
+    }
 
 }
 
+// MARK: - Network
+extension HintModalVC {
+    private func requestGetHint(search: String) {
+        WordAPI.shared.getHint(search: search){ networkResult in
+            switch networkResult {
+            case .success(let response):
+                if let res = response as? HintResponseModel {
+                    print(res)
+                    //                    UserToken.shared.accessToken = res.accessToken
+                    //                    self.carouselData = res
+                    //                    self.requestGetMumentForTodayData()
+                    // TODO: - 회원가입 성공 알러트 창 띄우기
+                    self.navigationController?.pushViewController(SignInVC(), animated: true)
+                }
+            default:
+                self.makeAlert(title: MessageType.networkError.message)
+            }
+        }
+    }
+    
+}
 // MARK: - UI
 extension HintModalVC {
     private func setLayout() {

@@ -9,8 +9,14 @@ import UIKit
 import SnapKit
 import Then
 
+
+protocol TargetComponentViewDelegate: AnyObject {
+    func hintButtonClicked(korean: String)
+}
+
 class TargetListComponentView: UIView {
     
+    private var delegate: TargetComponentViewDelegate?
     private let koreanButton = UIButton().then{
         if #available(iOS 15.0, *) {
             $0.configuration = .plain()
@@ -87,6 +93,7 @@ class TargetListComponentView: UIView {
     func setButtonActions(){
         koreanButton.press{
             print("힌트 보기")
+            self.delegate?.hintButtonClicked(korean: self.koreanButton.currentTitle ?? "버튼 레이블 오류")
         }
     }
     
@@ -99,6 +106,10 @@ class TargetListComponentView: UIView {
         englishLabel.text = englishLabelText
         koreanButton.backgroundColor = .buttonGray
     }
+    
+    func setDelegate(delegate: TargetComponentViewDelegate){
+            self.delegate = delegate
+        }
     
 }
 
