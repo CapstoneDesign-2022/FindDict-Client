@@ -109,8 +109,9 @@ extension SignUpVC {
             case .success(let response):
                 if let res = response as? SignUpResponseModel {
 //                    UserToken.shared.accessToken = res.accessToken
-                    self.makeAlert(title: MessageType.signUpSuccess.message)
-                    self.navigationController?.pushViewController(SignInVC(), animated: true)
+                    self.makeAlert(title: MessageType.signUpSuccess.message, okAction: {_ in
+                        self.navigationController?.pushViewController(SignInVC(), animated: true)
+                    })
                 }
             default:
                 self.makeAlert(title: MessageType.networkError.message)
