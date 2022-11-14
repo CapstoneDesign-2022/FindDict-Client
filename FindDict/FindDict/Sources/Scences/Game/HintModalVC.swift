@@ -12,6 +12,22 @@ import Then
 
 class HintModalVC: UIViewController {
     // MARK: - Properties
+    private var images: [String] = [] {
+        didSet{
+            print(">>>>>>>>>>>>>>>",images)
+            hintImageView1.load(images[0])
+            hintImageView2.load(images[1])
+            hintImageView3.load(images[2])
+            hintImageView4.load(images[3])
+            //            hintImageView2.load(
+        }
+    }
+    private var korean: String = "" {
+        didSet{
+            requestGetHint(search: korean)
+        }
+    }
+    
     private let modalView = UIView().then{
         $0.backgroundColor = .bgBeige
         $0.layer.shadowRadius = 4
@@ -19,23 +35,29 @@ class HintModalVC: UIViewController {
         $0.layer.shadowColor = UIColor.black.cgColor
         $0.layer.shadowOpacity = 0.25
     }
+    
     private let hintLabel = UILabel().then{
         $0.text = "HINT"
         $0.textColor = .black
         $0.font = .findDictH4R35
     }
+    
     private let closeButton = UIButton().then{
         $0.setImage(UIImage(named: "closeImage"), for: .normal)
     }
+    
     private let hintImageView1 = UIImageView().then{
         $0.image = UIImage(named: "globe")
     }
+    
     private let hintImageView2 = UIImageView().then{
         $0.image = UIImage(named: "globe")
     }
+    
     private let hintImageView3 = UIImageView().then{
         $0.image = UIImage(named: "globe")
     }
+    
     private let hintImageView4 = UIImageView().then{
         $0.image = UIImage(named: "globe")
     }
@@ -72,8 +94,33 @@ class HintModalVC: UIViewController {
             self.dismiss(animated: true, completion: nil)
         }
     }
-
+    
+    func setKoreanText(korean: String){
+        self.korean = korean
+    }
+    
 }
+
+// MARK: - Network
+extension HintModalVC {
+    private func requestGetHint(search: String) {
+        WordAPI.shared.getHint(search: search){ networkResult in
+            switch networkResult {
+            case .success(let response):
+                if let res = response as? HintResponseModel {
+                    self.images = res.images
+                    //                    UserToken.shared.accessToken = res.accessToken
+                } else {
+                    debugPrint(MessageType.modelErrorForDebug.message)
+                }
+            default:
+                self.makeAlert(title: MessageType.networkError.message)
+            }
+        }
+        
+    }
+}
+
 
 // MARK: - UI
 extension HintModalVC {
@@ -92,7 +139,7 @@ extension HintModalVC {
         closeButton.snp.makeConstraints{
             $0.top.equalTo(modalView.snp.top).offset(16)
             $0.trailing.equalTo(modalView.snp.trailing).offset(-20)
-      
+            
         }
         imageStackView.snp.makeConstraints{
             $0.top.equalTo(modalView.snp.top).offset(75)

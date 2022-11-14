@@ -1,8 +1,8 @@
 //
-//  UIImageView+.swift
-//  Instagram Clone Coding
+//  UIImageVIew+.swift
+//  FindDict
 //
-//  Created by 김지민 on 2022/06/27.
+//  Created by 김지민 on 2022/11/14.
 //
 
 import UIKit

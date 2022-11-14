@@ -74,6 +74,7 @@ class GameVC:ViewController {
     private lazy var wordTargets: [TargetListComponentView] = []{
         didSet{
             for wordTarget in wordTargets{
+                wordTarget.setDelegate(delegate: self)
                 targetListContainerView.addArrangedSubview(wordTarget)
             }
         }
@@ -136,11 +137,11 @@ class GameVC:ViewController {
         wordTargets = createdTargets
         
         // 네트워크 통신 테스트
-        let word = CreateWordBodyModel.Word(korean: "한글", english: "영어")
-        let word2 = CreateWordBodyModel.Word(korean: "한글2", english: "영어2")
-        let test = CreateWordBodyModel(words: [word, word2])
-    
-        requestPostWord(data: test)
+//        let word = CreateWordBodyModel.Word(korean: "한글", english: "영어")
+//        let word2 = CreateWordBodyModel.Word(korean: "한글2", english: "영어2")
+//        let test = CreateWordBodyModel(words: [word, word2])
+//    
+//        requestPostWord(data: test)
     }
     
     /// 인식된 객체마다 이에 맞는 버튼을 생성합니다.
@@ -227,6 +228,16 @@ class GameVC:ViewController {
     }
 }
 
+// MARK: - DictionaryCardDelegate
+extension GameVC: TargetComponentViewDelegate {
+    func hintButtonClicked(korean: String) {
+        let hintModalVC = HintModalVC()
+        hintModalVC.setKoreanText(korean: korean)
+        hintModalVC.modalPresentationStyle = .overCurrentContext
+        self.present(hintModalVC, animated: true)
+    }
+}
+
 // MARK: - UI
 extension GameVC {
     func setLayout() {
@@ -300,19 +311,19 @@ extension GameVC {
 
 // MARK: - Network
 extension GameVC {
-    private func requestPostWord(data: CreateWordBodyModel) {
-        WordAPI.shared.postWord(body: data) {
-            networkResult in
-            switch networkResult {
-            case .success(let response):
-                if let res = response as? CreateWordResponseModel {
-                    print(res)
-                }
-            default:
-                self.makeAlert(title: MessageType.networkError.message)
-            }
-        }
-    }
+//    private func requestPostWord(data: CreateWordBodyModel) {
+//        WordAPI.shared.postWord(body: data) {
+//            networkResult in
+//            switch networkResult {
+//            case .success(let response):
+//                if let res = response as? CreateWordResponseModel {
+//                    print(res)
+//                }
+//            default:
+//                self.makeAlert(title: MessageType.networkError.message)
+//            }
+//        }
+//    }
     
 }
 
