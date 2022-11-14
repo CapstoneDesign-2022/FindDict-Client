@@ -5,6 +5,9 @@
 //  Created by 김지민 on 2022/11/10.
 //
 
+import UIKit
+import Alamofire
+
 class WordAPI: BaseAPI {
     static let shared = WordAPI()
     
@@ -54,4 +57,5 @@ class WordAPI: BaseAPI {
 //            }
 //        }
 //    }
+
 }

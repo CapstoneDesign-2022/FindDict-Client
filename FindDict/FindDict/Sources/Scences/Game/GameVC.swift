@@ -79,6 +79,7 @@ class GameVC:ViewController {
             }
         }
     }
+    private let cropImageView = UIImageView()
     
     // TODO: - private으로 만들고 setter만들기
     var image = UIImageView().then{
@@ -148,6 +149,7 @@ class GameVC:ViewController {
         let buttonTitle: String? = prediction.label
         let color: UIColor = labelColor(with: buttonTitle ?? "N/A")
         print(prediction.boundingBox)
+        print(prediction.label)
         print("image.frame",image.frame)
         print("image.bounds",image.bounds)
         //        let scale = CGAffineTransform.identity.scaledBy(x: image.bounds.width, y: image.bounds.height)
@@ -162,7 +164,13 @@ class GameVC:ViewController {
         print("scale",scale)
         let transform = CGAffineTransform(scaleX: 1, y: -1).translatedBy(x: 0, y: -1)
         let bgRect = prediction.boundingBox.applying(transform).applying(scale)
-        
+        print(bgRect)
+        let x = (prediction.boundingBox.origin.x - prediction.boundingBox.size.width/2)*image.frame.size.width
+        let y = (prediction.boundingBox.origin.y - prediction.boundingBox.size.height/2)*image.frame.size.height
+        let width = prediction.boundingBox.size.width * image.frame.size.width
+        let height = prediction.boundingBox.size.height * image.frame.size.height
+        print(x,y,width,height)
+        cropImage(origin: CGPoint(x: x, y: y),size: CGSize(width: width, height: height))
         
         //TODO: 스케일 맞추기
         //        let buttonRect = CGRect(x: prediction.boundingBox.origin.x*500, y: prediction.boundingBox.origin.y*500, width: prediction.boundingBox.width*500, height: prediction.boundingBox.height*500)
@@ -210,6 +218,14 @@ class GameVC:ViewController {
         self.present(guessedRightWordVC, animated: true)
     }
     
+    private func cropImage(origin: CGPoint, size: CGSize){
+        print("origin",origin)
+        print("size",size)
+        let cropRect = CGRect(origin: origin, size: size)
+        let imageRef = image.image?.cgImage!.cropping(to: cropRect);
+        let newImage = UIImage(cgImage: imageRef!, scale: image.image!.scale, orientation: image.image!.imageOrientation)
+        cropImageView.image = newImage
+    }
 }
 
 // MARK: - DictionaryCardDelegate
@@ -225,7 +241,7 @@ extension GameVC: TargetComponentViewDelegate {
 // MARK: - UI
 extension GameVC {
     func setLayout() {
-        view.addSubViews([logoImage, targetListContainerView, image])
+        view.addSubViews([logoImage, targetListContainerView, image, cropImageView])
         logoImage.snp.makeConstraints{
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(17)
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
@@ -241,6 +257,10 @@ extension GameVC {
             $0.top.equalTo(targetListContainerView.snp.bottom).offset(30)
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
             $0.bottom.lessThanOrEqualTo(view.safeAreaLayoutGuide.snp.bottom).inset(50)
+        }
+        cropImageView.snp.makeConstraints{
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(100)
+//            $0.width.equalTo(100)
         }
     }
 }
