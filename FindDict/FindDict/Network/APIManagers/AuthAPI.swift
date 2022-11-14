@@ -58,7 +58,7 @@ class AuthAPI: BaseAPI {
             case .success:
                 guard let statusCode = response.response?.statusCode else { return }
                 guard let data = response.data else { return }
-                let networkResult = self.judgeStatus(by: statusCode, data, ConfirmIdResponseModel.self)
+                let networkResult = self.judgeStatus(by: statusCode, data)
                 completion(networkResult)
             case .failure(let err):
                 print(err.localizedDescription)

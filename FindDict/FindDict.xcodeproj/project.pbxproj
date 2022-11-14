@@ -83,7 +83,7 @@
 
 /* Begin PBXFileReference section */
 		4D0B1E1128E5A9A4007F16DB /* GameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVC.swift; sourceTree = "<group>"; };
-		4D0B1E1328E5AA2C007F16DB /* yolov5m.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = yolov5m.mlmodel; path = ../../../../../../../Downloads/yolov5m.mlmodel; sourceTree = "<group>"; };
+		4D0B1E1328E5AA2C007F16DB /* yolov5m.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = yolov5m.mlmodel; path = "../../../../../../../2022/2022-2/캡스톤 디자인/mlmodel/yolov5m.mlmodel"; sourceTree = "<group>"; };
 		4D0B1E1528E5B213007F16DB /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		4D0B1E1728E6D5BA007F16DB /* DrawingBoundingBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingBoundingBoxView.swift; sourceTree = "<group>"; };
 		4D14BD6728E1B924002B2165 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
@@ -97,7 +97,7 @@
 		4D14BD7628E20B8D002B2165 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		4D6943E32914F11300974B71 /* GuessedRightWordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessedRightWordVC.swift; sourceTree = "<group>"; };
 		4D6943E5291518EF00974B71 /* SpeechButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechButton.swift; sourceTree = "<group>"; };
-		4D8E9F3228F001C00013B7E7 /* yolov7.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = yolov7.mlmodel; path = ../../../../../../../Downloads/yolov7.mlmodel; sourceTree = "<group>"; };
+		4D8E9F3228F001C00013B7E7 /* yolov7.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = yolov7.mlmodel; path = "../../../../../../../2022/2022-2/캡스톤 디자인/mlmodel/yolov7.mlmodel"; sourceTree = "<group>"; };
 		4D9ADC0628E018DB008CF9F3 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		4DA65AAD28E86914002DEFE3 /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
 		4DA65AB228E86A7A002DEFE3 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
