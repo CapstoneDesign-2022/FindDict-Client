@@ -43,6 +43,8 @@
 		4DB7B48D291BD803000485E1 /* UserToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB7B48C291BD803000485E1 /* UserToken.swift */; };
 		4DB7B493291BD97F000485E1 /* SignUpBodyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB7B492291BD97F000485E1 /* SignUpBodyModel.swift */; };
 		4DB7B495291BDA33000485E1 /* SignUpResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB7B494291BDA33000485E1 /* SignUpResponseModel.swift */; };
+		4DB7B499291C08BF000485E1 /* DictionaryDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB7B498291C08BF000485E1 /* DictionaryDetailVC.swift */; };
+		4DB7B49B291C08C6000485E1 /* DictionaryDetailCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB7B49A291C08C6000485E1 /* DictionaryDetailCVC.swift */; };
 		4DB7B49D291C1DED000485E1 /* WordListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB7B49C291C1DED000485E1 /* WordListModel.swift */; };
 		4DB7B49F291C1E01000485E1 /* WordListResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB7B49E291C1E01000485E1 /* WordListResponseModel.swift */; };
 		4DB7B4A1291C200F000485E1 /* WordAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB7B4A0291C200F000485E1 /* WordAPI.swift */; };
@@ -115,6 +117,8 @@
 		4DB7B48C291BD803000485E1 /* UserToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserToken.swift; sourceTree = "<group>"; };
 		4DB7B492291BD97F000485E1 /* SignUpBodyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBodyModel.swift; sourceTree = "<group>"; };
 		4DB7B494291BDA33000485E1 /* SignUpResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResponseModel.swift; sourceTree = "<group>"; };
+		4DB7B498291C08BF000485E1 /* DictionaryDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryDetailVC.swift; sourceTree = "<group>"; };
+		4DB7B49A291C08C6000485E1 /* DictionaryDetailCVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryDetailCVC.swift; sourceTree = "<group>"; };
 		4DB7B49C291C1DED000485E1 /* WordListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordListModel.swift; sourceTree = "<group>"; };
 		4DB7B49E291C1E01000485E1 /* WordListResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordListResponseModel.swift; sourceTree = "<group>"; };
 		4DB7B4A0291C200F000485E1 /* WordAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordAPI.swift; sourceTree = "<group>"; };
@@ -415,6 +419,8 @@
 		F860B79B28E6CF870032A39B /* Dictionary */ = {
 			isa = PBXGroup;
 			children = (
+				4DB7B49A291C08C6000485E1 /* DictionaryDetailCVC.swift */,
+				4DB7B498291C08BF000485E1 /* DictionaryDetailVC.swift */,
 				F860B79C28E6CFBC0032A39B /* DictionaryVC.swift */,
 				F860B79E28E7D0AB0032A39B /* DictionaryTVC.swift */,
 				F860B7A228E835860032A39B /* DictionaryCard.swift */,
@@ -560,11 +566,13 @@
 				4DB7B48D291BD803000485E1 /* UserToken.swift in Sources */,
 				4DB7B4A3291C201B000485E1 /* WordService.swift in Sources */,
 				F8DB7A5A28DB1D3100EE3D66 /* BeforeSignInVC.swift in Sources */,
+				4DB7B49B291C08C6000485E1 /* DictionaryDetailCVC.swift in Sources */,
 				4D0B1E1828E6D5BA007F16DB /* DrawingBoundingBoxView.swift in Sources */,
 				4DBDEC2F28D4F2B3002252B3 /* UIViewController+.swift in Sources */,
 				F8560AC628EEF17800C52203 /* GameTutorialCVCModel.swift in Sources */,
 				4DA65AC728E86C46002DEFE3 /* SignInBodyModel.swift in Sources */,
 				F82979B728ED5C030031BBC3 /* ModalBaseVC.swift in Sources */,
+				4DB7B499291C08BF000485E1 /* DictionaryDetailVC.swift in Sources */,
 				F8E32BB6290FCBB2009B0749 /* GameResultButton.swift in Sources */,
 				4DEE7166290F53EE000C5D9A /* WordDictionary.swift in Sources */,
 				4D14BD6828E1B924002B2165 /* UIButton+.swift in Sources */,
@@ -744,8 +752,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -777,8 +785,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
