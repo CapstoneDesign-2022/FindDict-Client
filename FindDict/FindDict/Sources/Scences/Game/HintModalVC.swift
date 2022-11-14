@@ -12,11 +12,22 @@ import Then
 
 class HintModalVC: UIViewController {
     // MARK: - Properties
+    private var images: [String] = [] {
+        didSet{
+            print(">>>>>>>>>>>>>>>",images)
+            hintImageView1.load(images[0])
+            hintImageView2.load(images[1])
+            hintImageView3.load(images[2])
+            hintImageView4.load(images[3])
+            //            hintImageView2.load(
+        }
+    }
     private var korean: String = "" {
         didSet{
             requestGetHint(search: korean)
         }
     }
+    
     private let modalView = UIView().then{
         $0.backgroundColor = .bgBeige
         $0.layer.shadowRadius = 4
@@ -87,7 +98,7 @@ class HintModalVC: UIViewController {
     func setKoreanText(korean: String){
         self.korean = korean
     }
-
+    
 }
 
 // MARK: - Network
@@ -97,20 +108,20 @@ extension HintModalVC {
             switch networkResult {
             case .success(let response):
                 if let res = response as? HintResponseModel {
-                    print(res)
+                    self.images = res.images
                     //                    UserToken.shared.accessToken = res.accessToken
-                    //                    self.carouselData = res
-                    //                    self.requestGetMumentForTodayData()
-                    // TODO: - 회원가입 성공 알러트 창 띄우기
-                    self.navigationController?.pushViewController(SignInVC(), animated: true)
+                } else {
+                    debugPrint(MessageType.modelErrorForDebug.message)
                 }
             default:
                 self.makeAlert(title: MessageType.networkError.message)
             }
         }
+        
     }
-    
 }
+
+
 // MARK: - UI
 extension HintModalVC {
     private func setLayout() {
@@ -128,7 +139,7 @@ extension HintModalVC {
         closeButton.snp.makeConstraints{
             $0.top.equalTo(modalView.snp.top).offset(16)
             $0.trailing.equalTo(modalView.snp.trailing).offset(-20)
-      
+            
         }
         imageStackView.snp.makeConstraints{
             $0.top.equalTo(modalView.snp.top).offset(75)
