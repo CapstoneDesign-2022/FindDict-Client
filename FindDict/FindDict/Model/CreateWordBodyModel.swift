@@ -6,12 +6,11 @@
 //
 
 import Foundation
+import UIKit
 
 struct CreateWordBodyModel: Codable {
-    var words: [Word]
-    
-    struct Word: Codable {
-        var korean: String
-        var english: String
+    var english: String
+    var image: UIImage? {
+        return UIImage(named: english)
     }
 }

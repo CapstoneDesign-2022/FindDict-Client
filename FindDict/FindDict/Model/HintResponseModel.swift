@@ -9,7 +9,7 @@ import Foundation
 
 struct HintResponseModel: Codable {
     
-    let images: [String] = []
+    let images: [String]
 
     enum CodingKeys: String, CodingKey {
         case images = "images"

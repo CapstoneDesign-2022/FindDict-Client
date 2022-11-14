@@ -6,6 +6,7 @@
 //
 
 import Alamofire
+import UIKit
 
 enum WordService {
     case getWordList
@@ -54,7 +55,20 @@ extension WordService: TargetType {
         case .getHint(let search):
             return .query(["search": search])
         case .postWord(let body):
-            return .requestBody(["words": body.words])
+            return .requestBody(["english": body.english])
         }
     }
+    
+//    var multipart: MultipartFormData {
+//        switch self {
+//        case .postWord(let body, imageData):
+//            for (key, value) in body {
+//                MultipartFormData.append("\(value)")
+//            }
+//            if let image = imageData?.pngData() {
+//                multipartFormData.append(image, withName: "image",fileName: "\(image).png", mimeType: "image/png")
+//            }
+//            return multipartFormData
+//        }
+//    }
 }

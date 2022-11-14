@@ -6,21 +6,16 @@
 //
 
 import Foundation
+import UIKit
 
 struct CreateWordResponseModel: Codable {
-    let words: [Word] = []
+    let english: String
+    var image: UIImage? {
+        return UIImage(named: english)
+    }
 
     enum CodingKeys: String, CodingKey {
-        case words = "words"
-    }
-    
-    struct Word: Codable {
-        let korean: String
-        let english: String
-
-        enum CodingKeys: String, CodingKey {
-            case korean = "korean"
-            case english = "english"
-        }
+        case english = "english"
+        case image = "image"
     }
 }
