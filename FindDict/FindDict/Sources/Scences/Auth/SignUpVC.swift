@@ -84,6 +84,7 @@ class SignUpVC: AuthBaseVC {
     
 }
 
+//MARK: - Network
 extension SignUpVC {
     private func requestConfirmId() {
         AuthAPI.shared.confirmId(user_id: self.idTextField.text ?? "") { NetworkResult in
@@ -98,6 +99,22 @@ extension SignUpVC {
                 self.passwordVerificationLabel.textColor = .systemRed
             }
             
+        }
+    }
+    
+    private func requestPostSignUp(data: SignUpBodyModel) {
+        AuthAPI.shared.postSignUp(body: data) { networkResult in
+            switch networkResult {
+                
+            case .success(let response):
+                if let res = response as? SignUpResponseModel {
+//                    UserToken.shared.accessToken = res.accessToken
+                    self.makeAlert(title: MessageType.signUpSuccess.message)
+                    self.navigationController?.pushViewController(SignInVC(), animated: true)
+                }
+            default:
+                self.makeAlert(title: MessageType.networkError.message)
+            }
         }
     }
 }
@@ -188,26 +205,5 @@ extension SignUpVC: UITextFieldDelegate{
     @objc
     func keyboardWillHide(_ sender:Notification) {
         self.view.frame.origin.y = 0 
-    }
-}
-
-
-extension SignUpVC{
-    private func requestPostSignUp(data: SignUpBodyModel) {
-        AuthAPI.shared.postSignUp(body: data) { networkResult in
-            switch networkResult {
-                
-            case .success(let response):
-                if let res = response as? SignUpResponseModel {
-//                    UserToken.shared.accessToken = res.accessToken
-//                    self.carouselData = res
-//                    self.requestGetMumentForTodayData()
-                    self.makeAlert(title: MessageType.signUpSuccess.message)
-                    self.navigationController?.pushViewController(SignInVC(), animated: true)
-                }
-            default:
-                self.makeAlert(title: MessageType.networkError.message)
-            }
-        }
     }
 }

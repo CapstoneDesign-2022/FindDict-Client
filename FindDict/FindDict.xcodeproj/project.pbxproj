@@ -38,7 +38,6 @@
 		4DA65AC428E86B8C002DEFE3 /* EvenLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA65AC328E86B8C002DEFE3 /* EvenLogger.swift */; };
 		4DA65AC728E86C46002DEFE3 /* SignInBodyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA65AC628E86C46002DEFE3 /* SignInBodyModel.swift */; };
 		4DA65AC928E86CE0002DEFE3 /* SignInResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA65AC828E86CE0002DEFE3 /* SignInResponseModel.swift */; };
-		4DAA326B2920CCAA00400008 /* ConfirmIdResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DAA326A2920CCAA00400008 /* ConfirmIdResponseModel.swift */; };
 		4DB7B48B291BD338000485E1 /* MessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB7B48A291BD338000485E1 /* MessageType.swift */; };
 		4DB7B48D291BD803000485E1 /* UserToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB7B48C291BD803000485E1 /* UserToken.swift */; };
 		4DB7B493291BD97F000485E1 /* SignUpBodyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB7B492291BD97F000485E1 /* SignUpBodyModel.swift */; };
@@ -110,7 +109,6 @@
 		4DA65AC328E86B8C002DEFE3 /* EvenLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvenLogger.swift; sourceTree = "<group>"; };
 		4DA65AC628E86C46002DEFE3 /* SignInBodyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInBodyModel.swift; sourceTree = "<group>"; };
 		4DA65AC828E86CE0002DEFE3 /* SignInResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInResponseModel.swift; sourceTree = "<group>"; };
-		4DAA326A2920CCAA00400008 /* ConfirmIdResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmIdResponseModel.swift; sourceTree = "<group>"; };
 		4DB7B48A291BD338000485E1 /* MessageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageType.swift; sourceTree = "<group>"; };
 		4DB7B48C291BD803000485E1 /* UserToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserToken.swift; sourceTree = "<group>"; };
 		4DB7B492291BD97F000485E1 /* SignUpBodyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBodyModel.swift; sourceTree = "<group>"; };
@@ -243,7 +241,6 @@
 				4DB7B494291BDA33000485E1 /* SignUpResponseModel.swift */,
 				4DB7B49C291C1DED000485E1 /* WordListModel.swift */,
 				4DB7B49E291C1E01000485E1 /* WordListResponseModel.swift */,
-				4DAA326A2920CCAA00400008 /* ConfirmIdResponseModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -546,7 +543,6 @@
 				4DBDEC1428D4EFE2002252B3 /* AppDelegate.swift in Sources */,
 				4DF76EB8290A61FF00AA79D2 /* GameResultButton.swift in Sources */,
 				4D14BD6A28E1C0F9002B2165 /* TextField.swift in Sources */,
-				4DAA326B2920CCAA00400008 /* ConfirmIdResponseModel.swift in Sources */,
 				F8DB7A6028DB2E8600EE3D66 /* AuthBaseVC.swift in Sources */,
 				4DA65AB828E86ABB002DEFE3 /* GenericResponse.swift in Sources */,
 				4D6943E6291518EF00974B71 /* SpeechButton.swift in Sources */,
