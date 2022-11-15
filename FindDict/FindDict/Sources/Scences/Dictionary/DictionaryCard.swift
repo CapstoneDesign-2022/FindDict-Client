@@ -16,7 +16,6 @@ protocol DictionaryCardDelegate: AnyObject {
 class DictionaryCard: UIView {
     
     // MARK: - Properties
-//    private var dictionaryDetailData: [WordDetailResponseModel.ImageURL]?
     private var cellRowIndex: Int = 0
     private var delegate: DictionaryCardDelegate?
     private let englishWordLabel = UILabel().then{
@@ -55,9 +54,7 @@ class DictionaryCard: UIView {
     
     private func setButtonActions(){
         pictureButton.press {
-//            self.requestGetWordDetail()
             self.delegate?.wordDetailViewButtonClicked(index: self.cellRowIndex)
-            
         }
     }
     

@@ -263,7 +263,6 @@ extension DictionaryDetailVC : UICollectionViewDelegate, UICollectionViewDataSou
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DictionaryDetailCVC", for: indexPath)
         if let cell = cell as? DictionaryDetailCVC {
-//            cell.setData(increasedDataSource[indexPath.row],index:indexPath.row%3+1)
             cell.setData(increasedDataSource[indexPath.row],index:indexPath.row%3+1)
         }
         
