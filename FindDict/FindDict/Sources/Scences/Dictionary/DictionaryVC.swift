@@ -12,7 +12,7 @@ import Then
 final class DictionaryVC: UIViewController {
     
     // MARK: - Properties
-    private var dictionaryData: [String]?
+    private var dictionaryData: [String] = []
 
     private let titleView = UIView().then{
         $0.backgroundColor = .modalButtonDarkYellow
@@ -154,7 +154,7 @@ extension DictionaryVC: DictionaryCardDelegate {
     func wordDetailViewButtonClicked(index: Int) {
         let dictionaryDetailVC = DictionaryDetailVC()
 
-        dictionaryDetailVC.setWordLabelText(english: dictionaryData[index].english)
+        dictionaryDetailVC.setWordLabelText(english: dictionaryData[index])
 
         dictionaryDetailVC.modalPresentationStyle = .overCurrentContext
         self.present(dictionaryDetailVC, animated: true)
