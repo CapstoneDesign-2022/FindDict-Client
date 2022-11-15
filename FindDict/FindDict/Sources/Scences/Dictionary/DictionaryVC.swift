@@ -12,7 +12,8 @@ import Then
 final class DictionaryVC: UIViewController {
     
     // MARK: - Properties
-    private var dictionaryData: [WordListResponseModel.Word] = []
+    private var dictionaryData: [String]?
+
     private let titleView = UIView().then{
         $0.backgroundColor = .modalButtonDarkYellow
         $0.layer.shadowRadius = 4
@@ -75,7 +76,8 @@ extension DictionaryVC {
             switch networkResult {
             case .success(let response):
                 if let res = response as? WordListResponseModel {
-                    self.dictionaryData = res.words
+                    let removeDuplicateWords: Set = Set(res.english)
+                    self.dictionaryData = Array(removeDuplicateWords)
                     self.dictionaryTV.reloadData()
                 }
                 
@@ -151,7 +153,9 @@ extension DictionaryVC: UITableViewDelegate {
 extension DictionaryVC: DictionaryCardDelegate {
     func wordDetailViewButtonClicked(index: Int) {
         let dictionaryDetailVC = DictionaryDetailVC()
+
         dictionaryDetailVC.setWordLabelText(english: dictionaryData[index].english)
+
         dictionaryDetailVC.modalPresentationStyle = .overCurrentContext
         self.present(dictionaryDetailVC, animated: true)
     }

@@ -16,8 +16,8 @@ class DictionaryDetailCVC: UICollectionViewCell {
     
     
     //MARK: - Functions
-    func setData(_ cellData: UIImage, index: Int){
-        wordImageView.image = cellData
+    func setData(_ cellData: String, index: Int){
+        wordImageView.load(cellData)
     }
     
     // MARK: - View Life Cycle

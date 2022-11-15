@@ -20,6 +20,10 @@
 		4D14BD7928E20CA4002B2165 /* NotoSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D14BD7428E20A8C002B2165 /* NotoSans-Medium.ttf */; };
 		4D14BD7A28E20CA6002B2165 /* NotoSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D14BD7528E20A8C002B2165 /* NotoSans-SemiBold.ttf */; };
 		4D14BD7B28E20CA8002B2165 /* NotoSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D14BD7228E20A8C002B2165 /* NotoSans-Regular.ttf */; };
+		4D2FC6D9292264EE00FAB324 /* CreateWordBodyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2FC6D8292264EE00FAB324 /* CreateWordBodyModel.swift */; };
+		4D2FC6DB292264F400FAB324 /* CreateWordResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2FC6DA292264F400FAB324 /* CreateWordResponseModel.swift */; };
+		4D2FC6DD29226A4500FAB324 /* HintResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2FC6DC29226A4500FAB324 /* HintResponseModel.swift */; };
+		4D19F2FE2922579B002696D4 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D19F2FD2922579A002696D4 /* UIImageView+.swift */; };
 		4D53A66A28DAF9C0000E2AA2 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4D53A66928DAF9C0000E2AA2 /* SnapKit */; };
 		4D53A66D28DAF9C8000E2AA2 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 4D53A66C28DAF9C8000E2AA2 /* Then */; };
 		4D6943E42914F11300974B71 /* GuessedRightWordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6943E32914F11300974B71 /* GuessedRightWordVC.swift */; };
@@ -38,6 +42,8 @@
 		4DA65AC428E86B8C002DEFE3 /* EvenLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA65AC328E86B8C002DEFE3 /* EvenLogger.swift */; };
 		4DA65AC728E86C46002DEFE3 /* SignInBodyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA65AC628E86C46002DEFE3 /* SignInBodyModel.swift */; };
 		4DA65AC928E86CE0002DEFE3 /* SignInResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA65AC828E86CE0002DEFE3 /* SignInResponseModel.swift */; };
+		4DAA3267291E11F500400008 /* WordDetailResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DAA3266291E11F500400008 /* WordDetailResponseModel.swift */; };
+		4DAA326D292258B600400008 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DAA326C292258B600400008 /* UIImageView+.swift */; };
 		4DB7B48B291BD338000485E1 /* MessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB7B48A291BD338000485E1 /* MessageType.swift */; };
 		4DB7B48D291BD803000485E1 /* UserToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB7B48C291BD803000485E1 /* UserToken.swift */; };
 		4DB7B493291BD97F000485E1 /* SignUpBodyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB7B492291BD97F000485E1 /* SignUpBodyModel.swift */; };
@@ -84,7 +90,7 @@
 
 /* Begin PBXFileReference section */
 		4D0B1E1128E5A9A4007F16DB /* GameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVC.swift; sourceTree = "<group>"; };
-		4D0B1E1328E5AA2C007F16DB /* yolov5m.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = yolov5m.mlmodel; path = ../../../../../../../../Downloads/yolov5m.mlmodel; sourceTree = "<group>"; };
+		4D0B1E1328E5AA2C007F16DB /* yolov5m.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = yolov5m.mlmodel; path = ../../../../../../../Downloads/yolov5m.mlmodel; sourceTree = "<group>"; };
 		4D0B1E1528E5B213007F16DB /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		4D0B1E1728E6D5BA007F16DB /* DrawingBoundingBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingBoundingBoxView.swift; sourceTree = "<group>"; };
 		4D14BD6728E1B924002B2165 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
@@ -96,9 +102,13 @@
 		4D14BD7428E20A8C002B2165 /* NotoSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-Medium.ttf"; sourceTree = "<group>"; };
 		4D14BD7528E20A8C002B2165 /* NotoSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		4D14BD7628E20B8D002B2165 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
+		4D2FC6D8292264EE00FAB324 /* CreateWordBodyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateWordBodyModel.swift; sourceTree = "<group>"; };
+		4D2FC6DA292264F400FAB324 /* CreateWordResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateWordResponseModel.swift; sourceTree = "<group>"; };
+		4D2FC6DC29226A4500FAB324 /* HintResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HintResponseModel.swift; sourceTree = "<group>"; };
+		4D19F2FD2922579A002696D4 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		4D6943E32914F11300974B71 /* GuessedRightWordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessedRightWordVC.swift; sourceTree = "<group>"; };
 		4D6943E5291518EF00974B71 /* SpeechButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechButton.swift; sourceTree = "<group>"; };
-		4D8E9F3228F001C00013B7E7 /* yolov7.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = yolov7.mlmodel; path = ../../../../../../../../Downloads/yolov7.mlmodel; sourceTree = "<group>"; };
+		4D8E9F3228F001C00013B7E7 /* yolov7.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = yolov7.mlmodel; path = ../../../../../../../Downloads/yolov7.mlmodel; sourceTree = "<group>"; };
 		4D9ADC0628E018DB008CF9F3 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		4DA65AAD28E86914002DEFE3 /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
 		4DA65AB228E86A7A002DEFE3 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
@@ -111,6 +121,8 @@
 		4DA65AC328E86B8C002DEFE3 /* EvenLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvenLogger.swift; sourceTree = "<group>"; };
 		4DA65AC628E86C46002DEFE3 /* SignInBodyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInBodyModel.swift; sourceTree = "<group>"; };
 		4DA65AC828E86CE0002DEFE3 /* SignInResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInResponseModel.swift; sourceTree = "<group>"; };
+		4DAA3266291E11F500400008 /* WordDetailResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDetailResponseModel.swift; sourceTree = "<group>"; };
+		4DAA326C292258B600400008 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
 		4DB7B48A291BD338000485E1 /* MessageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageType.swift; sourceTree = "<group>"; };
 		4DB7B48C291BD803000485E1 /* UserToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserToken.swift; sourceTree = "<group>"; };
 		4DB7B492291BD97F000485E1 /* SignUpBodyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpBodyModel.swift; sourceTree = "<group>"; };
@@ -240,11 +252,16 @@
 			isa = PBXGroup;
 			children = (
 				4DA65AC628E86C46002DEFE3 /* SignInBodyModel.swift */,
+				4DAA3266291E11F500400008 /* WordDetailResponseModel.swift */,
 				4DB7B492291BD97F000485E1 /* SignUpBodyModel.swift */,
 				4DA65AC828E86CE0002DEFE3 /* SignInResponseModel.swift */,
 				4DB7B494291BDA33000485E1 /* SignUpResponseModel.swift */,
+				4D2FC6D8292264EE00FAB324 /* CreateWordBodyModel.swift */,
+				4D2FC6DA292264F400FAB324 /* CreateWordResponseModel.swift */,
+				4D2FC6DC29226A4500FAB324 /* HintResponseModel.swift */,
 				4DB7B49C291C1DED000485E1 /* WordListModel.swift */,
 				4DB7B49E291C1E01000485E1 /* WordListResponseModel.swift */,
+				4D19F2FB29225532002696D4 /* HintResponseModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -329,8 +346,10 @@
 				F8823AA228E022CC00798374 /* UITextField+.swift */,
 				4D14BD6728E1B924002B2165 /* UIButton+.swift */,
 				4D14BD7628E20B8D002B2165 /* UIFont+.swift */,
+				4D19F2FD2922579A002696D4 /* UIImageView+.swift */,
 				4D0B1E1528E5B213007F16DB /* UIImage+.swift */,
 				F860B7A028E832DB0032A39B /* UITableViewCell+.swift */,
+				4DAA326C292258B600400008 /* UIImageView+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -534,22 +553,27 @@
 				4D0B1E1628E5B213007F16DB /* UIImage+.swift in Sources */,
 				4DB7B49D291C1DED000485E1 /* WordListModel.swift in Sources */,
 				4D8E9F3328F001C00013B7E7 /* yolov7.mlmodel in Sources */,
+				4D2FC6DD29226A4500FAB324 /* HintResponseModel.swift in Sources */,
 				4DBDEC1828D4EFE2002252B3 /* ViewController.swift in Sources */,
 				4DB7B493291BD97F000485E1 /* SignUpBodyModel.swift in Sources */,
+				4D2FC6D9292264EE00FAB324 /* CreateWordBodyModel.swift in Sources */,
 				4D14BD7728E20B8D002B2165 /* UIFont+.swift in Sources */,
 				4DB7B49F291C1E01000485E1 /* WordListResponseModel.swift in Sources */,
 				4DA65ABA28E86AC8002DEFE3 /* NetworkConstants.swift in Sources */,
 				4DB7B48B291BD338000485E1 /* MessageType.swift in Sources */,
 				F8DB7A5E28DB29F700EE3D66 /* UIColor+.swift in Sources */,
 				F8560AC228EEF11B00C52203 /* GameTutorialVC.swift in Sources */,
+				4DAA3267291E11F500400008 /* WordDetailResponseModel.swift in Sources */,
 				F82979C128EEC3A40031BBC3 /* GameResultFailVC.swift in Sources */,
 				F8823AA728E5740F00798374 /* MainVC.swift in Sources */,
 				F860B7A328E835860032A39B /* DictionaryCard.swift in Sources */,
+				4D19F2FE2922579B002696D4 /* UIImageView+.swift in Sources */,
 				F8E32BB4290FCAB9009B0749 /* HintModalVC.swift in Sources */,
 				4DBDEC1428D4EFE2002252B3 /* AppDelegate.swift in Sources */,
 				4DF76EB8290A61FF00AA79D2 /* GameResultButton.swift in Sources */,
 				4D14BD6A28E1C0F9002B2165 /* TextField.swift in Sources */,
 				F8DB7A6028DB2E8600EE3D66 /* AuthBaseVC.swift in Sources */,
+				4D2FC6DB292264F400FAB324 /* CreateWordResponseModel.swift in Sources */,
 				4DA65AB828E86ABB002DEFE3 /* GenericResponse.swift in Sources */,
 				4D6943E6291518EF00974B71 /* SpeechButton.swift in Sources */,
 				4D0B1E1228E5A9A4007F16DB /* GameVC.swift in Sources */,
@@ -567,6 +591,8 @@
 				4DBDEC2F28D4F2B3002252B3 /* UIViewController+.swift in Sources */,
 				F8560AC628EEF17800C52203 /* GameTutorialCVCModel.swift in Sources */,
 				4DA65AC728E86C46002DEFE3 /* SignInBodyModel.swift in Sources */,
+				4D19F2FC29225532002696D4 /* HintResponseModel.swift in Sources */,
+				4DAA326D292258B600400008 /* UIImageView+.swift in Sources */,
 				F82979B728ED5C030031BBC3 /* ModalBaseVC.swift in Sources */,
 				4DB7B499291C08BF000485E1 /* DictionaryDetailVC.swift in Sources */,
 				F8E32BB6290FCBB2009B0749 /* GameResultButton.swift in Sources */,

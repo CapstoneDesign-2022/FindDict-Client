@@ -68,6 +68,7 @@ class DictionaryCard: UIView {
     }
 }
 
+
 // MARK: - UI
 extension DictionaryCard {
     private func setLayout(){
