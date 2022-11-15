@@ -118,7 +118,8 @@ extension SignInVC{
                     print(res)
                     UserToken.shared.accessToken = res.accessToken
                     self.makeAlert(title: MessageType.signInSuccess.message, okAction: {_ in
-                        self.navigationController?.pushViewController(MainVC(), animated: true)
+                        let navigationController = UINavigationController(rootViewController: MainVC())
+                        self.view.window?.rootViewController = navigationController
                     })
                 }
             default:
