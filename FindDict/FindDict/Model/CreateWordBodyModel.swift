@@ -10,5 +10,4 @@ import UIKit
 
 struct CreateWordBodyModel: Codable {
     var english: String
-//    var image: UIImage
 }

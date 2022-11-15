@@ -117,14 +117,8 @@ class GameVC:ViewController {
         super.viewDidLoad()
         view.backgroundColor = .bgBeige
         setLayout()
-//        requestPostCreateWord(data: CreateWordBodyModel(words: ))
     }
-//
-//    override func viewDidDisappear(_ animated: Bool) {
-//        super.viewDidDisappear(true)
-//
-//    }
-//
+
     // MARK: - Functions
     func putButtons(with predictions: [VNRecognizedObjectObservation]) {
         var createdButtons:[UIButton]=[]
@@ -143,13 +137,6 @@ class GameVC:ViewController {
             
         }
         wordTargets = createdTargets
-        
-        // 네트워크 통신 테스트
-//        let word = CreateWordBodyModel.Word(korean: "한글", english: "영어")
-//        let word2 = CreateWordBodyModel.Word(korean: "한글2", english: "영어2")
-//        let test = CreateWordBodyModel(words: [word, word2])
-//
-//        requestPostWord(data: test)
     }
     
     /// 인식된 객체마다 이에 맞는 버튼을 생성합니다.

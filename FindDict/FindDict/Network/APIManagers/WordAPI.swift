@@ -44,48 +44,19 @@ class WordAPI: BaseAPI {
     }
     /// [POST] 단어 추가
     func postWord(body: CreateWordBodyModel, image: UIImage, completion: @escaping (NetworkResult<Any>) -> Void) {
-//        let url = "/word/new"
-//        let header: HTTPHeaders = ["Content-Type": "multipart/form-data"]
-        
-//        AFmanager.upload(multipartFormData: { multipartFormData in
-//            if let image = imageData?.pngData() {
-//                multipartFormData.append(image, withName: "image", fileName: "\(image).png", mimeType: "image/png")
-//            }
-//            for (key, value) in body {
-//                multipartFormData.append("\(value.english)".data(using: .utf8), withName: "english")
-//            }
-//        }, to: url, usingThreshold: UInt64.init(), method: .post, headers: .multiPartWithToken).response { response in
-//            switch response.result {
-//            case .success:
-//                guard let statusCode = response.response?.statusCode else { return }
-//                guard let data = response.data else { return }
-//                let networkResult = self.judgeStatus(by: statusCode, data, CreateWordResponseModel.self)
-//                completion(networkResult)
-//            case .failure(let err):
-//                print(err.localizedDescription)
-//            }
-//        }
-        
-        
-//        AFmanager.request(WordService.postWord(body: body)).responseData { response in
-            
-            
         AFmanager.upload(multipartFormData: WordService.postWord(body: body,
-                                                                image: image).multipart,
-                             with: WordService.postWord(body: body,
-                                                        image: image)).responseData { response in
+                                                                 image: image).multipart,
+                         with: WordService.postWord(body: body,
+                                                    image: image)).responseData { response in
             switch response.result {
             case .success:
                 guard let statusCode = response.response?.statusCode else { return }
                 guard let data = response.data else { return }
                 let networkResult = self.judgeStatus(by: statusCode, data,CreateWordResponseModel.self)
-                print("sdfsdf", networkResult)
                 completion(networkResult)
             case .failure(let err):
                 print(err.localizedDescription)
             }
         }
     }
-    
-    
 }
