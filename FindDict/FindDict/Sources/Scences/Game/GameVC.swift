@@ -117,6 +117,13 @@ class GameVC:ViewController {
 //        requestPostCreateWord(data: CreateWordBodyModel(words: ))
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+        for word in predictedObjectLableSet{
+            requestPostWord(data: CreateWordBodyModel(english: word, image: cropImageView.image ?? "http:\/\/shopping.phinf.naver.net\/main_3470173\/34701736383.20220915162703.jpg"))
+        }
+    }
+    
     // MARK: - Functions
     func putButtons(with predictions: [VNRecognizedObjectObservation]) {
         var createdButtons:[UIButton]=[]
@@ -140,7 +147,7 @@ class GameVC:ViewController {
 //        let word = CreateWordBodyModel.Word(korean: "한글", english: "영어")
 //        let word2 = CreateWordBodyModel.Word(korean: "한글2", english: "영어2")
 //        let test = CreateWordBodyModel(words: [word, word2])
-//    
+//
 //        requestPostWord(data: test)
     }
     
@@ -148,10 +155,10 @@ class GameVC:ViewController {
     func createButton(prediction: VNRecognizedObjectObservation)-> UIButton {
         let buttonTitle: String? = prediction.label
         let color: UIColor = labelColor(with: buttonTitle ?? "N/A")
-        print(prediction.boundingBox)
-        print(prediction.label)
-        print("image.frame",image.frame)
-        print("image.bounds",image.bounds)
+//        print(prediction.boundingBox)
+//        print(prediction.label)
+//        print("image.frame",image.frame)
+//        print("image.bounds",image.bounds)
         //        let scale = CGAffineTransform.identity.scaledBy(x: image.bounds.width, y: image.bounds.height)
         //        print("scale",scale)
         //        let transform = CGAffineTransform(scaleX: 1, y: -1).translatedBy(x: 0, y: -1)
