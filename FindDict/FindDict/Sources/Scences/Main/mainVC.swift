@@ -21,11 +21,11 @@ class MainVC: UIViewController {
     }
     
     lazy var buttonStackView = UIStackView(arrangedSubviews: [gameRuleButton, dictionaryButton]).then {
-            $0.axis = .horizontal
-            $0.spacing = 66
-            $0.distribution = .fillEqually
-        }
-
+        $0.axis = .horizontal
+        $0.spacing = 66
+        $0.distribution = .fillEqually
+    }
+    
     private let gameRuleButton = MainButton().then{
         $0.backgroundColor = .buttonYellow
         $0.setTitle("게임 방법", for: .normal)
@@ -34,7 +34,7 @@ class MainVC: UIViewController {
         $0.backgroundColor = .buttonYellow
         $0.setTitle("단어장", for: .normal)
     }
-
+    
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()

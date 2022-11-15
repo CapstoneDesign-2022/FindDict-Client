@@ -9,12 +9,12 @@ import UIKit
 import SnapKit
 import Then
 
-class DictionaryVC: UIViewController {
+final class DictionaryVC: UIViewController {
     
     // MARK: - Properties
     private var dictionaryData: [WordListResponseModel.Word] = []
     private let titleView = UIView().then{
-        $0.backgroundColor = .white
+        $0.backgroundColor = .modalButtonDarkYellow
         $0.layer.shadowRadius = 4
         $0.layer.shadowOffset = CGSize(width: 0, height: 4)
         $0.layer.borderWidth = 1
@@ -43,11 +43,17 @@ class DictionaryVC: UIViewController {
     private func setTV() {
         dictionaryTV.delegate = self
         dictionaryTV.dataSource = self
-        dictionaryTV.showsVerticalScrollIndicator = false
+        dictionaryTV.separatorStyle = .none
+        dictionaryTV.showsVerticalScrollIndicator = true
         dictionaryTV.register(DictionaryTVC.self, forCellReuseIdentifier: "DictionaryTVC")
     }
     
     // MARK: - View Life Cycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        requestGetWordList()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
@@ -56,12 +62,28 @@ class DictionaryVC: UIViewController {
         view.backgroundColor = .bgBeige
     }
     
-    func setButtonActions(){
+    private func setButtonActions(){
         homeButton.press{
             self.navigationController?.popToRootViewController(animated: false)
         }
     }
-    
+}
+
+extension DictionaryVC {
+    private func requestGetWordList() {
+        WordAPI.shared.getWordList { networkResult in
+            switch networkResult {
+            case .success(let response):
+                if let res = response as? WordListResponseModel {
+                    self.dictionaryData = res.words
+                    self.dictionaryTV.reloadData()
+                }
+                
+            default:
+                self.makeAlert(title: MessageType.networkError.message)
+            }
+        }
+    }
 }
 
 // MARK: - UI
@@ -72,9 +94,9 @@ extension DictionaryVC {
         
         titleView.snp.makeConstraints{
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(52)
-            $0.width.equalTo(601)
-            $0.height.equalTo(119)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
+            $0.width.equalTo(400)
+            $0.height.equalTo(100)
         }
         
         titleLabel.snp.makeConstraints{
@@ -83,24 +105,23 @@ extension DictionaryVC {
         }
         
         dictionaryTV.snp.makeConstraints{
-            $0.top.equalTo(titleView.snp.bottom).offset(97)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(0)
-            $0.centerX.equalTo(view.safeAreaLayoutGuide)
-            $0.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(206)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-206)
+            $0.top.equalTo(titleView.snp.bottom).offset(50)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(206)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(206)
         }
         
         homeButton.snp.makeConstraints{
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(20)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide).inset(40)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(40)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide).inset(60)
             $0.width.height.equalTo(50)
         }
     }
-    
 }
 
 // MARK: - UITableViewDataSource
 extension DictionaryVC: UITableViewDataSource {
+    
     // @required: 특정 위치에 표시할 셀을 요청하는 메서드
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "DictionaryTVC", for: indexPath) as? DictionaryTVC else {

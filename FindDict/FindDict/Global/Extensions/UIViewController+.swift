@@ -126,4 +126,5 @@ extension UIViewController {
         let generator = UIImpactFeedbackGenerator(style: degree)
         generator.impactOccurred()
     }
+
 }
