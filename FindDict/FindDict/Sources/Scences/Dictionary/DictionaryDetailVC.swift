@@ -66,7 +66,11 @@ class DictionaryDetailVC: UIViewController{
         $0.distribution = .fillEqually
     }
     
-    private var dataSource : [String] = []
+    private var dataSource : [String] = ["https://finddict.s3.ap-northeast-2.amazonaws.com/test/1665054395307_%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202022-10-03%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%2011.35.45.png","https://finddict.s3.ap-northeast-2.amazonaws.com/test/1665054314880_%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202022-10-03%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%2010.17.12.png"]{
+        didSet{
+            self.increasedDataSource =  dataSource + dataSource + dataSource
+        }
+    }
     
     private lazy var increasedDataSource: [String] = {
         dataSource + dataSource + dataSource
@@ -170,20 +174,16 @@ extension DictionaryDetailVC {
             switch NetworkResult {
             case .success(let response):
                 if let res = response as? WordDetailResponseModel{
-                    print(">>>>>",res.urls)
-                    for url in res.urls {
-                        self.dataSource.append(url.image_url)
-                        setCV()
+                    var urls: [String] = []
+                    for res_url in res.urls {
+                        urls.append(res_url.image_url)
                     }
-                    
+                    self.dataSource = urls
+//                    print(">>>>>",self.dataSource)
+                    print(">>>>>",self.increasedDataSource)
+                    dictionaryDetailCV.reloadData()
 //                    self.dataSource = res.urls
                 }
-//                {
-//                    print("결과: ", res, self.englishWordLabel.text)
-//                    let Result = res as WordDetailResponseModel
-
-//                    self.delegate?.wordDetailViewButtonClicked(index: self.cellRowIndex, urls: res.urls)
-//                }
             default:
                 print(MessageType.networkError.message)
             }
