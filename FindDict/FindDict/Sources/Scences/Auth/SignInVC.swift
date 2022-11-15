@@ -111,18 +111,18 @@ extension SignInVC: UITextFieldDelegate{
 
 extension SignInVC{
     private func requestGetSignIn(data: SignInBodyModel) {
-        
         AuthAPI.shared.postSignIn(body: data) { networkResult in
             switch networkResult {
             case .success(let response):
                 if let res = response as? SignInResponseModel {
                     print(res)
                     UserToken.shared.accessToken = res.accessToken
-//                    self.carouselData = res
-//                    self.requestGetMumentForTodayData()
+                    self.makeAlert(title: MessageType.signInSuccess.message, okAction: {_ in
+                        self.navigationController?.pushViewController(MainVC(), animated: true)
+                    })
                 }
             default:
-                self.makeAlert(title: MessageType.networkError.message)
+                self.makeAlert(title: MessageType.signInFail.message)
             }
         }
     }

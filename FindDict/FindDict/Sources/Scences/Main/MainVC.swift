@@ -50,7 +50,7 @@ class MainVC: UIViewController {
         }
         
         gameRuleButton.press{
-            print("게임 방법 뷰로 이동")
+            self.navigationController?.pushViewController(GameTutorialVC(), animated: true)
         }
         
         dictionaryButton.press{

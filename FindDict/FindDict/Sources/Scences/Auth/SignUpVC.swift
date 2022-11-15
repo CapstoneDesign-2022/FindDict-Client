@@ -73,6 +73,42 @@ class SignUpVC: AuthBaseVC {
     
 }
 
+//MARK: - Network
+extension SignUpVC {
+    private func requestConfirmId() {
+        AuthAPI.shared.confirmId(user_id: self.idTextField.text ?? "") { NetworkResult in
+            switch NetworkResult {
+            case .success:
+                self.isIdConfirmed = true
+                self.passwordVerificationLabel.text = "사용 가능한 아이디입니다."
+                self.passwordVerificationLabel.textColor = .systemBlue
+            default:
+                print(MessageType.networkError.message)
+                self.passwordVerificationLabel.text = "중복된 아이디입니다."
+                self.passwordVerificationLabel.textColor = .systemRed
+            }
+            
+        }
+    }
+    
+    private func requestPostSignUp(data: SignUpBodyModel) {
+        AuthAPI.shared.postSignUp(body: data) { networkResult in
+            switch networkResult {
+                
+            case .success(let response):
+                if let res = response as? SignUpResponseModel {
+                    UserToken.shared.accessToken = res.accessToken
+                    self.makeAlert(title: MessageType.signUpSuccess.message, okAction: {_ in
+                        self.navigationController?.pushViewController(SignInVC(), animated: true)
+                    })
+                }
+            default:
+                self.makeAlert(title: MessageType.networkError.message)
+            }
+        }
+    }
+}
+
 // MARK: - UI
 extension SignUpVC {
     private func setLayout(){
