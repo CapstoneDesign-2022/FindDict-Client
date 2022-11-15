@@ -43,7 +43,7 @@ class WordAPI: BaseAPI {
         }
     }
     /// [POST] 단어 추가
-    func postWord(body: CreateWordBodyModel, completion: @escaping (NetworkResult<Any>) -> Void) {
+    func postWord(body: CreateWordBodyModel, image: UIImage, completion: @escaping (NetworkResult<Any>) -> Void) {
 //        let url = "/word/new"
 //        let header: HTTPHeaders = ["Content-Type": "multipart/form-data"]
         
@@ -67,7 +67,13 @@ class WordAPI: BaseAPI {
 //        }
         
         
-        AFmanager.request(WordService.postWord(body: body)).responseData { response in
+//        AFmanager.request(WordService.postWord(body: body)).responseData { response in
+            
+            
+        AFmanager.upload(multipartFormData: WordService.postWord(body: body,
+                                                                image: image).multipart,
+                             with: WordService.postWord(body: body,
+                                                        image: image)).responseData { response in
             switch response.result {
             case .success:
                 guard let statusCode = response.response?.statusCode else { return }

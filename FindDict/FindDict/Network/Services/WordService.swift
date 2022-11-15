@@ -11,7 +11,7 @@ import UIKit
 enum WordService {
     case getWordList
     case getHint(search: String)
-//    case postWord(body: CreateWordBodyModel)
+    case postWord(body: CreateWordBodyModel, image: UIImage)
 }
 
 extension WordService: TargetType {
@@ -21,8 +21,8 @@ extension WordService: TargetType {
             return "/word/list"
         case .getHint:
             return "/word"
-//        case .postWord:
-//            return "/word/new"
+        case .postWord:
+            return "/word/new"
         }
     }
     
@@ -32,8 +32,8 @@ extension WordService: TargetType {
             return .get
         case .getHint:
             return .get
-//        case .postWord:
-//            return .post
+        case .postWord:
+            return .post
         }
     }
     
@@ -43,8 +43,8 @@ extension WordService: TargetType {
             return .withToken
         case .getHint:
             return .withToken
-//        case .postWord:
-//            return .multiPartWithToken
+        case .postWord:
+            return .multiPartWithToken
         }
     }
     
@@ -54,14 +54,14 @@ extension WordService: TargetType {
             return .requestPlain
         case .getHint(let search):
             return .query(["search": search])
-//        case .postWord(let body):
-//            return .requestBody(["words": body.words])
+        case .postWord(let body,_):
+            return .requestBody(["english": body.english])
         }
     }
     
     var multipart: MultipartFormData {
         switch self {
-        case .postWord(let body):
+        case .postWord(let body, let image):
             let multiPart = MultipartFormData()
 //
 //            multiPart.append(Data(String(body.image).utf8), withName: "score")
@@ -78,7 +78,7 @@ extension WordService: TargetType {
 //            }
             
             multiPart.append(Data(body.english.utf8), withName: "english")
-            guard let imageData = body.image.pngData() else { return MultipartFormData() }
+            guard let imageData = image.pngData() else { return MultipartFormData() }
             multiPart.append(imageData, withName: "image", fileName: "image\(body.english).png", mimeType: "image/png")
 //            for (index, item) in body.image.enumerated() {
 //                if let imageData = item.pngData() {

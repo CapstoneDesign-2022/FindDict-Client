@@ -42,6 +42,9 @@ class GameVC:ViewController {
     private var predictedObjectLableSet = Set<String>() {
         didSet {
             createTargetListComponents(with: predictedObjectLableSet)
+            for word in predictedObjectLableSet{
+                requestPostWord(body: CreateWordBodyModel(english: word), image: (cropImageView.image ?? UIImage(named: "GameOver"))!)
+            }
         }
     }
     
@@ -116,14 +119,12 @@ class GameVC:ViewController {
         setLayout()
 //        requestPostCreateWord(data: CreateWordBodyModel(words: ))
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(true)
-        for word in predictedObjectLableSet{
-            requestPostWord(data: CreateWordBodyModel(english: word, image: cropImageView.image ?? "http:\/\/shopping.phinf.naver.net\/main_3470173\/34701736383.20220915162703.jpg"))
-        }
-    }
-    
+//
+//    override func viewDidDisappear(_ animated: Bool) {
+//        super.viewDidDisappear(true)
+//
+//    }
+//
     // MARK: - Functions
     func putButtons(with predictions: [VNRecognizedObjectObservation]) {
         var createdButtons:[UIButton]=[]
@@ -318,19 +319,19 @@ extension GameVC {
 
 // MARK: - Network
 extension GameVC {
-//    private func requestPostWord(data: CreateWordBodyModel) {
-//        WordAPI.shared.postWord(body: data) {
-//            networkResult in
-//            switch networkResult {
-//            case .success(let response):
-//                if let res = response as? CreateWordResponseModel {
-//                    print(res)
-//                }
-//            default:
-//                self.makeAlert(title: MessageType.networkError.message)
-//            }
-//        }
-//    }
+    private func requestPostWord(body: CreateWordBodyModel, image: UIImage) {
+        WordAPI.shared.postWord(body: body, image: image) {
+            networkResult in
+            switch networkResult {
+            case .success(let response):
+                if let res = response as? CreateWordResponseModel {
+                    print(res)
+                }
+            default:
+                self.makeAlert(title: MessageType.networkError.message)
+            }
+        }
+    }
     
 }
 
