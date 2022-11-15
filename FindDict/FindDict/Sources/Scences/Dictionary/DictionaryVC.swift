@@ -13,6 +13,7 @@ final class DictionaryVC: UIViewController {
     
     // MARK: - Properties
     private var dictionaryData: [String]?
+
     private let titleView = UIView().then{
         $0.backgroundColor = .modalButtonDarkYellow
         $0.layer.shadowRadius = 4
@@ -130,14 +131,14 @@ extension DictionaryVC: UITableViewDataSource {
         }
         cell.dictionaryCard.setDelegate(delegate: self)
       
-        let data = dictionaryData?[indexPath.row] ?? WordListResponseModel.sampleData[indexPath.row]
+        let data = dictionaryData[indexPath.row]
         cell.setData(data, cellRowIndex: indexPath.row)
         return cell
     }
     
     // @required: 각 섹션에 표시할 행의 개수를 묻는 메서드
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dictionaryData?.count ?? WordListResponseModel.sampleData.count
+        return dictionaryData.count
     }
 }
 
@@ -152,7 +153,9 @@ extension DictionaryVC: UITableViewDelegate {
 extension DictionaryVC: DictionaryCardDelegate {
     func wordDetailViewButtonClicked(index: Int) {
         let dictionaryDetailVC = DictionaryDetailVC()
-        dictionaryDetailVC.setWordLabelText(english: dictionaryData?[index] ?? WordListResponseModel.sampleData[index])
+
+        dictionaryDetailVC.setWordLabelText(english: dictionaryData[index].english)
+
         dictionaryDetailVC.modalPresentationStyle = .overCurrentContext
         self.present(dictionaryDetailVC, animated: true)
     }
