@@ -153,7 +153,6 @@ extension DictionaryVC: DictionaryCardDelegate {
     func wordDetailViewButtonClicked(index: Int) {
         let dictionaryDetailVC = DictionaryDetailVC()
         dictionaryDetailVC.setWordLabelText(english: dictionaryData?[index] ?? WordListResponseModel.sampleData[index])
-//        dictionaryDetailVC.setImageUrl(url_list: urls)
         dictionaryDetailVC.modalPresentationStyle = .overCurrentContext
         self.present(dictionaryDetailVC, animated: true)
     }

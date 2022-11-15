@@ -13,8 +13,6 @@ import AVFAudio
 class DictionaryDetailVC: UIViewController{
     
     // MARK: - Properties
-//    private var ImageUrls: [WordDetailResponseModel.ImageURL]?
-    
     private let modalView = UIView().then{
         $0.backgroundColor = .modalButtonLightYellow
         $0.layer.shadowRadius = 4
@@ -66,6 +64,7 @@ class DictionaryDetailVC: UIViewController{
         $0.distribution = .fillEqually
     }
     
+    // TODO: - 로딩 전 이미지 파인드딕트 이미지로 넣어두기
     private var dataSource : [String] = ["https://finddict.s3.ap-northeast-2.amazonaws.com/test/1665054395307_%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202022-10-03%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%2011.35.45.png","https://finddict.s3.ap-northeast-2.amazonaws.com/test/1665054314880_%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202022-10-03%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%2010.17.12.png"]{
         didSet{
             self.increasedDataSource =  dataSource + dataSource + dataSource
@@ -88,11 +87,6 @@ class DictionaryDetailVC: UIViewController{
     private var scrollToBegin: Bool = false
     
     // MARK: - View Life Cycle
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(true)
-//        requestGetWordDetail(word: worldLabelText)
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
@@ -163,10 +157,6 @@ class DictionaryDetailVC: UIViewController{
     func setWordLabelText(english: String){
         worldLabelText = english
     }
-    
-//    func setImageUrl(url_list: [WordDetailResponseModel.ImageURL]){
-//        ImageUrls = url_list
-//    }
 }
 extension DictionaryDetailVC {
     private func requestGetWordDetail(word: String) {
@@ -179,10 +169,7 @@ extension DictionaryDetailVC {
                         urls.append(res_url.image_url)
                     }
                     self.dataSource = urls
-//                    print(">>>>>",self.dataSource)
-                    print(">>>>>",self.increasedDataSource)
-                    dictionaryDetailCV.reloadData()
-//                    self.dataSource = res.urls
+                    self.dictionaryDetailCV.reloadData()
                 }
             default:
                 print(MessageType.networkError.message)
