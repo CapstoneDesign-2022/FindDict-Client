@@ -42,6 +42,9 @@ class GameVC:ViewController {
     private var predictedObjectLableSet = Set<String>() {
         didSet {
             createTargetListComponents(with: predictedObjectLableSet)
+            for word in predictedObjectLableSet{
+                requestPostWord(body: CreateWordBodyModel(english: word), image: (cropImageView.image ?? UIImage(named: "GameOver"))!)
+            }
         }
     }
     
@@ -114,9 +117,8 @@ class GameVC:ViewController {
         super.viewDidLoad()
         view.backgroundColor = .bgBeige
         setLayout()
-//        requestPostCreateWord(data: CreateWordBodyModel(words: ))
     }
-    
+
     // MARK: - Functions
     func putButtons(with predictions: [VNRecognizedObjectObservation]) {
         var createdButtons:[UIButton]=[]
@@ -135,23 +137,16 @@ class GameVC:ViewController {
             
         }
         wordTargets = createdTargets
-        
-        // 네트워크 통신 테스트
-//        let word = CreateWordBodyModel.Word(korean: "한글", english: "영어")
-//        let word2 = CreateWordBodyModel.Word(korean: "한글2", english: "영어2")
-//        let test = CreateWordBodyModel(words: [word, word2])
-//    
-//        requestPostWord(data: test)
     }
     
     /// 인식된 객체마다 이에 맞는 버튼을 생성합니다.
     func createButton(prediction: VNRecognizedObjectObservation)-> UIButton {
         let buttonTitle: String? = prediction.label
         let color: UIColor = labelColor(with: buttonTitle ?? "N/A")
-        print(prediction.boundingBox)
-        print(prediction.label)
-        print("image.frame",image.frame)
-        print("image.bounds",image.bounds)
+//        print(prediction.boundingBox)
+//        print(prediction.label)
+//        print("image.frame",image.frame)
+//        print("image.bounds",image.bounds)
         //        let scale = CGAffineTransform.identity.scaledBy(x: image.bounds.width, y: image.bounds.height)
         //        print("scale",scale)
         //        let transform = CGAffineTransform(scaleX: 1, y: -1).translatedBy(x: 0, y: -1)
@@ -311,19 +306,19 @@ extension GameVC {
 
 // MARK: - Network
 extension GameVC {
-//    private func requestPostWord(data: CreateWordBodyModel) {
-//        WordAPI.shared.postWord(body: data) {
-//            networkResult in
-//            switch networkResult {
-//            case .success(let response):
-//                if let res = response as? CreateWordResponseModel {
-//                    print(res)
-//                }
-//            default:
-//                self.makeAlert(title: MessageType.networkError.message)
-//            }
-//        }
-//    }
+    private func requestPostWord(body: CreateWordBodyModel, image: UIImage) {
+        WordAPI.shared.postWord(body: body, image: image) {
+            networkResult in
+            switch networkResult {
+            case .success(let response):
+                if let res = response as? CreateWordResponseModel {
+                    print(res)
+                }
+            default:
+                self.makeAlert(title: MessageType.networkError.message)
+            }
+        }
+    }
     
 }
 
