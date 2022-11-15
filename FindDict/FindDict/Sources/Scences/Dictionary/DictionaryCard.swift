@@ -16,11 +16,10 @@ protocol DictionaryCardDelegate: AnyObject {
 class DictionaryCard: UIView {
     
     // MARK: - Properties
+//    private var dictionaryDetailData: [WordDetailResponseModel.ImageURL]?
     private var cellRowIndex: Int = 0
     private var delegate: DictionaryCardDelegate?
     private let englishWordLabel = UILabel().then{
-    private var dictionaryDetailData: [WordDetailResponseModel.ImageURL]?
-    let englishWordLabel = UILabel().then{
         $0.textColor = .black
         $0.text = "영어단어"
         $0.font = .findDictH4R28
@@ -56,7 +55,9 @@ class DictionaryCard: UIView {
     
     private func setButtonActions(){
         pictureButton.press {
+//            self.requestGetWordDetail()
             self.delegate?.wordDetailViewButtonClicked(index: self.cellRowIndex)
+            
         }
     }
     
@@ -68,31 +69,8 @@ class DictionaryCard: UIView {
     func setDelegate(delegate: DictionaryCardDelegate){
         self.delegate = delegate
     }
-    
-    func setButtonActions(){
-        pictureButton.press{
-//            self.navigationController?.popToRootViewController(animated: false)
-            self.requestGetWordDetail()
-        }
-    }
 }
 
-extension DictionaryCard {
-    private func requestGetWordDetail() {
-        WordAPI.shared.getWordDetail(word: "apple") { NetworkResult in
-            switch NetworkResult {
-            case .success(let response):
-                if let res = response as?
-                    WordDetailResponseModel {
-                    print(">>>>>>res", res)
-                }
-            default:
-                print(MessageType.networkError.message)
-            }
-        
-        }
-    }
-}
 
 // MARK: - UI
 extension DictionaryCard {

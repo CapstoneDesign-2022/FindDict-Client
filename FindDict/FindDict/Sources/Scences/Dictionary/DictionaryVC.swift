@@ -75,7 +75,8 @@ extension DictionaryVC {
             switch networkResult {
             case .success(let response):
                 if let res = response as? WordListResponseModel {
-                    self.dictionaryData = res.english
+                    let removeDuplicateWords: Set = Set(res.english)
+                    self.dictionaryData = Array(removeDuplicateWords)
                     self.dictionaryTV.reloadData()
                 }
                 
@@ -152,6 +153,7 @@ extension DictionaryVC: DictionaryCardDelegate {
     func wordDetailViewButtonClicked(index: Int) {
         let dictionaryDetailVC = DictionaryDetailVC()
         dictionaryDetailVC.setWordLabelText(english: dictionaryData?[index] ?? WordListResponseModel.sampleData[index])
+//        dictionaryDetailVC.setImageUrl(url_list: urls)
         dictionaryDetailVC.modalPresentationStyle = .overCurrentContext
         self.present(dictionaryDetailVC, animated: true)
     }

@@ -13,6 +13,8 @@ import AVFAudio
 class DictionaryDetailVC: UIViewController{
     
     // MARK: - Properties
+//    private var ImageUrls: [WordDetailResponseModel.ImageURL]?
+    
     private let modalView = UIView().then{
         $0.backgroundColor = .modalButtonLightYellow
         $0.layer.shadowRadius = 4
@@ -37,6 +39,7 @@ class DictionaryDetailVC: UIViewController{
     private var worldLabelText = "" {
         didSet{
             wordLabel.text = worldLabelText
+            requestGetWordDetail(word: worldLabelText)
         }
     }
     
@@ -63,13 +66,9 @@ class DictionaryDetailVC: UIViewController{
         $0.distribution = .fillEqually
     }
     
-    private var dataSource : [UIImage] = [
-        UIImage(named: "globe")!,
-        UIImage(named: "authImage")!,
-        UIImage(named: "successImage")!,
-    ]
+    private var dataSource : [String] = []
     
-    private lazy var increasedDataSource: [UIImage] = {
+    private lazy var increasedDataSource: [String] = {
         dataSource + dataSource + dataSource
     }()
     
@@ -85,6 +84,11 @@ class DictionaryDetailVC: UIViewController{
     private var scrollToBegin: Bool = false
     
     // MARK: - View Life Cycle
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(true)
+//        requestGetWordDetail(word: worldLabelText)
+//    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
@@ -155,7 +159,39 @@ class DictionaryDetailVC: UIViewController{
     func setWordLabelText(english: String){
         worldLabelText = english
     }
+    
+//    func setImageUrl(url_list: [WordDetailResponseModel.ImageURL]){
+//        ImageUrls = url_list
+//    }
 }
+extension DictionaryDetailVC {
+    private func requestGetWordDetail(word: String) {
+        WordAPI.shared.getWordDetail(word: word) { [self] NetworkResult in
+            switch NetworkResult {
+            case .success(let response):
+                if let res = response as? WordDetailResponseModel{
+                    print(">>>>>",res.urls)
+                    for url in res.urls {
+                        self.dataSource.append(url.image_url)
+                        setCV()
+                    }
+                    
+//                    self.dataSource = res.urls
+                }
+//                {
+//                    print("결과: ", res, self.englishWordLabel.text)
+//                    let Result = res as WordDetailResponseModel
+
+//                    self.delegate?.wordDetailViewButtonClicked(index: self.cellRowIndex, urls: res.urls)
+//                }
+            default:
+                print(MessageType.networkError.message)
+            }
+        
+        }
+    }
+}
+
 
 // MARK: - UI
 extension DictionaryDetailVC {
@@ -240,6 +276,7 @@ extension DictionaryDetailVC : UICollectionViewDelegate, UICollectionViewDataSou
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DictionaryDetailCVC", for: indexPath)
         if let cell = cell as? DictionaryDetailCVC {
+//            cell.setData(increasedDataSource[indexPath.row],index:indexPath.row%3+1)
             cell.setData(increasedDataSource[indexPath.row],index:indexPath.row%3+1)
         }
         
