@@ -27,8 +27,8 @@ class DictionaryTVC: UITableViewCell {
     }
     
     // MARK: Functions
-    func setData(_ cellData: WordListResponseModel.Word, cellRowIndex: Int) {
-        dictionaryCard.setData(english: cellData.english, cellRowIndex: cellRowIndex)
+    func setData(_ cellData: String, cellRowIndex: Int) {
+        dictionaryCard.setData(english: cellData, cellRowIndex: cellRowIndex)
     }
 }
 

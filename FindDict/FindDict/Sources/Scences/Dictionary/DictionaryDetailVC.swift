@@ -37,6 +37,7 @@ class DictionaryDetailVC: UIViewController{
     private var worldLabelText = "" {
         didSet{
             wordLabel.text = worldLabelText
+            requestGetWordDetail(word: worldLabelText)
         }
     }
     
@@ -63,13 +64,14 @@ class DictionaryDetailVC: UIViewController{
         $0.distribution = .fillEqually
     }
     
-    private var dataSource : [UIImage] = [
-        UIImage(named: "globe")!,
-        UIImage(named: "authImage")!,
-        UIImage(named: "successImage")!,
-    ]
+    // TODO: - 로딩 전 이미지 파인드딕트 이미지로 넣어두기
+    private var dataSource : [String] = ["https://finddict.s3.ap-northeast-2.amazonaws.com/test/1665054395307_%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202022-10-03%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%2011.35.45.png","https://finddict.s3.ap-northeast-2.amazonaws.com/test/1665054314880_%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202022-10-03%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%2010.17.12.png"]{
+        didSet{
+            self.increasedDataSource =  dataSource + dataSource + dataSource
+        }
+    }
     
-    private lazy var increasedDataSource: [UIImage] = {
+    private lazy var increasedDataSource: [String] = {
         dataSource + dataSource + dataSource
     }()
     
@@ -156,6 +158,27 @@ class DictionaryDetailVC: UIViewController{
         worldLabelText = english
     }
 }
+extension DictionaryDetailVC {
+    private func requestGetWordDetail(word: String) {
+        WordAPI.shared.getWordDetail(word: word) { [self] NetworkResult in
+            switch NetworkResult {
+            case .success(let response):
+                if let res = response as? WordDetailResponseModel{
+                    var urls: [String] = []
+                    for res_url in res.urls {
+                        urls.append(res_url.image_url)
+                    }
+                    self.dataSource = urls
+                    self.dictionaryDetailCV.reloadData()
+                }
+            default:
+                print(MessageType.networkError.message)
+            }
+        
+        }
+    }
+}
+
 
 // MARK: - UI
 extension DictionaryDetailVC {

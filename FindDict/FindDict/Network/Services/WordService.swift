@@ -9,6 +9,7 @@ import Alamofire
 
 enum WordService {
     case getWordList
+    case getWordDetail(word: String)
 }
 
 extension WordService: TargetType {
@@ -16,12 +17,16 @@ extension WordService: TargetType {
         switch self {
         case .getWordList:
             return "/word/list"
+        case .getWordDetail:
+            return "/word/detail"
         }
     }
     
     var method: HTTPMethod {
         switch self {
         case .getWordList:
+            return .get
+        case .getWordDetail:
             return .get
         }
     }
@@ -30,6 +35,8 @@ extension WordService: TargetType {
         switch self {
         case .getWordList:
             return .withToken
+        case .getWordDetail:
+            return .withToken
         }
     }
     
@@ -37,6 +44,8 @@ extension WordService: TargetType {
         switch self {
         case .getWordList:
             return .requestPlain
+        case .getWordDetail(let word):
+            return .query(["word": word])
         }
     }
 }

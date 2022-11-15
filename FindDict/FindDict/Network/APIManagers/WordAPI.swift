@@ -24,4 +24,19 @@ class WordAPI: BaseAPI {
             }
         }
     }
+    
+    /// [GET] 단어 상세 조회
+    func getWordDetail(word: String, completion: @escaping (NetworkResult<Any>) -> (Void)) {
+        AFmanager.request(WordService.getWordDetail(word: word)).responseData { response in
+            switch response.result {
+            case .success:
+                guard let statusCode = response.response?.statusCode else { return }
+                guard let data = response.data else { return }
+                let networkResult = self.judgeStatus(by: statusCode, data, WordDetailResponseModel.self)
+                completion(networkResult)
+            case .failure(let err):
+                print(err.localizedDescription)
+            }
+        }
+    }
 }
