@@ -12,7 +12,7 @@ import Then
 class BeforeSignInVC: UIViewController {
     
     // MARK: - Properties
-    private let logoImage = UIImageView().then{
+    private let logoImageView: UIImageView = UIImageView().then{
         $0.image = UIImage(named: "logoImage")
     }
     
@@ -57,14 +57,14 @@ class BeforeSignInVC: UIViewController {
 // MARK: - UI
 extension BeforeSignInVC {
     private func setLayout(){
-        view.addSubViews([logoImage, signInButton, signUpButton])
+        view.addSubViews([logoImageView, signInButton, signUpButton])
         
-        logoImage.snp.makeConstraints{
+        logoImageView.snp.makeConstraints{
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(100)
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
         }
         signInButton.snp.makeConstraints{
-            $0.top.equalTo(logoImage.snp.bottom).offset(50)
+            $0.top.equalTo(logoImageView.snp.bottom).offset(50)
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
             $0.width.equalTo(300)
             $0.height.equalTo(120)

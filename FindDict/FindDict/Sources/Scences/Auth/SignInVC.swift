@@ -37,9 +37,10 @@ class SignInVC: AuthBaseVC {
         setButtonActions()
     }
     
+    // MARK: - Functions
     private func setButtonActions(){
         signInButton.press{
-            self.requestGetSignIn(data: SignInBodyModel(user_id: self.signInTextField.text ?? "", password: self.passwordTextField.text ?? ""))
+            self.requestPostSignIn(data: SignInBodyModel(user_id: self.signInTextField.text ?? "", password: self.passwordTextField.text ?? ""))
         }
     }
 }
@@ -109,8 +110,9 @@ extension SignInVC: UITextFieldDelegate{
     }
 }
 
+// MARK: - Network
 extension SignInVC{
-    private func requestGetSignIn(data: SignInBodyModel) {
+    private func requestPostSignIn(data: SignInBodyModel) {
         AuthAPI.shared.postSignIn(body: data) { networkResult in
             switch networkResult {
             case .success(let response):
