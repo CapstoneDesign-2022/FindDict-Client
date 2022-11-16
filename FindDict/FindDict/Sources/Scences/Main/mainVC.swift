@@ -12,25 +12,25 @@ import Then
 class MainVC: UIViewController {
     
     // MARK: - Properties
-    private let logoImage = UIImageView().then{
+    private let logoImage: UIImageView = UIImageView().then{
         $0.image = UIImage(named: "logoImage")
     }
-    private let gameStartButton = MainButton().then{
+    private let gameStartButton: MainButton = MainButton().then{
         $0.backgroundColor = .buttonOrange
         $0.setTitle("게임 시작", for: .normal)
     }
     
-    lazy var buttonStackView = UIStackView(arrangedSubviews: [gameRuleButton, dictionaryButton]).then {
+    lazy var buttonStackView: UIStackView = UIStackView(arrangedSubviews: [gameRuleButton, dictionaryButton]).then {
         $0.axis = .horizontal
         $0.spacing = 66
         $0.distribution = .fillEqually
     }
     
-    private let gameRuleButton = MainButton().then{
+    private let gameRuleButton: MainButton = MainButton().then{
         $0.backgroundColor = .buttonYellow
         $0.setTitle("게임 방법", for: .normal)
     }
-    private let dictionaryButton = MainButton().then{
+    private let dictionaryButton: MainButton = MainButton().then{
         $0.backgroundColor = .buttonYellow
         $0.setTitle("단어장", for: .normal)
     }
@@ -43,6 +43,7 @@ class MainVC: UIViewController {
         view.backgroundColor = .bgYellow
     }
 
+    // MARK: - Functions
     func setButtonActions(){
         gameStartButton.press{
             let initiatingGameVC = PhotoSelectorVC()
@@ -83,7 +84,5 @@ extension MainVC {
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(83)
             $0.height.equalTo(120)
         }
-        
     }
-    
 }

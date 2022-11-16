@@ -9,6 +9,7 @@ import UIKit
 
 class GameResultButton: UIButton {
 
+    // MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUI()
@@ -19,6 +20,7 @@ class GameResultButton: UIButton {
         setUI()
     }
     
+    // MARK: - UI
     private func setUI(){
         self.setTitleColor(.black, for: .normal)
         self.layer.shadowRadius = 4

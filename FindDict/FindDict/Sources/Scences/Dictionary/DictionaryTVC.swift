@@ -12,7 +12,7 @@ import Then
 class DictionaryTVC: UITableViewCell {
     
     // MARK: - Properties
-    let dictionaryCard = DictionaryCard()
+    let dictionaryCard: DictionaryCard = DictionaryCard()
     
     // MARK: Initialization
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

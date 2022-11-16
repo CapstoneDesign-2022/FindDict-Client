@@ -12,10 +12,10 @@ import Then
 class AuthBaseVC: UIViewController {
     
     // MARK: - Properties
-    internal let logoImage = UIImageView().then{
+    internal let logoImage: UIImageView = UIImageView().then{
         $0.image = UIImage(named: "authImage")
     }
-    internal let containerView = UIView().then{
+    internal let containerView: UIView = UIView().then{
         $0.backgroundColor = .white
         $0.layer.cornerRadius = 24
 

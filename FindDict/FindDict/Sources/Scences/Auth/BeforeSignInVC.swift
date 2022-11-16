@@ -12,11 +12,11 @@ import Then
 class BeforeSignInVC: UIViewController {
     
     // MARK: - Properties
-    private let logoImage = UIImageView().then{
+    private let logoImageView: UIImageView = UIImageView().then{
         $0.image = UIImage(named: "logoImage")
     }
     
-    private let signInButton = UIButton().then{
+    private let signInButton: UIButton = UIButton().then{
         $0.setTitle("로그인", for: .normal)
         $0.backgroundColor = .buttonOrange
         $0.titleLabel?.font = .findDictH4R35
@@ -24,7 +24,7 @@ class BeforeSignInVC: UIViewController {
         $0.layer.cornerRadius = 10
     }
     
-    private let signUpButton = UIButton().then{
+    private let signUpButton: UIButton = UIButton().then{
         $0.setTitle("회원 가입", for: .normal)
         $0.backgroundColor = .buttonYellow
         $0.titleLabel?.font = .findDictH4R35
@@ -51,22 +51,20 @@ class BeforeSignInVC: UIViewController {
             self.navigationController?.pushViewController(signUpVC, animated: true)
         }
     }
-    
-    
 }
 
 
 // MARK: - UI
 extension BeforeSignInVC {
     private func setLayout(){
-        view.addSubViews([logoImage, signInButton, signUpButton])
+        view.addSubViews([logoImageView, signInButton, signUpButton])
         
-        logoImage.snp.makeConstraints{
+        logoImageView.snp.makeConstraints{
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(100)
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
         }
         signInButton.snp.makeConstraints{
-            $0.top.equalTo(logoImage.snp.bottom).offset(50)
+            $0.top.equalTo(logoImageView.snp.bottom).offset(50)
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
             $0.width.equalTo(300)
             $0.height.equalTo(120)

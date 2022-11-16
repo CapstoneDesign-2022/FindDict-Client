@@ -12,30 +12,30 @@ import Then
 class GameTutorialCVC: UICollectionViewCell {
     
     // MARK: - Properties
-    private let tutorialTitleView = UIView().then{
+    private let tutorialTitleView: UIView = UIView().then{
         //TODO: merge 후 backgroundColor 수정
         $0.backgroundColor = .buttonOrange
         $0.layer.cornerRadius = 10
     }
     
-    private let tutorialTitleLabel = UILabel().then{
+    private let tutorialTitleLabel: UILabel = UILabel().then{
         $0.font = .findDictH1B30
     }
     
-    lazy var pageButton = UIButton().then{
+    lazy var pageButton: UIButton = UIButton().then{
         $0.layer.cornerRadius = 10
         $0.backgroundColor = .white
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = .findDictH4R28
     }
     
-    private let tutorialImage = UIImageView().then{
+    private let tutorialImage: UIImageView = UIImageView().then{
         $0.layer.cornerRadius = 43
         $0.clipsToBounds = true
         $0.contentMode = .scaleAspectFit
     }
     
-    private let tutorialTextLabel = UILabel().then{
+    private let tutorialTextLabel: UILabel = UILabel().then{
         $0.font = .findDictH2B18
         $0.numberOfLines = 0    // 자동 줄바꿈
     }
@@ -48,6 +48,7 @@ class GameTutorialCVC: UICollectionViewCell {
         tutorialTextLabel.text = cellData.tutorialText
     }
     
+    // MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
         setLayout()

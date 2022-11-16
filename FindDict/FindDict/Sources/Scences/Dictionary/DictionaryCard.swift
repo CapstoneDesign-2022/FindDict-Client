@@ -18,13 +18,13 @@ class DictionaryCard: UIView {
     // MARK: - Properties
     private var cellRowIndex: Int = 0
     private var delegate: DictionaryCardDelegate?
-    private let englishWordLabel = UILabel().then{
+    private let englishWordLabel: UILabel = UILabel().then{
         $0.textColor = .black
         $0.text = "영어단어"
         $0.font = .findDictH4R28
     }
 
-    private let pictureButton = UIButton().then{
+    private let pictureButton: UIButton = UIButton().then{
         $0.setTitle("사진 확인하기", for: .normal)
         $0.setTitleColor(.black, for: .normal)
         $0.backgroundColor = .buttonYellow

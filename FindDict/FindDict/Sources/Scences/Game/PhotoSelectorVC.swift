@@ -12,24 +12,24 @@ import Then
 class PhotoSelectorVC: UIViewController {
     
     // MARK: - Properties
-    private let takingPictureButton = PhotoSelectorButton().then{
+    private let takingPictureButton: PhotoSelectorButton = PhotoSelectorButton().then{
         $0.setTitle("사진 찍기", for: .normal)
         $0.backgroundColor = .buttonOrange
     }
     
-    private let selectingPictureButton = PhotoSelectorButton().then{
+    private let selectingPictureButton: PhotoSelectorButton = PhotoSelectorButton().then{
         $0.setTitle("앨범에서 사진 선택", for: .normal)
         $0.backgroundColor = .buttonApricot
     }
     
-    private let fetchingPictureButton = PhotoSelectorButton().then{
+    private let fetchingPictureButton: PhotoSelectorButton = PhotoSelectorButton().then{
         $0.setTitle("기본 이미지", for: .normal)
         $0.backgroundColor = .buttonYellow
     }
     
-    private var selectedImage = UIImageView()
+    private var selectedImage: UIImageView = UIImageView()
     
-    private var pixelBuffer:CVPixelBuffer? = nil  {
+    private var pixelBuffer: CVPixelBuffer? = nil  {
         didSet{
             let gameVC = GameVC()
             gameVC.image.image = selectedImage.image

@@ -12,40 +12,40 @@ import Then
 class SignUpVC: AuthBaseVC {
     
     // MARK: - Properties
-    private let idTextField = TextField().then{
+    private let idTextField: TextField = TextField().then{
         $0.placeholder = "아이디"
     }
     
-    private let idCheckButton = UIButton().then{
+    private let idCheckButton: UIButton = UIButton().then{
         $0.backgroundColor = .buttonOrange
         $0.setTitleColor(.black, for: .normal)
         $0.setTitle("중복 확인", for: .normal)
         $0.layer.cornerRadius = 24
     }
     
-    lazy var textFieldStackView = UIStackView(arrangedSubviews: [ageTextField, passwordTextField,passwordConfirmTextField]).then {
+    lazy var textFieldStackView: UIStackView = UIStackView(arrangedSubviews: [ageTextField, passwordTextField,passwordConfirmTextField]).then {
         $0.axis = .vertical
         $0.spacing = 18
         $0.distribution = .fillEqually
     }
     
-    private let ageTextField = TextField().then{
+    private let ageTextField: TextField = TextField().then{
         $0.placeholder = "나이"
     }
     
-    private let passwordTextField = TextField().then{
+    private let passwordTextField: TextField = TextField().then{
         $0.placeholder = "비밀번호"
     }
     
-    private let passwordConfirmTextField = TextField().then{
+    private let passwordConfirmTextField: TextField = TextField().then{
         $0.placeholder = "비밀번호 확인"
     }
     
-    private let passwordVerificationLabel = UILabel().then{
+    private let passwordVerificationLabel: UILabel = UILabel().then{
         $0.font = .findDictB7R12
     }
     
-    private let signUpButton = UIButton().then{
+    private let signUpButton: UIButton = UIButton().then{
         $0.backgroundColor = .buttonYellow
         $0.setTitleColor(.black, for: .normal)
         $0.setTitle("회원가입하기", for: .normal)
@@ -53,7 +53,7 @@ class SignUpVC: AuthBaseVC {
         
     }
     
-    private var isIdConfirmed = false   // 아이디 중복 검사 했는지
+    private var isIdConfirmed: Bool = false   // 아이디 중복 검사 했는지
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -67,6 +67,7 @@ class SignUpVC: AuthBaseVC {
         setButtonActions()
     }
     
+    // MARK: - Functions
     private func setButtonActions(){
         signUpButton.press{
             if (self.isIdConfirmed == false) {

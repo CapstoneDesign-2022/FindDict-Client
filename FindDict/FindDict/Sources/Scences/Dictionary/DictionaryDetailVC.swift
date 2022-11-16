@@ -13,7 +13,7 @@ import AVFAudio
 class DictionaryDetailVC: UIViewController{
     
     // MARK: - Properties
-    private let modalView = UIView().then{
+    private let modalView: UIView = UIView().then{
         $0.backgroundColor = .modalButtonLightYellow
         $0.layer.shadowRadius = 4
         $0.layer.shadowOffset = CGSize(width: 0, height: 4)
@@ -21,11 +21,11 @@ class DictionaryDetailVC: UIViewController{
         $0.layer.shadowOpacity = 0.25
     }
     
-    private let closeButton = UIButton().then{
+    private let closeButton: UIButton = UIButton().then{
         $0.setImage(UIImage(named: "closeImage"), for: .normal)
     }
     
-    private let wordLabel = UILabel().then{
+    private let wordLabel: UILabel = UILabel().then{
         $0.textColor = .black
         $0.font = .findDictH4M35
         $0.backgroundColor = .modalButtonDarkYellow
@@ -34,31 +34,31 @@ class DictionaryDetailVC: UIViewController{
         $0.layer.cornerRadius = 10
     }
     
-    private var worldLabelText = "" {
+    private var worldLabelText: String = "" {
         didSet{
             wordLabel.text = worldLabelText
             requestGetWordDetail(word: worldLabelText)
         }
     }
     
-    private let synthesizer = AVSpeechSynthesizer()
+    private let synthesizer: AVSpeechSynthesizer = AVSpeechSynthesizer()
     
-    private let americanSpeeachButton = SpeechButton().then{
+    private let americanSpeeachButton: SpeechButton = SpeechButton().then{
         $0.setTitle("🇺🇸 미국식 발음", for: .normal)
         $0.backgroundColor = .modalButtonDarkYellow
     }
     
-    private let englishSpeeachButton = SpeechButton().then{
+    private let englishSpeeachButton: SpeechButton = SpeechButton().then{
         $0.setTitle("🇬🇧 영국식 발음", for: .normal)
         $0.backgroundColor = .modalButtonDarkYellow
     }
     
-    private let australianSpeeachButton = SpeechButton().then{
+    private let australianSpeeachButton: SpeechButton = SpeechButton().then{
         $0.setTitle("🇦🇺 호주식 발음", for: .normal)
         $0.backgroundColor = .modalButtonDarkYellow
     }
     
-    private lazy var buttonStackView = UIStackView(arrangedSubviews: [americanSpeeachButton,englishSpeeachButton,australianSpeeachButton]).then{
+    private lazy var buttonStackView: UIStackView = UIStackView(arrangedSubviews: [americanSpeeachButton,englishSpeeachButton,australianSpeeachButton]).then{
         $0.axis = .horizontal
         $0.spacing = 30
         $0.distribution = .fillEqually
@@ -75,9 +75,9 @@ class DictionaryDetailVC: UIViewController{
         dataSource + dataSource + dataSource
     }()
     
-    private lazy var dictionaryDetailCV = UICollectionView(frame: .zero, collectionViewLayout: CVFlowLayout)
+    private lazy var dictionaryDetailCV: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: CVFlowLayout)
     
-    private let CVFlowLayout = UICollectionViewFlowLayout()
+    private let CVFlowLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
     
     private var originalDataSourceCount: Int {
         dataSource.count
@@ -95,6 +95,13 @@ class DictionaryDetailVC: UIViewController{
         view.backgroundColor = .bgModal
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        dictionaryDetailCV.scrollToItem(at: IndexPath(item: originalDataSourceCount,section: 0),
+                                        at: .centeredHorizontally,
+                                        animated: false)
+    }
+    
     // MARK: - Functions
     private func setCV() {
         dictionaryDetailCV.delegate = self
@@ -107,13 +114,6 @@ class DictionaryDetailVC: UIViewController{
         dictionaryDetailCV.isPagingEnabled = true
         
         CVFlowLayout.scrollDirection = .horizontal
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        dictionaryDetailCV.scrollToItem(at: IndexPath(item: originalDataSourceCount,section: 0),
-                                        at: .centeredHorizontally,
-                                        animated: false)
     }
     
     private func printOutAmericanSpeech(){
