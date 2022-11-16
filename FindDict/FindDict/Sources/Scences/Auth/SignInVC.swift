@@ -12,15 +12,15 @@ import Then
 class SignInVC: AuthBaseVC {
     
     // MARK: - Properties
-    private let signInTextField = TextField().then{
+    private let signInTextField: TextField = TextField().then{
         $0.placeholder = "아이디"
     }
     
-    private let passwordTextField = TextField().then{
+    private let passwordTextField: TextField = TextField().then{
         $0.placeholder = "비밀번호"
     }
     
-    private let signInButton = UIButton().then{
+    private let signInButton: UIButton = UIButton().then{
         $0.backgroundColor = .buttonYellow
         $0.setTitle("로그인", for: .normal)
         $0.setTitleColor(.black, for: .normal)
@@ -61,7 +61,7 @@ extension SignInVC {
             $0.trailing.equalTo(containerView.snp.trailing).offset(-60)
             $0.height.equalTo(50)
         }
-
+        
         passwordTextField.snp.makeConstraints{
             $0.top.equalTo(signInTextField.snp.bottom).offset(17)
             $0.leading.equalTo(containerView.snp.leading).offset(60)
@@ -86,7 +86,7 @@ extension SignInVC: UITextFieldDelegate{
         signInTextField.delegate = self
         passwordTextField.delegate = self
     }
-
+    
     func setNotificationCenter(){
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name:  UIResponder.keyboardWillShowNotification, object: nil)
         
@@ -105,7 +105,7 @@ extension SignInVC: UITextFieldDelegate{
     
     @objc
     func keyboardWillHide(_ sender:Notification) {
-        self.view.frame.origin.y = 0 
+        self.view.frame.origin.y = 0
     }
 }
 

@@ -12,7 +12,7 @@ import Then
 class DictionaryDetailCVC: UICollectionViewCell {
     
     // MARK: - Properties
-    private let wordImageView = UIImageView()
+    private let wordImageView: UIImageView = UIImageView()
     
     
     //MARK: - Functions

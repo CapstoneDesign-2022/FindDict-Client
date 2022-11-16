@@ -12,14 +12,14 @@ import Then
 class ModalBaseVC: UIViewController {
     
     // MARK: - Properties
-    internal let modalView = UIView().then{
+    internal let modalView: UIView = UIView().then{
         $0.backgroundColor = .modalGray
         $0.layer.shadowRadius = 4
         $0.layer.shadowOffset = CGSize(width: 0, height: 4)
         $0.layer.shadowColor = UIColor.black.cgColor
         $0.layer.shadowOpacity = 0.25
     }
-    internal let resultTitleLabel = UILabel().then{
+    internal let resultTitleLabel: UILabel = UILabel().then{
         $0.font = .findDictH5R48
         $0.textColor = .modalBrown
         $0.backgroundColor = .modalButtonLightYellow
@@ -31,8 +31,8 @@ class ModalBaseVC: UIViewController {
         $0.layer.shadowColor = UIColor.black.cgColor
         $0.layer.shadowOpacity = 0.25
     }
-    internal let resultImage = UIImageView()
-    internal let retryButton = GameResultButton().then {
+    internal let resultImage: UIImageView = UIImageView()
+    internal let retryButton: GameResultButton = GameResultButton().then {
         $0.layer.cornerRadius = 10
         $0.setTitle("다시 게임하기", for: .normal)
         $0.backgroundColor = .modalButtonDarkYellow
@@ -42,32 +42,32 @@ class ModalBaseVC: UIViewController {
         }
         
     }
-    internal let dictionaryButton = GameResultButton().then{
+    internal let dictionaryButton: GameResultButton = GameResultButton().then{
         $0.layer.cornerRadius = 10
         $0.setTitle("단어장", for: .normal)
         $0.backgroundColor = .modalButtonLightYellow
         $0.titleLabel?.font = .findDictH4R24
     }
-    internal let mainViewButton = GameResultButton().then{
+    internal let mainViewButton: GameResultButton = GameResultButton().then{
         $0.layer.cornerRadius = 10
         $0.setTitle("메인화면", for: .normal)
         $0.backgroundColor = .modalButtonLightYellow
         $0.titleLabel?.font = .findDictH4R24
     }
     
-    lazy var bottomButtonStackView = UIStackView(arrangedSubviews: [dictionaryButton, mainViewButton]).then{
+    lazy var bottomButtonStackView: UIStackView = UIStackView(arrangedSubviews: [dictionaryButton, mainViewButton]).then{
         $0.axis = .horizontal
         $0.spacing = 5
         $0.distribution = .fillEqually
         
     }
     
-    lazy var buttonStackView = UIStackView(arrangedSubviews: [retryButton, bottomButtonStackView]).then{
+    lazy var buttonStackView: UIStackView = UIStackView(arrangedSubviews: [retryButton, bottomButtonStackView]).then{
         $0.axis = .vertical
         $0.spacing = 33
     }
     
-    var navigation : UINavigationController?
+    var navigation: UINavigationController?
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -77,7 +77,7 @@ class ModalBaseVC: UIViewController {
         view.backgroundColor = .bgModal
     }
     
-    init(navigationController : UINavigationController?){
+    init(navigationController: UINavigationController?){
         navigation = navigationController
         super.init(nibName: nil, bundle: nil)
     }

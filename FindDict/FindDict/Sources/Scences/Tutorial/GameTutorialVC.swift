@@ -14,15 +14,15 @@ class GameTutorialVC: UIViewController{
     // MARK: - Properties
     var dataSource: [GameTutorialCVCModel] = GameTutorialCVCModel.sampleData
     
-    private lazy var gameTutorialCV = UICollectionView(frame: .zero, collectionViewLayout: CVFlowLayout)
+    private lazy var gameTutorialCV: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: CVFlowLayout)
     
-    private let CVFlowLayout = UICollectionViewFlowLayout()
+    private let CVFlowLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
     
     private var originalDataSourceCount: Int {
         dataSource.count
     }
     
-    private let homeButton = UIButton().then{
+    private let homeButton: UIButton = UIButton().then{
         $0.setImage(UIImage(named: "homeImage"),for: .normal)
     }
     

@@ -14,7 +14,7 @@ final class DictionaryVC: UIViewController {
     // MARK: - Properties
     private var dictionaryData: [String] = []
 
-    private let titleView = UIView().then{
+    private let titleView: UIView = UIView().then{
         $0.backgroundColor = .modalButtonDarkYellow
         $0.layer.shadowRadius = 4
         $0.layer.shadowOffset = CGSize(width: 0, height: 4)
@@ -24,29 +24,20 @@ final class DictionaryVC: UIViewController {
         $0.layer.shadowOpacity = 0.25
     }
     
-    private let titleLabel = UILabel().then{
+    private let titleLabel: UILabel = UILabel().then{
         $0.textColor = .black
         $0.text = "단어장"
         $0.font = .findDictH5R48
     }
     
-    private let dictionaryTV = UITableView().then{
+    private let dictionaryTV: UITableView = UITableView().then{
         $0.rowHeight = 107
         $0.estimatedRowHeight = UITableView.automaticDimension
         $0.backgroundColor = .bgBeige
     }
     
-    private let homeButton = UIButton().then{
+    private let homeButton: UIButton = UIButton().then{
         $0.setImage(UIImage(named: "homeImage"),for: .normal)
-    }
-    
-    // MARK: - Functions
-    private func setTV() {
-        dictionaryTV.delegate = self
-        dictionaryTV.dataSource = self
-        dictionaryTV.separatorStyle = .none
-        dictionaryTV.showsVerticalScrollIndicator = true
-        dictionaryTV.register(DictionaryTVC.self, forCellReuseIdentifier: "DictionaryTVC")
     }
     
     // MARK: - View Life Cycle
@@ -61,6 +52,15 @@ final class DictionaryVC: UIViewController {
         setTV()
         setButtonActions()
         view.backgroundColor = .bgBeige
+    }
+    
+    // MARK: - Functions
+    private func setTV() {
+        dictionaryTV.delegate = self
+        dictionaryTV.dataSource = self
+        dictionaryTV.separatorStyle = .none
+        dictionaryTV.showsVerticalScrollIndicator = true
+        dictionaryTV.register(DictionaryTVC.self, forCellReuseIdentifier: "DictionaryTVC")
     }
     
     private func setButtonActions(){

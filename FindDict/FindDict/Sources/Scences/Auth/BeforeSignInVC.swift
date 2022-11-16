@@ -16,7 +16,7 @@ class BeforeSignInVC: UIViewController {
         $0.image = UIImage(named: "logoImage")
     }
     
-    private let signInButton = UIButton().then{
+    private let signInButton: UIButton = UIButton().then{
         $0.setTitle("로그인", for: .normal)
         $0.backgroundColor = .buttonOrange
         $0.titleLabel?.font = .findDictH4R35
@@ -24,7 +24,7 @@ class BeforeSignInVC: UIViewController {
         $0.layer.cornerRadius = 10
     }
     
-    private let signUpButton = UIButton().then{
+    private let signUpButton: UIButton = UIButton().then{
         $0.setTitle("회원 가입", for: .normal)
         $0.backgroundColor = .buttonYellow
         $0.titleLabel?.font = .findDictH4R35
@@ -51,8 +51,6 @@ class BeforeSignInVC: UIViewController {
             self.navigationController?.pushViewController(signUpVC, animated: true)
         }
     }
-    
-    
 }
 
 

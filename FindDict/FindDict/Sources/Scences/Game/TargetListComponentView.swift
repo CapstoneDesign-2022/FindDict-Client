@@ -17,7 +17,7 @@ protocol TargetComponentViewDelegate: AnyObject {
 class TargetListComponentView: UIView {
     
     private var delegate: TargetComponentViewDelegate?
-    private let koreanButton = UIButton().then{
+    private let koreanButton: UIButton = UIButton().then{
         if #available(iOS 15.0, *) {
             $0.configuration = .plain()
             $0.configuration?.buttonSize = .large
@@ -31,7 +31,7 @@ class TargetListComponentView: UIView {
         $0.setTitleColor(.black, for: .normal)
     }
     
-    private let englishLabelBoundaryView = UIView().then {
+    private let englishLabelBoundaryView: UIView = UIView().then {
         //        $0.addShadow(location: .bottom)
         //                $0.addShadow(location: .left)
         //                $0.addShadow(location: .right)
@@ -44,7 +44,7 @@ class TargetListComponentView: UIView {
         $0.makeRounded(cornerRadius: 15)
     }
     
-    private let englishLabel = UILabel().then{
+    private let englishLabel: UILabel = UILabel().then{
         //        $0.addShadow(location: .bottom)
         //        $0.addShadow(location: .left)
         //        $0.addShadow(location: .right)
@@ -71,7 +71,7 @@ class TargetListComponentView: UIView {
         //        $0.makeRounded(cornerRadius: 15)
     }
     
-    private var englishLabelText :String = ""
+    private var englishLabelText: String = ""
     
     // MARK: - Initialization
     override init(frame: CGRect) {
@@ -85,14 +85,13 @@ class TargetListComponentView: UIView {
     }
     
     // MARK: - Functions
-    func setData(korean:String, english:String){
+    func setData(korean: String, english: String){
         koreanButton.setTitle(korean, for: .normal)
         englishLabelText = english
     }
     
     func setButtonActions(){
         koreanButton.press{
-            print("힌트 보기")
             self.delegate?.hintButtonClicked(korean: self.koreanButton.currentTitle ?? "버튼 레이블 오류")
         }
     }

@@ -17,11 +17,11 @@ class GameVC:ViewController {
     // MARK: - Vision Properties
     var request: VNCoreMLRequest?
     var visionModel: VNCoreMLModel?
-    var isInferencing = false
-    let semaphore = DispatchSemaphore(value: 1)
+    var isInferencing: Bool = false
+    let semaphore: DispatchSemaphore = DispatchSemaphore(value: 1)
     private let objectDectectionModel = yolov5m() //yolov7()
     // TODO: - private으로 바꾸고 setter 만들기
-    var pixelBuffer:CVPixelBuffer? = nil {
+    var pixelBuffer: CVPixelBuffer? = nil {
         didSet{
             setUpModel()
             handleImage(pixelBuffer: pixelBuffer)
@@ -39,7 +39,7 @@ class GameVC:ViewController {
         }
     }
     
-    private var predictedObjectLableSet = Set<String>() {
+    private var predictedObjectLableSet: Set<String> = Set<String>() {
         didSet {
             createTargetListComponents(with: predictedObjectLableSet)
             for word in predictedObjectLableSet{
@@ -49,10 +49,9 @@ class GameVC:ViewController {
     }
     
     // TODO: - 버튼 위치 잘 잡고 나면 삭제할 프로퍼티
-    private var colors: [String: UIColor] = [:]
-    private var theNumberOfTargetsGuessedRight = 0 {
+    private var colors: [String : UIColor] = [:]
+    private var theNumberOfTargetsGuessedRight: Int = 0 {
         didSet{
-            print(theNumberOfTargetsGuessedRight)
             if theNumberOfTargetsGuessedRight == wordTargets.count {
                 let gameResultSuccessVC = GameResultSuccessVC(navigationController: self.navigationController)
                 gameResultSuccessVC.modalPresentationStyle = .overCurrentContext
@@ -64,12 +63,12 @@ class GameVC:ViewController {
         self.theNumberOfTargetsGuessedRight += 1
     }
     // MARK: - UI Properties
-    private let logoImage = UIImageView().then{
+    private let logoImage: UIImageView = UIImageView().then{
         $0.contentMode = .scaleAspectFit
         $0.image = UIImage(named: "logoImage")
     }
     
-    private let targetListContainerView = UIStackView().then{
+    private let targetListContainerView: UIStackView = UIStackView().then{
         $0.axis = .horizontal
         $0.spacing = 20
     }
@@ -82,15 +81,15 @@ class GameVC:ViewController {
             }
         }
     }
-    private let cropImageView = UIImageView()
+    private let cropImageView: UIImageView = UIImageView()
     
     // TODO: - private으로 만들고 setter만들기
-    var image = UIImageView().then{
+    var image: UIImageView = UIImageView().then{
         $0.isUserInteractionEnabled = true
         $0.contentMode = .scaleAspectFit
     }
     
-    private var buttonLayer = UIView()
+    private var buttonLayer: UIView = UIView()
     
     private lazy var buttons: [UIButton] = [] {
         didSet{
@@ -156,10 +155,10 @@ class GameVC:ViewController {
         //        print(labelString,bgRect)
         //                let buttonRect = CGRect(x: prediction.boundingBox.origin.x, y: prediction.boundingBox.origin.y, width: prediction.boundingBox.width, height: prediction.boundingBox.height)
         let scale = CGAffineTransform.identity.scaledBy(x: buttonLayer.bounds.width, y: buttonLayer.bounds.height)
-        print("scale",scale)
+//        print("scale",scale)
         let transform = CGAffineTransform(scaleX: 1, y: -1).translatedBy(x: 0, y: -1)
         let bgRect = prediction.boundingBox.applying(transform).applying(scale)
-        print(bgRect)
+//        print(bgRect)
         let x = (prediction.boundingBox.origin.x - prediction.boundingBox.size.width/2)*image.frame.size.width
         let y = (prediction.boundingBox.origin.y - prediction.boundingBox.size.height/2)*image.frame.size.height
         let width = prediction.boundingBox.size.width * image.frame.size.width
@@ -189,7 +188,7 @@ class GameVC:ViewController {
         }
     }
     
-    func disableButtons(label:String){
+    func disableButtons(label: String){
         for button in buttons{
             if button.titleLabel?.text == label{
                 button.isUserInteractionEnabled = false
@@ -197,7 +196,7 @@ class GameVC:ViewController {
         }
     }
     
-    func handleGuessedRightView(label:String){
+    func handleGuessedRightView(label: String){
         for wordTarget in wordTargets{
             if wordTarget.getTargetLabel() == label {
                 wordTarget.handleGussedRightView()
@@ -322,3 +321,8 @@ extension GameVC {
     
 }
 
+extension VNRecognizedObjectObservation {
+    var label: String? {
+        return self.labels.first?.identifier
+    }
+}
