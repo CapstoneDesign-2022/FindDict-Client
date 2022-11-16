@@ -70,6 +70,7 @@ final class DictionaryVC: UIViewController {
     }
 }
 
+// MARK: - Network
 extension DictionaryVC {
     private func requestGetWordList() {
         WordAPI.shared.getWordList { networkResult in

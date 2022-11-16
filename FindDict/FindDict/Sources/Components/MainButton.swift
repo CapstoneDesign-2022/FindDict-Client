@@ -9,7 +9,7 @@ import UIKit
 
 class MainButton: UIButton {
 
-    
+    // MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUI()
@@ -20,6 +20,7 @@ class MainButton: UIButton {
         setUI()
     }
     
+    // MARK: - UI
     private func setUI(){
         self.setTitleColor(.black, for: .normal)
         self.layer.cornerRadius = 10

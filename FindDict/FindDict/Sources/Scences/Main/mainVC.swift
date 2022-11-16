@@ -43,6 +43,7 @@ class MainVC: UIViewController {
         view.backgroundColor = .bgYellow
     }
 
+    // MARK: - Functions
     func setButtonActions(){
         gameStartButton.press{
             let initiatingGameVC = PhotoSelectorVC()

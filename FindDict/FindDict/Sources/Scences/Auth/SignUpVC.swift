@@ -67,6 +67,7 @@ class SignUpVC: AuthBaseVC {
         setButtonActions()
     }
     
+    // MARK: - Functions
     private func setButtonActions(){
         signUpButton.press{
             if (self.isIdConfirmed == false) {

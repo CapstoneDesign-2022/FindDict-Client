@@ -48,6 +48,7 @@ class GameTutorialCVC: UICollectionViewCell {
         tutorialTextLabel.text = cellData.tutorialText
     }
     
+    // MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
         setLayout()

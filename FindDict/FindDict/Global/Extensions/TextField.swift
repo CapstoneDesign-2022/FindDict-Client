@@ -9,7 +9,7 @@ import UIKit
 
 class TextField: UITextField {
 
-    
+    // MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUI()
@@ -20,6 +20,7 @@ class TextField: UITextField {
         setUI()
     }
     
+    // MARK: - UI
     private func setUI(){
         self.backgroundColor = .textFieldGray
         self.layer.cornerRadius = 11

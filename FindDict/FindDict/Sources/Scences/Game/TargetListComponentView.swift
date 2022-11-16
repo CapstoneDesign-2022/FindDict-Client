@@ -112,6 +112,7 @@ class TargetListComponentView: UIView {
     
 }
 
+// MARK: - UI
 extension TargetListComponentView {
     func setLayout() {
         self.addSubViews([koreanButton

@@ -20,7 +20,7 @@ class DictionaryDetailCVC: UICollectionViewCell {
         wordImageView.load(cellData)
     }
     
-    // MARK: - View Life Cycle
+    // MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
         setLayout()

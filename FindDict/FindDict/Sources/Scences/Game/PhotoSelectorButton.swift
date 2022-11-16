@@ -9,6 +9,7 @@ import UIKit
 
 class PhotoSelectorButton: UIButton {
 
+    // MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUI()
@@ -19,6 +20,7 @@ class PhotoSelectorButton: UIButton {
         setUI()
     }
     
+    // MARK: - UI
     private func setUI(){
         self.layer.cornerRadius = 35
         self.titleLabel?.font = .findDictH4R35
