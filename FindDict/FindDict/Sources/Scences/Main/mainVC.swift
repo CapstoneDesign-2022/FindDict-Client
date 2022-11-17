@@ -67,7 +67,7 @@ extension MainVC {
         view.addSubViews([logoImage,gameStartButton, buttonStackView])
         
         logoImage.snp.makeConstraints{
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(137)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(100)
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
         }
         
@@ -81,7 +81,6 @@ extension MainVC {
             $0.top.equalTo(gameStartButton.snp.bottom).offset(44)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).inset(260)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(260)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(83)
             $0.height.equalTo(120)
         }
     }
