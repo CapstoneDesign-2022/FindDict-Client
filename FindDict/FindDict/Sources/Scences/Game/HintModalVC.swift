@@ -46,19 +46,19 @@ class HintModalVC: UIViewController {
     }
     
     private let hintImageView1: UIImageView = UIImageView().then{
-        $0.image = UIImage(named: "globe")
+        $0.image = UIImage(named: "launchScreen")
     }
     
     private let hintImageView2: UIImageView = UIImageView().then{
-        $0.image = UIImage(named: "globe")
+        $0.image = UIImage(named: "launchScreen")
     }
     
     private let hintImageView3: UIImageView = UIImageView().then{
-        $0.image = UIImage(named: "globe")
+        $0.image = UIImage(named: "launchScreen")
     }
     
     private let hintImageView4: UIImageView = UIImageView().then{
-        $0.image = UIImage(named: "globe")
+        $0.image = UIImage(named: "launchScreen")
     }
     
     lazy var imageTopStackView: UIStackView = UIStackView(arrangedSubviews: [hintImageView1, hintImageView2]).then{
