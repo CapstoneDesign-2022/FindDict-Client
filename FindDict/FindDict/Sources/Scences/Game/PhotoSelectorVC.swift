@@ -27,6 +27,10 @@ class PhotoSelectorVC: UIViewController {
         $0.backgroundColor = .buttonYellow
     }
     
+    private let homeButton: UIButton = UIButton().then{
+        $0.setImage(UIImage(named: "homeImage"),for: .normal)
+    }
+    
     private var selectedImage: UIImageView = UIImageView()
     
     private var pixelBuffer: CVPixelBuffer? = nil  {
@@ -63,16 +67,20 @@ class PhotoSelectorVC: UIViewController {
             imagePickerController.allowsEditing = true
             self.present(imagePickerController, animated: true, completion: nil)
         }
+        
+        homeButton.press{
+            self.navigationController?.popToRootViewController(animated: false)
+        }
     }
 }
 
 // MARK: - UI
 extension PhotoSelectorVC {
     private func setLayout() {
-        view.addSubViews([takingPictureButton, selectingPictureButton,fetchingPictureButton])
+        view.addSubViews([takingPictureButton, selectingPictureButton,fetchingPictureButton, homeButton])
         
         takingPictureButton.snp.makeConstraints{
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(67)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(100)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(60)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-60)
             $0.height.equalTo(100)
@@ -90,6 +98,12 @@ extension PhotoSelectorVC {
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(60)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-60)
             $0.height.equalTo(100)
+        }
+        
+        homeButton.snp.makeConstraints{
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(40)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide).inset(60)
+            $0.width.height.equalTo(50)
         }
     }
 }

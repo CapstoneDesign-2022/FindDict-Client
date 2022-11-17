@@ -35,10 +35,12 @@ class SignUpVC: AuthBaseVC {
     
     private let passwordTextField: TextField = TextField().then{
         $0.placeholder = "비밀번호"
+        $0.isSecureTextEntry = true
     }
     
     private let passwordConfirmTextField: TextField = TextField().then{
         $0.placeholder = "비밀번호 확인"
+        $0.isSecureTextEntry = true
     }
     
     private let passwordVerificationLabel: UILabel = UILabel().then{
