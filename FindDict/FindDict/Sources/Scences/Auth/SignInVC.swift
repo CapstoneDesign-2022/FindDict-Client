@@ -18,6 +18,7 @@ class SignInVC: AuthBaseVC {
     
     private let passwordTextField: TextField = TextField().then{
         $0.placeholder = "비밀번호"
+        $0.isSecureTextEntry = true
     }
     
     private let signInButton: UIButton = UIButton().then{
@@ -117,7 +118,6 @@ extension SignInVC{
             switch networkResult {
             case .success(let response):
                 if let res = response as? SignInResponseModel {
-                    print(res)
                     UserToken.shared.accessToken = res.accessToken
                     self.makeAlert(title: MessageType.signInSuccess.message, okAction: {_ in
                         let navigationController = UINavigationController(rootViewController: MainVC())
