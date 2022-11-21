@@ -10,8 +10,16 @@ import SnapKit
 import Then
 
 class PhotoSelectorVC: UIViewController {
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        if (isEnoughObject == true){
+            let gameResultSuccessVC = GameResultSuccessVC(navigationController: self.navigationController)
+            gameResultSuccessVC.modalPresentationStyle = .overCurrentContext
+            self.present(gameResultSuccessVC, animated: true)
+        }
+    }
     // MARK: - Properties
+    var isEnoughObject = false
     private let takingPictureButton: PhotoSelectorButton = PhotoSelectorButton().then{
         $0.setTitle("사진 찍기", for: .normal)
         $0.backgroundColor = .buttonOrange
@@ -38,6 +46,7 @@ class PhotoSelectorVC: UIViewController {
             let gameVC = GameVC()
             gameVC.image.image = selectedImage.image
             gameVC.pixelBuffer = selectedImage.image?.pixelBufferFromImage()
+            gameVC.setDelegate(delegate: self)
             self.navigationController?.pushViewController(gameVC, animated: true)
         }
     }
@@ -124,4 +133,12 @@ extension PhotoSelectorVC:UIImagePickerControllerDelegate, UINavigationControlle
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
+}
+
+// MARK: -PhotoSelectorVCDelegate
+extension PhotoSelectorVC: GameVCDelegate {
+    func lackOfObject(index: Bool) {
+        self.isEnoughObject = index
+    }
+    
 }
