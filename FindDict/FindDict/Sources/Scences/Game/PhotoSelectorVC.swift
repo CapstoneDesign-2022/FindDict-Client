@@ -13,9 +13,9 @@ class PhotoSelectorVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         if (isEnoughObject == true){
-            let gameResultSuccessVC = GameResultSuccessVC(navigationController: self.navigationController)
-            gameResultSuccessVC.modalPresentationStyle = .overCurrentContext
-            self.present(gameResultSuccessVC, animated: true)
+            let photoReselectVC = PhotoReSelectVC()
+            photoReselectVC.modalPresentationStyle = .overCurrentContext
+            self.present(photoReselectVC, animated: true)
         }
     }
     // MARK: - Properties

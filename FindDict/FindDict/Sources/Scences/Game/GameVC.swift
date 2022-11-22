@@ -31,7 +31,7 @@ class GameVC:ViewController {
     private var delegate: GameVCDelegate?
     var rootView: UIViewController?
     
-    private var predictedObjects: [VNRecognizedObjectObservation] = [] {
+    var predictedObjects: [VNRecognizedObjectObservation] = [] {
         didSet {
             putButtons(with: predictedObjects)
             var predectedObjectLabels = Set<String>()
@@ -44,13 +44,12 @@ class GameVC:ViewController {
     
     private var predictedObjectLableSet: Set<String> = Set<String>() {
         didSet {
-            createTargetListComponents(with: predictedObjectLableSet)
-            
             if (predictedObjectLableSet.count < 3){
-                                self.delegate?.lackOfObject(index: true)
-                
+                self.delegate?.lackOfObject(index: true)
                 self.navigationController?.popViewController(animated: true)
             }
+
+            createTargetListComponents(with: predictedObjectLableSet)
             for word in predictedObjectLableSet{
                 requestPostWord(body: CreateWordBodyModel(english: word), image: (cropImageView.image ?? UIImage(named: "GameOver"))!)
             }
