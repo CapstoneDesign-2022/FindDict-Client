@@ -11,9 +11,10 @@ import Vision
 import SnapKit
 import Then
 
-
+protocol GameVCDelegate: AnyObject {
+    func lackOfObject(index: Bool)
+}
 class GameVC:ViewController {
-    
     // MARK: - Vision Properties
     var request: VNCoreMLRequest?
     var visionModel: VNCoreMLModel?
@@ -27,8 +28,10 @@ class GameVC:ViewController {
             handleImage(pixelBuffer: pixelBuffer)
         }
     }
+    private var delegate: GameVCDelegate?
+    var rootView: UIViewController?
     
-    private var predictedObjects: [VNRecognizedObjectObservation] = [] {
+    var predictedObjects: [VNRecognizedObjectObservation] = [] {
         didSet {
             putButtons(with: predictedObjects)
             var predectedObjectLabels = Set<String>()
@@ -41,6 +44,11 @@ class GameVC:ViewController {
     
     private var predictedObjectLableSet: Set<String> = Set<String>() {
         didSet {
+            if (predictedObjectLableSet.count < 3){
+                self.delegate?.lackOfObject(index: true)
+                self.navigationController?.popViewController(animated: true)
+            }
+
             createTargetListComponents(with: predictedObjectLableSet)
             for word in predictedObjectLableSet{
                 requestPostWord(body: CreateWordBodyModel(english: word), image: (cropImageView.image ?? UIImage(named: "GameOver"))!)
@@ -119,6 +127,9 @@ class GameVC:ViewController {
     }
 
     // MARK: - Functions
+    func setDelegate(delegate: GameVCDelegate){
+        self.delegate = delegate
+    }
     func putButtons(with predictions: [VNRecognizedObjectObservation]) {
         var createdButtons:[UIButton]=[]
         for prediction in predictions {
