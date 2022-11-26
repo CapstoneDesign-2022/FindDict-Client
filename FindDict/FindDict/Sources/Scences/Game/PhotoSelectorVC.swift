@@ -10,16 +10,11 @@ import SnapKit
 import Then
 
 class PhotoSelectorVC: UIViewController {
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        if (isEnoughObject == true){
-            let photoReselectVC = PhotoReSelectVC()
-            photoReselectVC.modalPresentationStyle = .overCurrentContext
-            self.present(photoReselectVC, animated: true)
-        }
-    }
+
     // MARK: - Properties
+    let gameVC = GameVC()
     var isEnoughObject = false
+    
     private let takingPictureButton: PhotoSelectorButton = PhotoSelectorButton().then{
         $0.setTitle("사진 찍기", for: .normal)
         $0.backgroundColor = .buttonOrange
@@ -43,20 +38,32 @@ class PhotoSelectorVC: UIViewController {
     
     private var pixelBuffer: CVPixelBuffer? = nil  {
         didSet{
-            let gameVC = GameVC()
+            //            objectDetectionVC.image.image = selectedImage.image
             gameVC.image.image = selectedImage.image
-            gameVC.pixelBuffer = selectedImage.image?.pixelBufferFromImage()
-            gameVC.setDelegate(delegate: self)
-            self.navigationController?.pushViewController(gameVC, animated: true)
+            let objectDetectionVC = ObjectDetectionVC()
+            objectDetectionVC.gameVC = gameVC
+            objectDetectionVC.pixelBuffer = selectedImage.image?.pixelBufferFromImage()
+            objectDetectionVC.navigation = self.navigationController
+//            self.navigationController?.pushViewController(objectDetectionVC, animated: true)
         }
     }
     
     // MARK: - View Life Cycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        if (isEnoughObject == true){
+            let photoReselectVC = PhotoReSelectVC()
+            photoReselectVC.modalPresentationStyle = .overCurrentContext
+            self.present(photoReselectVC, animated: true)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
         setButtonActions()
         view.backgroundColor = .bgBeige
+        gameVC.setDelegate(delegate: self)
     }
     
     // MARK: - Functions
