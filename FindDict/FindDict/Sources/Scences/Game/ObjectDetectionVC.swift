@@ -22,7 +22,7 @@ class ObjectDetectionVC: UIViewController {
     private let objectDectectionModel = yolov5m() //yolov7()
     var gameVC = GameVC()
     var navigation: UINavigationController?
-    var isEnoughObject = false
+//    var isEnoughObject = false
     private var delegate: ObjectDetectionVCDelegate?
     
     //    var image: UIImageView = UIImageView()
@@ -41,20 +41,25 @@ class ObjectDetectionVC: UIViewController {
             for predictedObject in predictedObjects {
                 predectedObjectLabels.insert(predictedObject.label ?? "레이블오류")
             }
+            if (predectedObjectLabels.count < 3 ){
+                self.delegate?.lackOfObject(index: true)
+            }else {
+                gameVC.predictedObjectLableSet = predectedObjectLabels
+                self.navigation?.pushViewController(gameVC, animated: true)
+            }
             
-            gameVC.predictedObjectLableSet = predectedObjectLabels
-            gameVC.setDelegate(delegate: self)
-            print(">>>>NAvigatae")
+//            gameVC.setDelegate(delegate: self)
+//            print(">>>>NAvigatae")
 //            self.navigation?.pushViewController(gameVC, animated: true)
-            if (isEnoughObject == true){
+//            if (isEnoughObject == true){
 //                let photoReselectVC = PhotoReSelectVC()
 //                photoReselectVC.modalPresentationStyle = .overCurrentContext
 //                self.present(photoReselectVC, animated: true)
-                self.navigation?.pushViewController(gameVC, animated: true)
-            }else{
+                
+//            }else{
 //                self.navigation?.popViewController(animated: true)
-                self.delegate?.lackOfObject(index: true)
-            }
+               
+//            }
         }
     }
     
@@ -115,9 +120,9 @@ extension VNRecognizedObjectObservation {
     }
 }
 
-// MARK: -PhotoSelectorVCDelegate
-extension ObjectDetectionVC: GameVCDelegate {
-    func lackOfObject(index: Bool) {
-        self.isEnoughObject = index
-    }
-}
+//// MARK: -PhotoSelectorVCDelegate
+//extension ObjectDetectionVC: GameVCDelegate {
+//    func lackOfObject(index: Bool) {
+//        self.isEnoughObject = index
+//    }
+//}

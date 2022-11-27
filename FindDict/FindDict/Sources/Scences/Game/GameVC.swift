@@ -11,21 +11,21 @@ import Vision
 import SnapKit
 import Then
 
-protocol GameVCDelegate: AnyObject {
-    func lackOfObject(index: Bool)
-}
+//protocol GameVCDelegate: AnyObject {
+//    func lackOfObject(index: Bool)
+//}
 
 class GameVC:ViewController {
     
-    private var delegate: GameVCDelegate?
+//    private var delegate: GameVCDelegate?
     
     var predictedObjectLableSet: Set<String> = Set<String>() {
         didSet {
-            if (predictedObjectLableSet.count < 3){
-                self.delegate?.lackOfObject(index: true)
+//            if (predictedObjectLableSet.count < 3){
+//                self.delegate?.lackOfObject(index: true)
 //                print("!!!!!!1predictedObjectLableSet")
 //                self.navigationController?.popViewController(animated: true)
-            }
+//            }
             
             createTargetListComponents(with: predictedObjectLableSet)
         }
@@ -107,9 +107,9 @@ class GameVC:ViewController {
         self.theNumberOfTargetsGuessedRight += 1
     }
     
-    func setDelegate(delegate: GameVCDelegate){
-        self.delegate = delegate
-    }
+//    func setDelegate(delegate: GameVCDelegate){
+//        self.delegate = delegate
+//    }
     
     func putButtons(with predictions: [VNRecognizedObjectObservation]) {
         var createdButtons:[UIButton]=[]
