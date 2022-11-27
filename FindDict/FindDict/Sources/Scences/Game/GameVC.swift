@@ -23,7 +23,8 @@ class GameVC:ViewController {
         didSet {
             if (predictedObjectLableSet.count < 3){
                 self.delegate?.lackOfObject(index: true)
-                self.navigationController?.popViewController(animated: true)
+//                print("!!!!!!1predictedObjectLableSet")
+//                self.navigationController?.popViewController(animated: true)
             }
             
             createTargetListComponents(with: predictedObjectLableSet)

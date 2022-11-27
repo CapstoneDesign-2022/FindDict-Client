@@ -8,8 +8,12 @@
 import UIKit
 import Vision
 
+protocol ObjectDetectionVCDelegate: AnyObject {
+    func lackOfObject(index: Bool)
+}
+
 class ObjectDetectionVC: UIViewController {
-    
+
     // MARK: - Vision Properties
     var request: VNCoreMLRequest?
     var visionModel: VNCoreMLModel?
@@ -18,8 +22,10 @@ class ObjectDetectionVC: UIViewController {
     private let objectDectectionModel = yolov5m() //yolov7()
     var gameVC = GameVC()
     var navigation: UINavigationController?
+    var isEnoughObject = false
+    private var delegate: ObjectDetectionVCDelegate?
     
-//    var image: UIImageView = UIImageView()
+    //    var image: UIImageView = UIImageView()
     
     var pixelBuffer: CVPixelBuffer? = nil {
         didSet{
@@ -35,11 +41,27 @@ class ObjectDetectionVC: UIViewController {
             for predictedObject in predictedObjects {
                 predectedObjectLabels.insert(predictedObject.label ?? "레이블오류")
             }
+            
             gameVC.predictedObjectLableSet = predectedObjectLabels
+            gameVC.setDelegate(delegate: self)
             print(">>>>NAvigatae")
+//            self.navigation?.pushViewController(gameVC, animated: true)
+            if (isEnoughObject == true){
+//                let photoReselectVC = PhotoReSelectVC()
+//                photoReselectVC.modalPresentationStyle = .overCurrentContext
+//                self.present(photoReselectVC, animated: true)
                 self.navigation?.pushViewController(gameVC, animated: true)
+            }else{
+//                self.navigation?.popViewController(animated: true)
+                self.delegate?.lackOfObject(index: true)
+            }
         }
     }
+    
+    func setDelegate(delegate: ObjectDetectionVCDelegate){
+        self.delegate = delegate
+    }
+    
     
     func setUpModel() {
         if let visionModel = try? VNCoreMLModel(for: objectDectectionModel.model) {
@@ -80,15 +102,22 @@ class ObjectDetectionVC: UIViewController {
         }
         self.isInferencing = false
         self.semaphore.signal()
-//        gameVC.setDelegate(delegate: self)
-//        gameVC.image.image = selectedImage.image
-//        gameVC.image.image = image.image
-   
+        //        gameVC.setDelegate(delegate: self)
+        //        gameVC.image.image = selectedImage.image
+        //        gameVC.image.image = image.image
+        
     }
 }
 
 extension VNRecognizedObjectObservation {
     var label: String? {
         return self.labels.first?.identifier
+    }
+}
+
+// MARK: -PhotoSelectorVCDelegate
+extension ObjectDetectionVC: GameVCDelegate {
+    func lackOfObject(index: Bool) {
+        self.isEnoughObject = index
     }
 }
