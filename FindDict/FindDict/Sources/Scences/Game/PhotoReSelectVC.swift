@@ -30,6 +30,7 @@ final class PhotoReSelectVC: UIViewController {
         $0.numberOfLines = 2
         $0.textAlignment = .center
         $0.font = .findDictH4R24
+        $0.textColor = .black
     }
     
     // MARK: - View Life Cycle
@@ -64,8 +65,8 @@ extension PhotoReSelectVC {
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
         }
         closeButton.snp.makeConstraints{
-            $0.top.equalTo(modalView.snp.top).offset(10)
-            $0.trailing.equalTo(modalView.snp.trailing).inset(20)
+            $0.top.equalTo(modalView.snp.top).offset(30)
+            $0.trailing.equalTo(modalView.snp.trailing).inset(25)
         }
         alertTitleLabel.snp.makeConstraints{
             $0.top.equalTo(alertImageView.snp.bottom).offset(40)
