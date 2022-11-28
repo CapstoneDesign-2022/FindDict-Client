@@ -33,15 +33,18 @@ final class ObjectDetectionVC: UIViewController {
     
     private var predictedObjects: [VNRecognizedObjectObservation] = [] {
         didSet {
-            gameVC.putButtons(with: predictedObjects)
+            
+//            gameVC.putButtons(with: predictedObjects)
             var predectedObjectLabels = Set<String>()
             for predictedObject in predictedObjects {
                 predectedObjectLabels.insert(predictedObject.label ?? "레이블오류")
             }
+            
             if (predectedObjectLabels.count < 3 ){
                 self.delegate?.lackOfObject(index: true)
             }else {
 //                gameVC.predictedObjectLableSet = predectedObjectLabels
+                gameVC.setPredictedObjects(predictedObjects: predictedObjects)
                 gameVC.setPredictedObjectLableSet(predictedObjectLableSet: predectedObjectLabels)
                 self.navigation?.pushViewController(gameVC, animated: true)
             }
@@ -94,10 +97,8 @@ final class ObjectDetectionVC: UIViewController {
     private func visionRequestDidComplete(request: VNRequest, error: Error?) {
         if let predictions = request.results as? [VNRecognizedObjectObservation] {
             DispatchQueue.main.async { [self] in
-                //  self.buttonLayer.bounds = self.image.bounds
-                gameVC.image.addSubview(self.gameVC.buttonLayer)
-                // self.image.layer.addSublayer(buttonLayer)
-                gameVC.buttonLayer.frame = gameVC.image.bounds
+//                gameVC.image.addSubview(self.gameVC.buttonLayer)
+//                gameVC.buttonLayer.frame = gameVC.image.bounds
                 self.predictedObjects = predictions
                 self.isInferencing = false
             }

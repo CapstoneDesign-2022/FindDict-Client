@@ -12,7 +12,8 @@ import SnapKit
 import Then
 
 final class GameVC: ViewController {
-        
+    
+    private var predictedObjects: [VNRecognizedObjectObservation] = []
     private var predictedObjectLableSet: Set<String> = Set<String>() {
         didSet {
             createTargetListComponents(with: predictedObjectLableSet)
@@ -28,7 +29,7 @@ final class GameVC: ViewController {
             }
         }
     }
-
+    
     // MARK: - UI Properties
     private let logoImage: UIImageView = UIImageView().then{
         $0.contentMode = .scaleAspectFit
@@ -69,7 +70,6 @@ final class GameVC: ViewController {
                     self.disableButtons(label:button.titleLabel?.text ?? "레이블 오류")
                     self.handleGuessedRightView(label:button.titleLabel?.text ?? "레이블 오류")
                     self.presentGuessedRightWordModal(text:button.titleLabel?.text ?? "레이블 오류")
-                    
                 }
                 buttonLayer.addSubview(button)
             }
@@ -87,11 +87,25 @@ final class GameVC: ViewController {
         for word in predictedObjectLableSet{
             requestPostWord(body: CreateWordBodyModel(english: word), image: (cropImageView.image ?? UIImage(named: "GameOver"))!)
         }
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        print(">>>>>>",image.bounds)
+        image.addSubview(buttonLayer)
+        buttonLayer.frame = image.bounds
+        putButtons(with: predictedObjects)
+//        image.setNeedsDisplay()
     }
     
     // MARK: - Functions
     func increasetheNumberOfTargetsGuessedRight(){
         self.theNumberOfTargetsGuessedRight += 1
+    }
+    
+    func setPredictedObjects(predictedObjects: [VNRecognizedObjectObservation]){
+        self.predictedObjects = predictedObjects
     }
     
     func setPredictedObjectLableSet(predictedObjectLableSet: Set<String>){
@@ -142,7 +156,7 @@ final class GameVC: ViewController {
         let y = (prediction.boundingBox.origin.y - prediction.boundingBox.size.height/2)*image.frame.size.height
         let width = prediction.boundingBox.size.width * image.frame.size.width
         let height = prediction.boundingBox.size.height * image.frame.size.height
-//        print(x,y,width,height)
+        //        print(x,y,width,height)
         cropImage(origin: CGPoint(x: x, y: y),size: CGSize(width: width, height: height))
         
         //TODO: 스케일 맞추기
@@ -194,8 +208,8 @@ final class GameVC: ViewController {
     }
     
     private func cropImage(origin: CGPoint, size: CGSize){
-//        print("origin",origin)
-//        print("size",size)
+        //        print("origin",origin)
+        //        print("size",size)
         let cropRect = CGRect(origin: origin, size: size)
         guard let imageRef = image.image?.cgImage?.cropping(to: cropRect) else { return  };
         let newImage = UIImage(cgImage: imageRef, scale: image.image!.scale, orientation: image.image!.imageOrientation)
