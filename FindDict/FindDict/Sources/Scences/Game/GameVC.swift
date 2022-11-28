@@ -11,22 +11,10 @@ import Vision
 import SnapKit
 import Then
 
-//protocol GameVCDelegate: AnyObject {
-//    func lackOfObject(index: Bool)
-//}
-
-class GameVC:ViewController {
-    
-//    private var delegate: GameVCDelegate?
-    
-    var predictedObjectLableSet: Set<String> = Set<String>() {
+final class GameVC: ViewController {
+        
+    private var predictedObjectLableSet: Set<String> = Set<String>() {
         didSet {
-//            if (predictedObjectLableSet.count < 3){
-//                self.delegate?.lackOfObject(index: true)
-//                print("!!!!!!1predictedObjectLableSet")
-//                self.navigationController?.popViewController(animated: true)
-//            }
-            
             createTargetListComponents(with: predictedObjectLableSet)
         }
     }
@@ -93,7 +81,6 @@ class GameVC:ViewController {
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
-        print("<<<viewDidLoad")
         super.viewDidLoad()
         view.backgroundColor = .bgBeige
         setLayout()
@@ -107,9 +94,9 @@ class GameVC:ViewController {
         self.theNumberOfTargetsGuessedRight += 1
     }
     
-//    func setDelegate(delegate: GameVCDelegate){
-//        self.delegate = delegate
-//    }
+    func setPredictedObjectLableSet(predictedObjectLableSet: Set<String>){
+        self.predictedObjectLableSet = predictedObjectLableSet
+    }
     
     func putButtons(with predictions: [VNRecognizedObjectObservation]) {
         var createdButtons:[UIButton]=[]
@@ -119,7 +106,7 @@ class GameVC:ViewController {
         buttons = createdButtons
     }
     
-    func createTargetListComponents(with predictions: Set<String>){
+    private func createTargetListComponents(with predictions: Set<String>){
         var createdTargets:[TargetListComponentView]=[]
         for prediction in predictions {
             let component = TargetListComponentView()
@@ -131,7 +118,7 @@ class GameVC:ViewController {
     }
     
     /// 인식된 객체마다 이에 맞는 버튼을 생성합니다.
-    func createButton(prediction: VNRecognizedObjectObservation)-> UIButton {
+    private func createButton(prediction: VNRecognizedObjectObservation)-> UIButton {
         let buttonTitle: String? = prediction.label
         let color: UIColor = labelColor(with: buttonTitle ?? "N/A")
         //        print(prediction.boundingBox)
@@ -172,7 +159,7 @@ class GameVC:ViewController {
     
     // TODO: - 버튼 위치 잘 잡고 나면 삭제할 프로퍼티
     private var colors: [String : UIColor] = [:]
-    func labelColor(with label: String) -> UIColor {
+    private func labelColor(with label: String) -> UIColor {
         if let color = colors[label] {
             return color
         } else {
@@ -182,7 +169,7 @@ class GameVC:ViewController {
         }
     }
     
-    func disableButtons(label: String){
+    private func disableButtons(label: String){
         for button in buttons{
             if button.titleLabel?.text == label{
                 button.isUserInteractionEnabled = false
@@ -190,7 +177,7 @@ class GameVC:ViewController {
         }
     }
     
-    func handleGuessedRightView(label: String){
+    private func handleGuessedRightView(label: String){
         for wordTarget in wordTargets{
             if wordTarget.getTargetLabel() == label {
                 wordTarget.handleGussedRightView()
@@ -228,7 +215,7 @@ extension GameVC: TargetComponentViewDelegate {
 
 // MARK: - UI
 extension GameVC {
-    func setLayout() {
+    private func setLayout() {
         view.addSubViews([logoImage, targetListContainerView, image, cropImageView])
         logoImage.snp.makeConstraints{
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(17)

@@ -12,29 +12,26 @@ protocol ObjectDetectionVCDelegate: AnyObject {
     func lackOfObject(index: Bool)
 }
 
-class ObjectDetectionVC: UIViewController {
+final class ObjectDetectionVC: UIViewController {
 
     // MARK: - Vision Properties
-    var request: VNCoreMLRequest?
-    var visionModel: VNCoreMLModel?
-    var isInferencing: Bool = false
-    let semaphore: DispatchSemaphore = DispatchSemaphore(value: 1)
+    private var request: VNCoreMLRequest?
+    private var visionModel: VNCoreMLModel?
+    private var isInferencing: Bool = false
+    private let semaphore: DispatchSemaphore = DispatchSemaphore(value: 1)
     private let objectDectectionModel = yolov5m() //yolov7()
-    var gameVC = GameVC()
-    var navigation: UINavigationController?
-//    var isEnoughObject = false
+    private var gameVC = GameVC()
+    private var navigation: UINavigationController?
     private var delegate: ObjectDetectionVCDelegate?
-    
-    //    var image: UIImageView = UIImageView()
-    
-    var pixelBuffer: CVPixelBuffer? = nil {
+        
+    private var pixelBuffer: CVPixelBuffer? = nil {
         didSet{
-            setUpModel()
+            configureModel()
             handleImage(pixelBuffer: pixelBuffer)
         }
     }
     
-    var predictedObjects: [VNRecognizedObjectObservation] = [] {
+    private var predictedObjects: [VNRecognizedObjectObservation] = [] {
         didSet {
             gameVC.putButtons(with: predictedObjects)
             var predectedObjectLabels = Set<String>()
@@ -44,22 +41,10 @@ class ObjectDetectionVC: UIViewController {
             if (predectedObjectLabels.count < 3 ){
                 self.delegate?.lackOfObject(index: true)
             }else {
-                gameVC.predictedObjectLableSet = predectedObjectLabels
+//                gameVC.predictedObjectLableSet = predectedObjectLabels
+                gameVC.setPredictedObjectLableSet(predictedObjectLableSet: predectedObjectLabels)
                 self.navigation?.pushViewController(gameVC, animated: true)
             }
-            
-//            gameVC.setDelegate(delegate: self)
-//            print(">>>>NAvigatae")
-//            self.navigation?.pushViewController(gameVC, animated: true)
-//            if (isEnoughObject == true){
-//                let photoReselectVC = PhotoReSelectVC()
-//                photoReselectVC.modalPresentationStyle = .overCurrentContext
-//                self.present(photoReselectVC, animated: true)
-                
-//            }else{
-//                self.navigation?.popViewController(animated: true)
-               
-//            }
         }
     }
     
@@ -67,8 +52,20 @@ class ObjectDetectionVC: UIViewController {
         self.delegate = delegate
     }
     
+    func setGameVC(gameVC: GameVC){
+        self.gameVC = gameVC
+    }
     
-    func setUpModel() {
+    func setPixelBuffer(pixelBuffer: CVPixelBuffer?){
+        self.pixelBuffer = pixelBuffer
+    }
+    
+    func setNavigationController(navigationController: UINavigationController?){
+        self.navigation = navigationController
+    }
+    
+    
+    private func configureModel() {
         if let visionModel = try? VNCoreMLModel(for: objectDectectionModel.model) {
             self.visionModel = visionModel
             request = VNCoreMLRequest(model: visionModel, completionHandler: visionRequestDidComplete)
@@ -79,14 +76,14 @@ class ObjectDetectionVC: UIViewController {
     }
     
     /// 사진이 선택되면 pixelBuffer 값 역시 할당됩니다. 할당된 값을 이용하여 객체 인식을 시작합니다.
-    func handleImage(pixelBuffer: CVPixelBuffer?){
+    private func handleImage(pixelBuffer: CVPixelBuffer?){
         if !self.isInferencing, let pixelBuffer = pixelBuffer {
             self.isInferencing = true
             self.predictUsingVision(pixelBuffer: pixelBuffer)
         }
     }
     
-    func predictUsingVision(pixelBuffer: CVPixelBuffer) {
+    private func predictUsingVision(pixelBuffer: CVPixelBuffer) {
         guard let request = request else { fatalError() }
         self.semaphore.wait()
         let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer)
@@ -94,7 +91,7 @@ class ObjectDetectionVC: UIViewController {
     }
     
     /// 객체 인식이 끝나고 나면 인식 결과를 프로퍼티에 저장하고 버튼을 올릴 레이어를 준비합니다.
-    func visionRequestDidComplete(request: VNRequest, error: Error?) {
+    private func visionRequestDidComplete(request: VNRequest, error: Error?) {
         if let predictions = request.results as? [VNRecognizedObjectObservation] {
             DispatchQueue.main.async { [self] in
                 //  self.buttonLayer.bounds = self.image.bounds
@@ -107,9 +104,6 @@ class ObjectDetectionVC: UIViewController {
         }
         self.isInferencing = false
         self.semaphore.signal()
-        //        gameVC.setDelegate(delegate: self)
-        //        gameVC.image.image = selectedImage.image
-        //        gameVC.image.image = image.image
         
     }
 }
@@ -119,10 +113,3 @@ extension VNRecognizedObjectObservation {
         return self.labels.first?.identifier
     }
 }
-
-//// MARK: -PhotoSelectorVCDelegate
-//extension ObjectDetectionVC: GameVCDelegate {
-//    func lackOfObject(index: Bool) {
-//        self.isEnoughObject = index
-//    }
-//}

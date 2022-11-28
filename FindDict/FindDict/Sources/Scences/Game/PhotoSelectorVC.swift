@@ -9,12 +9,12 @@ import UIKit
 import SnapKit
 import Then
 
-class PhotoSelectorVC: UIViewController {
+final class PhotoSelectorVC: UIViewController {
 
     // MARK: - Properties
-    let gameVC = GameVC()
-    let objectDetectionVC = ObjectDetectionVC()
-    var isEnoughObject = false
+    private let gameVC = GameVC()
+    private let objectDetectionVC = ObjectDetectionVC()
+    private var isEnoughObject = false
     
     private let takingPictureButton: PhotoSelectorButton = PhotoSelectorButton().then{
         $0.setTitle("사진 찍기", for: .normal)
@@ -39,37 +39,25 @@ class PhotoSelectorVC: UIViewController {
     
     private var pixelBuffer: CVPixelBuffer? = nil  {
         didSet{
-            //            objectDetectionVC.image.image = selectedImage.image
             gameVC.image.image = selectedImage.image
             
-            objectDetectionVC.gameVC = gameVC
-            objectDetectionVC.pixelBuffer = selectedImage.image?.pixelBufferFromImage()
-            objectDetectionVC.navigation = self.navigationController
-//            self.navigationController?.pushViewController(objectDetectionVC, animated: true)
+            objectDetectionVC.setGameVC(gameVC: gameVC)
+            objectDetectionVC.setPixelBuffer(pixelBuffer: selectedImage.image?.pixelBufferFromImage())
+            objectDetectionVC.setNavigationController(navigationController: self.navigationController)
         }
     }
     
     // MARK: - View Life Cycle
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(true)
-//        if (isEnoughObject == true){
-//            let photoReselectVC = PhotoReSelectVC()
-//            photoReselectVC.modalPresentationStyle = .overCurrentContext
-//            self.present(photoReselectVC, animated: true)
-//        }
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
         setButtonActions()
         view.backgroundColor = .bgBeige
-//        gameVC.setDelegate(delegate: self)
         objectDetectionVC.setDelegate(delegate: self)
     }
     
     // MARK: - Functions
-    func setButtonActions(){
+    private func setButtonActions(){
         takingPictureButton.press{
             let imagePickerController = UIImagePickerController()
             imagePickerController.delegate = self
@@ -145,13 +133,6 @@ extension PhotoSelectorVC:UIImagePickerControllerDelegate, UINavigationControlle
 }
 
 // MARK: -PhotoSelectorVCDelegate
-//extension PhotoSelectorVC: GameVCDelegate {
-//    func lackOfObject(index: Bool) {
-//        self.isEnoughObject = index
-//    }
-//}
-
-// MARK: -PhotoSelectorVCDelegate
 extension PhotoSelectorVC: ObjectDetectionVCDelegate {
     func lackOfObject(index: Bool) {
         self.isEnoughObject = index
@@ -162,4 +143,3 @@ extension PhotoSelectorVC: ObjectDetectionVCDelegate {
         }
     }
 }
-

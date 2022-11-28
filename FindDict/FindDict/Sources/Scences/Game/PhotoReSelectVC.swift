@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-class PhotoReSelectVC: UIViewController {
+final class PhotoReSelectVC: UIViewController {
     
     // MARK: - Properties
     private let modalView: UIView = UIView().then{
@@ -39,8 +39,9 @@ class PhotoReSelectVC: UIViewController {
         view.backgroundColor = .bgModal
         setButtonActions()
     }
+    
     // MARK: - Functions
-    func setButtonActions(){
+    private func setButtonActions(){
         closeButton.press{
             self.dismiss(animated: true, completion: nil)
         }
