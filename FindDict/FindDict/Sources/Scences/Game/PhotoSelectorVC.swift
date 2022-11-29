@@ -135,8 +135,8 @@ extension PhotoSelectorVC:UIImagePickerControllerDelegate, UINavigationControlle
 extension PhotoSelectorVC: ObjectDetectionVCDelegate {
     func lackOfObject() {
         self.dismiss(animated: true)
-        let photoReselectVC = PhotoReSelectVC()
-        photoReselectVC.modalPresentationStyle = .overCurrentContext
-        self.present(photoReselectVC, animated: true)
+        let photoReselectModalVC = PhotoReselectModalVC()
+        photoReselectModalVC.modalPresentationStyle = .overCurrentContext
+        self.present(photoReselectModalVC, animated: true)
     }
 }

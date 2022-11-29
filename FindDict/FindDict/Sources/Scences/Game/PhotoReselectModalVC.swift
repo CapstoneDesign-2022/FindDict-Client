@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class PhotoReSelectVC: UIViewController {
+final class PhotoReselectModalVC: UIViewController {
     
     // MARK: - Properties
     private let modalView: UIView = UIView().then{
@@ -51,7 +51,7 @@ final class PhotoReSelectVC: UIViewController {
 }
 
 // MARK: -UI
-extension PhotoReSelectVC {
+extension PhotoReselectModalVC {
     private func setLayout() {
         view.addSubViews([modalView, alertImageView,closeButton,alertTitleLabel])
         modalView.snp.makeConstraints{
