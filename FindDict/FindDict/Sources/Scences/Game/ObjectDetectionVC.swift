@@ -21,7 +21,7 @@ final class ObjectDetectionVC: UIViewController {
     private let semaphore: DispatchSemaphore = DispatchSemaphore(value: 1)
     private let objectDectectionModel = yolov7()
 //    yolov5m() //
-    private var gameVC = GameVC()
+    private var gameVC: GameVC = GameVC()
     private var navigation: UINavigationController?
     private var delegate: ObjectDetectionVCDelegate?
         

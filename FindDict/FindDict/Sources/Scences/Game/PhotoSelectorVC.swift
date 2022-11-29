@@ -12,8 +12,8 @@ import Then
 final class PhotoSelectorVC: UIViewController {
     
     // MARK: - Properties
-    private let gameVC = GameVC()
-    private let objectDetectionVC = ObjectDetectionVC()
+    private let gameVC: GameVC = GameVC()
+    private let objectDetectionVC: ObjectDetectionVC = ObjectDetectionVC()
     
     private let takingPictureButton: PhotoSelectorButton = PhotoSelectorButton().then{
         $0.setTitle("사진 찍기", for: .normal)
