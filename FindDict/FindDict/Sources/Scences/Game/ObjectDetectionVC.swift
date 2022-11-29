@@ -9,7 +9,7 @@ import UIKit
 import Vision
 
 protocol ObjectDetectionVCDelegate: AnyObject {
-    func lackOfObject(index: Bool)
+    func lackOfObject()
 }
 
 final class ObjectDetectionVC: UIViewController {
@@ -40,7 +40,7 @@ final class ObjectDetectionVC: UIViewController {
             }
             
             if (predectedObjectLabels.count < 3 ){
-                self.delegate?.lackOfObject(index: true)
+                self.delegate?.lackOfObject()
             }else {
                 gameVC.setPredictedObjects(predictedObjects: predictedObjects)
                 gameVC.setPredictedObjectLableSet(predictedObjectLableSet: predectedObjectLabels)

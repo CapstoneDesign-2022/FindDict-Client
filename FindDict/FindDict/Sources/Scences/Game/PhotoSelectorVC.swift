@@ -10,11 +10,10 @@ import SnapKit
 import Then
 
 final class PhotoSelectorVC: UIViewController {
-
+    
     // MARK: - Properties
     private let gameVC = GameVC()
     private let objectDetectionVC = ObjectDetectionVC()
-    private var isEnoughObject = false
     
     private let takingPictureButton: PhotoSelectorButton = PhotoSelectorButton().then{
         $0.setTitle("사진 찍기", for: .normal)
@@ -134,12 +133,10 @@ extension PhotoSelectorVC:UIImagePickerControllerDelegate, UINavigationControlle
 
 // MARK: -PhotoSelectorVCDelegate
 extension PhotoSelectorVC: ObjectDetectionVCDelegate {
-    func lackOfObject(index: Bool) {
-        self.isEnoughObject = index
-        if (isEnoughObject == true){
-            let photoReselectVC = PhotoReSelectVC()
-            photoReselectVC.modalPresentationStyle = .overCurrentContext
-            self.present(photoReselectVC, animated: true)
-        }
+    func lackOfObject() {
+        self.dismiss(animated: true)
+        let photoReselectVC = PhotoReSelectVC()
+        photoReselectVC.modalPresentationStyle = .overCurrentContext
+        self.present(photoReselectVC, animated: true)
     }
 }
