@@ -95,10 +95,8 @@ final class GameVC: ViewController {
         print(">>>>>>",image.bounds)
         image.addSubview(buttonLayer)
         
-//        buttonLayer.frame = image.bounds
         buttonLayer.frame = image.contentClippingRect
         putButtons(with: predictedObjects)
-//        image.setNeedsDisplay()
     }
     
     // MARK: - Functions

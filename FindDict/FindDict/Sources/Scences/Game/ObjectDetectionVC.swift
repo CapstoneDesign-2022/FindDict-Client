@@ -19,7 +19,8 @@ final class ObjectDetectionVC: UIViewController {
     private var visionModel: VNCoreMLModel?
     private var isInferencing: Bool = false
     private let semaphore: DispatchSemaphore = DispatchSemaphore(value: 1)
-    private let objectDectectionModel = yolov5m() //yolov7()
+    private let objectDectectionModel = yolov7()
+//    yolov5m() //
     private var gameVC = GameVC()
     private var navigation: UINavigationController?
     private var delegate: ObjectDetectionVCDelegate?
@@ -33,8 +34,6 @@ final class ObjectDetectionVC: UIViewController {
     
     private var predictedObjects: [VNRecognizedObjectObservation] = [] {
         didSet {
-            
-//            gameVC.putButtons(with: predictedObjects)
             var predectedObjectLabels = Set<String>()
             for predictedObject in predictedObjects {
                 predectedObjectLabels.insert(predictedObject.label ?? "레이블오류")
@@ -43,7 +42,6 @@ final class ObjectDetectionVC: UIViewController {
             if (predectedObjectLabels.count < 3 ){
                 self.delegate?.lackOfObject(index: true)
             }else {
-//                gameVC.predictedObjectLableSet = predectedObjectLabels
                 gameVC.setPredictedObjects(predictedObjects: predictedObjects)
                 gameVC.setPredictedObjectLableSet(predictedObjectLableSet: predectedObjectLabels)
                 self.navigation?.pushViewController(gameVC, animated: true)
@@ -96,16 +94,10 @@ final class ObjectDetectionVC: UIViewController {
     /// 객체 인식이 끝나고 나면 인식 결과를 프로퍼티에 저장하고 버튼을 올릴 레이어를 준비합니다.
     private func visionRequestDidComplete(request: VNRequest, error: Error?) {
         if let predictions = request.results as? [VNRecognizedObjectObservation] {
-            DispatchQueue.main.async { [self] in
-//                gameVC.image.addSubview(self.gameVC.buttonLayer)
-//                gameVC.buttonLayer.frame = gameVC.image.bounds
                 self.predictedObjects = predictions
-                self.isInferencing = false
-            }
         }
         self.isInferencing = false
         self.semaphore.signal()
-        
     }
 }
 
