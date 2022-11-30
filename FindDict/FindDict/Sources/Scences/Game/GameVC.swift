@@ -11,53 +11,16 @@ import Vision
 import SnapKit
 import Then
 
-protocol GameVCDelegate: AnyObject {
-    func lackOfObject(index: Bool)
-}
-class GameVC:ViewController {
-    // MARK: - Vision Properties
-    var request: VNCoreMLRequest?
-    var visionModel: VNCoreMLModel?
-    var isInferencing: Bool = false
-    let semaphore: DispatchSemaphore = DispatchSemaphore(value: 1)
-    private let objectDectectionModel = yolov5m() //yolov7()
-    // TODO: - private으로 바꾸고 setter 만들기
-    var pixelBuffer: CVPixelBuffer? = nil {
-        didSet{
-            setUpModel()
-            handleImage(pixelBuffer: pixelBuffer)
-        }
-    }
-    private var delegate: GameVCDelegate?
-    var rootView: UIViewController?
+final class GameVC: ViewController {
     
-    var predictedObjects: [VNRecognizedObjectObservation] = [] {
-        didSet {
-            putButtons(with: predictedObjects)
-            var predectedObjectLabels = Set<String>()
-            for predictedObject in predictedObjects {
-                predectedObjectLabels.insert(predictedObject.label ?? "레이블오류")
-            }
-            predictedObjectLableSet = predectedObjectLabels
-        }
-    }
-    
+    // MARK: - Properties
+    private var predictedObjects: [VNRecognizedObjectObservation] = []
     private var predictedObjectLableSet: Set<String> = Set<String>() {
         didSet {
-            if (predictedObjectLableSet.count < 3){
-                self.delegate?.lackOfObject(index: true)
-                self.navigationController?.popViewController(animated: true)
-            }
-
             createTargetListComponents(with: predictedObjectLableSet)
-            for word in predictedObjectLableSet{
-                requestPostWord(body: CreateWordBodyModel(english: word), image: (cropImageView.image ?? UIImage(named: "GameOver"))!)
-            }
         }
     }
     
-    // TODO: - 버튼 위치 잘 잡고 나면 삭제할 프로퍼티
-    private var colors: [String : UIColor] = [:]
     private var theNumberOfTargetsGuessedRight: Int = 0 {
         didSet{
             if theNumberOfTargetsGuessedRight == wordTargets.count {
@@ -67,9 +30,7 @@ class GameVC:ViewController {
             }
         }
     }
-    func increasetheNumberOfTargetsGuessedRight(){
-        self.theNumberOfTargetsGuessedRight += 1
-    }
+    
     // MARK: - UI Properties
     private let logoImage: UIImageView = UIImageView().then{
         $0.contentMode = .scaleAspectFit
@@ -89,6 +50,7 @@ class GameVC:ViewController {
             }
         }
     }
+    
     private let cropImageView: UIImageView = UIImageView()
     
     // TODO: - private으로 만들고 setter만들기
@@ -97,7 +59,7 @@ class GameVC:ViewController {
         $0.contentMode = .scaleAspectFit
     }
     
-    private var buttonLayer: UIView = UIView()
+    var buttonLayer: UIView = UIView()
     
     private lazy var buttons: [UIButton] = [] {
         didSet{
@@ -109,7 +71,6 @@ class GameVC:ViewController {
                     self.disableButtons(label:button.titleLabel?.text ?? "레이블 오류")
                     self.handleGuessedRightView(label:button.titleLabel?.text ?? "레이블 오류")
                     self.presentGuessedRightWordModal(text:button.titleLabel?.text ?? "레이블 오류")
-                    
                 }
                 buttonLayer.addSubview(button)
             }
@@ -124,22 +85,41 @@ class GameVC:ViewController {
         super.viewDidLoad()
         view.backgroundColor = .bgBeige
         setLayout()
+        for word in predictedObjectLableSet{
+            requestPostWord(body: CreateWordBodyModel(english: word), image: (cropImageView.image ?? UIImage(named: "GameOver"))!)
+        }
     }
-
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        image.addSubview(buttonLayer)
+        buttonLayer.frame = image.contentClippingRect
+        putButtons(with: predictedObjects)
+    }
+    
     // MARK: - Functions
-    func setDelegate(delegate: GameVCDelegate){
-        self.delegate = delegate
+    func increasetheNumberOfTargetsGuessedRight(){
+        self.theNumberOfTargetsGuessedRight += 1
     }
-    func putButtons(with predictions: [VNRecognizedObjectObservation]) {
-        var createdButtons:[UIButton]=[]
+    
+    func setPredictedObjects(predictedObjects: [VNRecognizedObjectObservation]){
+        self.predictedObjects = predictedObjects
+    }
+    
+    func setPredictedObjectLableSet(predictedObjectLableSet: Set<String>){
+        self.predictedObjectLableSet = predictedObjectLableSet
+    }
+    
+    private func putButtons(with predictions: [VNRecognizedObjectObservation]) {
+        var createdButtons: [UIButton]=[]
         for prediction in predictions {
             createdButtons.append(createButton(prediction: prediction))
         }
         buttons = createdButtons
     }
     
-    func createTargetListComponents(with predictions: Set<String>){
-        var createdTargets:[TargetListComponentView]=[]
+    private func createTargetListComponents(with predictions: Set<String>){
+        var createdTargets: [TargetListComponentView]=[]
         for prediction in predictions {
             let component = TargetListComponentView()
             component.setData(korean: wordDictionary[prediction] ?? "사전 매칭 오류", english: prediction)
@@ -149,47 +129,29 @@ class GameVC:ViewController {
         wordTargets = createdTargets
     }
     
-    /// 인식된 객체마다 이에 맞는 버튼을 생성합니다.
-    func createButton(prediction: VNRecognizedObjectObservation)-> UIButton {
+    private func createButton(prediction: VNRecognizedObjectObservation)-> UIButton {
         let buttonTitle: String? = prediction.label
         let color: UIColor = labelColor(with: buttonTitle ?? "N/A")
-//        print(prediction.boundingBox)
-//        print(prediction.label)
-//        print("image.frame",image.frame)
-//        print("image.bounds",image.bounds)
-        //        let scale = CGAffineTransform.identity.scaledBy(x: image.bounds.width, y: image.bounds.height)
-        //        print("scale",scale)
-        //        let transform = CGAffineTransform(scaleX: 1, y: -1).translatedBy(x: 0, y: -1)
-        //        print(prediction.boundingBox.origin.x,prediction.boundingBox.origin.y, prediction.boundingBox.width,prediction.boundingBox.height)
-        //        let buttonRect = prediction.boundingBox.applying(scale)
-        //        print(buttonRect)
-        //        print(labelString,bgRect)
-        //                let buttonRect = CGRect(x: prediction.boundingBox.origin.x, y: prediction.boundingBox.origin.y, width: prediction.boundingBox.width, height: prediction.boundingBox.height)
         let scale = CGAffineTransform.identity.scaledBy(x: buttonLayer.bounds.width, y: buttonLayer.bounds.height)
-//        print("scale",scale)
-        let transform = CGAffineTransform(scaleX: 1, y: -1).translatedBy(x: 0, y: -1)
+        let transform = CGAffineTransform(scaleX: 1, y: 1)
         let bgRect = prediction.boundingBox.applying(transform).applying(scale)
-//        print(bgRect)
-        let x = (prediction.boundingBox.origin.x - prediction.boundingBox.size.width/2)*image.frame.size.width
-        let y = (prediction.boundingBox.origin.y - prediction.boundingBox.size.height/2)*image.frame.size.height
-        let width = prediction.boundingBox.size.width * image.frame.size.width
-        let height = prediction.boundingBox.size.height * image.frame.size.height
-        print(x,y,width,height)
-        cropImage(origin: CGPoint(x: x, y: y),size: CGSize(width: width, height: height))
+        //        cropImage(origin: CGPoint(x: x, y: y),size: CGSize(width: width, height: height))
         
-        //TODO: 스케일 맞추기
-        //        let buttonRect = CGRect(x: prediction.boundingBox.origin.x*500, y: prediction.boundingBox.origin.y*500, width: prediction.boundingBox.width*500, height: prediction.boundingBox.height*500)
-        let button = UIButton(type: .custom)
-        button.frame = bgRect
-        button.layer.borderColor = color.cgColor
-        button.backgroundColor = .systemBlue
-        button.layer.borderWidth = 4
-        button.backgroundColor = UIColor.clear
-        button.setTitle(buttonTitle, for: .normal)
+        let button = UIButton(type: .custom).then {
+            $0.frame = bgRect
+            $0.layer.borderColor = color.cgColor
+            $0.backgroundColor = .systemBlue
+            $0.layer.borderWidth = 4
+            $0.backgroundColor = UIColor.clear
+            $0.setTitle(buttonTitle, for: .normal)
+        }
+        
         return button
     }
     
-    func labelColor(with label: String) -> UIColor {
+    // TODO: - 버튼 위치 잘 잡고 나면 삭제할 프로퍼티
+    private var colors: [String : UIColor] = [:]
+    private func labelColor(with label: String) -> UIColor {
         if let color = colors[label] {
             return color
         } else {
@@ -199,7 +161,7 @@ class GameVC:ViewController {
         }
     }
     
-    func disableButtons(label: String){
+    private func disableButtons(label: String){
         for button in buttons{
             if button.titleLabel?.text == label{
                 button.isUserInteractionEnabled = false
@@ -207,7 +169,7 @@ class GameVC:ViewController {
         }
     }
     
-    func handleGuessedRightView(label: String){
+    private func handleGuessedRightView(label: String){
         for wordTarget in wordTargets{
             if wordTarget.getTargetLabel() == label {
                 wordTarget.handleGussedRightView()
@@ -224,11 +186,11 @@ class GameVC:ViewController {
     }
     
     private func cropImage(origin: CGPoint, size: CGSize){
-        print("origin",origin)
-        print("size",size)
+        //        print("origin",origin)
+        //        print("size",size)
         let cropRect = CGRect(origin: origin, size: size)
-        let imageRef = image.image?.cgImage!.cropping(to: cropRect);
-        let newImage = UIImage(cgImage: imageRef!, scale: image.image!.scale, orientation: image.image!.imageOrientation)
+        guard let imageRef = image.image?.cgImage?.cropping(to: cropRect) else { return  };
+        let newImage = UIImage(cgImage: imageRef, scale: image.image!.scale, orientation: image.image!.imageOrientation)
         cropImageView.image = newImage
     }
 }
@@ -245,7 +207,7 @@ extension GameVC: TargetComponentViewDelegate {
 
 // MARK: - UI
 extension GameVC {
-    func setLayout() {
+    private func setLayout() {
         view.addSubViews([logoImage, targetListContainerView, image, cropImageView])
         logoImage.snp.makeConstraints{
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(17)
@@ -265,52 +227,8 @@ extension GameVC {
         }
         cropImageView.snp.makeConstraints{
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(100)
-//            $0.width.equalTo(100)
+            //            $0.width.equalTo(100)
         }
-    }
-}
-
-// MARK: - Core ML
-extension GameVC {
-    func setUpModel() {
-        if let visionModel = try? VNCoreMLModel(for: objectDectectionModel.model) {
-            self.visionModel = visionModel
-            request = VNCoreMLRequest(model: visionModel, completionHandler: visionRequestDidComplete)
-            request?.imageCropAndScaleOption = .scaleFit
-        } else {
-            fatalError("fail to create vision model")
-        }
-    }
-    
-    /// 사진이 선택되면 pixelBuffer 값 역시 할당됩니다. 할당된 값을 이용하여 객체 인식을 시작합니다.
-    func handleImage(pixelBuffer: CVPixelBuffer?){
-        if !self.isInferencing, let pixelBuffer = pixelBuffer {
-            self.isInferencing = true
-            self.predictUsingVision(pixelBuffer: pixelBuffer)
-        }
-    }
-    
-    func predictUsingVision(pixelBuffer: CVPixelBuffer) {
-        guard let request = request else { fatalError() }
-        self.semaphore.wait()
-        let handler = VNImageRequestHandler(cvPixelBuffer: pixelBuffer)
-        try? handler.perform([request])
-    }
-    
-    /// 객체 인식이 끝나고 나면 인식 결과를 프로퍼티에 저장하고 버튼을 올릴 레이어를 준비합니다.
-    func visionRequestDidComplete(request: VNRequest, error: Error?) {
-        if let predictions = request.results as? [VNRecognizedObjectObservation] {
-            DispatchQueue.main.async {
-                //  self.buttonLayer.bounds = self.image.bounds
-                self.image.addSubview(self.buttonLayer)
-                // self.image.layer.addSublayer(buttonLayer)
-                self.buttonLayer.frame = self.image.bounds
-                self.predictedObjects = predictions
-                self.isInferencing = false
-            }
-        }
-        self.isInferencing = false
-        self.semaphore.signal()
     }
 }
 
@@ -328,12 +246,5 @@ extension GameVC {
                 self.makeAlert(title: MessageType.networkError.message)
             }
         }
-    }
-    
-}
-
-extension VNRecognizedObjectObservation {
-    var label: String? {
-        return self.labels.first?.identifier
     }
 }

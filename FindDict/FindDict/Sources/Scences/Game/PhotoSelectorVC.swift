@@ -9,17 +9,12 @@ import UIKit
 import SnapKit
 import Then
 
-class PhotoSelectorVC: UIViewController {
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        if (isEnoughObject == true){
-            let photoReselectVC = PhotoReSelectVC()
-            photoReselectVC.modalPresentationStyle = .overCurrentContext
-            self.present(photoReselectVC, animated: true)
-        }
-    }
+final class PhotoSelectorVC: UIViewController {
+    
     // MARK: - Properties
-    var isEnoughObject = false
+    private let gameVC: GameVC = GameVC()
+    private let objectDetector: ObjectDetector = ObjectDetector()
+    
     private let takingPictureButton: PhotoSelectorButton = PhotoSelectorButton().then{
         $0.setTitle("사진 찍기", for: .normal)
         $0.backgroundColor = .buttonOrange
@@ -43,11 +38,11 @@ class PhotoSelectorVC: UIViewController {
     
     private var pixelBuffer: CVPixelBuffer? = nil  {
         didSet{
-            let gameVC = GameVC()
             gameVC.image.image = selectedImage.image
-            gameVC.pixelBuffer = selectedImage.image?.pixelBufferFromImage()
-            gameVC.setDelegate(delegate: self)
-            self.navigationController?.pushViewController(gameVC, animated: true)
+            
+            objectDetector.setNavigationController(navigationController: self.navigationController)
+            objectDetector.setGameVC(gameVC: gameVC)
+            objectDetector.setPixelBuffer(pixelBuffer: selectedImage.image?.pixelBufferFromImage())
         }
     }
     
@@ -57,10 +52,11 @@ class PhotoSelectorVC: UIViewController {
         setLayout()
         setButtonActions()
         view.backgroundColor = .bgBeige
+        objectDetector.setDelegate(delegate: self)
     }
     
     // MARK: - Functions
-    func setButtonActions(){
+    private func setButtonActions(){
         takingPictureButton.press{
             let imagePickerController = UIImagePickerController()
             imagePickerController.delegate = self
@@ -135,10 +131,12 @@ extension PhotoSelectorVC:UIImagePickerControllerDelegate, UINavigationControlle
     }
 }
 
-// MARK: -PhotoSelectorVCDelegate
-extension PhotoSelectorVC: GameVCDelegate {
-    func lackOfObject(index: Bool) {
-        self.isEnoughObject = index
+// MARK: - ObjectDetectorDelegate
+extension PhotoSelectorVC: ObjectDetectorDelegate {
+    func lackOfObject() {
+        self.dismiss(animated: true)
+        let photoReselectModalVC = PhotoReselectModalVC()
+        photoReselectModalVC.modalPresentationStyle = .overCurrentContext
+        self.present(photoReselectModalVC, animated: true)
     }
-    
 }
