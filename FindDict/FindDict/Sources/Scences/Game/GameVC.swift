@@ -92,10 +92,13 @@ final class GameVC: ViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        print(">>>>>>",image.bounds)
+        print(">>>>>>0",image.bounds)
         image.addSubview(buttonLayer)
-        
+        print(">>>>>>1",buttonLayer.bounds.width, buttonLayer.bounds.height)
         buttonLayer.frame = image.contentClippingRect
+        debugPrint("image",image)
+        print(">>>>>>2",image.contentClippingRect)
+        print(">>>>>>3",buttonLayer.bounds.width, buttonLayer.bounds.height)
         putButtons(with: predictedObjects)
     }
     
@@ -142,15 +145,8 @@ final class GameVC: ViewController {
         let scale = CGAffineTransform.identity.scaledBy(x: buttonLayer.bounds.width, y: buttonLayer.bounds.height)
         let transform = CGAffineTransform(scaleX: 1, y: 1)
         let bgRect = prediction.boundingBox.applying(transform).applying(scale)
-        //        let x = (prediction.boundingBox.origin.x - prediction.boundingBox.size.width/2)*image.frame.size.width
-        //        let y = (prediction.boundingBox.origin.y - prediction.boundingBox.size.height/2)*image.frame.size.height
-        //        let width = prediction.boundingBox.size.width * image.frame.size.width
-        //        let height = prediction.boundingBox.size.height * image.frame.size.height
-        //        print(x,y,width,height)
-        cropImage(origin: CGPoint(x: x, y: y),size: CGSize(width: width, height: height))
+        //        cropImage(origin: CGPoint(x: x, y: y),size: CGSize(width: width, height: height))
         
-        //TODO: 스케일 맞추기
-        //        let buttonRect = CGRect(x: prediction.boundingBox.origin.x*500, y: prediction.boundingBox.origin.y*500, width: prediction.boundingBox.width*500, height: prediction.boundingBox.height*500)
         let button = UIButton(type: .custom)
         button.frame = bgRect
         button.layer.borderColor = color.cgColor
