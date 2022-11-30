@@ -92,13 +92,8 @@ final class GameVC: ViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        print(">>>>>>0",image.bounds)
         image.addSubview(buttonLayer)
-        print(">>>>>>1",buttonLayer.bounds.width, buttonLayer.bounds.height)
         buttonLayer.frame = image.contentClippingRect
-        debugPrint("image",image)
-        print(">>>>>>2",image.contentClippingRect)
-        print(">>>>>>3",buttonLayer.bounds.width, buttonLayer.bounds.height)
         putButtons(with: predictedObjects)
     }
     
