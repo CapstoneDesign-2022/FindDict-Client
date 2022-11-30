@@ -13,7 +13,7 @@ final class PhotoSelectorVC: UIViewController {
     
     // MARK: - Properties
     private let gameVC: GameVC = GameVC()
-    private let objectDetectionVC: ObjectDetectionVC = ObjectDetectionVC()
+    private let objectDetector: ObjectDetector = ObjectDetector()
     
     private let takingPictureButton: PhotoSelectorButton = PhotoSelectorButton().then{
         $0.setTitle("사진 찍기", for: .normal)
@@ -40,9 +40,9 @@ final class PhotoSelectorVC: UIViewController {
         didSet{
             gameVC.image.image = selectedImage.image
             
-            objectDetectionVC.setNavigationController(navigationController: self.navigationController)
-            objectDetectionVC.setGameVC(gameVC: gameVC)
-            objectDetectionVC.setPixelBuffer(pixelBuffer: selectedImage.image?.pixelBufferFromImage())
+            objectDetector.setNavigationController(navigationController: self.navigationController)
+            objectDetector.setGameVC(gameVC: gameVC)
+            objectDetector.setPixelBuffer(pixelBuffer: selectedImage.image?.pixelBufferFromImage())
         }
     }
     
@@ -52,7 +52,7 @@ final class PhotoSelectorVC: UIViewController {
         setLayout()
         setButtonActions()
         view.backgroundColor = .bgBeige
-        objectDetectionVC.setDelegate(delegate: self)
+        objectDetector.setDelegate(delegate: self)
     }
     
     // MARK: - Functions
@@ -131,8 +131,8 @@ extension PhotoSelectorVC:UIImagePickerControllerDelegate, UINavigationControlle
     }
 }
 
-// MARK: -PhotoSelectorVCDelegate
-extension PhotoSelectorVC: ObjectDetectionVCDelegate {
+// MARK: - ObjectDetectorDelegate
+extension PhotoSelectorVC: ObjectDetectorDelegate {
     func lackOfObject() {
         self.dismiss(animated: true)
         let photoReselectModalVC = PhotoReselectModalVC()

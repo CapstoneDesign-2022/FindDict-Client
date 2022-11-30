@@ -8,22 +8,23 @@
 import UIKit
 import Vision
 
-protocol ObjectDetectionVCDelegate: AnyObject {
+protocol ObjectDetectorDelegate: AnyObject {
     func lackOfObject()
 }
 
-final class ObjectDetectionVC: UIViewController {
+final class ObjectDetector {
 
     // MARK: - Vision Properties
     private var request: VNCoreMLRequest?
     private var visionModel: VNCoreMLModel?
     private var isInferencing: Bool = false
     private let semaphore: DispatchSemaphore = DispatchSemaphore(value: 1)
-    private let objectDectectionModel = yolov7()
+    private let objectDectectionModel = yolov5m()
+//    yolov7()
 //    yolov5m() //
     private var gameVC: GameVC = GameVC()
     private var navigation: UINavigationController?
-    private var delegate: ObjectDetectionVCDelegate?
+    private var delegate: ObjectDetectorDelegate?
         
     private var pixelBuffer: CVPixelBuffer? = nil {
         didSet{
@@ -49,7 +50,7 @@ final class ObjectDetectionVC: UIViewController {
         }
     }
     
-    func setDelegate(delegate: ObjectDetectionVCDelegate){
+    func setDelegate(delegate: ObjectDetectorDelegate){
         self.delegate = delegate
     }
     
