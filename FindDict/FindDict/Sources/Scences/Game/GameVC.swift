@@ -97,6 +97,16 @@ final class GameVC: ViewController {
         putButtons(with: predictedObjects)
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+//        buttonLayer.removeFromSuperview()
+        
+        for button in buttons {
+            button.removeFromSuperview()
+        }
+        targetListContainerView.removeAllArrangedSubviews()
+        theNumberOfTargetsGuessedRight = 0
+    }
     // MARK: - Functions
     func increasetheNumberOfTargetsGuessedRight(){
         self.theNumberOfTargetsGuessedRight += 1
