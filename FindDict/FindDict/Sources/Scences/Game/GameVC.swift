@@ -97,6 +97,11 @@ final class GameVC: ViewController {
         putButtons(with: predictedObjects)
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(true)
+        resetGame()
+    }
+    
     // MARK: - Functions
     func increasetheNumberOfTargetsGuessedRight(){
         self.theNumberOfTargetsGuessedRight += 1
@@ -192,6 +197,14 @@ final class GameVC: ViewController {
         guard let imageRef = image.image?.cgImage?.cropping(to: cropRect) else { return  };
         let newImage = UIImage(cgImage: imageRef, scale: image.image!.scale, orientation: image.image!.imageOrientation)
         cropImageView.image = newImage
+    }
+    
+    private func resetGame(){
+        for button in buttons {
+            button.removeFromSuperview()
+        }
+        targetListContainerView.removeAllArrangedSubviews()
+        theNumberOfTargetsGuessedRight = 0
     }
 }
 
