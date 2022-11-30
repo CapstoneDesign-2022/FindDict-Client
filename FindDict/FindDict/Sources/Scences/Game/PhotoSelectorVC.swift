@@ -40,9 +40,9 @@ final class PhotoSelectorVC: UIViewController {
         didSet{
             gameVC.image.image = selectedImage.image
             
+            objectDetectionVC.setNavigationController(navigationController: self.navigationController)
             objectDetectionVC.setGameVC(gameVC: gameVC)
             objectDetectionVC.setPixelBuffer(pixelBuffer: selectedImage.image?.pixelBufferFromImage())
-            objectDetectionVC.setNavigationController(navigationController: self.navigationController)
         }
     }
     

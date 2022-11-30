@@ -22,7 +22,11 @@ final class ObjectDetectionVC: UIViewController {
     private let objectDectectionModel = yolov7()
 //    yolov5m() //
     private var gameVC: GameVC = GameVC()
-    private var navigation: UINavigationController?
+    private var navigation: UINavigationController?{
+        didSet{
+            print("NAVIGATION", navigation)
+        }
+    }
     private var delegate: ObjectDetectionVCDelegate?
         
     private var pixelBuffer: CVPixelBuffer? = nil {
@@ -38,13 +42,16 @@ final class ObjectDetectionVC: UIViewController {
             for predictedObject in predictedObjects {
                 predectedObjectLabels.insert(predictedObject.label ?? "레이블오류")
             }
-            
+            print("ObjectDetectionVC",predectedObjectLabels)
             if (predectedObjectLabels.count < 3 ){
                 self.delegate?.lackOfObject()
             }else {
+                print("ELSE")
                 gameVC.setPredictedObjects(predictedObjects: predictedObjects)
                 gameVC.setPredictedObjectLableSet(predictedObjectLableSet: predectedObjectLabels)
+                print(navigationItem,navigation)
                 self.navigation?.pushViewController(gameVC, animated: true)
+                print("NAVIGATED")
             }
         }
     }
