@@ -135,17 +135,17 @@ final class GameVC: ViewController {
     private func createButton(prediction: VNRecognizedObjectObservation)-> UIButton {
         let buttonTitle: String? = prediction.label
         let color: UIColor = labelColor(with: buttonTitle ?? "N/A")
-//                let scale = CGAffineTransform.identity.scaledBy(x: image.bounds.width, y: image.bounds.height)
+        //                let scale = CGAffineTransform.identity.scaledBy(x: image.bounds.width, y: image.bounds.height)
         //        let transform = CGAffineTransform(scaleX: 1, y: -1).translatedBy(x: 0, y: -1)
         //        let buttonRect = prediction.boundingBox.applying(scale)
-        //                let buttonRect = CGRect(x: prediction.boundingBox.origin.x, y: prediction.boundingBox.origin.y, width: prediction.boundingBox.width, height: prediction.boundingBox.height)
+//        let buttonRect = CGRect(x: prediction.boundingBox.origin.x, y: prediction.boundingBox.origin.y, width: prediction.boundingBox.width, height: prediction.boundingBox.height)
         let scale = CGAffineTransform.identity.scaledBy(x: buttonLayer.bounds.width, y: buttonLayer.bounds.height)
-        let transform = CGAffineTransform(scaleX: 1, y: 1).translatedBy(x: 0, y: -1)
+        let transform = CGAffineTransform(scaleX: 1, y: 1)
         let bgRect = prediction.boundingBox.applying(transform).applying(scale)
-//        let x = (prediction.boundingBox.origin.x - prediction.boundingBox.size.width/2)*image.frame.size.width
-//        let y = (prediction.boundingBox.origin.y - prediction.boundingBox.size.height/2)*image.frame.size.height
-//        let width = prediction.boundingBox.size.width * image.frame.size.width
-//        let height = prediction.boundingBox.size.height * image.frame.size.height
+        //        let x = (prediction.boundingBox.origin.x - prediction.boundingBox.size.width/2)*image.frame.size.width
+        //        let y = (prediction.boundingBox.origin.y - prediction.boundingBox.size.height/2)*image.frame.size.height
+        //        let width = prediction.boundingBox.size.width * image.frame.size.width
+        //        let height = prediction.boundingBox.size.height * image.frame.size.height
         //        print(x,y,width,height)
         cropImage(origin: CGPoint(x: x, y: y),size: CGSize(width: width, height: height))
         
