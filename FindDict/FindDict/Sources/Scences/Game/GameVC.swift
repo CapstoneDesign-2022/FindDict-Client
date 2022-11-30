@@ -13,6 +13,7 @@ import Then
 
 final class GameVC: ViewController {
     
+    // MARK: - Properties
     private var predictedObjects: [VNRecognizedObjectObservation] = []
     private var predictedObjectLableSet: Set<String> = Set<String>() {
         didSet {
@@ -87,7 +88,6 @@ final class GameVC: ViewController {
         for word in predictedObjectLableSet{
             requestPostWord(body: CreateWordBodyModel(english: word), image: (cropImageView.image ?? UIImage(named: "GameOver"))!)
         }
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -110,8 +110,8 @@ final class GameVC: ViewController {
         self.predictedObjectLableSet = predictedObjectLableSet
     }
     
-    func putButtons(with predictions: [VNRecognizedObjectObservation]) {
-        var createdButtons:[UIButton]=[]
+    private func putButtons(with predictions: [VNRecognizedObjectObservation]) {
+        var createdButtons: [UIButton]=[]
         for prediction in predictions {
             createdButtons.append(createButton(prediction: prediction))
         }
@@ -119,7 +119,7 @@ final class GameVC: ViewController {
     }
     
     private func createTargetListComponents(with predictions: Set<String>){
-        var createdTargets:[TargetListComponentView]=[]
+        var createdTargets: [TargetListComponentView]=[]
         for prediction in predictions {
             let component = TargetListComponentView()
             component.setData(korean: wordDictionary[prediction] ?? "사전 매칭 오류", english: prediction)
@@ -129,26 +129,23 @@ final class GameVC: ViewController {
         wordTargets = createdTargets
     }
     
-    /// 인식된 객체마다 이에 맞는 버튼을 생성합니다.
     private func createButton(prediction: VNRecognizedObjectObservation)-> UIButton {
         let buttonTitle: String? = prediction.label
         let color: UIColor = labelColor(with: buttonTitle ?? "N/A")
-        //                let scale = CGAffineTransform.identity.scaledBy(x: image.bounds.width, y: image.bounds.height)
-        //        let transform = CGAffineTransform(scaleX: 1, y: -1).translatedBy(x: 0, y: -1)
-        //        let buttonRect = prediction.boundingBox.applying(scale)
-//        let buttonRect = CGRect(x: prediction.boundingBox.origin.x, y: prediction.boundingBox.origin.y, width: prediction.boundingBox.width, height: prediction.boundingBox.height)
         let scale = CGAffineTransform.identity.scaledBy(x: buttonLayer.bounds.width, y: buttonLayer.bounds.height)
         let transform = CGAffineTransform(scaleX: 1, y: 1)
         let bgRect = prediction.boundingBox.applying(transform).applying(scale)
         //        cropImage(origin: CGPoint(x: x, y: y),size: CGSize(width: width, height: height))
         
-        let button = UIButton(type: .custom)
-        button.frame = bgRect
-        button.layer.borderColor = color.cgColor
-        button.backgroundColor = .systemBlue
-        button.layer.borderWidth = 4
-        button.backgroundColor = UIColor.clear
-        button.setTitle(buttonTitle, for: .normal)
+        let button = UIButton(type: .custom).then {
+            $0.frame = bgRect
+            $0.layer.borderColor = color.cgColor
+            $0.backgroundColor = .systemBlue
+            $0.layer.borderWidth = 4
+            $0.backgroundColor = UIColor.clear
+            $0.setTitle(buttonTitle, for: .normal)
+        }
+        
         return button
     }
     

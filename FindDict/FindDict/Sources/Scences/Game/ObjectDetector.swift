@@ -21,7 +21,9 @@ final class ObjectDetector {
     private let semaphore: DispatchSemaphore = DispatchSemaphore(value: 1)
     private let objectDectectionModel = yolov5m()
 //    yolov7()
-//    yolov5m() //
+//    yolov5m()
+    
+    // MARK: - Properties
     private var gameVC: GameVC = GameVC()
     private var navigation: UINavigationController?
     private var delegate: ObjectDetectorDelegate?
@@ -50,6 +52,7 @@ final class ObjectDetector {
         }
     }
     
+    // MARK: - Functions
     func setDelegate(delegate: ObjectDetectorDelegate){
         self.delegate = delegate
     }
