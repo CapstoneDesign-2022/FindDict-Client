@@ -12,13 +12,14 @@ import Then
 class DictionaryTVC: UITableViewCell {
     
     // MARK: - Properties
-    private let dictionaryCard = DictionaryCard()
+    let dictionaryCard: DictionaryCard = DictionaryCard()
     
     // MARK: Initialization
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setLayout()
         self.backgroundColor = .bgBeige
+        selectionStyle = .none
     }
     
     required init?(coder: NSCoder) {
@@ -26,15 +27,14 @@ class DictionaryTVC: UITableViewCell {
     }
     
     // MARK: Functions
-    func setData(_ cellData: WordDataModel) {
-        dictionaryCard.koreanWordLabel.text = cellData.koreanWord
-        dictionaryCard.englishWordLabel.text = cellData.englishWord
+    func setData(_ cellData: String, cellRowIndex: Int) {
+        dictionaryCard.setData(english: cellData, cellRowIndex: cellRowIndex)
     }
 }
 
 // MARK: - UI
 extension DictionaryTVC {
-    func setLayout(){
+    private func setLayout(){
         self.addSubViews([dictionaryCard])
         
         dictionaryCard.snp.makeConstraints{

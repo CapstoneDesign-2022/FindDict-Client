@@ -13,21 +13,21 @@ import Then
 class GuessedRightWordVC: UIViewController {
     
     // MARK: - Properties
-    private let englishLabel = UILabel().then {
+    private let englishLabel: UILabel = UILabel().then {
         $0.font = .findDictH4R35
         $0.textColor = .black
     }
     
-    private var englishText : String = "" {
+    private var englishText: String = "" {
         didSet{
             englishLabel.text = englishText
             printOutAmericanSpeech()
         }
     }
     
-    private let synthesizer = AVSpeechSynthesizer()
+    private let synthesizer: AVSpeechSynthesizer = AVSpeechSynthesizer()
     
-    private let modalView = UIView().then{
+    private let modalView: UIView = UIView().then{
         $0.backgroundColor = .bgBeige
         $0.layer.shadowRadius = 4
         $0.layer.shadowOffset = CGSize(width: 0, height: 4)
@@ -35,27 +35,27 @@ class GuessedRightWordVC: UIViewController {
         $0.layer.shadowOpacity = 0.25
     }
     
-    private let closeButton = UIButton().then{
+    private let closeButton: UIButton = UIButton().then{
         $0.setImage(UIImage(named: "closeImage"), for: .normal)
     }
     
-    private let americanSpeeachButton = SpeechButton().then{
+    private let americanSpeeachButton: SpeechButton = SpeechButton().then{
         $0.setTitle("🇺🇸 미국식 발음으로 듣기", for: .normal)
     }
-    private let englishSpeeachButton = SpeechButton().then{
+    private let englishSpeeachButton: SpeechButton = SpeechButton().then{
         $0.setTitle("🇬🇧 영국식 발음으로 듣기", for: .normal)
     }
-    private let australianSpeeachButton = SpeechButton().then{
+    private let australianSpeeachButton: SpeechButton = SpeechButton().then{
         $0.setTitle("🇦🇺 호주식 발음으로 듣기", for: .normal)
     }
     
-    private lazy var buttonStackView = UIStackView(arrangedSubviews: [americanSpeeachButton,englishSpeeachButton,australianSpeeachButton]).then{
+    private lazy var buttonStackView: UIStackView = UIStackView(arrangedSubviews: [americanSpeeachButton,englishSpeeachButton,australianSpeeachButton]).then{
         $0.axis = .vertical
         $0.spacing = 15
         $0.distribution = .fillEqually
     }
     
-    var presentingVC:UIViewController?
+    var presentingVC: UIViewController?
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -66,7 +66,7 @@ class GuessedRightWordVC: UIViewController {
     }
     
     // MARK: - Functions
-    func setEnglishText(text:String){
+    func setEnglishText(text: String){
         englishText = text
     }
     

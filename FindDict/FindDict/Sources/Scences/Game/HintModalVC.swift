@@ -11,48 +11,69 @@ import Then
 
 
 class HintModalVC: UIViewController {
+    
     // MARK: - Properties
-    private let modalView = UIView().then{
+    private var images: [String] = [] {
+        didSet{
+            hintImageView1.load(images[0])
+            hintImageView2.load(images[1])
+            hintImageView3.load(images[2])
+            hintImageView4.load(images[3])
+        }
+    }
+    private var korean: String = "" {
+        didSet{
+            requestGetHint(search: korean)
+        }
+    }
+    
+    private let modalView: UIView = UIView().then{
         $0.backgroundColor = .bgBeige
         $0.layer.shadowRadius = 4
         $0.layer.shadowOffset = CGSize(width: 0, height: 4)
         $0.layer.shadowColor = UIColor.black.cgColor
         $0.layer.shadowOpacity = 0.25
     }
-    private let hintLabel = UILabel().then{
+    
+    private let hintLabel: UILabel = UILabel().then{
         $0.text = "HINT"
         $0.textColor = .black
         $0.font = .findDictH4R35
     }
-    private let closeButton = UIButton().then{
+    
+    private let closeButton: UIButton = UIButton().then{
         $0.setImage(UIImage(named: "closeImage"), for: .normal)
     }
-    private let hintImageView1 = UIImageView().then{
-        $0.image = UIImage(named: "globe")
-    }
-    private let hintImageView2 = UIImageView().then{
-        $0.image = UIImage(named: "globe")
-    }
-    private let hintImageView3 = UIImageView().then{
-        $0.image = UIImage(named: "globe")
-    }
-    private let hintImageView4 = UIImageView().then{
-        $0.image = UIImage(named: "globe")
+    
+    private let hintImageView1: UIImageView = UIImageView().then{
+        $0.image = UIImage(named: "launchScreen")
     }
     
-    lazy var imageTopStackView = UIStackView(arrangedSubviews: [hintImageView1, hintImageView2]).then{
+    private let hintImageView2: UIImageView = UIImageView().then{
+        $0.image = UIImage(named: "launchScreen")
+    }
+    
+    private let hintImageView3: UIImageView = UIImageView().then{
+        $0.image = UIImage(named: "launchScreen")
+    }
+    
+    private let hintImageView4: UIImageView = UIImageView().then{
+        $0.image = UIImage(named: "launchScreen")
+    }
+    
+    lazy var imageTopStackView: UIStackView = UIStackView(arrangedSubviews: [hintImageView1, hintImageView2]).then{
         $0.axis = .horizontal
         $0.spacing = 33
         $0.distribution = .fillEqually
     }
     
-    lazy var imageBottomStackView = UIStackView(arrangedSubviews: [hintImageView3, hintImageView4]).then{
+    lazy var imageBottomStackView: UIStackView = UIStackView(arrangedSubviews: [hintImageView3, hintImageView4]).then{
         $0.axis = .horizontal
         $0.spacing = 33
         $0.distribution = .fillEqually
     }
     
-    lazy var imageStackView = UIStackView(arrangedSubviews: [imageTopStackView, imageBottomStackView]).then{
+    lazy var imageStackView: UIStackView = UIStackView(arrangedSubviews: [imageTopStackView, imageBottomStackView]).then{
         $0.axis = .vertical
         $0.spacing = 21
         $0.distribution = .fillEqually
@@ -72,8 +93,31 @@ class HintModalVC: UIViewController {
             self.dismiss(animated: true, completion: nil)
         }
     }
-
+    
+    func setKoreanText(korean: String){
+        self.korean = korean
+    }
 }
+
+// MARK: - Network
+extension HintModalVC {
+    private func requestGetHint(search: String) {
+        WordAPI.shared.getHint(search: search){ networkResult in
+            switch networkResult {
+            case .success(let response):
+                if let res = response as? HintResponseModel {
+                    self.images = res.images
+                } else {
+                    debugPrint(MessageType.modelErrorForDebug.message)
+                }
+            default:
+                self.makeAlert(title: MessageType.networkError.message)
+            }
+        }
+        
+    }
+}
+
 
 // MARK: - UI
 extension HintModalVC {
@@ -92,7 +136,7 @@ extension HintModalVC {
         closeButton.snp.makeConstraints{
             $0.top.equalTo(modalView.snp.top).offset(16)
             $0.trailing.equalTo(modalView.snp.trailing).offset(-20)
-      
+            
         }
         imageStackView.snp.makeConstraints{
             $0.top.equalTo(modalView.snp.top).offset(75)
@@ -100,6 +144,5 @@ extension HintModalVC {
             $0.trailing.equalTo(modalView.snp.trailing).inset(59)
             $0.bottom.equalTo(modalView.snp.bottom).inset(18)
         }
-        
     }
 }

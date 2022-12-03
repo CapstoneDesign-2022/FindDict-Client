@@ -10,6 +10,12 @@ import SnapKit
 
 class GameResultFailVC: ModalBaseVC {
     
+    // MARK: - View Life Cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setUI()
+    }
+    
     // MARK: - UI
     func setUI(){
         resultImage.image = UIImage(named: "failureImage")?.withAlignmentRectInsets(UIEdgeInsets(top: -40, left: 0, bottom: 0, right: -65))
@@ -20,10 +26,4 @@ class GameResultFailVC: ModalBaseVC {
             $0.backgroundColor = .modalBrown
         }
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setUI()
-    }
-    
 }

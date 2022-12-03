@@ -9,32 +9,40 @@ import UIKit
 import SnapKit
 import Then
 
-class PhotoSelectorVC: UIViewController {
+final class PhotoSelectorVC: UIViewController {
     
     // MARK: - Properties
-    private let takingPictureButton = PhotoSelectorButton().then{
+    private let gameVC: GameVC = GameVC()
+    private let objectDetector: ObjectDetector = ObjectDetector()
+    
+    private let takingPictureButton: PhotoSelectorButton = PhotoSelectorButton().then{
         $0.setTitle("사진 찍기", for: .normal)
         $0.backgroundColor = .buttonOrange
     }
     
-    private let selectingPictureButton = PhotoSelectorButton().then{
+    private let selectingPictureButton: PhotoSelectorButton = PhotoSelectorButton().then{
         $0.setTitle("앨범에서 사진 선택", for: .normal)
         $0.backgroundColor = .buttonApricot
     }
     
-    private let fetchingPictureButton = PhotoSelectorButton().then{
+    private let fetchingPictureButton: PhotoSelectorButton = PhotoSelectorButton().then{
         $0.setTitle("기본 이미지", for: .normal)
         $0.backgroundColor = .buttonYellow
     }
     
-    private var selectedImage = UIImageView()
+    private let homeButton: UIButton = UIButton().then{
+        $0.setImage(UIImage(named: "homeImage"),for: .normal)
+    }
     
-    private var pixelBuffer:CVPixelBuffer? = nil  {
+    private var selectedImage: UIImageView = UIImageView()
+    
+    private var pixelBuffer: CVPixelBuffer? = nil  {
         didSet{
-            let gameVC = GameVC()
             gameVC.image.image = selectedImage.image
-            gameVC.pixelBuffer = selectedImage.image?.pixelBufferFromImage()
-            self.navigationController?.pushViewController(gameVC, animated: true)
+            
+            objectDetector.setNavigationController(navigationController: self.navigationController)
+            objectDetector.setGameVC(gameVC: gameVC)
+            objectDetector.setPixelBuffer(pixelBuffer: selectedImage.image?.pixelBufferFromImage())
         }
     }
     
@@ -44,10 +52,11 @@ class PhotoSelectorVC: UIViewController {
         setLayout()
         setButtonActions()
         view.backgroundColor = .bgBeige
+        objectDetector.setDelegate(delegate: self)
     }
     
     // MARK: - Functions
-    func setButtonActions(){
+    private func setButtonActions(){
         takingPictureButton.press{
             let imagePickerController = UIImagePickerController()
             imagePickerController.delegate = self
@@ -63,16 +72,20 @@ class PhotoSelectorVC: UIViewController {
             imagePickerController.allowsEditing = true
             self.present(imagePickerController, animated: true, completion: nil)
         }
+        
+        homeButton.press{
+            self.navigationController?.popToRootViewController(animated: false)
+        }
     }
 }
 
 // MARK: - UI
 extension PhotoSelectorVC {
     private func setLayout() {
-        view.addSubViews([takingPictureButton, selectingPictureButton,fetchingPictureButton])
+        view.addSubViews([takingPictureButton, selectingPictureButton,fetchingPictureButton, homeButton])
         
         takingPictureButton.snp.makeConstraints{
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(67)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(100)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(60)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-60)
             $0.height.equalTo(100)
@@ -90,6 +103,12 @@ extension PhotoSelectorVC {
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(60)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-60)
             $0.height.equalTo(100)
+        }
+        
+        homeButton.snp.makeConstraints{
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(40)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide).inset(60)
+            $0.width.height.equalTo(50)
         }
     }
 }
@@ -109,5 +128,15 @@ extension PhotoSelectorVC:UIImagePickerControllerDelegate, UINavigationControlle
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - ObjectDetectorDelegate
+extension PhotoSelectorVC: ObjectDetectorDelegate {
+    func lackOfObject() {
+        self.dismiss(animated: true)
+        let photoReselectModalVC = PhotoReselectModalVC()
+        photoReselectModalVC.modalPresentationStyle = .overCurrentContext
+        self.present(photoReselectModalVC, animated: true)
     }
 }

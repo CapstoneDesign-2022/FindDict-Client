@@ -9,11 +9,13 @@ import UIKit
 import SnapKit
 import Then
 
-class DictionaryVC: UIViewController {
+final class DictionaryVC: UIViewController {
     
     // MARK: - Properties
-    private let titleView = UIView().then{
-        $0.backgroundColor = .white
+    private var dictionaryData: [String] = []
+
+    private let titleView: UIView = UIView().then{
+        $0.backgroundColor = .modalButtonDarkYellow
         $0.layer.shadowRadius = 4
         $0.layer.shadowOffset = CGSize(width: 0, height: 4)
         $0.layer.borderWidth = 1
@@ -22,31 +24,28 @@ class DictionaryVC: UIViewController {
         $0.layer.shadowOpacity = 0.25
     }
     
-    private let titleLabel = UILabel().then{
+    private let titleLabel: UILabel = UILabel().then{
         $0.textColor = .black
         $0.text = "단어장"
         $0.font = .findDictH5R48
     }
     
-    private let dictionaryTV = UITableView().then{
+    private let dictionaryTV: UITableView = UITableView().then{
         $0.rowHeight = 107
         $0.estimatedRowHeight = UITableView.automaticDimension
         $0.backgroundColor = .bgBeige
     }
     
-    private let homeButton = UIButton().then{
+    private let homeButton: UIButton = UIButton().then{
         $0.setImage(UIImage(named: "homeImage"),for: .normal)
     }
     
-    // MARK: - Functions
-    private func setTV() {
-        dictionaryTV.delegate = self
-        dictionaryTV.dataSource = self
-        dictionaryTV.showsVerticalScrollIndicator = false
-        dictionaryTV.register(DictionaryTVC.self, forCellReuseIdentifier: "DictionaryTVC")
+    // MARK: - View Life Cycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        requestGetWordList()
     }
     
-    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
@@ -55,12 +54,39 @@ class DictionaryVC: UIViewController {
         view.backgroundColor = .bgBeige
     }
     
-    func setButtonActions(){
+    // MARK: - Functions
+    private func setTV() {
+        dictionaryTV.delegate = self
+        dictionaryTV.dataSource = self
+        dictionaryTV.separatorStyle = .none
+        dictionaryTV.showsVerticalScrollIndicator = true
+        dictionaryTV.register(DictionaryTVC.self, forCellReuseIdentifier: "DictionaryTVC")
+    }
+    
+    private func setButtonActions(){
         homeButton.press{
             self.navigationController?.popToRootViewController(animated: false)
         }
     }
-    
+}
+
+// MARK: - Network
+extension DictionaryVC {
+    private func requestGetWordList() {
+        WordAPI.shared.getWordList { networkResult in
+            switch networkResult {
+            case .success(let response):
+                if let res = response as? WordListResponseModel {
+                    let removeDuplicateWords: Set = Set(res.english)
+                    self.dictionaryData = Array(removeDuplicateWords)
+                    self.dictionaryTV.reloadData()
+                }
+                
+            default:
+                self.makeAlert(title: MessageType.networkError.message)
+            }
+        }
+    }
 }
 
 // MARK: - UI
@@ -71,9 +97,9 @@ extension DictionaryVC {
         
         titleView.snp.makeConstraints{
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(52)
-            $0.width.equalTo(601)
-            $0.height.equalTo(119)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
+            $0.width.equalTo(400)
+            $0.height.equalTo(100)
         }
         
         titleLabel.snp.makeConstraints{
@@ -82,37 +108,38 @@ extension DictionaryVC {
         }
         
         dictionaryTV.snp.makeConstraints{
-            $0.top.equalTo(titleView.snp.bottom).offset(97)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(0)
-            $0.centerX.equalTo(view.safeAreaLayoutGuide)
-            $0.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(206)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-206)
+            $0.top.equalTo(titleView.snp.bottom).offset(50)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(206)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(206)
         }
         
         homeButton.snp.makeConstraints{
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(20)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide).inset(40)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(40)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide).inset(60)
             $0.width.height.equalTo(50)
         }
     }
-    
 }
 
 // MARK: - UITableViewDataSource
 extension DictionaryVC: UITableViewDataSource {
+    
     // @required: 특정 위치에 표시할 셀을 요청하는 메서드
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "DictionaryTVC", for: indexPath) as? DictionaryTVC else {
             return UITableViewCell()
         }
-        
-        cell.setData(WordDataModel.sampleData[indexPath.row])
+        cell.dictionaryCard.setDelegate(delegate: self)
+      
+        let data = dictionaryData[indexPath.row]
+        cell.setData(data, cellRowIndex: indexPath.row)
         return cell
     }
     
     // @required: 각 섹션에 표시할 행의 개수를 묻는 메서드
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return WordDataModel.sampleData.count
+        return dictionaryData.count
     }
 }
 
@@ -120,5 +147,17 @@ extension DictionaryVC: UITableViewDataSource {
 extension DictionaryVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 107
+    }
+}
+
+// MARK: - DictionaryCardDelegate
+extension DictionaryVC: DictionaryCardDelegate {
+    func wordDetailViewButtonClicked(index: Int) {
+        let dictionaryDetailVC = DictionaryDetailVC()
+
+        dictionaryDetailVC.setWordLabelText(english: dictionaryData[index])
+
+        dictionaryDetailVC.modalPresentationStyle = .overCurrentContext
+        self.present(dictionaryDetailVC, animated: true)
     }
 }

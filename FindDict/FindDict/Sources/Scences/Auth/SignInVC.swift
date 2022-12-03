@@ -12,15 +12,16 @@ import Then
 class SignInVC: AuthBaseVC {
     
     // MARK: - Properties
-    private let signInTextField = TextField().then{
+    private let signInTextField: TextField = TextField().then{
         $0.placeholder = "아이디"
     }
     
-    private let passwordTextField = TextField().then{
+    private let passwordTextField: TextField = TextField().then{
         $0.placeholder = "비밀번호"
+        $0.isSecureTextEntry = true
     }
     
-    private let signInButton = UIButton().then{
+    private let signInButton: UIButton = UIButton().then{
         $0.backgroundColor = .buttonYellow
         $0.setTitle("로그인", for: .normal)
         $0.setTitleColor(.black, for: .normal)
@@ -34,6 +35,14 @@ class SignInVC: AuthBaseVC {
         passwordTextField.setPWSecureButton()
         setTextFieldDelegate()
         setNotificationCenter()
+        setButtonActions()
+    }
+    
+    // MARK: - Functions
+    private func setButtonActions(){
+        signInButton.press{
+            self.requestPostSignIn(data: SignInBodyModel(user_id: self.signInTextField.text ?? "", password: self.passwordTextField.text ?? ""))
+        }
     }
 }
 
@@ -54,7 +63,7 @@ extension SignInVC {
             $0.trailing.equalTo(containerView.snp.trailing).offset(-60)
             $0.height.equalTo(50)
         }
-
+        
         passwordTextField.snp.makeConstraints{
             $0.top.equalTo(signInTextField.snp.bottom).offset(17)
             $0.leading.equalTo(containerView.snp.leading).offset(60)
@@ -79,7 +88,7 @@ extension SignInVC: UITextFieldDelegate{
         signInTextField.delegate = self
         passwordTextField.delegate = self
     }
-
+    
     func setNotificationCenter(){
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name:  UIResponder.keyboardWillShowNotification, object: nil)
         
@@ -98,6 +107,26 @@ extension SignInVC: UITextFieldDelegate{
     
     @objc
     func keyboardWillHide(_ sender:Notification) {
-        self.view.frame.origin.y = 0 
+        self.view.frame.origin.y = 0
+    }
+}
+
+// MARK: - Network
+extension SignInVC{
+    private func requestPostSignIn(data: SignInBodyModel) {
+        AuthAPI.shared.postSignIn(body: data) { networkResult in
+            switch networkResult {
+            case .success(let response):
+                if let res = response as? SignInResponseModel {
+                    UserToken.shared.accessToken = res.accessToken
+                    self.makeAlert(title: MessageType.signInSuccess.message, okAction: {_ in
+                        let navigationController = UINavigationController(rootViewController: MainVC())
+                        self.view.window?.rootViewController = navigationController
+                    })
+                }
+            default:
+                self.makeAlert(title: MessageType.signInFail.message)
+            }
+        }
     }
 }
