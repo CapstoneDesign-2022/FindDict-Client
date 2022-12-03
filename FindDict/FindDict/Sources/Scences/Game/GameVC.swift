@@ -72,6 +72,8 @@ final class GameVC: ViewController {
                     self.presentGuessedRightWordModal(text:button.titleLabel?.text ?? "레이블 오류")
                 }
                 buttonLayer.addSubview(button)
+                print("******",button.frame)
+                cropImage(button.titleLabel?.text ?? "",button.frame)
             }
         }
     }
@@ -117,7 +119,9 @@ final class GameVC: ViewController {
     private func putButtons(with predictions: [VNRecognizedObjectObservation]) {
         var createdButtons: [UIButton]=[]
         for prediction in predictions {
-            createdButtons.append(createButton(prediction: prediction))
+            let createdButton = createButton(prediction: prediction)
+            createdButtons.append(createdButton)
+            
         }
         buttons = createdButtons
     }
@@ -137,8 +141,10 @@ final class GameVC: ViewController {
         let buttonTitle: String? = prediction.label
         let color: UIColor = labelColor(with: buttonTitle ?? "N/A")
         let scale = CGAffineTransform.identity.scaledBy(x: buttonLayer.bounds.width, y: buttonLayer.bounds.height)
-        let transform = CGAffineTransform(scaleX: 1, y: 1)
-        let bgRect = prediction.boundingBox.applying(transform).applying(scale)
+       
+        let bgRect = prediction.boundingBox.applying(scale)
+        print(">>>>>",buttonTitle,bgRect)
+        cropImage(buttonTitle ?? "dpfj", bgRect)
 //        print(bgRect)
 //        let x = (prediction.boundingBox.origin.x - prediction.boundingBox.size.width/2)*image.frame.size.width
 //        let y = (prediction.boundingBox.origin.y - prediction.boundingBox.size.height/2)*image.frame.size.height
@@ -196,12 +202,25 @@ final class GameVC: ViewController {
         self.present(guessedRightWordVC, animated: true)
     }
     
-    private func cropImage(origin: CGPoint, size: CGSize){
+    private func cropImage(_ title: String, _ cropRect: CGRect){
+        print("<<<<<<<",title, cropRect)
+        var cropRect = CGRect(origin: cropRect.origin, size: CGSize(width: cropRect.size.width*10, height: cropRect.size.height*10))
+//        let transform = CGAffineTransform(scaleX: 1, y: -1)
+//        cropRect = cropRect.applying(transform)
+        guard let imageRef = image.image?.cgImage?.cropping(to: cropRect) else { return  };
+        let newImage = UIImage(cgImage: imageRef, scale: 2, orientation: image.image!.imageOrientation)
         //        print("origin",origin)
         //        print("size",size)
-        let cropRect = CGRect(origin: origin, size: size)
-        guard let imageRef = image.image?.cgImage?.cropping(to: cropRect) else { return  };
-        let newImage = UIImage(cgImage: imageRef, scale: image.image!.scale, orientation: image.image!.imageOrientation)
+        //        let cropRect = CGRect(origin: origin, size: size)
+        //
+        //        print("!!!!!!!!",image.image!.scale, image.image!.imageOrientation)
+        //        print("!!~!~!~!~!",image.image?.size.width , image.image?.size.height)
+        //        let scale = CGAffineTransform.identity.scaledBy(x: 1 / (image.image?.size.width ?? 1106), y: 1 / (image.image?.size.height ?? 1266) )
+        //        let modifiedCroppingRect = cropRect.applying(scale)
+        //        print("######",cropRect,modifiedCroppingRect)
+        //        guard let imageRef = image.image?.cgImage?.cropping(to: modifiedCroppingRect) else { return  };
+        //        let imageRect = image.contentClippingRect
+        //        let newImage = UIImage(cgImage: imageRef, scale: 1.0, orientation: image.image!.imageOrientation)
         cropImageView.image = newImage
     }
     
@@ -245,7 +264,9 @@ extension GameVC {
             $0.bottom.lessThanOrEqualTo(view.safeAreaLayoutGuide.snp.bottom).inset(50)
         }
         cropImageView.snp.makeConstraints{
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(100)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(100)
+//            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(100)
+            $0.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(20)
             //            $0.width.equalTo(100)
         }
     }
