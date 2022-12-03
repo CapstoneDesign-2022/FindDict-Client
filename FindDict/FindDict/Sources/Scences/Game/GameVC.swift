@@ -50,8 +50,6 @@ final class GameVC: ViewController {
             }
         }
     }
-    private let cropImageView = UIImageView()
-    
     private let cropImageView: UIImageView = UIImageView()
     
     // TODO: - private으로 만들고 setter만들기
@@ -141,13 +139,13 @@ final class GameVC: ViewController {
         let scale = CGAffineTransform.identity.scaledBy(x: buttonLayer.bounds.width, y: buttonLayer.bounds.height)
         let transform = CGAffineTransform(scaleX: 1, y: 1)
         let bgRect = prediction.boundingBox.applying(transform).applying(scale)
-        print(bgRect)
-        let x = (prediction.boundingBox.origin.x - prediction.boundingBox.size.width/2)*image.frame.size.width
-        let y = (prediction.boundingBox.origin.y - prediction.boundingBox.size.height/2)*image.frame.size.height
-        let width = prediction.boundingBox.size.width * image.frame.size.width
-        let height = prediction.boundingBox.size.height * image.frame.size.height
-        print(x,y,width,height)
-        cropImage(origin: CGPoint(x: x, y: y),size: CGSize(width: width, height: height))
+//        print(bgRect)
+//        let x = (prediction.boundingBox.origin.x - prediction.boundingBox.size.width/2)*image.frame.size.width
+//        let y = (prediction.boundingBox.origin.y - prediction.boundingBox.size.height/2)*image.frame.size.height
+//        let width = prediction.boundingBox.size.width * image.frame.size.width
+//        let height = prediction.boundingBox.size.height * image.frame.size.height
+//        print(x,y,width,height)
+//        cropImage(origin: CGPoint(x: x, y: y),size: CGSize(width: width, height: height))
         //        cropImage(origin: CGPoint(x: x, y: y),size: CGSize(width: width, height: height))
         
         let button = UIButton(type: .custom).then {
