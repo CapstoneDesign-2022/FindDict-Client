@@ -23,7 +23,11 @@ class MainButton: UIButton {
     // MARK: - UI
     private func setUI(){
         self.setTitleColor(.black, for: .normal)
-        self.layer.cornerRadius = 10
-        self.titleLabel?.font = .findDictH4M48
+        self.layer.cornerRadius = 20
+        self.titleLabel?.font = .findDictH4R28
+        self.snp.makeConstraints{
+            $0.width.equalTo(350)
+            $0.height.equalTo(90)
+        }
     }
 }

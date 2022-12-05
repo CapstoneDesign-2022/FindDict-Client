@@ -16,20 +16,14 @@ class BeforeSignInVC: UIViewController {
         $0.image = UIImage(named: "logoImage")
     }
     
-    private let signInButton: UIButton = UIButton().then{
+    private let signInButton: UIButton = MainButton().then{
         $0.setTitle("로그인", for: .normal)
         $0.backgroundColor = .buttonOrange
-        $0.titleLabel?.font = .findDictH4R35
-        $0.setTitleColor(.black, for: .normal)
-        $0.layer.cornerRadius = 10
     }
     
-    private let signUpButton: UIButton = UIButton().then{
+    private let signUpButton: UIButton = MainButton().then{
         $0.setTitle("회원 가입", for: .normal)
         $0.backgroundColor = .buttonYellow
-        $0.titleLabel?.font = .findDictH4R35
-        $0.setTitleColor(.black, for: .normal)
-        $0.layer.cornerRadius = 10
     }
     
     // MARK: - View Life Cycle
@@ -66,14 +60,14 @@ extension BeforeSignInVC {
         signInButton.snp.makeConstraints{
             $0.top.equalTo(logoImageView.snp.bottom).offset(50)
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
-            $0.width.equalTo(300)
-            $0.height.equalTo(120)
+//            $0.width.equalTo(300)
+//            $0.height.equalTo(120)
         }
         signUpButton.snp.makeConstraints{
             $0.top.equalTo(signInButton.snp.bottom).offset(40)
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
-            $0.width.equalTo(300)
-            $0.height.equalTo(120)
+//            $0.width.equalTo(300)
+//            $0.height.equalTo(120)
         }
     }
 }
