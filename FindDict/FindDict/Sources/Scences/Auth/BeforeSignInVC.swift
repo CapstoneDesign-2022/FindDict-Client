@@ -20,7 +20,6 @@ class BeforeSignInVC: UIViewController {
     private lazy var buttonStackView: UIStackView = UIStackView(arrangedSubviews: [signInButton, signUpButton]).then {
         $0.axis = .vertical
         $0.spacing = 40
-//        $0.distribution = .fillEqually
     }
     
     private let signInButton: UIButton = MainButton().then{
@@ -69,8 +68,6 @@ extension BeforeSignInVC {
         buttonStackView.snp.makeConstraints{
             $0.top.equalTo(logoImageView.snp.bottom).offset(50)
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
-//            $0.width.equalTo(300)
-//            $0.height.equalTo(120)
         }
     }
 }

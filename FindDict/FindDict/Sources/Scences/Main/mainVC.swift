@@ -20,7 +20,6 @@ class MainVC: UIViewController {
     private lazy var buttonStackView: UIStackView = UIStackView(arrangedSubviews: [gameStartButton, dictionaryButton, gameRuleButton]).then {
         $0.axis = .vertical
         $0.spacing = 25
-//        $0.distribution = .fillEqually
     }
     
     private let gameStartButton: MainButton = MainButton().then{
@@ -68,30 +67,17 @@ class MainVC: UIViewController {
 // MARK: - UI
 extension MainVC {
     private func setLayout(){
-        view.addSubViews([logoImage,
-//                          gameStartButton,
-                          buttonStackView])
-        
+        view.addSubViews([logoImage, buttonStackView])
         
         logoImage.snp.makeConstraints{
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(190)
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
-//            $0.width.equalTo(120)
             $0.height.equalTo(120)
         }
-        
-//        gameStartButton.snp.makeConstraints{
-//            $0.top.equalTo(logoImage.snp.bottom).offset(73.5)
-//            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).inset(447)
-//            $0.centerX.equalTo(view.safeAreaLayoutGuide)
-//            $0.height.equalTo(120)
-//        }
+
         buttonStackView.snp.makeConstraints{
             $0.top.equalTo(logoImage.snp.bottom).offset(40)
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
-//            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).inset(260)
-//            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(260)
-//            $0.height.equalTo(120)
         }
     }
 }
