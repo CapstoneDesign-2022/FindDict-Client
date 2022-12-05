@@ -14,6 +14,7 @@ class BeforeSignInVC: UIViewController {
     // MARK: - Properties
     private let logoImageView: UIImageView = UIImageView().then{
         $0.image = UIImage(named: "logoImage")
+        $0.contentMode = .scaleAspectFit
     }
     
     private let signInButton: UIButton = MainButton().then{
@@ -54,8 +55,9 @@ extension BeforeSignInVC {
         view.addSubViews([logoImageView, signInButton, signUpButton])
         
         logoImageView.snp.makeConstraints{
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(100)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(190)
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
+            $0.height.equalTo(120)
         }
         signInButton.snp.makeConstraints{
             $0.top.equalTo(logoImageView.snp.bottom).offset(50)

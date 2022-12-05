@@ -14,6 +14,7 @@ class MainVC: UIViewController {
     // MARK: - Properties
     private let logoImage: UIImageView = UIImageView().then{
         $0.image = UIImage(named: "logoImage")
+        $0.contentMode = .scaleAspectFit
     }
     private let gameStartButton: MainButton = MainButton().then{
         $0.backgroundColor = .buttonOrange
@@ -67,8 +68,10 @@ extension MainVC {
         view.addSubViews([logoImage,gameStartButton, buttonStackView])
         
         logoImage.snp.makeConstraints{
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(100)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(190)
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
+//            $0.width.equalTo(120)
+            $0.height.equalTo(120)
         }
         
         gameStartButton.snp.makeConstraints{
