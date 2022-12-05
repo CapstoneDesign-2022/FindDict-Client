@@ -14,22 +14,22 @@ class BeforeSignInVC: UIViewController {
     // MARK: - Properties
     private let logoImageView: UIImageView = UIImageView().then{
         $0.image = UIImage(named: "logoImage")
+        $0.contentMode = .scaleAspectFit
     }
     
-    private let signInButton: UIButton = UIButton().then{
+    private lazy var buttonStackView: UIStackView = UIStackView(arrangedSubviews: [signInButton, signUpButton]).then {
+        $0.axis = .vertical
+        $0.spacing = 40
+    }
+    
+    private let signInButton: UIButton = MainButton().then{
         $0.setTitle("로그인", for: .normal)
         $0.backgroundColor = .buttonOrange
-        $0.titleLabel?.font = .findDictH4R35
-        $0.setTitleColor(.black, for: .normal)
-        $0.layer.cornerRadius = 10
     }
     
-    private let signUpButton: UIButton = UIButton().then{
+    private let signUpButton: UIButton = MainButton().then{
         $0.setTitle("회원 가입", for: .normal)
         $0.backgroundColor = .buttonYellow
-        $0.titleLabel?.font = .findDictH4R35
-        $0.setTitleColor(.black, for: .normal)
-        $0.layer.cornerRadius = 10
     }
     
     // MARK: - View Life Cycle
@@ -57,23 +57,17 @@ class BeforeSignInVC: UIViewController {
 // MARK: - UI
 extension BeforeSignInVC {
     private func setLayout(){
-        view.addSubViews([logoImageView, signInButton, signUpButton])
+        view.addSubViews([logoImageView, buttonStackView])
         
         logoImageView.snp.makeConstraints{
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(100)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(200)
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
-        }
-        signInButton.snp.makeConstraints{
-            $0.top.equalTo(logoImageView.snp.bottom).offset(50)
-            $0.centerX.equalTo(view.safeAreaLayoutGuide)
-            $0.width.equalTo(300)
             $0.height.equalTo(120)
         }
-        signUpButton.snp.makeConstraints{
-            $0.top.equalTo(signInButton.snp.bottom).offset(40)
+        
+        buttonStackView.snp.makeConstraints{
+            $0.top.equalTo(logoImageView.snp.bottom).offset(100)
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
-            $0.width.equalTo(300)
-            $0.height.equalTo(120)
         }
     }
 }

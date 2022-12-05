@@ -14,26 +14,29 @@ class MainVC: UIViewController {
     // MARK: - Properties
     private let logoImage: UIImageView = UIImageView().then{
         $0.image = UIImage(named: "logoImage")
+        $0.contentMode = .scaleAspectFit
     }
+    
+    private lazy var buttonStackView: UIStackView = UIStackView(arrangedSubviews: [gameStartButton, dictionaryButton, gameRuleButton]).then {
+        $0.axis = .vertical
+        $0.spacing = 25
+    }
+    
     private let gameStartButton: MainButton = MainButton().then{
         $0.backgroundColor = .buttonOrange
         $0.setTitle("게임 시작", for: .normal)
     }
     
-    lazy var buttonStackView: UIStackView = UIStackView(arrangedSubviews: [gameRuleButton, dictionaryButton]).then {
-        $0.axis = .horizontal
-        $0.spacing = 66
-        $0.distribution = .fillEqually
+    private let dictionaryButton: MainButton = MainButton().then{
+        $0.backgroundColor = .buttonOrange
+        $0.setTitle("단어장", for: .normal)
     }
     
     private let gameRuleButton: MainButton = MainButton().then{
         $0.backgroundColor = .buttonYellow
         $0.setTitle("게임 방법", for: .normal)
     }
-    private let dictionaryButton: MainButton = MainButton().then{
-        $0.backgroundColor = .buttonYellow
-        $0.setTitle("단어장", for: .normal)
-    }
+    
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -64,24 +67,17 @@ class MainVC: UIViewController {
 // MARK: - UI
 extension MainVC {
     private func setLayout(){
-        view.addSubViews([logoImage,gameStartButton, buttonStackView])
+        view.addSubViews([logoImage, buttonStackView])
         
         logoImage.snp.makeConstraints{
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(100)
-            $0.centerX.equalTo(view.safeAreaLayoutGuide)
-        }
-        
-        gameStartButton.snp.makeConstraints{
-            $0.top.equalTo(logoImage.snp.bottom).offset(73.5)
-            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).inset(447)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(200)
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
             $0.height.equalTo(120)
         }
+
         buttonStackView.snp.makeConstraints{
-            $0.top.equalTo(gameStartButton.snp.bottom).offset(44)
-            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).inset(260)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(260)
-            $0.height.equalTo(120)
+            $0.top.equalTo(logoImage.snp.bottom).offset(60)
+            $0.centerX.equalTo(view.safeAreaLayoutGuide)
         }
     }
 }
