@@ -60,13 +60,13 @@ extension BeforeSignInVC {
         view.addSubViews([logoImageView, buttonStackView])
         
         logoImageView.snp.makeConstraints{
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(190)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(200)
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
             $0.height.equalTo(120)
         }
         
         buttonStackView.snp.makeConstraints{
-            $0.top.equalTo(logoImageView.snp.bottom).offset(50)
+            $0.top.equalTo(logoImageView.snp.bottom).offset(100)
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
         }
     }

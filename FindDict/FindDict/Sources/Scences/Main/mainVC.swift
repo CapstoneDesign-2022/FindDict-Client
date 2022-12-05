@@ -70,13 +70,13 @@ extension MainVC {
         view.addSubViews([logoImage, buttonStackView])
         
         logoImage.snp.makeConstraints{
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(190)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(200)
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
             $0.height.equalTo(120)
         }
 
         buttonStackView.snp.makeConstraints{
-            $0.top.equalTo(logoImage.snp.bottom).offset(40)
+            $0.top.equalTo(logoImage.snp.bottom).offset(60)
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
         }
     }
