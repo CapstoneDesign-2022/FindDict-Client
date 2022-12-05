@@ -17,6 +17,12 @@ class BeforeSignInVC: UIViewController {
         $0.contentMode = .scaleAspectFit
     }
     
+    private lazy var buttonStackView: UIStackView = UIStackView(arrangedSubviews: [signInButton, signUpButton]).then {
+        $0.axis = .vertical
+        $0.spacing = 40
+//        $0.distribution = .fillEqually
+    }
+    
     private let signInButton: UIButton = MainButton().then{
         $0.setTitle("로그인", for: .normal)
         $0.backgroundColor = .buttonOrange
@@ -52,21 +58,16 @@ class BeforeSignInVC: UIViewController {
 // MARK: - UI
 extension BeforeSignInVC {
     private func setLayout(){
-        view.addSubViews([logoImageView, signInButton, signUpButton])
+        view.addSubViews([logoImageView, buttonStackView])
         
         logoImageView.snp.makeConstraints{
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(190)
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
             $0.height.equalTo(120)
         }
-        signInButton.snp.makeConstraints{
+        
+        buttonStackView.snp.makeConstraints{
             $0.top.equalTo(logoImageView.snp.bottom).offset(50)
-            $0.centerX.equalTo(view.safeAreaLayoutGuide)
-//            $0.width.equalTo(300)
-//            $0.height.equalTo(120)
-        }
-        signUpButton.snp.makeConstraints{
-            $0.top.equalTo(signInButton.snp.bottom).offset(40)
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
 //            $0.width.equalTo(300)
 //            $0.height.equalTo(120)
