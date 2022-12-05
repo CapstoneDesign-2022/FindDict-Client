@@ -12,7 +12,9 @@ import Then
 class DictionaryDetailCVC: UICollectionViewCell {
     
     // MARK: - Properties
-    private let wordImageView: UIImageView = UIImageView()
+    private let wordImageView: UIImageView = UIImageView().then{
+        $0.contentMode = .scaleAspectFit
+    }
     
     
     //MARK: - Functions
