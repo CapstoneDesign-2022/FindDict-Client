@@ -52,14 +52,16 @@ final class GameVC: ViewController {
     }
     private let cropImageView: UIImageView = UIImageView()
     
-private var cropImage: UIImage = UIImage(){
+    private var cropImage: UIImage = UIImage(){
         didSet{
             cropImageView.image = cropImage
-            for word in predictedObjectLableSet{
-                requestPostWord(body: CreateWordBodyModel(english: word), image: (cropImage ?? UIImage(named: "GameOver"))!)
-            }
+            requestPostWord(body: CreateWordBodyModel(english: cropImageString), image: (cropImage ?? UIImage(named: "GameOver"))!)
+            
         }
     }
+    
+    private var cropImageString: String = ""
+    
     // TODO: - private으로 만들고 setter만들기
     var image: UIImageView = UIImageView().then{
         $0.isUserInteractionEnabled = true
@@ -79,9 +81,7 @@ private var cropImage: UIImage = UIImage(){
                     self.handleGuessedRightView(label:button.titleLabel?.text ?? "레이블 오류")
                     self.presentGuessedRightWordModal(text:button.titleLabel?.text ?? "레이블 오류")
                 }
-//                print("11111111111",buttonLayer.bounds.height)
                 buttonLayer.addSubview(button)
-                print("******",button.frame)
                 cropImage(button.titleLabel?.text ?? "",button.frame)
             }
         }
@@ -149,24 +149,9 @@ private var cropImage: UIImage = UIImage(){
         let buttonTitle: String? = prediction.label
         let color: UIColor = labelColor(with: buttonTitle ?? "N/A")
         
-//        print("222222222222",buttonLayer.bounds.height)
         let scale = CGAffineTransform.identity.scaledBy(x: buttonLayer.bounds.width, y: buttonLayer.bounds.height)
-    
-        let bgRect = prediction.boundingBox.applying(scale)
         
-//        let cropScale = CGAffineTransform.identity.scaledBy(x: image.bounds.width, y: image.bounds.height)
-//        let cropBgRect = prediction.boundingBox.applying(cropScale)
-//        print(image.image.)
-//        print(">>>>>",bgRect)
-        cropImage(buttonTitle ?? "dpfj", bgRect)
-//        print(bgRect)
-//        let x = (prediction.boundingBox.origin.x - prediction.boundingBox.size.width/2)*image.frame.size.width
-//        let y = (prediction.boundingBox.origin.y - prediction.boundingBox.size.height/2)*image.frame.size.height
-//        let width = prediction.boundingBox.size.width * image.frame.size.width
-//        let height = prediction.boundingBox.size.height * image.frame.size.height
-//        print(x,y,width,height)
-//        cropImage(origin: CGPoint(x: x, y: y),size: CGSize(width: width, height: height))
-        //        cropImage(origin: CGPoint(x: x, y: y),size: CGSize(width: width, height: height))
+        let bgRect = prediction.boundingBox.applying(scale)
         
         let button = UIButton(type: .custom).then {
             $0.frame = bgRect
@@ -216,30 +201,13 @@ private var cropImage: UIImage = UIImage(){
         self.present(guessedRightWordVC, animated: true)
     }
     
-    func resize(image: CGImage, scale: CGFloat, completionHandler: (CGImage?) -> UIImage)
-    {
-      let size = CGSize(width: CGFloat(image.width), height: CGFloat(image.height))
-      let context = CGContext( // #1
-           data: nil,
-           width: Int(size.width * scale),
-           height: Int(size.height * scale),
-           bitsPerComponent: 8,
-           bytesPerRow: 0,
-           space: CGColorSpaceCreateDeviceRGB(),
-           bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)!
-      context.interpolationQuality = .high // #2
-      context.draw(image, in: CGRect(origin:.zero, size:size))
-      let resultImage = context.makeImage()
-      completionHandler(resultImage)
-    }
     
     func resizeImage(image: UIImage, size: CGSize, x: CGFloat, y: CGFloat) -> CGImage {
         UIGraphicsBeginImageContext(size)
-        print("xxxxxxxxx",x)
         image.draw(in:CGRect(x: x, y: y, width: size.width, height:size.height))
         let renderImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-            
+        
         guard let resultImage = renderImage?.cgImage else {
             print("image resizing error")
             return UIImage().cgImage!
@@ -248,43 +216,13 @@ private var cropImage: UIImage = UIImage(){
     }
     
     private func cropImage(_ title: String, _ cropRect: CGRect){
-        
-    
-//        var cropRect = CGRect(origin: cropRect.origin, size: CGSize(width: cropRect.size.width*10, height: cropRect.size.height*10))
-//        var cropRect = CGRect(x: cropRect.origin.x, y: cropRect.origin.y, width: cropRect.width, height: cropRect.height)
-//        let transform = CGAffineTransform(scaleX: 1, y: -1)
-//        cropRect = cropRect.applying(transform)
-        print("<<<<<<<",title, cropRect, buttonLayer.bounds)
-//        let resizedImage
-//        let newImage = resize(image: (image.image?.cgImage)!, scale: 0.5, completionHandler: {image in
-//            let imageRef = image?.cropping(to: cropRect)
-//            let newImage = UIImage(cgImage: (imageRef ?? self.image.image?.cgImage)!, scale: 1, orientation: self.image.image!.imageOrientation)
-//            return newImage as! UIImage
-//        })
-        
-        var newImage = resizeImage(image: image.image!, size: buttonLayer.bounds.size, x: buttonLayer.bounds.origin.x, y: buttonLayer.bounds.origin.y)
-        
-//        resize(.)
-//        image.image?.cgImage.cr
+        let newImage = resizeImage(image: image.image!, size: buttonLayer.bounds.size, x: buttonLayer.bounds.origin.x, y: buttonLayer.bounds.origin.y)
         guard let imageRef = newImage.cropping(to: cropRect) else { return  };
-        print(image.image?.size)
-//        let newImage = UIImage(cgImage: imageRef, scale: 1, orientation: image.image!.imageOrientation)
-        //        print("origin",origin)
-        //        print("size",size)
-        //        let cropRect = CGRect(origin: origin, size: size)
-        //
-        //        print("!!!!!!!!",image.image!.scale, image.image!.imageOrientation)
-        //        print("!!~!~!~!~!",image.image?.size.width , image.image?.size.height)
-        //        let scale = CGAffineTransform.identity.scaledBy(x: 1 / (image.image?.size.width ?? 1106), y: 1 / (image.image?.size.height ?? 1266) )
-        //        let modifiedCroppingRect = cropRect.applying(scale)
-        //        print("######",cropRect,modifiedCroppingRect)
-        //        guard let imageRef = image.image?.cgImage?.cropping(to: modifiedCroppingRect) else { return  };
-        //        let imageRect = image.contentClippingRect
-        //        let newImage = UIImage(cgImage: imageRef, scale: 1.0, orientation: image.image!.imageOrientation)
-//        cropImageView.image = newImage
-         let newUIImage = UIImage(cgImage: imageRef, scale: 1, orientation: self.image.image!.imageOrientation)
+        let newUIImage = UIImage(cgImage: imageRef, scale: 1, orientation: self.image.image!.imageOrientation)
+        
+        cropImageString = title
         cropImage = newUIImage
-//        print(cropImageView.image)
+        
     }
     
     private func resetGame(){
@@ -328,7 +266,7 @@ extension GameVC {
         }
         cropImageView.snp.makeConstraints{
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(100)
-//            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(100)
+            //            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(100)
             $0.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(20)
             //            $0.width.equalTo(100)
         }

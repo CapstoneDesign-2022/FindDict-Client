@@ -4,8 +4,8 @@
 //
 //  Created by 김지민 on 2022/11/16.
 //
-
-import Foundation
+//
+import UIKit
 
 extension CGRect {
     func toString(digit: Int) -> String {
