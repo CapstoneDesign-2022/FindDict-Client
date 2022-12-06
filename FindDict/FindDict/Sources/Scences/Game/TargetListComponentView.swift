@@ -17,7 +17,7 @@ protocol TargetComponentViewDelegate: AnyObject {
 class TargetListComponentView: UIView {
     
     private var delegate: TargetComponentViewDelegate?
-    private let koreanButton: UIButton = UIButton().then{
+    private let englishButton: UIButton = UIButton().then{
         if #available(iOS 15.0, *) {
             $0.configuration = .plain()
             $0.configuration?.buttonSize = .large
@@ -31,7 +31,7 @@ class TargetListComponentView: UIView {
         $0.setTitleColor(.black, for: .normal)
     }
     
-    private let englishLabelBoundaryView: UIView = UIView().then {
+    private let koreanLabelBoundaryView: UIView = UIView().then {
         //        $0.addShadow(location: .bottom)
         //                $0.addShadow(location: .left)
         //                $0.addShadow(location: .right)
@@ -44,7 +44,7 @@ class TargetListComponentView: UIView {
         $0.makeRounded(cornerRadius: 15)
     }
     
-    private let englishLabel: UILabel = UILabel().then{
+    private let koreanLabel: UILabel = UILabel().then{
         //        $0.addShadow(location: .bottom)
         //        $0.addShadow(location: .left)
         //        $0.addShadow(location: .right)
@@ -71,7 +71,7 @@ class TargetListComponentView: UIView {
         //        $0.makeRounded(cornerRadius: 15)
     }
     
-    private var englishLabelText: String = ""
+    private var koreanLabelText: String = ""
     
     // MARK: - Initialization
     override init(frame: CGRect) {
@@ -86,56 +86,56 @@ class TargetListComponentView: UIView {
     
     // MARK: - Functions
     func setData(korean: String, english: String){
-        koreanButton.setTitle(korean, for: .normal)
-        englishLabelText = english
+        englishButton.setTitle(english, for: .normal)
+        koreanLabelText = korean
     }
     
     func setButtonActions(){
-        koreanButton.press{
-            self.delegate?.hintButtonClicked(korean: self.koreanButton.currentTitle ?? "버튼 레이블 오류")
+        englishButton.press{
+            self.delegate?.hintButtonClicked(korean: self.englishButton.currentTitle ?? "버튼 레이블 오류")
         }
     }
     
     func getTargetLabel()->String{
-        return englishLabelText
+        return englishButton.currentTitle ?? "-"
     }
     
     func handleGussedRightView(){
-        koreanButton.isUserInteractionEnabled = false
-        englishLabel.text = englishLabelText
-        koreanButton.backgroundColor = .buttonGray
+        englishButton.isUserInteractionEnabled = false
+        koreanLabel.text = koreanLabelText
+        englishButton.backgroundColor = .buttonGray
     }
     
     func setDelegate(delegate: TargetComponentViewDelegate){
-            self.delegate = delegate
-        }
+        self.delegate = delegate
+    }
     
 }
 
 // MARK: - UI
 extension TargetListComponentView {
     func setLayout() {
-        self.addSubViews([koreanButton
-                          ,englishLabelBoundaryView
-                          ,englishLabel])
+        self.addSubViews([englishButton
+                          ,koreanLabelBoundaryView
+                          ,koreanLabel])
         
-        koreanButton.snp.makeConstraints {
+        englishButton.snp.makeConstraints {
             $0.top.equalTo(self.safeAreaLayoutGuide).offset(11)
             $0.height.equalTo(40)
             $0.leading.trailing.equalTo(self.safeAreaLayoutGuide)
         }
         
-        englishLabelBoundaryView.snp.makeConstraints{
-            $0.top.equalTo(koreanButton.snp.bottom).offset(15)
+        koreanLabelBoundaryView.snp.makeConstraints{
+            $0.top.equalTo(englishButton.snp.bottom).offset(15)
             $0.leading.trailing.equalTo(self.safeAreaLayoutGuide)
             $0.height.equalTo(40)
             $0.bottom.equalTo(self.safeAreaLayoutGuide).inset(10)
         }
         
-        englishLabel.snp.makeConstraints{
-            $0.leading.equalTo(englishLabelBoundaryView).offset(10)
-            $0.trailing.equalTo(englishLabelBoundaryView).inset(10)
-            $0.center.equalTo(englishLabelBoundaryView)
+        koreanLabel.snp.makeConstraints{
+            $0.leading.equalTo(koreanLabelBoundaryView).offset(10)
+            $0.trailing.equalTo(koreanLabelBoundaryView).inset(10)
+            $0.center.equalTo(koreanLabelBoundaryView)
         }
     }
 }
