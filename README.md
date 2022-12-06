@@ -18,18 +18,14 @@
 - 변수, 상수 : `lowerCamelCase`
 - 클래스 : `UpperCamelCase`
 - 약어 사용 범위
-
-  `TableView -> TV`
-
-  `TableViewCell -> TVC`
-
-  `CollectionView -> CV`
-
-  `CollectionViewCell -> CVC`
-
-  `ViewController -> VC`
-
-  `identifier -> id`
+```
+  TableView -> TV
+  TableViewCell -> TVC
+  CollectionView -> CV
+  CollectionViewCell -> CVC
+  ViewController -> VC
+  identifier -> id
+  ```
 
   
 - 주석
@@ -66,7 +62,7 @@
 8. Delete Branch
 ```
 ### Commit Convention
-`타입: 설명 #이슈 번호`
+>  `타입`: `설명` #`이슈 번호`
 
 ```
   Feat: 기능 구현
@@ -83,7 +79,6 @@
 #### Branch Naming
 
 > `분류` /`#이슈 번호` - `작업 내용`
-> 
 
 ```swift
 chore/#3-ProjectSetting
@@ -128,7 +123,6 @@ refactor/#1-Vision
 │   ├── EvenLogger.swift
 │   └── Services
 ├── Protocols
-│   └── Reusable.swift
 ├── Resources
 │   ├── Assets.xcassets
 │   ├── Fonts
