@@ -100,9 +100,19 @@ class TargetListComponentView: UIView {
         return englishLabelText
     }
     
-    func handleGussedRightView(){
+    func handleGuessedRightView(){
         koreanButton.isUserInteractionEnabled = false
         englishLabel.text = englishLabelText
+        koreanButton.backgroundColor = .buttonGray
+    }
+    
+    func enableKoreanButton() {
+        koreanButton.isUserInteractionEnabled = true
+        koreanButton.backgroundColor = .buttonYellow
+    }
+    
+    func disableKoreanButton() {
+        koreanButton.isUserInteractionEnabled = false
         koreanButton.backgroundColor = .buttonGray
     }
     
