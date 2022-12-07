@@ -72,7 +72,7 @@ final class GameVC: ViewController {
         didSet{
             for button in buttons {
                 button.press{ [self] in
-                    button.setImage(UIImage(named: "icon"), for: .normal)
+                    button.setImage(UIImage(named: "CorrectSignImage"), for: .normal)
                     button.imageView?.contentMode = .scaleAspectFit
                     button.isUserInteractionEnabled = false
                     self.disableButtons(label:button.titleLabel?.text ?? "레이블 오류")
