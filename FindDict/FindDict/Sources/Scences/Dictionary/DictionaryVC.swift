@@ -15,7 +15,7 @@ final class DictionaryVC: UIViewController {
     private var dictionaryData: [String] = []
 
     private let naviView = DefaultNavigationBar(isHomeButtonIncluded: true).then {
-        $0.setTitleLabel(title: "Game")
+        $0.setTitleLabel(title: "Dictionary")
     }
     
     private let dictionaryTV: UITableView = UITableView().then{

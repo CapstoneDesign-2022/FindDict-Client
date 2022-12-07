@@ -14,6 +14,10 @@ class GameTutorialVC: UIViewController{
     // MARK: - Properties
     var dataSource: [GameTutorialCVCModel] = GameTutorialCVCModel.sampleData
     
+    private let naviView = DefaultNavigationBar(isHomeButtonIncluded: true).then {
+        $0.setTitleLabel(title: "Game Tutorial")
+    }
+    
     private lazy var gameTutorialCV: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: CVFlowLayout)
     
     private let CVFlowLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -21,11 +25,6 @@ class GameTutorialVC: UIViewController{
     private var originalDataSourceCount: Int {
         dataSource.count
     }
-    
-    private let homeButton: UIButton = UIButton().then{
-        $0.setImage(UIImage(named: "homeImage"),for: .normal)
-    }
-    
     
     private var scrollToEnd: Bool = false
     private var scrollToBegin: Bool = false
@@ -35,18 +34,12 @@ class GameTutorialVC: UIViewController{
         super.viewDidLoad()
         setLayout()
         setCV()
-        setButtonActions()
         view.backgroundColor = .bgYellow
+        self.navigationController?.navigationBar.isHidden = true
+        naviView.setDelegate(delegate: self)
     }
     
     // MARK: - Functions
-    func setButtonActions() {
-        homeButton.press{
-            let mainView = MainVC()
-            self.navigationController?.pushViewController(mainView, animated: true)
-        }
-    }
-    
     private func setCV() {
         gameTutorialCV.delegate = self
         gameTutorialCV.dataSource = self
@@ -66,16 +59,16 @@ class GameTutorialVC: UIViewController{
 // MARK: - UI
 extension GameTutorialVC {
     private func setLayout() {
-        view.addSubViews([gameTutorialCV, homeButton])
+        view.addSubViews([naviView, gameTutorialCV])
         
-        gameTutorialCV.snp.makeConstraints{
-            $0.center.top.bottom.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+        naviView.snp.makeConstraints{
+            $0.top.left.right.equalToSuperview()
+            $0.height.equalTo(150)
         }
         
-        homeButton.snp.makeConstraints{
-            $0.top.equalTo(view.safeAreaLayoutGuide)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide).inset(40)
-            $0.width.height.equalTo(72)
+        gameTutorialCV.snp.makeConstraints{
+            $0.top.equalTo(naviView.snp.bottom)
+            $0.bottom.leading.trailing.equalTo(view.safeAreaLayoutGuide)
         }
     }
 }
@@ -122,5 +115,16 @@ extension GameTutorialVC: UICollectionViewDelegateFlowLayout {
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return .zero
+    }
+}
+
+// MARK: - DefaultNavigationBarDelegate
+extension GameTutorialVC: DefaultNavigationBarDelegate {
+    func backButtonClicked(){
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func homeButtonClicked(){
+        self.navigationController?.popToRootViewController(animated: false)
     }
 }

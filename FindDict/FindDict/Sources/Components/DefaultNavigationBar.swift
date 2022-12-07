@@ -94,7 +94,7 @@ extension DefaultNavigationBar {
         logoImage.snp.makeConstraints {
             $0.right.equalTo(titleLabel.snp.left).inset(50)
             $0.centerY.equalTo(self.safeAreaLayoutGuide)
-            $0.height.equalTo(48)
+            $0.height.equalTo(44)
         }
     }
     
@@ -102,7 +102,7 @@ extension DefaultNavigationBar {
         self.addSubViews([homeButton])
        
         homeButton.snp.makeConstraints {
-            $0.right.equalTo(self.safeAreaLayoutGuide).inset(30)
+            $0.right.equalTo(self.safeAreaLayoutGuide).inset(40)
             $0.centerY.equalTo(self.safeAreaLayoutGuide)
         }
     }
