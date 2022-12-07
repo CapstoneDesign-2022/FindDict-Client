@@ -16,12 +16,10 @@ final class DictionaryVC: UIViewController {
 
     private let titleView: UIView = UIView().then{
         $0.backgroundColor = .modalButtonDarkYellow
-        $0.layer.shadowRadius = 4
-        $0.layer.shadowOffset = CGSize(width: 0, height: 4)
         $0.layer.borderWidth = 1
         $0.layer.borderColor = UIColor.white.cgColor
-        $0.layer.shadowColor = UIColor.black.cgColor
-        $0.layer.shadowOpacity = 0.25
+        $0.addShadow(location: .bottom)
+      
     }
     
     private let titleLabel: UILabel = UILabel().then{
