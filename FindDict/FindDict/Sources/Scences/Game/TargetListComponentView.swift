@@ -109,12 +109,12 @@ class TargetListComponentView: UIView {
             $0.top.equalTo(self.safeAreaLayoutGuide).offset(11)
             $0.leading.trailing.equalTo(self.safeAreaLayoutGuide)
             $0.bottom.equalTo(self.safeAreaLayoutGuide).inset(10)
-            $0.height.equalTo(100)
         }
         koreanButton.snp.remakeConstraints {
             $0.top.equalTo(containerView)
             $0.height.equalTo(40)
-            $0.leading.trailing.equalTo(containerView)
+            $0.leading.equalTo(containerView).offset(10)
+            $0.trailing.equalTo(containerView).inset(10)
         }
     }
     
@@ -153,7 +153,6 @@ extension TargetListComponentView {
             $0.top.equalTo(self.safeAreaLayoutGuide).offset(11)
             $0.leading.trailing.equalTo(self.safeAreaLayoutGuide)
             $0.bottom.equalTo(self.safeAreaLayoutGuide).inset(10)
-            $0.height.equalTo(100)
         }
         
         koreanButton.snp.makeConstraints {
@@ -165,7 +164,8 @@ extension TargetListComponentView {
         
         englishLabelBoundaryView.snp.makeConstraints{
             $0.top.equalTo(koreanButton.snp.bottom).offset(15)
-            $0.leading.trailing.equalTo(containerView)
+            $0.leading.equalTo(containerView).offset(10)
+            $0.trailing.equalTo(containerView).inset(10)
             $0.height.equalTo(40)
             $0.bottom.equalTo(containerView)
         }
