@@ -43,6 +43,7 @@ extension DictionaryDetailCVC {
         wordImageView.snp.makeConstraints{
             $0.centerY.equalTo(self.safeAreaLayoutGuide)
             $0.centerX.equalTo(self.safeAreaLayoutGuide)
+            $0.width.equalTo(500)
         }
     }
 }
