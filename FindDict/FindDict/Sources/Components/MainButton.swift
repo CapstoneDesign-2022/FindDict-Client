@@ -29,5 +29,6 @@ class MainButton: UIButton {
             $0.width.equalTo(350)
             $0.height.equalTo(90)
         }
+        self.addShadow(location: .bottomRight)
     }
 }
