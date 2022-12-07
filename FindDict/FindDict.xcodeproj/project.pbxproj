@@ -20,7 +20,6 @@
 		4D14BD7A28E20CA6002B2165 /* NotoSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D14BD7528E20A8C002B2165 /* NotoSans-SemiBold.ttf */; };
 		4D14BD7B28E20CA8002B2165 /* NotoSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D14BD7228E20A8C002B2165 /* NotoSans-Regular.ttf */; };
 		4D19F2FE2922579B002696D4 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D19F2FD2922579A002696D4 /* UIImageView+.swift */; };
-		4D2265F02924B6CA000FEE18 /* CGRect+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2265EF2924B6CA000FEE18 /* CGRect+.swift */; };
 		4D2A6E6229376F5B00B53C7A /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2A6E6129376F5B00B53C7A /* UIStackView+.swift */; };
 		4D2FC6D9292264EE00FAB324 /* CreateWordBodyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2FC6D8292264EE00FAB324 /* CreateWordBodyModel.swift */; };
 		4D2FC6DB292264F400FAB324 /* CreateWordResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2FC6DA292264F400FAB324 /* CreateWordResponseModel.swift */; };
@@ -106,7 +105,6 @@
 		4D14BD7528E20A8C002B2165 /* NotoSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		4D14BD7628E20B8D002B2165 /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		4D19F2FD2922579A002696D4 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
-		4D2265EF2924B6CA000FEE18 /* CGRect+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+.swift"; sourceTree = "<group>"; };
 		4D2A6E6129376F5B00B53C7A /* UIStackView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+.swift"; sourceTree = "<group>"; };
 		4D2FC6D8292264EE00FAB324 /* CreateWordBodyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateWordBodyModel.swift; sourceTree = "<group>"; };
 		4D2FC6DA292264F400FAB324 /* CreateWordResponseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateWordResponseModel.swift; sourceTree = "<group>"; };
@@ -359,7 +357,6 @@
 				F860B7A028E832DB0032A39B /* UITableViewCell+.swift */,
 				4DAA326C292258B600400008 /* UIImageView+.swift */,
 				4D2A6E6129376F5B00B53C7A /* UIStackView+.swift */,
-				4D2265EF2924B6CA000FEE18 /* CGRect+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -591,7 +588,6 @@
 				4DA65AB828E86ABB002DEFE3 /* GenericResponse.swift in Sources */,
 				4D6943E6291518EF00974B71 /* SpeechButton.swift in Sources */,
 				4D0B1E1228E5A9A4007F16DB /* GameVC.swift in Sources */,
-				4D2265F02924B6CA000FEE18 /* CGRect+.swift in Sources */,
 				F8DB7A5C28DB1FA700EE3D66 /* UIView+.swift in Sources */,
 				4D14BD6F28E2068B002B2165 /* PhotoReselectModalVC.swift in Sources */,
 				F860B79F28E7D0AB0032A39B /* DictionaryTVC.swift in Sources */,

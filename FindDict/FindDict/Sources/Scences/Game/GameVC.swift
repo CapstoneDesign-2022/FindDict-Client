@@ -50,7 +50,14 @@ final class GameVC: ViewController {
         }
     }
     
-    private let cropImageView: UIImageView = UIImageView()
+    private var croppedImage: UIImage = UIImage(){
+        didSet{
+            requestPostWord(body: CreateWordBodyModel(english: croppedImageString), image: (croppedImage ?? UIImage(named: "GameOver"))!)
+            
+        }
+    }
+    
+    private var croppedImageString: String = ""
     
     // TODO: - private으로 만들고 setter만들기
     var image: UIImageView = UIImageView().then{
@@ -72,6 +79,7 @@ final class GameVC: ViewController {
                     self.presentGuessedRightWordModal(text:button.titleLabel?.text ?? "레이블 오류")
                 }
                 buttonLayer.addSubview(button)
+                cropImage(button.titleLabel?.text ?? "",button.frame)
             }
         }
     }
@@ -84,10 +92,7 @@ final class GameVC: ViewController {
         super.viewDidLoad()
         view.backgroundColor = .bgBeige
         setLayout()
-        for word in predictedObjectLableSet{
-            requestPostWord(body: CreateWordBodyModel(english: word), image: (cropImageView.image ?? UIImage(named: "GameOver"))!)
-        }
-        self.navigationController?.navigationBar.isHidden = true
+      self.navigationController?.navigationBar.isHidden = true
         naviView.setDelegate(delegate: self)
     }
     
@@ -120,6 +125,7 @@ final class GameVC: ViewController {
         var createdButtons: [UIButton]=[]
         for prediction in predictions {
             createdButtons.append(createButton(prediction: prediction))
+            
         }
         buttons = createdButtons
     }
@@ -138,10 +144,10 @@ final class GameVC: ViewController {
     private func createButton(prediction: VNRecognizedObjectObservation)-> UIButton {
         let buttonTitle: String? = prediction.label
         let color: UIColor = labelColor(with: buttonTitle ?? "N/A")
+        
         let scale = CGAffineTransform.identity.scaledBy(x: buttonLayer.bounds.width, y: buttonLayer.bounds.height)
-        let transform = CGAffineTransform(scaleX: 1, y: 1)
-        let bgRect = prediction.boundingBox.applying(transform).applying(scale)
-        //        cropImage(origin: CGPoint(x: x, y: y),size: CGSize(width: width, height: height))
+        
+        let bgRect = prediction.boundingBox.applying(scale)
         
         let button = UIButton(type: .custom).then {
             $0.frame = bgRect
@@ -191,13 +197,28 @@ final class GameVC: ViewController {
         self.present(guessedRightWordVC, animated: true)
     }
     
-    private func cropImage(origin: CGPoint, size: CGSize){
-        //        print("origin",origin)
-        //        print("size",size)
-        let cropRect = CGRect(origin: origin, size: size)
-        guard let imageRef = image.image?.cgImage?.cropping(to: cropRect) else { return  };
-        let newImage = UIImage(cgImage: imageRef, scale: image.image!.scale, orientation: image.image!.imageOrientation)
-        cropImageView.image = newImage
+    
+    func resizeImage(image: UIImage, size: CGSize, x: CGFloat, y: CGFloat) -> CGImage {
+        UIGraphicsBeginImageContext(size)
+        image.draw(in:CGRect(x: x, y: y, width: size.width, height:size.height))
+        let renderImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        guard let resultImage = renderImage?.cgImage else {
+            print("image resizing error")
+            return UIImage().cgImage!
+        }
+        return resultImage
+    }
+    
+    private func cropImage(_ title: String, _ cropRect: CGRect){
+        let resizedImage = resizeImage(image: image.image!, size: buttonLayer.bounds.size, x: buttonLayer.bounds.origin.x, y: buttonLayer.bounds.origin.y)
+        guard let croppedImageRef = resizedImage.cropping(to: cropRect) else { return  };
+        let croppedUIImage = UIImage(cgImage: croppedImageRef, scale: 1, orientation: self.image.image!.imageOrientation)
+        
+        croppedImageString = title
+        croppedImage = croppedUIImage
+        
     }
     
     private func resetGame(){
@@ -222,6 +243,7 @@ extension GameVC: TargetComponentViewDelegate {
 // MARK: - UI
 extension GameVC {
     private func setLayout() {
+
         view.addSubViews([naviView, targetListContainerView, image, cropImageView])
         naviView.snp.makeConstraints{
             $0.top.left.right.equalToSuperview()
@@ -237,10 +259,6 @@ extension GameVC {
             $0.top.equalTo(targetListContainerView.snp.bottom).offset(30)
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
             $0.bottom.lessThanOrEqualTo(view.safeAreaLayoutGuide.snp.bottom).inset(50)
-        }
-        cropImageView.snp.makeConstraints{
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(100)
-            //            $0.width.equalTo(100)
         }
     }
 }
