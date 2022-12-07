@@ -32,9 +32,8 @@ final class GameVC: ViewController {
     }
     
     // MARK: - UI Properties
-    private let logoImage: UIImageView = UIImageView().then{
-        $0.contentMode = .scaleAspectFit
-        $0.image = UIImage(named: "logoImage")
+    private let naviView = DefaultNavigationBar(isHomeButtonIncluded: true).then {
+        $0.setTitleLabel(title: "Game")
     }
     
     private let targetListContainerView: UIStackView = UIStackView().then{
@@ -88,6 +87,8 @@ final class GameVC: ViewController {
         for word in predictedObjectLableSet{
             requestPostWord(body: CreateWordBodyModel(english: word), image: (cropImageView.image ?? UIImage(named: "GameOver"))!)
         }
+        self.navigationController?.navigationBar.isHidden = true
+        naviView.setDelegate(delegate: self)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -221,15 +222,14 @@ extension GameVC: TargetComponentViewDelegate {
 // MARK: - UI
 extension GameVC {
     private func setLayout() {
-        view.addSubViews([logoImage, targetListContainerView, image, cropImageView])
-        logoImage.snp.makeConstraints{
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(17)
-            $0.centerX.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(80)
+        view.addSubViews([naviView, targetListContainerView, image, cropImageView])
+        naviView.snp.makeConstraints{
+            $0.top.left.right.equalToSuperview()
+            $0.height.equalTo(150)
         }
         
         targetListContainerView.snp.makeConstraints{
-            $0.top.equalTo(logoImage.snp.bottom).offset(40)
+            $0.top.equalTo(naviView.snp.bottom)
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
         }
         
@@ -259,5 +259,16 @@ extension GameVC {
                 self.makeAlert(title: MessageType.networkError.message)
             }
         }
+    }
+}
+
+// MARK: - DefaultNavigationBarDelegate
+extension GameVC: DefaultNavigationBarDelegate {
+    func backButtonClicked(){
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func homeButtonClicked(){
+        self.navigationController?.popToRootViewController(animated: false)
     }
 }
