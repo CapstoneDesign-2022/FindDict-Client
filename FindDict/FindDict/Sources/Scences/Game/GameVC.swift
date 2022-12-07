@@ -202,6 +202,9 @@ final class GameVC: ViewController {
         self.enableButtons(label: label)
         for wordTarget in wordTargets{
             if wordTarget.getTargetLabel() == label {
+//                wordTarget.snp.makeConstraints {
+//                    $0.width.equalToSuperview().multipliedBy(1.5)
+//                }
                 wordTarget.enableKoreanButton()
             }
         }
