@@ -50,11 +50,9 @@ final class GameVC: ViewController {
             }
         }
     }
-    private let cropImageView: UIImageView = UIImageView()
     
     private var cropImage: UIImage = UIImage(){
         didSet{
-            cropImageView.image = cropImage
             requestPostWord(body: CreateWordBodyModel(english: cropImageString), image: (cropImage ?? UIImage(named: "GameOver"))!)
             
         }
@@ -246,7 +244,7 @@ extension GameVC: TargetComponentViewDelegate {
 // MARK: - UI
 extension GameVC {
     private func setLayout() {
-        view.addSubViews([logoImage, targetListContainerView, image, cropImageView])
+        view.addSubViews([logoImage, targetListContainerView, image])
         logoImage.snp.makeConstraints{
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(17)
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
@@ -262,12 +260,6 @@ extension GameVC {
             $0.top.equalTo(targetListContainerView.snp.bottom).offset(30)
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
             $0.bottom.lessThanOrEqualTo(view.safeAreaLayoutGuide.snp.bottom).inset(50)
-        }
-        cropImageView.snp.makeConstraints{
-            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(100)
-            //            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(100)
-            $0.left.equalTo(view.safeAreaLayoutGuide.snp.left).offset(20)
-            //            $0.width.equalTo(100)
         }
     }
 }
