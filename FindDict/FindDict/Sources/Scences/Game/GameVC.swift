@@ -51,14 +51,14 @@ final class GameVC: ViewController {
         }
     }
     
-    private var cropImage: UIImage = UIImage(){
+    private var croppedImage: UIImage = UIImage(){
         didSet{
-            requestPostWord(body: CreateWordBodyModel(english: cropImageString), image: (cropImage ?? UIImage(named: "GameOver"))!)
+            requestPostWord(body: CreateWordBodyModel(english: croppedImageString), image: (croppedImage ?? UIImage(named: "GameOver"))!)
             
         }
     }
     
-    private var cropImageString: String = ""
+    private var croppedImageString: String = ""
     
     // TODO: - private으로 만들고 setter만들기
     var image: UIImageView = UIImageView().then{
@@ -213,12 +213,12 @@ final class GameVC: ViewController {
     }
     
     private func cropImage(_ title: String, _ cropRect: CGRect){
-        let newImage = resizeImage(image: image.image!, size: buttonLayer.bounds.size, x: buttonLayer.bounds.origin.x, y: buttonLayer.bounds.origin.y)
-        guard let imageRef = newImage.cropping(to: cropRect) else { return  };
-        let newUIImage = UIImage(cgImage: imageRef, scale: 1, orientation: self.image.image!.imageOrientation)
+        let resizedImage = resizeImage(image: image.image!, size: buttonLayer.bounds.size, x: buttonLayer.bounds.origin.x, y: buttonLayer.bounds.origin.y)
+        guard let croppedImageRef = resizedImage.cropping(to: cropRect) else { return  };
+        let croppedUIImage = UIImage(cgImage: croppedImageRef, scale: 1, orientation: self.image.image!.imageOrientation)
         
-        cropImageString = title
-        cropImage = newUIImage
+        croppedImageString = title
+        croppedImage = croppedUIImage
         
     }
     
