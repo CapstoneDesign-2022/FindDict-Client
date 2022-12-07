@@ -200,7 +200,7 @@ final class GameVC: ViewController {
             self.disableButtons(label:button.titleLabel?.text ?? "레이블 오류")  // 단어이미지 버튼 disable
             for wordTarget in wordTargets{
                 if wordTarget.getTargetLabel() == button.titleLabel?.text {
-                    wordTarget.disableKoreanButton()    // 한글단어 버튼 disable
+                    wordTarget.disableEnglishButton()    // 한글단어 버튼 disable
                 }
             }
         }
@@ -213,7 +213,7 @@ final class GameVC: ViewController {
 //                wordTarget.snp.makeConstraints {
 //                    $0.width.equalToSuperview().multipliedBy(1.5)
 //                }
-                wordTarget.enableKoreanButton()
+                wordTarget.enableEnglishButton()
             }
         }
     }
