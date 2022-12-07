@@ -127,8 +127,7 @@ final class GameVC: ViewController {
     private func putButtons(with predictions: [VNRecognizedObjectObservation]) {
         var createdButtons: [UIButton]=[]
         for prediction in predictions {
-            let createdButton = createButton(prediction: prediction)
-            createdButtons.append(createdButton)
+            createdButtons.append(createButton(prediction: prediction))
             
         }
         buttons = createdButtons
