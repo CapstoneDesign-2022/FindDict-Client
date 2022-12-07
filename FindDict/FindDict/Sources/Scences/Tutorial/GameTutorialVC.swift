@@ -14,7 +14,7 @@ class GameTutorialVC: UIViewController{
     // MARK: - Properties
     var dataSource: [GameTutorialCVCModel] = GameTutorialCVCModel.sampleData
     
-    private let naviView = DefaultNavigationBar(isHomeButtonIncluded: true).then {
+    private let naviView = DefaultNavigationBar(isHomeButtonIncluded: false).then {
         $0.setTitleLabel(title: "Game Tutorial")
     }
     
