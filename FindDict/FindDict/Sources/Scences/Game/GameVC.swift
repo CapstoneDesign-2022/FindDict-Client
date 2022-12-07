@@ -197,10 +197,10 @@ final class GameVC: ViewController {
     
     private func disableAllButtonsAndWordTarget(buttons: [UIButton]) {
         for button in buttons {
-            self.disableButtons(label:button.titleLabel?.text ?? "레이블 오류")  // 단어이미지 버튼 disable
+            self.disableButtons(label:button.titleLabel?.text ?? "레이블 오류")
             for wordTarget in wordTargets{
                 if wordTarget.getTargetLabel() == button.titleLabel?.text {
-                    wordTarget.disableEnglishButton()    // 한글단어 버튼 disable
+                    wordTarget.disableEnglishButton()
                 }
             }
         }
@@ -210,9 +210,6 @@ final class GameVC: ViewController {
         self.enableButtons(label: label)
         for wordTarget in wordTargets{
             if wordTarget.getTargetLabel() == label {
-//                wordTarget.snp.makeConstraints {
-//                    $0.width.equalToSuperview().multipliedBy(1.5)
-//                }
                 wordTarget.enableEnglishButton()
             }
         }
