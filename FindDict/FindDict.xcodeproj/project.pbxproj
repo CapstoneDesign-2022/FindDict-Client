@@ -30,6 +30,7 @@
 		4D53A66D28DAF9C8000E2AA2 /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 4D53A66C28DAF9C8000E2AA2 /* Then */; };
 		4D6943E42914F11300974B71 /* GuessedRightWordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6943E32914F11300974B71 /* GuessedRightWordVC.swift */; };
 		4D6943E6291518EF00974B71 /* SpeechButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6943E5291518EF00974B71 /* SpeechButton.swift */; };
+		4D85DFC72940708A0016ABF9 /* DefaultNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D85DFC62940708A0016ABF9 /* DefaultNavigationBar.swift */; };
 		4D8E9F3328F001C00013B7E7 /* yolov7.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 4D8E9F3228F001C00013B7E7 /* yolov7.mlmodel */; };
 		4D94E905292E371C00867289 /* PhotoSelectorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94E904292E371C00867289 /* PhotoSelectorVC.swift */; };
 		4D9ADC0728E018DB008CF9F3 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9ADC0628E018DB008CF9F3 /* SignInVC.swift */; };
@@ -113,6 +114,7 @@
 		4D36F9AE293138480054078B /* ObjectDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectDetector.swift; sourceTree = "<group>"; };
 		4D6943E32914F11300974B71 /* GuessedRightWordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessedRightWordVC.swift; sourceTree = "<group>"; };
 		4D6943E5291518EF00974B71 /* SpeechButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechButton.swift; sourceTree = "<group>"; };
+		4D85DFC62940708A0016ABF9 /* DefaultNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultNavigationBar.swift; sourceTree = "<group>"; };
 		4D8E9F3228F001C00013B7E7 /* yolov7.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = yolov7.mlmodel; path = ../../../../../../../Downloads/yolov7.mlmodel; sourceTree = "<group>"; };
 		4D94E904292E371C00867289 /* PhotoSelectorVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSelectorVC.swift; sourceTree = "<group>"; };
 		4D9ADC0628E018DB008CF9F3 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
@@ -392,6 +394,7 @@
 				4DF76EB7290A61FF00AA79D2 /* GameResultButton.swift */,
 				4D14BD7028E206BA002B2165 /* PhotoSelectorButton.swift */,
 				4D6943E5291518EF00974B71 /* SpeechButton.swift */,
+				4D85DFC62940708A0016ABF9 /* DefaultNavigationBar.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -581,6 +584,7 @@
 				F8E32BB4290FCAB9009B0749 /* HintModalVC.swift in Sources */,
 				4DBDEC1428D4EFE2002252B3 /* AppDelegate.swift in Sources */,
 				4DF76EB8290A61FF00AA79D2 /* GameResultButton.swift in Sources */,
+				4D85DFC72940708A0016ABF9 /* DefaultNavigationBar.swift in Sources */,
 				4D14BD6A28E1C0F9002B2165 /* TextField.swift in Sources */,
 				F8DB7A6028DB2E8600EE3D66 /* AuthBaseVC.swift in Sources */,
 				4D2FC6DB292264F400FAB324 /* CreateWordResponseModel.swift in Sources */,
