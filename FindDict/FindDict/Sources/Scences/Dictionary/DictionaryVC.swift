@@ -22,7 +22,7 @@ final class DictionaryVC: UIViewController {
     private let dictionaryTV: UITableView = UITableView().then{
         $0.rowHeight = 107
         $0.estimatedRowHeight = UITableView.automaticDimension
-        $0.backgroundColor = .bgBeige
+        $0.backgroundColor = .fdBeige
     }
     
     // MARK: - View Life Cycle
@@ -35,7 +35,7 @@ final class DictionaryVC: UIViewController {
         super.viewDidLoad()
         setLayout()
         setTV()
-        view.backgroundColor = .bgBeige
+        view.backgroundColor = .fdBeige
         self.navigationController?.navigationBar.isHidden = true
         naviView.setDelegate(delegate: self)
     }

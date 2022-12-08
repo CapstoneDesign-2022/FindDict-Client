@@ -14,7 +14,7 @@ class DictionaryDetailVC: UIViewController{
     
     // MARK: - Properties
     private let modalView: UIView = UIView().then{
-        $0.backgroundColor = .modalButtonLightYellow
+        $0.backgroundColor = .fdLightYellow
         $0.addShadow(location: .bottom)
     }
     
@@ -25,7 +25,7 @@ class DictionaryDetailVC: UIViewController{
     private let wordLabel: UILabel = UILabel().then{
         $0.textColor = .black
         $0.font = .findDictH4M35
-        $0.backgroundColor = .modalButtonDarkYellow
+        $0.backgroundColor = .fdDarkYellow
         $0.textAlignment = .center
         $0.layer.masksToBounds = true
         $0.layer.cornerRadius = 10
@@ -42,17 +42,17 @@ class DictionaryDetailVC: UIViewController{
     
     private let americanSpeeachButton: SpeechButton = SpeechButton().then{
         $0.setTitle("🇺🇸 미국식 발음", for: .normal)
-        $0.backgroundColor = .modalButtonDarkYellow
+        $0.backgroundColor = .fdDarkYellow
     }
     
     private let englishSpeeachButton: SpeechButton = SpeechButton().then{
         $0.setTitle("🇬🇧 영국식 발음", for: .normal)
-        $0.backgroundColor = .modalButtonDarkYellow
+        $0.backgroundColor = .fdDarkYellow
     }
     
     private let australianSpeeachButton: SpeechButton = SpeechButton().then{
         $0.setTitle("🇦🇺 호주식 발음", for: .normal)
-        $0.backgroundColor = .modalButtonDarkYellow
+        $0.backgroundColor = .fdDarkYellow
     }
     
     private lazy var buttonStackView: UIStackView = UIStackView(arrangedSubviews: [americanSpeeachButton,englishSpeeachButton,australianSpeeachButton]).then{

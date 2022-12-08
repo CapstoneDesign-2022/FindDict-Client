@@ -28,7 +28,7 @@ class HintModalVC: UIViewController {
     }
     
     private let modalView: UIView = UIView().then{
-        $0.backgroundColor = .bgBeige
+        $0.backgroundColor = .fdBeige
         $0.layer.shadowRadius = 4
         $0.layer.shadowOffset = CGSize(width: 0, height: 4)
         $0.layer.shadowColor = UIColor.black.cgColor

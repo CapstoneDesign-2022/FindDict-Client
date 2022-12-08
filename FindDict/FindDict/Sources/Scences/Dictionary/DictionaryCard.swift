@@ -27,7 +27,7 @@ class DictionaryCard: UIView {
     private let pictureButton: UIButton = UIButton().then{
         $0.setTitle("사진 확인하기", for: .normal)
         $0.setTitleColor(.black, for: .normal)
-        $0.backgroundColor = .buttonYellow
+        $0.backgroundColor = .fdYellow
         $0.layer.cornerRadius = 10
         $0.addShadow(location: .bottom)
     }
@@ -46,7 +46,7 @@ class DictionaryCard: UIView {
     
     // MARK: Funtions
     private func setUI() {
-        self.backgroundColor = .modalButtonLightYellow
+        self.backgroundColor = .fdLightYellow
         self.layer.cornerRadius = 10.0
         self.addShadow(location: .bottom)
     }

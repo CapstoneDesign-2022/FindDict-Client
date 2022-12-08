@@ -13,7 +13,7 @@ final class PhotoReselectModalVC: UIViewController {
     
     // MARK: - Properties
     private let modalView: UIView = UIView().then{
-        $0.backgroundColor = .bgBeige
+        $0.backgroundColor = .fdBeige
         $0.addShadow(location: .bottom)
     }
     private let alertImageView: UIImageView = UIImageView().then{

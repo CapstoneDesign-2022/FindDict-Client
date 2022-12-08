@@ -22,7 +22,7 @@ class SignInVC: AuthBaseVC {
     }
     
     private let signInButton: UIButton = UIButton().then{
-        $0.backgroundColor = .buttonYellow
+        $0.backgroundColor = .fdYellow
         $0.setTitle("로그인", for: .normal)
         $0.setTitleColor(.black, for: .normal)
         $0.layer.cornerRadius = 24

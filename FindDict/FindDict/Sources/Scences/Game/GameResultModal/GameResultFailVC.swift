@@ -23,7 +23,7 @@ class GameResultFailVC: ModalBaseVC {
         resultTitleLabel.then{
             $0.text = "하트를 모두 사용했어요"
             $0.textColor = .white
-            $0.backgroundColor = .modalBrown
+            $0.backgroundColor = .fdBrown
         }
     }
 }

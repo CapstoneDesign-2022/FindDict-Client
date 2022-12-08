@@ -25,7 +25,7 @@ class SpeechButton: UIButton {
         self.titleLabel?.font = .findDictB2R24
         self.setTitleColor(.black, for: .normal)
         self.layer.cornerRadius = 20
-        self.backgroundColor = .modalButtonLightYellow
+        self.backgroundColor = .fdLightYellow
         self.addShadow(location: .bottom)
     }
 }

@@ -34,7 +34,7 @@ class GameTutorialVC: UIViewController{
         super.viewDidLoad()
         setLayout()
         setCV()
-        view.backgroundColor = .bgYellow
+        view.backgroundColor = .fdLightYellow
         self.navigationController?.navigationBar.isHidden = true
         naviView.setDelegate(delegate: self)
     }

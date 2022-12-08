@@ -18,7 +18,7 @@ class DictionaryTVC: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setLayout()
-        self.backgroundColor = .bgBeige
+        self.backgroundColor = .fdBeige
         selectionStyle = .none
     }
     

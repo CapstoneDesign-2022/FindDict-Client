@@ -17,7 +17,7 @@ class SignUpVC: AuthBaseVC {
     }
     
     private let idCheckButton: UIButton = UIButton().then{
-        $0.backgroundColor = .buttonOrange
+        $0.backgroundColor = .fdOrange
         $0.setTitleColor(.black, for: .normal)
         $0.setTitle("중복 확인", for: .normal)
         $0.layer.cornerRadius = 24
@@ -48,7 +48,7 @@ class SignUpVC: AuthBaseVC {
     }
     
     private let signUpButton: UIButton = UIButton().then{
-        $0.backgroundColor = .buttonYellow
+        $0.backgroundColor = .fdYellow
         $0.setTitleColor(.black, for: .normal)
         $0.setTitle("회원가입하기", for: .normal)
         $0.layer.cornerRadius = 24

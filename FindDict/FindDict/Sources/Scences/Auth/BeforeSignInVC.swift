@@ -24,19 +24,19 @@ class BeforeSignInVC: UIViewController {
     
     private let signInButton: UIButton = MainButton().then{
         $0.setTitle("로그인", for: .normal)
-        $0.backgroundColor = .buttonOrange
+        $0.backgroundColor = .fdOrange
     }
     
     private let signUpButton: UIButton = MainButton().then{
         $0.setTitle("회원 가입", for: .normal)
-        $0.backgroundColor = .buttonYellow
+        $0.backgroundColor = .fdYellow
     }
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
-        view.backgroundColor = .bgYellow
+        view.backgroundColor = .fdLightYellow
         setButtonActions()
     }
     

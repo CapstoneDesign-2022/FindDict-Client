@@ -27,18 +27,18 @@ class TargetListComponentView: UIView {
         
         $0.makeRounded(cornerRadius: 20)
         
-        $0.backgroundColor = .buttonYellow
+        $0.backgroundColor = .fdYellow
         $0.setTitleColor(.black, for: .normal)
     }
     
-
+    
     private let koreanLabelBoundaryView: UIView = UIView().then {
         $0.backgroundColor = .white
         $0.makeRounded(cornerRadius: 15)
         $0.addShadow(location: .bottomRight)
     }
     
-
+    
     private let koreanLabel: UILabel = UILabel().then{
         $0.textAlignment = .center
         $0.textColor = .black
@@ -78,7 +78,7 @@ class TargetListComponentView: UIView {
     func handleGuessedRightView(){
         englishButton.isUserInteractionEnabled = false
         koreanLabel.text = koreanLabelText
-        englishButton.backgroundColor = .buttonGray
+        englishButton.backgroundColor = .fdGray
         englishButton.layer.shadowOpacity = 0
         
         containerView.snp.remakeConstraints {
@@ -89,14 +89,12 @@ class TargetListComponentView: UIView {
         englishButton.snp.remakeConstraints {
             $0.top.equalTo(containerView)
             $0.height.equalTo(40)
-            $0.leading.equalTo(containerView).offset(10)
-            $0.trailing.equalTo(containerView).inset(10)
         }
     }
     
     func enableEnglishButton() {
         englishButton.isUserInteractionEnabled = true
-        englishButton.backgroundColor = .buttonOrange
+        englishButton.backgroundColor = .fdOrange
         englishButton.snp.remakeConstraints {
             $0.height.equalTo(60)
             $0.width.equalToSuperview()
@@ -105,7 +103,7 @@ class TargetListComponentView: UIView {
     
     func disableEnglishButton() {
         englishButton.isUserInteractionEnabled = false
-        englishButton.backgroundColor = .bgYellow
+        englishButton.backgroundColor = .fdLightYellow
         englishButton.addShadow(location: .bottomRight)
         containerView.snp.makeConstraints {
             $0.width.equalTo(englishButton.frame.width + 20)

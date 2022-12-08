@@ -52,7 +52,7 @@ class GameTutorialCVC: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setLayout()
-        self.backgroundColor = .bgYellow
+        self.backgroundColor = .fdLightYellow
     }
     
     @available(*, unavailable)

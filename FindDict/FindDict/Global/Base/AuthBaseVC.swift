@@ -25,7 +25,7 @@ class AuthBaseVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
-        view.backgroundColor = .bgYellow
+        view.backgroundColor = .fdLightYellow
     }
     
 

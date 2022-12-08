@@ -26,7 +26,7 @@ class DictionaryDetailCVC: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setLayout()
-        self.backgroundColor = .modalButtonLightYellow
+        self.backgroundColor = .fdLightYellow
     }
     
     @available(*, unavailable)

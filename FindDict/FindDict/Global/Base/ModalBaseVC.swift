@@ -18,8 +18,8 @@ class ModalBaseVC: UIViewController {
     }
     internal let resultTitleLabel: UILabel = UILabel().then{
         $0.font = .findDictH5R48
-        $0.textColor = .modalBrown
-        $0.backgroundColor = .modalButtonLightYellow
+        $0.textColor = .fdBrown
+        $0.backgroundColor = .fdLightYellow
         $0.clipsToBounds = true
         $0.layer.cornerRadius = 10
         $0.textAlignment = .center
@@ -29,7 +29,7 @@ class ModalBaseVC: UIViewController {
     internal let retryButton: GameResultButton = GameResultButton().then {
         $0.layer.cornerRadius = 10
         $0.setTitle("다시 게임하기", for: .normal)
-        $0.backgroundColor = .modalButtonDarkYellow
+        $0.backgroundColor = .fdDarkYellow
         $0.titleLabel?.font = .findDictH6R35
         $0.snp.makeConstraints{
             $0.height.equalTo(129)
@@ -39,13 +39,13 @@ class ModalBaseVC: UIViewController {
     internal let dictionaryButton: GameResultButton = GameResultButton().then{
         $0.layer.cornerRadius = 10
         $0.setTitle("단어장", for: .normal)
-        $0.backgroundColor = .modalButtonLightYellow
+        $0.backgroundColor = .fdLightYellow
         $0.titleLabel?.font = .findDictB2R24
     }
     internal let mainViewButton: GameResultButton = GameResultButton().then{
         $0.layer.cornerRadius = 10
         $0.setTitle("메인화면", for: .normal)
-        $0.backgroundColor = .modalButtonLightYellow
+        $0.backgroundColor = .fdLightYellow
         $0.titleLabel?.font = .findDictB2R24
     }
     

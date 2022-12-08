@@ -27,17 +27,17 @@ final class PhotoSelectorVC: UIViewController {
     
     private let takingPictureButton: PhotoSelectorButton = PhotoSelectorButton().then{
         $0.setTitle("직접 사진 찍어 게임하기", for: .normal)
-        $0.backgroundColor = .buttonYellow
+        $0.backgroundColor = .fdYellow
     }
     
     private let selectingPictureButton: PhotoSelectorButton = PhotoSelectorButton().then{
         $0.setTitle("앨범 속 사진으로 게임하기", for: .normal)
-        $0.backgroundColor = .bgYellow
+        $0.backgroundColor = .fdLightYellow
     }
     
     private let fetchingPictureButton: PhotoSelectorButton = PhotoSelectorButton().then{
         $0.setTitle("기본 이미지로 게임하기", for: .normal)
-        $0.backgroundColor = .bgYellow
+        $0.backgroundColor = .fdLightYellow
     }
     
     private let homeButton: UIButton = UIButton().then{
@@ -62,7 +62,7 @@ final class PhotoSelectorVC: UIViewController {
         setLayout()
         setButtonActions()
         self.navigationController?.navigationBar.isHidden = true
-        view.backgroundColor = .bgBeige
+        view.backgroundColor = .fdBeige
         objectDetector.setDelegate(delegate: self)
         naviView.setDelegate(delegate: self)
     }

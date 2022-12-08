@@ -12,7 +12,7 @@ import SnapKit
 import Then
 import AVFoundation
 
-final class GameVC: ViewController {
+final class GameVC: UIViewController {
     
     // MARK: - Properties
     private var player: AVAudioPlayer?
@@ -95,7 +95,7 @@ final class GameVC: ViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .bgBeige
+        view.backgroundColor = .fdBeige
         setLayout()
         self.navigationController?.navigationBar.isHidden = true
         naviView.setDelegate(delegate: self)
