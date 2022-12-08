@@ -10,10 +10,10 @@ import Then
 import SnapKit
 import AVFoundation
 
-class GameResultSuccessVC: ModalBaseVC {
+final class GameResultSuccessVC: ModalBaseVC {
     
     // MARK: - Properties
-    var player: AVAudioPlayer?
+    private var player: AVAudioPlayer?
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -23,19 +23,19 @@ class GameResultSuccessVC: ModalBaseVC {
     }
     
     // MARK: - UI
-    func setUI(){
+    private func setUI(){
         resultImage.image = UIImage(named: "successImage")
         resultTitleLabel.text = "Game Clear"
     }
     
-    func playSound(){
+    private func playSound(){
         guard let url = Bundle.main.url(forResource: "GameClear", withExtension: "wav") else { return }
-            do {
-                player = try AVAudioPlayer(contentsOf: url)
-                guard let player = player else { return }
-                player.play()
-            } catch let error {
-                print(error.localizedDescription)
-            }
+        do {
+            player = try AVAudioPlayer(contentsOf: url)
+            guard let player = player else { return }
+            player.play()
+        } catch let error {
+            print(error.localizedDescription)
+        }
     }
 }
