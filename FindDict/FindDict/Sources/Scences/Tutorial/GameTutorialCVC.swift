@@ -77,15 +77,12 @@ class GameTutorialCVC: UICollectionViewCell {
                 $0.top.equalToSuperview().offset(180)
                 $0.left.equalTo(tutorialImage.snp.right).offset(50)
                 $0.right.equalToSuperview().inset(30)
-//                $0.bottom.equalToSuperview().inset(200)
             }
 
             
             pageButton.snp.makeConstraints{
-//                $0.top.equalTo(tutorialImage.snp.bottom).offset(40)
                 $0.height.equalTo(40)
                 $0.width.equalTo(80)
-//                $0.centerX.equalToSuperview()
                 $0.bottom.equalToSuperview().offset(-186)
                 $0.right.equalToSuperview().inset(48)
             }
