@@ -100,6 +100,25 @@ final class GameVC: ViewController {
         setLayout()
       self.navigationController?.navigationBar.isHidden = true
         naviView.setDelegate(delegate: self)
+ 
+                let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapView(_:)))
+        buttonLayer.addGestureRecognizer(tapGestureRecognizer)
+
+    }
+    
+    @objc func didTapView(_ sender: UITapGestureRecognizer) {
+        let location: CGPoint = sender.location(in: sender.view)
+        print(sender.location(in: sender.view))
+        
+//        let testView = UIView(frame: CGRect(x: buttonLayer.frame.origin.x +  location.x, y:  buttonLayer.frame.origin.y + location.y, width:  50, height: 50))
+//        testView.backgroundColor = UIColor.white
+//        buttonLayer.addSubview(testView)
+       
+//        UIView.animate(withDuration: 2) {
+//            testView.alpha = 0
+            
+//            self.label.alpha = 0
+//        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
