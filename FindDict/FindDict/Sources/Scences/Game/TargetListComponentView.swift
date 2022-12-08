@@ -102,7 +102,7 @@ class TargetListComponentView: UIView {
             $0.height.equalTo(60)
             $0.width.equalToSuperview()
         }
-        englishButton.titleLabel?.font = .findDictH4R24
+        englishButton.titleLabel?.font = .findDictB3R20
     }
     
     func disableEnglishButton() {
