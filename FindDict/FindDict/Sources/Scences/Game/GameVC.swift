@@ -52,6 +52,7 @@ final class GameVC: ViewController {
         }
     }
     
+    
     private var croppedImage: UIImage = UIImage(){
         didSet{
             requestPostWord(body: CreateWordBodyModel(english: croppedImageString), image: (croppedImage ?? UIImage(named: "GameOver"))!)
@@ -68,6 +69,8 @@ final class GameVC: ViewController {
     }
     
     var buttonLayer: UIView = UIView()
+    
+   
     
     private lazy var buttons: [UIButton] = [] {
         didSet{
@@ -111,14 +114,31 @@ final class GameVC: ViewController {
         print(sender.location(in: sender.view))
         
 //        let testView = UIView(frame: CGRect(x: buttonLayer.frame.origin.x +  location.x, y:  buttonLayer.frame.origin.y + location.y, width:  50, height: 50))
+//        let testView = UIView(frame: CGRect(x: location.x - 25, y: location.y - 25, width:  50, height: 50))
+        let wrongLabel = UILabel(frame: CGRect(x: location.x - 25, y: location.y - 25, width:  50, height: 50))
+        wrongLabel.text = "🥲 Please Try Again"
+        wrongLabel.font = .findDictH3B36
+        wrongLabel.sizeToFit()
+        wrongLabel.textColor = .buttonOrange
+//        let
 //        testView.backgroundColor = UIColor.white
 //        buttonLayer.addSubview(testView)
+//            view.reloadInputViews()
+//        testView.backgroundColor = UIColor.white
+        buttonLayer.addSubview(wrongLabel)
        
 //        UIView.animate(withDuration: 2) {
 //            testView.alpha = 0
             
 //            self.label.alpha = 0
 //        }
+        
+        UIView.animate(withDuration: 2) {
+            wrongLabel.alpha = 0
+            
+//            self.label.alpha = 0
+        }
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
