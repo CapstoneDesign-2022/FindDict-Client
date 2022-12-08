@@ -27,14 +27,15 @@ final class GameVC: ViewController {
                 let gameResultSuccessVC = GameResultSuccessVC(navigationController: self.navigationController)
                 gameResultSuccessVC.modalPresentationStyle = .overCurrentContext
                 self.present(gameResultSuccessVC, animated: true)
+            } else {
+                enableButtonAndWordTarget(label: wordTargets[theNumberOfTargetsGuessedRight].getTargetLabel())
             }
         }
     }
     
     // MARK: - UI Properties
-    private let logoImage: UIImageView = UIImageView().then{
-        $0.contentMode = .scaleAspectFit
-        $0.image = UIImage(named: "logoImage")
+    private let naviView = DefaultNavigationBar(isHomeButtonIncluded: true).then {
+        $0.setTitleLabel(title: "Game")
     }
     
     private let targetListContainerView: UIStackView = UIStackView().then{
@@ -50,6 +51,7 @@ final class GameVC: ViewController {
             }
         }
     }
+    
     
     private var croppedImage: UIImage = UIImage(){
         didSet{
@@ -68,33 +70,52 @@ final class GameVC: ViewController {
     
     var buttonLayer: UIView = UIView()
     
+   
+    
     private lazy var buttons: [UIButton] = [] {
         didSet{
             for button in buttons {
                 button.press{ [self] in
-                    button.setImage(UIImage(named: "icon"), for: .normal)
-                    button.imageView?.contentMode = .scaleAspectFit
-                    button.isUserInteractionEnabled = false
-                    self.disableButtons(label:button.titleLabel?.text ?? "레이블 오류")
-                    self.handleGuessedRightView(label:button.titleLabel?.text ?? "레이블 오류")
-                    self.presentGuessedRightWordModal(text:button.titleLabel?.text ?? "레이블 오류")
+                    if button.titleLabel?.text == wordTargets[theNumberOfTargetsGuessedRight].getTargetLabel() {
+                    button.setImage(UIImage(named: "CorrectSignImage"), for: .normal)
+                        button.imageView?.contentMode = .scaleAspectFit
+                        button.isUserInteractionEnabled = false
+                        self.disableButtons(label:button.titleLabel?.text ?? "레이블 오류")
+                        self.handleGuessedRightView(label:button.titleLabel?.text ?? "레이블 오류")
+                        self.presentGuessedRightWordModal(text:button.titleLabel?.text ?? "레이블 오류")
+                    }
                 }
                 buttonLayer.addSubview(button)
                 cropImage(button.titleLabel?.text ?? "",button.frame)
             }
+            disableAllButtonsAndWordTarget(buttons: buttons)
+            enableButtonAndWordTarget(label: wordTargets[0].getTargetLabel())
         }
     }
-    
-    // TODO: 버튼 부분 아닌 곳 클릭했을 경우 x표시 나타나기
-    
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .bgBeige
         setLayout()
+      self.navigationController?.navigationBar.isHidden = true
+        naviView.setDelegate(delegate: self)
+ 
+                let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapView(_:)))
+        buttonLayer.addGestureRecognizer(tapGestureRecognizer)
+
+    }
+    
+    @objc func didTapView(_ sender: UITapGestureRecognizer) {
+        let location: CGPoint = sender.location(in: sender.view)
+        let wrongLabel = UILabel(frame: CGRect(x: location.x - 25, y: location.y - 25, width:  50, height: 50))
+        wrongLabel.text = "🥲"
+        wrongLabel.font = .findDictH5R48
+        buttonLayer.addSubview(wrongLabel)
         
-        
+        UIView.animate(withDuration: 2) {
+            wrongLabel.alpha = 0
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -137,7 +158,6 @@ final class GameVC: ViewController {
             let component = TargetListComponentView()
             component.setData(korean: wordDictionary[prediction] ?? "사전 매칭 오류", english: prediction)
             createdTargets.append(component)
-            
         }
         wordTargets = createdTargets
     }
@@ -182,10 +202,38 @@ final class GameVC: ViewController {
         }
     }
     
+    private func enableButtons(label: String) {
+        for button in buttons {
+            if button.titleLabel?.text == label {
+                button.isUserInteractionEnabled = true
+            }
+        }
+    }
+    
+    private func disableAllButtonsAndWordTarget(buttons: [UIButton]) {
+        for button in buttons {
+            self.disableButtons(label:button.titleLabel?.text ?? "레이블 오류")
+            for wordTarget in wordTargets{
+                if wordTarget.getTargetLabel() == button.titleLabel?.text {
+                    wordTarget.disableEnglishButton()
+                }
+            }
+        }
+    }
+    
+    private func enableButtonAndWordTarget(label: String) {
+        self.enableButtons(label: label)
+        for wordTarget in wordTargets{
+            if wordTarget.getTargetLabel() == label {
+                wordTarget.enableEnglishButton()
+            }
+        }
+    }
+    
     private func handleGuessedRightView(label: String){
         for wordTarget in wordTargets{
             if wordTarget.getTargetLabel() == label {
-                wordTarget.handleGussedRightView()
+                wordTarget.handleGuessedRightView()
             }
         }
     }
@@ -244,15 +292,15 @@ extension GameVC: TargetComponentViewDelegate {
 // MARK: - UI
 extension GameVC {
     private func setLayout() {
-        view.addSubViews([logoImage, targetListContainerView, image])
-        logoImage.snp.makeConstraints{
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(17)
-            $0.centerX.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(80)
+
+        view.addSubViews([naviView, targetListContainerView, image])
+        naviView.snp.makeConstraints{
+            $0.top.left.right.equalToSuperview()
+            $0.height.equalTo(150)
         }
         
         targetListContainerView.snp.makeConstraints{
-            $0.top.equalTo(logoImage.snp.bottom).offset(40)
+            $0.top.equalTo(naviView.snp.bottom)
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
         }
         
@@ -278,5 +326,16 @@ extension GameVC {
                 self.makeAlert(title: MessageType.networkError.message)
             }
         }
+    }
+}
+
+// MARK: - DefaultNavigationBarDelegate
+extension GameVC: DefaultNavigationBarDelegate {
+    func backButtonClicked(){
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func homeButtonClicked(){
+        self.navigationController?.popToRootViewController(animated: false)
     }
 }

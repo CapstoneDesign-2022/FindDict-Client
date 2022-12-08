@@ -15,19 +15,29 @@ final class PhotoSelectorVC: UIViewController {
     private let gameVC: GameVC = GameVC()
     private let objectDetector: ObjectDetector = ObjectDetector()
     
+    private let naviView = DefaultNavigationBar(isHomeButtonIncluded: true).then {
+        $0.setTitleLabel(title: "Game")
+    }
+    
+    private lazy var buttonStackView: UIStackView = UIStackView(arrangedSubviews: [takingPictureButton, selectingPictureButton, fetchingPictureButton]).then{
+        $0.axis = .vertical
+        $0.spacing = 30
+        $0.distribution = .fillEqually
+    }
+    
     private let takingPictureButton: PhotoSelectorButton = PhotoSelectorButton().then{
-        $0.setTitle("사진 찍기", for: .normal)
-        $0.backgroundColor = .buttonOrange
+        $0.setTitle("직접 사진 찍어 게임하기", for: .normal)
+        $0.backgroundColor = .buttonYellow
     }
     
     private let selectingPictureButton: PhotoSelectorButton = PhotoSelectorButton().then{
-        $0.setTitle("앨범에서 사진 선택", for: .normal)
-        $0.backgroundColor = .buttonApricot
+        $0.setTitle("앨범 속 사진으로 게임하기", for: .normal)
+        $0.backgroundColor = .bgYellow
     }
     
     private let fetchingPictureButton: PhotoSelectorButton = PhotoSelectorButton().then{
-        $0.setTitle("기본 이미지", for: .normal)
-        $0.backgroundColor = .buttonYellow
+        $0.setTitle("기본 이미지로 게임하기", for: .normal)
+        $0.backgroundColor = .bgYellow
     }
     
     private let homeButton: UIButton = UIButton().then{
@@ -51,8 +61,10 @@ final class PhotoSelectorVC: UIViewController {
         super.viewDidLoad()
         setLayout()
         setButtonActions()
+        self.navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .bgBeige
         objectDetector.setDelegate(delegate: self)
+        naviView.setDelegate(delegate: self)
     }
     
     // MARK: - Functions
@@ -72,9 +84,9 @@ final class PhotoSelectorVC: UIViewController {
             imagePickerController.allowsEditing = true
             self.present(imagePickerController, animated: true, completion: nil)
         }
-        
-        homeButton.press{
-            self.navigationController?.popToRootViewController(animated: false)
+        fetchingPictureButton.press{
+            self.selectedImage.image = UIImage(named: "defaultGameImage")
+            self.pixelBuffer = self.selectedImage.image?.pixelBufferFromImage()
         }
     }
 }
@@ -82,33 +94,18 @@ final class PhotoSelectorVC: UIViewController {
 // MARK: - UI
 extension PhotoSelectorVC {
     private func setLayout() {
-        view.addSubViews([takingPictureButton, selectingPictureButton,fetchingPictureButton, homeButton])
-        
-        takingPictureButton.snp.makeConstraints{
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(100)
-            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(60)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-60)
-            $0.height.equalTo(100)
+        view.addSubViews([naviView, buttonStackView])
+
+        naviView.snp.makeConstraints{
+            $0.top.left.right.equalToSuperview()
+            $0.height.equalTo(150)
         }
         
-        selectingPictureButton.snp.makeConstraints{
-            $0.top.equalTo(takingPictureButton.snp.bottom).offset(17)
-            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(60)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-60)
-            $0.height.equalTo(100)
-        }
-        
-        fetchingPictureButton.snp.makeConstraints{
-            $0.top.equalTo(selectingPictureButton.snp.bottom).offset(17)
-            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(60)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-60)
-            $0.height.equalTo(100)
-        }
-        
-        homeButton.snp.makeConstraints{
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(40)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide).inset(60)
-            $0.width.height.equalTo(50)
+        buttonStackView.snp.makeConstraints{
+            $0.top.equalTo(naviView.snp.bottom).offset(50)
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(80)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-80)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(200)
         }
     }
 }
@@ -138,5 +135,16 @@ extension PhotoSelectorVC: ObjectDetectorDelegate {
         let photoReselectModalVC = PhotoReselectModalVC()
         photoReselectModalVC.modalPresentationStyle = .overCurrentContext
         self.present(photoReselectModalVC, animated: true)
+    }
+}
+
+// MARK: - DefaultNavigationBarDelegate
+extension PhotoSelectorVC: DefaultNavigationBarDelegate {
+    func backButtonClicked(){
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func homeButtonClicked(){
+        self.navigationController?.popToRootViewController(animated: false)
     }
 }

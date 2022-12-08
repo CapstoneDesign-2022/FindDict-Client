@@ -44,7 +44,7 @@ class SignUpVC: AuthBaseVC {
     }
     
     private let passwordVerificationLabel: UILabel = UILabel().then{
-        $0.font = .findDictB7R12
+        $0.font = .findDictB5R12
     }
     
     private let signUpButton: UIButton = UIButton().then{

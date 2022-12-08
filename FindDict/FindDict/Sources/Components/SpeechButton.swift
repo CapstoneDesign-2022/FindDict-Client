@@ -22,9 +22,10 @@ class SpeechButton: UIButton {
 
     // MARK: - UI
     func setUI(){
-        self.titleLabel?.font = .findDictH4R24
+        self.titleLabel?.font = .findDictB2R24
         self.setTitleColor(.black, for: .normal)
         self.layer.cornerRadius = 20
         self.backgroundColor = .modalButtonLightYellow
+        self.addShadow(location: .bottom)
     }
 }

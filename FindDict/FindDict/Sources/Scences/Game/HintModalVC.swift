@@ -38,7 +38,7 @@ class HintModalVC: UIViewController {
     private let hintLabel: UILabel = UILabel().then{
         $0.text = "HINT"
         $0.textColor = .black
-        $0.font = .findDictH4R35
+        $0.font = .findDictH6R35
     }
     
     private let closeButton: UIButton = UIButton().then{
@@ -47,18 +47,22 @@ class HintModalVC: UIViewController {
     
     private let hintImageView1: UIImageView = UIImageView().then{
         $0.image = UIImage(named: "launchScreen")
+        $0.addShadow(location: .bottom)
     }
     
     private let hintImageView2: UIImageView = UIImageView().then{
         $0.image = UIImage(named: "launchScreen")
+        $0.addShadow(location: .bottom)
     }
     
     private let hintImageView3: UIImageView = UIImageView().then{
         $0.image = UIImage(named: "launchScreen")
+        $0.addShadow(location: .bottom)
     }
     
     private let hintImageView4: UIImageView = UIImageView().then{
         $0.image = UIImage(named: "launchScreen")
+        $0.addShadow(location: .bottom)
     }
     
     lazy var imageTopStackView: UIStackView = UIStackView(arrangedSubviews: [hintImageView1, hintImageView2]).then{

@@ -21,7 +21,7 @@ class DictionaryCard: UIView {
     private let englishWordLabel: UILabel = UILabel().then{
         $0.textColor = .black
         $0.text = "영어단어"
-        $0.font = .findDictH4R28
+        $0.font = .findDictB1R28
     }
 
     private let pictureButton: UIButton = UIButton().then{
@@ -29,9 +29,7 @@ class DictionaryCard: UIView {
         $0.setTitleColor(.black, for: .normal)
         $0.backgroundColor = .buttonYellow
         $0.layer.cornerRadius = 10
-        $0.layer.shadowOffset = CGSize(width: 0, height: 4)
-        $0.layer.shadowRadius = 5
-        $0.layer.shadowOpacity = 0.25
+        $0.addShadow(location: .bottom)
     }
     
     // MARK: Initializaiton
@@ -50,6 +48,7 @@ class DictionaryCard: UIView {
     private func setUI() {
         self.backgroundColor = .modalButtonLightYellow
         self.layer.cornerRadius = 10.0
+        self.addShadow(location: .bottom)
     }
     
     private func setButtonActions(){
