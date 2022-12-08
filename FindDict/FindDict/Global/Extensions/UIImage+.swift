@@ -58,10 +58,15 @@ extension UIImage {
     }
     
     func resizeImage() -> UIImage {
-        let width = UIScreen.main.bounds.width
-        let scale = width / self.size.width
-        let height = self.size.height * scale
-        UIGraphicsBeginImageContext(CGSize(width: width, height: height))
+        var scale: CGFloat
+        if (self.size.width > self.size.height) {
+            scale = 500/self.size.width
+        } else {
+            scale = 350/self.size.height
+        }
+        let width = self.size.width*scale
+        let height = self.size.height*scale
+        UIGraphicsBeginImageContext(CGSize(width: self.size.width*scale, height: self.size.height*scale))
         self.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
