@@ -97,7 +97,7 @@ class TargetListComponentView: UIView {
     
     func enableEnglishButton() {
         englishButton.isUserInteractionEnabled = true
-        englishButton.backgroundColor = .buttonYellow
+        englishButton.backgroundColor = .buttonOrange
         englishButton.snp.remakeConstraints {
             $0.height.equalTo(60)
             $0.width.equalToSuperview()
@@ -107,12 +107,11 @@ class TargetListComponentView: UIView {
     
     func disableEnglishButton() {
         englishButton.isUserInteractionEnabled = false
-        englishButton.backgroundColor = .buttonGray
+        englishButton.backgroundColor = .bgYellow
         englishButton.addShadow(location: .bottomRight)
-        
-//        containerView.snp.makeConstraints {
-//            $0.width.equalTo(englishButton.frame.width + 30)
-//        }
+        containerView.snp.makeConstraints {
+            $0.width.equalTo(englishButton.frame.width + 20)
+        }
     }
     
     func setDelegate(delegate: TargetComponentViewDelegate){
