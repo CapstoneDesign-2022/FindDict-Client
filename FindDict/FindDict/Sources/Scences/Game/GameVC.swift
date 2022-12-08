@@ -154,7 +154,6 @@ final class GameVC: ViewController {
         let button = UIButton(type: .custom).then {
             $0.frame = bgRect
             $0.backgroundColor = .systemBlue
-            $0.layer.borderWidth = 0
             $0.backgroundColor = UIColor.clear
             $0.setTitle(buttonTitle, for: .normal)
             $0.setTitleColor(.clear, for: .normal)
