@@ -27,6 +27,8 @@ final class GameVC: ViewController {
                 let gameResultSuccessVC = GameResultSuccessVC(navigationController: self.navigationController)
                 gameResultSuccessVC.modalPresentationStyle = .overCurrentContext
                 self.present(gameResultSuccessVC, animated: true)
+            } else {
+                enableButtonAndWordTarget(label: wordTargets[theNumberOfTargetsGuessedRight].getTargetLabel())
             }
         }
     }
@@ -72,16 +74,20 @@ final class GameVC: ViewController {
         didSet{
             for button in buttons {
                 button.press{ [self] in
+                    if button.titleLabel?.text == wordTargets[theNumberOfTargetsGuessedRight].getTargetLabel() {
                     button.setImage(UIImage(named: "CorrectSignImage"), for: .normal)
-                    button.imageView?.contentMode = .scaleAspectFit
-                    button.isUserInteractionEnabled = false
-                    self.disableButtons(label:button.titleLabel?.text ?? "레이블 오류")
-                    self.handleGuessedRightView(label:button.titleLabel?.text ?? "레이블 오류")
-                    self.presentGuessedRightWordModal(text:button.titleLabel?.text ?? "레이블 오류")
+                        button.imageView?.contentMode = .scaleAspectFit
+                        button.isUserInteractionEnabled = false
+                        self.disableButtons(label:button.titleLabel?.text ?? "레이블 오류")
+                        self.handleGuessedRightView(label:button.titleLabel?.text ?? "레이블 오류")
+                        self.presentGuessedRightWordModal(text:button.titleLabel?.text ?? "레이블 오류")
+                    }
                 }
                 buttonLayer.addSubview(button)
                 cropImage(button.titleLabel?.text ?? "",button.frame)
             }
+            disableAllButtonsAndWordTarget(buttons: buttons)
+            enableButtonAndWordTarget(label: wordTargets[0].getTargetLabel())
         }
     }
     
@@ -137,7 +143,6 @@ final class GameVC: ViewController {
             let component = TargetListComponentView()
             component.setData(korean: wordDictionary[prediction] ?? "사전 매칭 오류", english: prediction)
             createdTargets.append(component)
-            
         }
         wordTargets = createdTargets
     }
@@ -182,10 +187,38 @@ final class GameVC: ViewController {
         }
     }
     
+    private func enableButtons(label: String) {
+        for button in buttons {
+            if button.titleLabel?.text == label {
+                button.isUserInteractionEnabled = true
+            }
+        }
+    }
+    
+    private func disableAllButtonsAndWordTarget(buttons: [UIButton]) {
+        for button in buttons {
+            self.disableButtons(label:button.titleLabel?.text ?? "레이블 오류")
+            for wordTarget in wordTargets{
+                if wordTarget.getTargetLabel() == button.titleLabel?.text {
+                    wordTarget.disableEnglishButton()
+                }
+            }
+        }
+    }
+    
+    private func enableButtonAndWordTarget(label: String) {
+        self.enableButtons(label: label)
+        for wordTarget in wordTargets{
+            if wordTarget.getTargetLabel() == label {
+                wordTarget.enableEnglishButton()
+            }
+        }
+    }
+    
     private func handleGuessedRightView(label: String){
         for wordTarget in wordTargets{
             if wordTarget.getTargetLabel() == label {
-                wordTarget.handleGussedRightView()
+                wordTarget.handleGuessedRightView()
             }
         }
     }
