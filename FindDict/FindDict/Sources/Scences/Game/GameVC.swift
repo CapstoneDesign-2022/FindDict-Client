@@ -148,34 +148,19 @@ final class GameVC: ViewController {
     
     private func createButton(prediction: VNRecognizedObjectObservation)-> UIButton {
         let buttonTitle: String? = prediction.label
-        let color: UIColor = labelColor(with: buttonTitle ?? "N/A")
-        
         let scale = CGAffineTransform.identity.scaledBy(x: buttonLayer.bounds.width, y: buttonLayer.bounds.height)
-        
         let bgRect = prediction.boundingBox.applying(scale)
         
         let button = UIButton(type: .custom).then {
             $0.frame = bgRect
-            $0.layer.borderColor = color.cgColor
             $0.backgroundColor = .systemBlue
-            $0.layer.borderWidth = 4
+            $0.layer.borderWidth = 0
             $0.backgroundColor = UIColor.clear
             $0.setTitle(buttonTitle, for: .normal)
+            $0.setTitleColor(.clear, for: .normal)
         }
         
         return button
-    }
-    
-    // TODO: - 버튼 위치 잘 잡고 나면 삭제할 프로퍼티
-    private var colors: [String : UIColor] = [:]
-    private func labelColor(with label: String) -> UIColor {
-        if let color = colors[label] {
-            return color
-        } else {
-            let color = UIColor(hue: .random(in: 0...1), saturation: 1, brightness: 1, alpha: 0.8)
-            colors[label] = color
-            return color
-        }
     }
     
     private func disableButtons(label: String){
