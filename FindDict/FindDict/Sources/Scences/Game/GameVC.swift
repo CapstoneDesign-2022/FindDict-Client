@@ -10,10 +10,12 @@ import UIKit
 import Vision
 import SnapKit
 import Then
+import AVFoundation
 
 final class GameVC: ViewController {
     
     // MARK: - Properties
+    var player: AVAudioPlayer?
     private var predictedObjects: [VNRecognizedObjectObservation] = []
     private var predictedObjectLableSet: Set<String> = Set<String>() {
         didSet {
@@ -83,6 +85,7 @@ final class GameVC: ViewController {
                         self.disableButtons(label:button.titleLabel?.text ?? "레이블 오류")
                         self.handleGuessedRightView(label:button.titleLabel?.text ?? "레이블 오류")
                         self.presentGuessedRightWordModal(text:button.titleLabel?.text ?? "레이블 오류")
+                        self.playCorrectSound()
                     }
                 }
                 buttonLayer.addSubview(button)
@@ -106,7 +109,27 @@ final class GameVC: ViewController {
 
     }
     
+    private func playCorrectSound(){
+        guard let url = Bundle.main.url(forResource: "CorrectAnswer", withExtension: "wav") else { return }
+            do {
+                player = try AVAudioPlayer(contentsOf: url)
+                guard let player = player else { return }
+                player.play()
+            } catch let error {
+                print(error.localizedDescription)
+            }
+    }
+    
     @objc func didTapView(_ sender: UITapGestureRecognizer) {
+        guard let url = Bundle.main.url(forResource: "WrongAnswer", withExtension: "wav") else { return }
+            do {
+                player = try AVAudioPlayer(contentsOf: url)
+                guard let player = player else { return }
+                player.play()
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        
         let location: CGPoint = sender.location(in: sender.view)
         let wrongLabel = UILabel(frame: CGRect(x: location.x - 25, y: location.y - 25, width:  50, height: 50))
         wrongLabel.text = "🥲"
