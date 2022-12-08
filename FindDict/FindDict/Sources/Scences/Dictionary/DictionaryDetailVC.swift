@@ -206,8 +206,7 @@ extension DictionaryDetailVC {
         
         dictionaryDetailCV.snp.makeConstraints{
             $0.top.equalTo(wordLabel.snp.bottom).offset(20)
-            $0.centerX.equalTo(modalView)
-            $0.width.equalTo(530)
+            $0.leading.trailing.equalTo(modalView)
             $0.bottom.equalTo(modalView.snp.bottom).inset(100)
         }
         

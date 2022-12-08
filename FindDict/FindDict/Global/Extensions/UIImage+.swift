@@ -65,9 +65,9 @@ extension UIImage {
             scale = 350/self.size.height
         }
         let width = self.size.width*scale
-        let heigth = self.size.height*scale
+        let height = self.size.height*scale
         UIGraphicsBeginImageContext(CGSize(width: self.size.width*scale, height: self.size.height*scale))
-        self.draw(in: CGRect(x: 0, y: 0, width: width, height: heigth))
+        self.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return newImage!
