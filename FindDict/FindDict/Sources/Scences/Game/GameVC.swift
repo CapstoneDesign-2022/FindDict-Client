@@ -116,10 +116,8 @@ final class GameVC: ViewController {
 //        let testView = UIView(frame: CGRect(x: buttonLayer.frame.origin.x +  location.x, y:  buttonLayer.frame.origin.y + location.y, width:  50, height: 50))
 //        let testView = UIView(frame: CGRect(x: location.x - 25, y: location.y - 25, width:  50, height: 50))
         let wrongLabel = UILabel(frame: CGRect(x: location.x - 25, y: location.y - 25, width:  50, height: 50))
-        wrongLabel.text = "🥲 Please Try Again"
-        wrongLabel.font = .findDictH3B36
-        wrongLabel.sizeToFit()
-        wrongLabel.textColor = .buttonOrange
+        wrongLabel.text = "🥲"
+        wrongLabel.font = .findDictH5R48
 //        let
 //        testView.backgroundColor = UIColor.white
 //        buttonLayer.addSubview(testView)
