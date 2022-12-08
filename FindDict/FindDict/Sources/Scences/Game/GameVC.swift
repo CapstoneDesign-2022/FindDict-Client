@@ -10,10 +10,12 @@ import UIKit
 import Vision
 import SnapKit
 import Then
+import AVFoundation
 
 final class GameVC: ViewController {
     
     // MARK: - Properties
+    private var player: AVAudioPlayer?
     private var predictedObjects: [VNRecognizedObjectObservation] = []
     private var predictedObjectLableSet: Set<String> = Set<String>() {
         didSet {
@@ -52,11 +54,9 @@ final class GameVC: ViewController {
         }
     }
     
-    
     private var croppedImage: UIImage = UIImage(){
         didSet{
             requestPostWord(body: CreateWordBodyModel(english: croppedImageString), image: (croppedImage ?? UIImage(named: "GameOver"))!)
-            
         }
     }
     
@@ -70,19 +70,18 @@ final class GameVC: ViewController {
     
     var buttonLayer: UIView = UIView()
     
-   
-    
     private lazy var buttons: [UIButton] = [] {
         didSet{
             for button in buttons {
                 button.press{ [self] in
                     if button.titleLabel?.text == wordTargets[theNumberOfTargetsGuessedRight].getTargetLabel() {
-                    button.setImage(UIImage(named: "CorrectSignImage"), for: .normal)
+                        button.setImage(UIImage(named: "CorrectSignImage"), for: .normal)
                         button.imageView?.contentMode = .scaleAspectFit
                         button.isUserInteractionEnabled = false
                         self.disableButtons(label:button.titleLabel?.text ?? "레이블 오류")
                         self.handleGuessedRightView(label:button.titleLabel?.text ?? "레이블 오류")
                         self.presentGuessedRightWordModal(text:button.titleLabel?.text ?? "레이블 오류")
+                        self.playCorrectSound()
                     }
                 }
                 buttonLayer.addSubview(button)
@@ -98,24 +97,12 @@ final class GameVC: ViewController {
         super.viewDidLoad()
         view.backgroundColor = .bgBeige
         setLayout()
-      self.navigationController?.navigationBar.isHidden = true
+        self.navigationController?.navigationBar.isHidden = true
         naviView.setDelegate(delegate: self)
- 
-                let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapView(_:)))
-        buttonLayer.addGestureRecognizer(tapGestureRecognizer)
-
-    }
-    
-    @objc func didTapView(_ sender: UITapGestureRecognizer) {
-        let location: CGPoint = sender.location(in: sender.view)
-        let wrongLabel = UILabel(frame: CGRect(x: location.x - 25, y: location.y - 25, width:  50, height: 50))
-        wrongLabel.text = "🥲"
-        wrongLabel.font = .findDictH5R48
-        buttonLayer.addSubview(wrongLabel)
         
-        UIView.animate(withDuration: 2) {
-            wrongLabel.alpha = 0
-        }
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleGuessedWrongView(_:)))
+        buttonLayer.addGestureRecognizer(tapGestureRecognizer)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -238,6 +225,38 @@ final class GameVC: ViewController {
         }
     }
     
+    private func playCorrectSound(){
+        guard let url = Bundle.main.url(forResource: "CorrectAnswer", withExtension: "wav") else { return }
+        do {
+            player = try AVAudioPlayer(contentsOf: url)
+            guard let player = player else { return }
+            player.play()
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
+    
+    @objc private func handleGuessedWrongView(_ sender: UITapGestureRecognizer) {
+        guard let url = Bundle.main.url(forResource: "WrongAnswer", withExtension: "wav") else { return }
+        do {
+            player = try AVAudioPlayer(contentsOf: url)
+            guard let player = player else { return }
+            player.play()
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+        let location: CGPoint = sender.location(in: sender.view)
+        let wrongLabel = UILabel(frame: CGRect(x: location.x - 25, y: location.y - 25, width:  50, height: 50))
+        wrongLabel.text = "🥲"
+        wrongLabel.font = .findDictH5R48
+        buttonLayer.addSubview(wrongLabel)
+        
+        UIView.animate(withDuration: 2) {
+            wrongLabel.alpha = 0
+        }
+    }
+    
     private func presentGuessedRightWordModal(text: String){
         let guessedRightWordVC = GuessedRightWordVC()
         guessedRightWordVC.setEnglishText(text: text)
@@ -292,7 +311,7 @@ extension GameVC: TargetComponentViewDelegate {
 // MARK: - UI
 extension GameVC {
     private func setLayout() {
-
+        
         view.addSubViews([naviView, targetListContainerView, image])
         naviView.snp.makeConstraints{
             $0.top.left.right.equalToSuperview()

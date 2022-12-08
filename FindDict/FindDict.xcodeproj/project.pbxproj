@@ -30,6 +30,9 @@
 		4D6943E42914F11300974B71 /* GuessedRightWordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6943E32914F11300974B71 /* GuessedRightWordVC.swift */; };
 		4D6943E6291518EF00974B71 /* SpeechButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6943E5291518EF00974B71 /* SpeechButton.swift */; };
 		4D85DFC72940708A0016ABF9 /* DefaultNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D85DFC62940708A0016ABF9 /* DefaultNavigationBar.swift */; };
+		4D85DFCB2941BC170016ABF9 /* GameClear.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4D85DFC92941BC170016ABF9 /* GameClear.wav */; };
+		4D85DFCC2941BC170016ABF9 /* CorrectAnswer.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4D85DFCA2941BC170016ABF9 /* CorrectAnswer.wav */; };
+		4D85DFCE2941BC950016ABF9 /* WrongAnswer.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4D85DFCD2941BC950016ABF9 /* WrongAnswer.wav */; };
 		4D8E9F3328F001C00013B7E7 /* yolov7.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 4D8E9F3228F001C00013B7E7 /* yolov7.mlmodel */; };
 		4D94E905292E371C00867289 /* PhotoSelectorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94E904292E371C00867289 /* PhotoSelectorVC.swift */; };
 		4D9ADC0728E018DB008CF9F3 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9ADC0628E018DB008CF9F3 /* SignInVC.swift */; };
@@ -113,6 +116,9 @@
 		4D6943E32914F11300974B71 /* GuessedRightWordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessedRightWordVC.swift; sourceTree = "<group>"; };
 		4D6943E5291518EF00974B71 /* SpeechButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechButton.swift; sourceTree = "<group>"; };
 		4D85DFC62940708A0016ABF9 /* DefaultNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultNavigationBar.swift; sourceTree = "<group>"; };
+		4D85DFC92941BC170016ABF9 /* GameClear.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = GameClear.wav; sourceTree = "<group>"; };
+		4D85DFCA2941BC170016ABF9 /* CorrectAnswer.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = CorrectAnswer.wav; sourceTree = "<group>"; };
+		4D85DFCD2941BC950016ABF9 /* WrongAnswer.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = WrongAnswer.wav; sourceTree = "<group>"; };
 		4D8E9F3228F001C00013B7E7 /* yolov7.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = yolov7.mlmodel; path = ../../../../../../../Downloads/yolov7.mlmodel; sourceTree = "<group>"; };
 		4D8E9F3228F001C00013B7E7 /* yolov7.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = yolov7.mlmodel; path = ../../../../../../../../Downloads/yolov7.mlmodel; sourceTree = "<group>"; };
 		4D94E904292E371C00867289 /* PhotoSelectorVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSelectorVC.swift; sourceTree = "<group>"; };
@@ -216,6 +222,16 @@
 				F8E32BB3290FCAB9009B0749 /* HintModalVC.swift */,
 			);
 			path = Game;
+			sourceTree = "<group>";
+		};
+		4D85DFC82941BC060016ABF9 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				4D85DFCA2941BC170016ABF9 /* CorrectAnswer.wav */,
+				4D85DFCD2941BC950016ABF9 /* WrongAnswer.wav */,
+				4D85DFC92941BC170016ABF9 /* GameClear.wav */,
+			);
+			path = Sound;
 			sourceTree = "<group>";
 		};
 		4DA65AAC28E86908002DEFE3 /* Bases */ = {
@@ -327,6 +343,7 @@
 		4DBDEC2928D4F03F002252B3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4D85DFC82941BC060016ABF9 /* Sound */,
 				4DBDEC3328D4F32F002252B3 /* Fonts */,
 				4DBDEC1C28D4EFE3002252B3 /* Assets.xcassets */,
 				4DBDEC3128D4F308002252B3 /* Colorsets.xcassets */,
@@ -546,7 +563,10 @@
 				4D14BD7928E20CA4002B2165 /* NotoSans-Medium.ttf in Resources */,
 				4D14BD7B28E20CA8002B2165 /* NotoSans-Regular.ttf in Resources */,
 				4DBDEC1D28D4EFE3002252B3 /* Assets.xcassets in Resources */,
+				4D85DFCC2941BC170016ABF9 /* CorrectAnswer.wav in Resources */,
+				4D85DFCB2941BC170016ABF9 /* GameClear.wav in Resources */,
 				4DBDEC1B28D4EFE2002252B3 /* Main.storyboard in Resources */,
+				4D85DFCE2941BC950016ABF9 /* WrongAnswer.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
