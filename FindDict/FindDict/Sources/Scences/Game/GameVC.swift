@@ -277,7 +277,7 @@ extension GameVC: TargetComponentViewDelegate {
 extension GameVC {
     private func setLayout() {
 
-        view.addSubViews([naviView, targetListContainerView, image, cropImageView])
+        view.addSubViews([naviView, targetListContainerView, image])
         naviView.snp.makeConstraints{
             $0.top.left.right.equalToSuperview()
             $0.height.equalTo(150)
