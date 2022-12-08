@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SpeechButton: UIButton {
+final class SpeechButton: UIButton {
     
     // MARK: - Initialization
     override init(frame: CGRect) {
@@ -21,7 +21,7 @@ class SpeechButton: UIButton {
     }
 
     // MARK: - UI
-    func setUI(){
+    private func setUI(){
         self.titleLabel?.font = .findDictB2R24
         self.setTitleColor(.black, for: .normal)
         self.layer.cornerRadius = 20

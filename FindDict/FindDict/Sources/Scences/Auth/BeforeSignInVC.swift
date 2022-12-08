@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-class BeforeSignInVC: UIViewController {
+final class BeforeSignInVC: UIViewController {
     
     // MARK: - Properties
     private let logoImageView: UIImageView = UIImageView().then{

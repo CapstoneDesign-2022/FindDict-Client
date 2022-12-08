@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-class MainVC: UIViewController {
+final class MainVC: UIViewController {
     
     // MARK: - Properties
     private let logoImage: UIImageView = UIImageView().then{
@@ -45,9 +45,9 @@ class MainVC: UIViewController {
         setButtonActions()
         view.backgroundColor = .fdLightYellow
     }
-
+    
     // MARK: - Functions
-    func setButtonActions(){
+    private func setButtonActions(){
         gameStartButton.press{
             let initiatingGameVC = PhotoSelectorVC()
             self.navigationController?.pushViewController(initiatingGameVC, animated: true)
@@ -74,7 +74,7 @@ extension MainVC {
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
             $0.height.equalTo(120)
         }
-
+        
         buttonStackView.snp.makeConstraints{
             $0.top.equalTo(logoImage.snp.bottom).offset(60)
             $0.centerX.equalTo(view.safeAreaLayoutGuide)

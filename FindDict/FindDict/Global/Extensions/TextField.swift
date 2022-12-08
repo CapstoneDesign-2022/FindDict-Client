@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TextField: UITextField {
+final class TextField: UITextField {
 
     // MARK: - Initialization
     override init(frame: CGRect) {

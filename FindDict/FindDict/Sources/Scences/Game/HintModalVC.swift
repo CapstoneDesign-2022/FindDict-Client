@@ -10,7 +10,7 @@ import SnapKit
 import Then
 
 
-class HintModalVC: UIViewController {
+final class HintModalVC: UIViewController {
     
     // MARK: - Properties
     private var images: [String] = [] {
@@ -21,6 +21,7 @@ class HintModalVC: UIViewController {
             hintImageView4.load(images[3])
         }
     }
+    
     private var korean: String = "" {
         didSet{
             requestGetHint(search: korean)
@@ -65,19 +66,19 @@ class HintModalVC: UIViewController {
         $0.addShadow(location: .bottom)
     }
     
-    lazy var imageTopStackView: UIStackView = UIStackView(arrangedSubviews: [hintImageView1, hintImageView2]).then{
+    private lazy var imageTopStackView: UIStackView = UIStackView(arrangedSubviews: [hintImageView1, hintImageView2]).then{
         $0.axis = .horizontal
         $0.spacing = 33
         $0.distribution = .fillEqually
     }
     
-    lazy var imageBottomStackView: UIStackView = UIStackView(arrangedSubviews: [hintImageView3, hintImageView4]).then{
+    private lazy var imageBottomStackView: UIStackView = UIStackView(arrangedSubviews: [hintImageView3, hintImageView4]).then{
         $0.axis = .horizontal
         $0.spacing = 33
         $0.distribution = .fillEqually
     }
     
-    lazy var imageStackView: UIStackView = UIStackView(arrangedSubviews: [imageTopStackView, imageBottomStackView]).then{
+    private lazy var imageStackView: UIStackView = UIStackView(arrangedSubviews: [imageTopStackView, imageBottomStackView]).then{
         $0.axis = .vertical
         $0.spacing = 21
         $0.distribution = .fillEqually
@@ -92,7 +93,7 @@ class HintModalVC: UIViewController {
     }
     
     // MARK: - Functions
-    func setButtonActions(){
+    private func setButtonActions(){
         closeButton.press{
             self.dismiss(animated: true, completion: nil)
         }

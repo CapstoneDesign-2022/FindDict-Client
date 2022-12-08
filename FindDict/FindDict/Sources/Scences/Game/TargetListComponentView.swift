@@ -14,19 +14,18 @@ protocol TargetComponentViewDelegate: AnyObject {
     func hintButtonClicked(korean: String)
 }
 
-class TargetListComponentView: UIView {
+final class TargetListComponentView: UIView {
     
+    // MARK: - Properties
     private var delegate: TargetComponentViewDelegate?
+    
+    // MARK: - UI Properties
     private let englishButton: UIButton = UIButton().then{
         if #available(iOS 15.0, *) {
             $0.configuration = .plain()
             $0.configuration?.buttonSize = .large
-        } else {
-            // Fallback on earlier versions
         }
-        
         $0.makeRounded(cornerRadius: 20)
-        
         $0.backgroundColor = .fdYellow
         $0.setTitleColor(.black, for: .normal)
     }
@@ -60,6 +59,10 @@ class TargetListComponentView: UIView {
     }
     
     // MARK: - Functions
+    func setDelegate(delegate: TargetComponentViewDelegate){
+        self.delegate = delegate
+    }
+    
     func setData(korean: String, english: String){
         englishButton.setTitle(english, for: .normal)
         koreanLabelText = korean
@@ -105,24 +108,17 @@ class TargetListComponentView: UIView {
         englishButton.isUserInteractionEnabled = false
         englishButton.backgroundColor = .fdLightYellow
         englishButton.addShadow(location: .bottomRight)
-        containerView.snp.makeConstraints {
-            $0.width.equalTo(englishButton.frame.width + 20)
-        }
-    }
     
     func setDelegate(delegate: TargetComponentViewDelegate){
         self.delegate = delegate
     }
-    
 }
 
 // MARK: - UI
 extension TargetListComponentView {
-    func setLayout() {
+    private func setLayout() {
         self.addSubViews([containerView])
-        containerView.addSubViews([englishButton
-                                   ,koreanLabelBoundaryView
-                                   ,koreanLabel])
+        containerView.addSubViews([englishButton, koreanLabelBoundaryView, koreanLabel])
         
         containerView.snp.makeConstraints {
             $0.top.equalTo(self.safeAreaLayoutGuide).offset(11)

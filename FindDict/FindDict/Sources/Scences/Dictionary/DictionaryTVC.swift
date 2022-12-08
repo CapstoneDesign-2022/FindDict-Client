@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-class DictionaryTVC: UITableViewCell {
+final class DictionaryTVC: UITableViewCell {
     
     // MARK: - Properties
     let dictionaryCard: DictionaryCard = DictionaryCard()

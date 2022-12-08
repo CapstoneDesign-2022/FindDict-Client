@@ -15,7 +15,7 @@ protocol DefaultNavigationBarDelegate{
     func homeButtonClicked()
 }
 
-class DefaultNavigationBar: UIView {
+final class DefaultNavigationBar: UIView {
     
     // MARK: - Properties
     private var delegate: DefaultNavigationBarDelegate?
@@ -47,7 +47,7 @@ class DefaultNavigationBar: UIView {
         super.init(frame: .zero)
         setLayout()
         if (isHomeButtonIncluded){
-            setHomeButton()
+            setHomeButtonLayout()
         }
         setButtonActions()
     }
@@ -57,8 +57,12 @@ class DefaultNavigationBar: UIView {
     }
     
     //MARK: - Functions
-    func setTitle(_ title:String){
-        titleLabel.text = title
+    func setDelegate(delegate: DefaultNavigationBarDelegate){
+        self.delegate = delegate
+    }
+    
+    func setTitleLabel(title: String) {
+        self.titleLabel.text = title
     }
     
     private func setButtonActions(){
@@ -69,10 +73,6 @@ class DefaultNavigationBar: UIView {
         homeButton.press{
             self.delegate?.homeButtonClicked()
         }
-    }
-    
-    func setDelegate(delegate: DefaultNavigationBarDelegate){
-        self.delegate = delegate
     }
 }
 
@@ -98,17 +98,12 @@ extension DefaultNavigationBar {
         }
     }
     
-    private func setHomeButton() {
+    private func setHomeButtonLayout() {
         self.addSubViews([homeButton])
        
         homeButton.snp.makeConstraints {
             $0.right.equalTo(self.safeAreaLayoutGuide).inset(40)
             $0.centerY.equalTo(self.safeAreaLayoutGuide)
         }
-    }
-
-    /// 커스텀 네비 바 타이틀 설정하는 메서드
-    func setTitleLabel(title: String) {
-        self.titleLabel.text = title
     }
 }

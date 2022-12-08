@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-class GameTutorialCVC: UICollectionViewCell {
+final class GameTutorialCVC: UICollectionViewCell {
     
     // MARK: - Properties
     private let tutorialImage: UIImageView = UIImageView().then{
@@ -32,20 +32,12 @@ class GameTutorialCVC: UICollectionViewCell {
         $0.numberOfLines = 0    // 자동 줄바꿈
     }
     
-    lazy var pageButton: UIButton = UIButton().then{
+    private lazy var pageButton: UIButton = UIButton().then{
         $0.layer.cornerRadius = 20
         $0.backgroundColor = .white
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = .findDictB4R16
         
-    }
-    
-    //MARK: - Functions
-    func setData(_ cellData: GameTutorialCVCModel, index: Int){
-        pageButton.setTitle("   \(index) / 6  > ", for: .normal)
-        tutorialImage.image = cellData.tutorialImage
-        tutorialTitleLabel.text = cellData.tutorialTitle
-        tutorialTextLabel.text = cellData.tutorialText
     }
     
     // MARK: - Initialization
@@ -58,6 +50,14 @@ class GameTutorialCVC: UICollectionViewCell {
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError()
+    }
+    
+    //MARK: - Functions
+    func setData(_ cellData: GameTutorialCVCModel, index: Int){
+        pageButton.setTitle("   \(index) / 6  > ", for: .normal)
+        tutorialImage.image = cellData.tutorialImage
+        tutorialTitleLabel.text = cellData.tutorialTitle
+        tutorialTextLabel.text = cellData.tutorialText
     }
 }
 

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GameResultButton: UIButton {
+final class GameResultButton: UIButton {
 
     // MARK: - Initialization
     override init(frame: CGRect) {

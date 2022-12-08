@@ -245,12 +245,12 @@ final class GameVC: UIViewController {
         let guessedRightWordVC = GuessedRightWordVC()
         guessedRightWordVC.setEnglishText(text: text)
         guessedRightWordVC.modalPresentationStyle = .overCurrentContext
-        guessedRightWordVC.presentingVC = self
+        guessedRightWordVC.setPresentingVC(self)
         self.present(guessedRightWordVC, animated: true)
     }
     
     
-    func resizeImage(image: UIImage, size: CGSize, x: CGFloat, y: CGFloat) -> CGImage {
+    private func resizeImage(image: UIImage, size: CGSize, x: CGFloat, y: CGFloat) -> CGImage {
         UIGraphicsBeginImageContext(size)
         image.draw(in:CGRect(x: x, y: y, width: size.width, height:size.height))
         let renderImage = UIGraphicsGetImageFromCurrentImageContext()

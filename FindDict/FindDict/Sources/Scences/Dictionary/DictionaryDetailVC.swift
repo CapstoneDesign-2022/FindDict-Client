@@ -10,9 +10,40 @@ import SnapKit
 import Then
 import AVFAudio
 
-class DictionaryDetailVC: UIViewController{
+final class DictionaryDetailVC: UIViewController{
     
     // MARK: - Properties
+    private var worldLabelText: String = "" {
+        didSet{
+            wordLabel.text = worldLabelText
+            requestGetWordDetail(word: worldLabelText)
+        }
+    }
+    
+    private let synthesizer: AVSpeechSynthesizer = AVSpeechSynthesizer()
+    
+    private var dataSource : [String] = ["https://finddict.s3.ap-northeast-2.amazonaws.com/test/1668622382989_launchScreen.png"]{
+        didSet{
+            self.increasedDataSource =  dataSource + dataSource + dataSource
+        }
+    }
+    
+    private lazy var increasedDataSource: [String] = {
+        dataSource + dataSource + dataSource
+    }()
+    
+    private lazy var dictionaryDetailCV: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: CVFlowLayout)
+    
+    private let CVFlowLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+    
+    private var originalDataSourceCount: Int {
+        dataSource.count
+    }
+    
+    private var scrollToEnd: Bool = false
+    private var scrollToBegin: Bool = false
+    
+    // MARK: - UI Properties
     private let modalView: UIView = UIView().then{
         $0.backgroundColor = .fdLightYellow
         $0.addShadow(location: .bottom)
@@ -30,15 +61,6 @@ class DictionaryDetailVC: UIViewController{
         $0.layer.masksToBounds = true
         $0.layer.cornerRadius = 10
     }
-    
-    private var worldLabelText: String = "" {
-        didSet{
-            wordLabel.text = worldLabelText
-            requestGetWordDetail(word: worldLabelText)
-        }
-    }
-    
-    private let synthesizer: AVSpeechSynthesizer = AVSpeechSynthesizer()
     
     private let americanSpeeachButton: SpeechButton = SpeechButton().then{
         $0.setTitle("🇺🇸 미국식 발음", for: .normal)
@@ -60,28 +82,6 @@ class DictionaryDetailVC: UIViewController{
         $0.spacing = 30
         $0.distribution = .fillEqually
     }
-    
-    // TODO: - 로딩 전 이미지 파인드딕트 이미지로 넣어두기
-    private var dataSource : [String] = ["https://finddict.s3.ap-northeast-2.amazonaws.com/test/1668622382989_launchScreen.png"]{
-        didSet{
-            self.increasedDataSource =  dataSource + dataSource + dataSource
-        }
-    }
-    
-    private lazy var increasedDataSource: [String] = {
-        dataSource + dataSource + dataSource
-    }()
-    
-    private lazy var dictionaryDetailCV: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: CVFlowLayout)
-    
-    private let CVFlowLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-    
-    private var originalDataSourceCount: Int {
-        dataSource.count
-    }
-    
-    private var scrollToEnd: Bool = false
-    private var scrollToBegin: Bool = false
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -171,7 +171,7 @@ extension DictionaryDetailVC {
             default:
                 print(MessageType.networkError.message)
             }
-        
+            
         }
     }
 }

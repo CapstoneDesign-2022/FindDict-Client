@@ -13,8 +13,7 @@ final class DictionaryVC: UIViewController {
     
     // MARK: - Properties
     private var dictionaryData: [String] = []
-
-
+    
     private let naviView = DefaultNavigationBar(isHomeButtonIncluded: true).then {
         $0.setTitleLabel(title: "Dictionary")
     }
@@ -90,19 +89,17 @@ extension DictionaryVC {
 // MARK: - UITableViewDataSource
 extension DictionaryVC: UITableViewDataSource {
     
-    // @required: 특정 위치에 표시할 셀을 요청하는 메서드
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "DictionaryTVC", for: indexPath) as? DictionaryTVC else {
             return UITableViewCell()
         }
         cell.dictionaryCard.setDelegate(delegate: self)
-      
+        
         let data = dictionaryData[indexPath.row]
         cell.setData(data, cellRowIndex: indexPath.row)
         return cell
     }
     
-    // @required: 각 섹션에 표시할 행의 개수를 묻는 메서드
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dictionaryData.count
     }
@@ -119,9 +116,7 @@ extension DictionaryVC: UITableViewDelegate {
 extension DictionaryVC: DictionaryCardDelegate {
     func wordDetailViewButtonClicked(index: Int) {
         let dictionaryDetailVC = DictionaryDetailVC()
-
         dictionaryDetailVC.setWordLabelText(english: dictionaryData[index])
-
         dictionaryDetailVC.modalPresentationStyle = .overCurrentContext
         self.present(dictionaryDetailVC, animated: true)
     }

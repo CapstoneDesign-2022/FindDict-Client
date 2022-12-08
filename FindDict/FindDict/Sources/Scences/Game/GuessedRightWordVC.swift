@@ -10,9 +10,13 @@ import AVFoundation
 import SnapKit
 import Then
 
-class GuessedRightWordVC: UIViewController {
+final class GuessedRightWordVC: UIViewController {
     
     // MARK: - Properties
+    private var presentingVC: UIViewController?
+    private let synthesizer: AVSpeechSynthesizer = AVSpeechSynthesizer()
+    
+    // MARK: - UI Properties
     private let englishLabel: UILabel = UILabel().then {
         $0.font = .findDictH6R35
         $0.textColor = .black
@@ -24,8 +28,6 @@ class GuessedRightWordVC: UIViewController {
             printOutAmericanSpeech()
         }
     }
-    
-    private let synthesizer: AVSpeechSynthesizer = AVSpeechSynthesizer()
     
     private let modalView: UIView = UIView().then{
         $0.backgroundColor = .fdBeige
@@ -55,8 +57,6 @@ class GuessedRightWordVC: UIViewController {
         $0.distribution = .fillEqually
     }
     
-    var presentingVC: UIViewController?
-    
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +68,10 @@ class GuessedRightWordVC: UIViewController {
     // MARK: - Functions
     func setEnglishText(text: String){
         englishText = text
+    }
+    
+    func setPresentingVC(_ presentingVC: UIViewController){
+        self.presentingVC = presentingVC
     }
     
     private func setButtonActions(){

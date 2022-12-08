@@ -14,7 +14,17 @@ final class PhotoSelectorVC: UIViewController {
     // MARK: - Properties
     private let gameVC: GameVC = GameVC()
     private let objectDetector: ObjectDetector = ObjectDetector()
+    private var pixelBuffer: CVPixelBuffer? = nil  {
+        didSet{
+            gameVC.image.image = selectedImage.image
+            
+            objectDetector.setNavigationController(navigationController: self.navigationController)
+            objectDetector.setGameVC(gameVC: gameVC)
+            objectDetector.setPixelBuffer(pixelBuffer: selectedImage.image?.pixelBufferFromImage())
+        }
+    }
     
+    // MARK: - UI Properties
     private let naviView = DefaultNavigationBar(isHomeButtonIncluded: true).then {
         $0.setTitleLabel(title: "Game")
     }
@@ -45,16 +55,6 @@ final class PhotoSelectorVC: UIViewController {
     }
     
     private var selectedImage: UIImageView = UIImageView()
-    
-    private var pixelBuffer: CVPixelBuffer? = nil  {
-        didSet{
-            gameVC.image.image = selectedImage.image
-            
-            objectDetector.setNavigationController(navigationController: self.navigationController)
-            objectDetector.setGameVC(gameVC: gameVC)
-            objectDetector.setPixelBuffer(pixelBuffer: selectedImage.image?.pixelBufferFromImage())
-        }
-    }
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -95,7 +95,7 @@ final class PhotoSelectorVC: UIViewController {
 extension PhotoSelectorVC {
     private func setLayout() {
         view.addSubViews([naviView, buttonStackView])
-
+        
         naviView.snp.makeConstraints{
             $0.top.left.right.equalToSuperview()
             $0.height.equalTo(150)

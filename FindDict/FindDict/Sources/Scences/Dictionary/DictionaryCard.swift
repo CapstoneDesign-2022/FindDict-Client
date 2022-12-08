@@ -13,7 +13,7 @@ protocol DictionaryCardDelegate: AnyObject {
     func wordDetailViewButtonClicked(index: Int)
 }
 
-class DictionaryCard: UIView {
+final class DictionaryCard: UIView {
     
     // MARK: - Properties
     private var cellRowIndex: Int = 0
