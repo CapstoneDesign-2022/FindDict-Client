@@ -73,6 +73,11 @@ final class PhotoSelectorVC: UIViewController {
             self.present(imagePickerController, animated: true, completion: nil)
         }
         
+        fetchingPictureButton.press{
+            self.selectedImage.image = UIImage(named: "defaultGameImage")
+            self.pixelBuffer = self.selectedImage.image?.pixelBufferFromImage()
+        }
+        
         homeButton.press{
             self.navigationController?.popToRootViewController(animated: false)
         }
