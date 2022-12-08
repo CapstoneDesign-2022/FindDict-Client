@@ -79,7 +79,6 @@ class TargetListComponentView: UIView {
         englishButton.isUserInteractionEnabled = false
         koreanLabel.text = koreanLabelText
         englishButton.backgroundColor = .buttonGray
-        englishButton.titleLabel?.font = .findDictB1R15
         englishButton.layer.shadowOpacity = 0
         
         containerView.snp.remakeConstraints {
@@ -102,7 +101,6 @@ class TargetListComponentView: UIView {
             $0.height.equalTo(60)
             $0.width.equalToSuperview()
         }
-        englishButton.titleLabel?.font = .findDictB3R20
     }
     
     func disableEnglishButton() {
