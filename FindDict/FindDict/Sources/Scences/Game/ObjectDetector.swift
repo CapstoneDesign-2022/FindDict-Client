@@ -93,7 +93,6 @@ final class ObjectDetector {
         try? handler.perform([request])
     }
     
-    /// 객체 인식이 끝나고 나면 인식 결과를 프로퍼티에 저장하고 버튼을 올릴 레이어를 준비합니다.
     private func visionRequestDidComplete(request: VNRequest, error: Error?) {
         if let predictions = request.results as? [VNRecognizedObjectObservation] {
             self.predictedObjects = predictions

@@ -92,6 +92,8 @@ final class TargetListComponentView: UIView {
         englishButton.snp.remakeConstraints {
             $0.top.equalTo(containerView)
             $0.height.equalTo(40)
+            $0.leading.equalTo(containerView).offset(10)
+            $0.trailing.equalTo(containerView).inset(10)
         }
     }
     
@@ -108,9 +110,10 @@ final class TargetListComponentView: UIView {
         englishButton.isUserInteractionEnabled = false
         englishButton.backgroundColor = .fdLightYellow
         englishButton.addShadow(location: .bottomRight)
-    
-    func setDelegate(delegate: TargetComponentViewDelegate){
-        self.delegate = delegate
+        
+        containerView.snp.makeConstraints {
+            $0.width.equalTo(englishButton.frame.width + 30)
+        }
     }
 }
 

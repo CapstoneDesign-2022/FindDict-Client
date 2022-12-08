@@ -101,14 +101,13 @@ final class DictionaryDetailVC: UIViewController{
     
     // MARK: - Functions
     private func setCV() {
-        dictionaryDetailCV.delegate = self
-        dictionaryDetailCV.dataSource = self
-        
-        dictionaryDetailCV.register(DictionaryDetailCVC.self, forCellWithReuseIdentifier: "DictionaryDetailCVC")
-        
-        dictionaryDetailCV.showsHorizontalScrollIndicator = false
-        
-        dictionaryDetailCV.isPagingEnabled = true
+        dictionaryDetailCV.do{
+            $0.delegate = self
+            $0.dataSource = self
+            $0.register(DictionaryDetailCVC.self, forCellWithReuseIdentifier: "DictionaryDetailCVC")
+            $0.showsHorizontalScrollIndicator = false
+            $0.isPagingEnabled = true
+        }
         
         CVFlowLayout.scrollDirection = .horizontal
     }
@@ -171,7 +170,6 @@ extension DictionaryDetailVC {
             default:
                 print(MessageType.networkError.message)
             }
-            
         }
     }
 }

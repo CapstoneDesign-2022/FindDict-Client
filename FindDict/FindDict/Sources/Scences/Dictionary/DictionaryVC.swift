@@ -41,11 +41,13 @@ final class DictionaryVC: UIViewController {
     
     // MARK: - Functions
     private func setTV() {
-        dictionaryTV.delegate = self
-        dictionaryTV.dataSource = self
-        dictionaryTV.separatorStyle = .none
-        dictionaryTV.showsVerticalScrollIndicator = true
-        dictionaryTV.register(DictionaryTVC.self, forCellReuseIdentifier: "DictionaryTVC")
+        dictionaryTV.do{
+            $0.delegate = self
+            $0.dataSource = self
+            $0.separatorStyle = .none
+            $0.showsVerticalScrollIndicator = true
+            $0.register(DictionaryTVC.self, forCellReuseIdentifier: "DictionaryTVC")
+        }
     }
 }
 

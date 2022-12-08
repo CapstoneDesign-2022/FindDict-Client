@@ -128,7 +128,6 @@ extension ModalBaseVC {
         }
         
         resultImage.snp.makeConstraints{
-//            $0.top.equalTo(modalView.snp.top).inset(113)
             $0.top.equalTo(resultTitleLabel.snp.bottom).offset(-20)
             $0.trailing.equalTo(buttonStackView.snp.leading).offset(-40)
         }

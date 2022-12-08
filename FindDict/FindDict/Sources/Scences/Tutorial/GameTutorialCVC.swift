@@ -37,7 +37,6 @@ final class GameTutorialCVC: UICollectionViewCell {
         $0.backgroundColor = .white
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = .findDictB4R16
-        
     }
     
     // MARK: - Initialization
@@ -79,7 +78,6 @@ final class GameTutorialCVC: UICollectionViewCell {
                 $0.right.equalToSuperview().inset(30)
             }
 
-            
             pageButton.snp.makeConstraints{
                 $0.height.equalTo(40)
                 $0.width.equalTo(80)
