@@ -21,7 +21,7 @@ final class DefaultNavigationBar: UIView {
     private var delegate: DefaultNavigationBarDelegate?
     
     private let backButton = UIButton().then {
-        $0.setImage(UIImage(named: "left_arrow"), for: .normal)
+        $0.setImage(UIImage(named: "left_arrow")?.withTintColor(.fdOrange), for: .normal)
     }
     
     private let logoImage = UIImageView().then{
@@ -35,7 +35,7 @@ final class DefaultNavigationBar: UIView {
     }
     
     private let homeButton = UIButton().then {
-        $0.setImage(UIImage(named: "home"), for: .normal)
+        $0.setImage(UIImage(named: "home")?.withTintColor(.fdOrange), for: .normal)
     }
     
     // MARK: - Initialization
