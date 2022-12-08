@@ -124,28 +124,28 @@ extension GuessedRightWordVC {
         view.addSubViews([modalView, englishLabel, closeButton, buttonStackView])
         
         modalView.snp.makeConstraints{
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(236)
-            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(223)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(223)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(92)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(190)
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(220)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(220)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(110)
         }
         
         englishLabel.snp.makeConstraints{
-            $0.top.equalTo(modalView.snp.top).offset(40)
+            $0.top.equalTo(modalView.snp.top).offset(30)
             $0.centerX.equalTo(modalView)
             $0.height.equalTo(50)
         }
         
         closeButton.snp.makeConstraints{
-            $0.top.equalTo(modalView.snp.top).offset(16)
-            $0.trailing.equalTo(modalView.snp.trailing).inset(20)
+            $0.top.equalTo(modalView.snp.top).offset(40)
+            $0.trailing.equalTo(modalView.snp.trailing).inset(36)
         }
         
         buttonStackView.snp.makeConstraints{
-            $0.top.equalTo(englishLabel.snp.bottom).offset(30)
+            $0.top.equalTo(englishLabel.snp.bottom).offset(40)
             $0.leading.equalTo(modalView.snp.leading).offset(30)
             $0.trailing.equalTo(modalView.snp.trailing).inset(30)
-            $0.bottom.equalTo(modalView.snp.bottom).inset(30)
+            $0.bottom.equalTo(modalView.snp.bottom).inset(40)
         }
     }
 }
