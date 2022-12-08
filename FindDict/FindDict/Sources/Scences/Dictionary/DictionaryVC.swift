@@ -14,28 +14,15 @@ final class DictionaryVC: UIViewController {
     // MARK: - Properties
     private var dictionaryData: [String] = []
 
-    private let titleView: UIView = UIView().then{
-        $0.backgroundColor = .modalButtonDarkYellow
-        $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.white.cgColor
-        $0.addShadow(location: .bottom)
-      
-    }
-    
-    private let titleLabel: UILabel = UILabel().then{
-        $0.textColor = .black
-        $0.text = "단어장"
-        $0.font = .findDictH5R48
+
+    private let naviView = DefaultNavigationBar(isHomeButtonIncluded: true).then {
+        $0.setTitleLabel(title: "Dictionary")
     }
     
     private let dictionaryTV: UITableView = UITableView().then{
         $0.rowHeight = 107
         $0.estimatedRowHeight = UITableView.automaticDimension
         $0.backgroundColor = .bgBeige
-    }
-    
-    private let homeButton: UIButton = UIButton().then{
-        $0.setImage(UIImage(named: "homeImage"),for: .normal)
     }
     
     // MARK: - View Life Cycle
@@ -48,8 +35,9 @@ final class DictionaryVC: UIViewController {
         super.viewDidLoad()
         setLayout()
         setTV()
-        setButtonActions()
         view.backgroundColor = .bgBeige
+        self.navigationController?.navigationBar.isHidden = true
+        naviView.setDelegate(delegate: self)
     }
     
     // MARK: - Functions
@@ -59,12 +47,6 @@ final class DictionaryVC: UIViewController {
         dictionaryTV.separatorStyle = .none
         dictionaryTV.showsVerticalScrollIndicator = true
         dictionaryTV.register(DictionaryTVC.self, forCellReuseIdentifier: "DictionaryTVC")
-    }
-    
-    private func setButtonActions(){
-        homeButton.press{
-            self.navigationController?.popToRootViewController(animated: false)
-        }
     }
 }
 
@@ -90,32 +72,17 @@ extension DictionaryVC {
 // MARK: - UI
 extension DictionaryVC {
     private func setLayout() {
-        view.addSubViews([titleView, dictionaryTV,homeButton])
-        titleView.addSubViews([titleLabel])
-        
-        titleView.snp.makeConstraints{
-            $0.centerX.equalTo(view.safeAreaLayoutGuide)
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
-            $0.width.equalTo(400)
-            $0.height.equalTo(100)
-        }
-        
-        titleLabel.snp.makeConstraints{
-            $0.centerX.equalTo(titleView)
-            $0.centerY.equalTo(titleView)
+        view.addSubViews([naviView, dictionaryTV])
+        naviView.snp.makeConstraints{
+            $0.top.left.right.equalToSuperview()
+            $0.height.equalTo(150)
         }
         
         dictionaryTV.snp.makeConstraints{
-            $0.top.equalTo(titleView.snp.bottom).offset(50)
+            $0.top.equalTo(naviView.snp.bottom)
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
             $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(206)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(206)
-        }
-        
-        homeButton.snp.makeConstraints{
-            $0.top.equalTo(view.safeAreaLayoutGuide).offset(40)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide).inset(60)
-            $0.width.height.equalTo(50)
         }
     }
 }
@@ -157,5 +124,16 @@ extension DictionaryVC: DictionaryCardDelegate {
 
         dictionaryDetailVC.modalPresentationStyle = .overCurrentContext
         self.present(dictionaryDetailVC, animated: true)
+    }
+}
+
+// MARK: - DefaultNavigationBarDelegate
+extension DictionaryVC: DefaultNavigationBarDelegate {
+    func backButtonClicked(){
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func homeButtonClicked(){
+        self.navigationController?.popToRootViewController(animated: false)
     }
 }
