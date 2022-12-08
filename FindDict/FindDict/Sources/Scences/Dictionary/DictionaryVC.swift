@@ -14,6 +14,7 @@ final class DictionaryVC: UIViewController {
     // MARK: - Properties
     private var dictionaryData: [String] = []
 
+
     private let naviView = DefaultNavigationBar(isHomeButtonIncluded: true).then {
         $0.setTitleLabel(title: "Dictionary")
     }

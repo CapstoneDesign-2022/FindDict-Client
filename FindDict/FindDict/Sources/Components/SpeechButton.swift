@@ -26,5 +26,6 @@ class SpeechButton: UIButton {
         self.setTitleColor(.black, for: .normal)
         self.layer.cornerRadius = 20
         self.backgroundColor = .modalButtonLightYellow
+        self.addShadow(location: .bottom)
     }
 }

@@ -23,10 +23,7 @@ class GameResultButton: UIButton {
     // MARK: - UI
     private func setUI(){
         self.setTitleColor(.black, for: .normal)
-        self.layer.shadowRadius = 4
-        self.layer.shadowOffset = CGSize(width: 0, height: 4)
-        self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.shadowOpacity = 0.25
+        self.addShadow(location: .bottom)
     }
 }
 

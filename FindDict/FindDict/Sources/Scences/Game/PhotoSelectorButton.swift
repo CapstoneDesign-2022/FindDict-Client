@@ -25,5 +25,6 @@ class PhotoSelectorButton: UIButton {
         self.layer.cornerRadius = 35
         self.titleLabel?.font = .findDictH4R35
         self.setTitleColor(.black, for: .normal)
+        self.addShadow(location: .bottomRight)
     }
 }
