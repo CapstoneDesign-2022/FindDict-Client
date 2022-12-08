@@ -13,8 +13,8 @@ extension UIFont {
         return UIFont(name: "NotoSans-Bold", size: 30.0)!
     }
     
-    class var findDictH2B18: UIFont {
-        return UIFont(name: "NotoSans-Bold", size: 18.0)!
+    class var findDictH2R18: UIFont {
+        return UIFont(name: "NotoSans-Regular", size: 18.0)!
     }
     
     class var findDictH3B36: UIFont {
@@ -41,8 +41,8 @@ extension UIFont {
         return UIFont(name: "NotoSans-Regular", size: 24.0)!
     }
     
-    class var findDictB1B15: UIFont {
-        return UIFont(name: "NotoSans-Bold", size: 15.0)!
+    class var findDictB1R15: UIFont {
+        return UIFont(name: "NotoSans-Regular", size: 15.0)!
     }
     
     class var findDictB7R12: UIFont {

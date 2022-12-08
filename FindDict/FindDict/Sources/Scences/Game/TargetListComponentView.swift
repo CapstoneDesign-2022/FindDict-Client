@@ -77,8 +77,10 @@ class TargetListComponentView: UIView {
     
     func handleGuessedRightView(){
         englishButton.isUserInteractionEnabled = false
-                koreanLabel.text = koreanLabelText
-                englishButton.backgroundColor = .buttonGray
+        koreanLabel.text = koreanLabelText
+        englishButton.backgroundColor = .buttonGray
+        englishButton.titleLabel?.font = .findDictB1R15
+        englishButton.layer.shadowOpacity = 0
         
         containerView.snp.remakeConstraints {
             $0.top.equalTo(self.safeAreaLayoutGuide).offset(11)
@@ -100,14 +102,17 @@ class TargetListComponentView: UIView {
             $0.height.equalTo(60)
             $0.width.equalToSuperview()
         }
+        englishButton.titleLabel?.font = .findDictH4R24
     }
     
     func disableEnglishButton() {
         englishButton.isUserInteractionEnabled = false
         englishButton.backgroundColor = .buttonGray
-        containerView.snp.makeConstraints {
-            $0.width.equalTo(englishButton.frame.width + 20)
-        }
+        englishButton.addShadow(location: .bottomRight)
+        
+//        containerView.snp.makeConstraints {
+//            $0.width.equalTo(englishButton.frame.width + 30)
+//        }
     }
     
     func setDelegate(delegate: TargetComponentViewDelegate){

@@ -36,7 +36,7 @@ class GameTutorialCVC: UICollectionViewCell {
     }
     
     private let tutorialTextLabel: UILabel = UILabel().then{
-        $0.font = .findDictH2B18
+        $0.font = .findDictH2R18
         $0.numberOfLines = 0    // 자동 줄바꿈
     }
     
