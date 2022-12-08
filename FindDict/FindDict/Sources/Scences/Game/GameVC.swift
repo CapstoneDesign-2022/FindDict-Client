@@ -104,7 +104,7 @@ final class GameVC: ViewController {
       self.navigationController?.navigationBar.isHidden = true
         naviView.setDelegate(delegate: self)
  
-                let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapView(_:)))
+                let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleGuessedWrongView(_:)))
         buttonLayer.addGestureRecognizer(tapGestureRecognizer)
 
     }
@@ -120,7 +120,7 @@ final class GameVC: ViewController {
             }
     }
     
-    @objc func didTapView(_ sender: UITapGestureRecognizer) {
+    @objc func handleGuessedWrongView(_ sender: UITapGestureRecognizer) {
         guard let url = Bundle.main.url(forResource: "WrongAnswer", withExtension: "wav") else { return }
             do {
                 player = try AVAudioPlayer(contentsOf: url)
