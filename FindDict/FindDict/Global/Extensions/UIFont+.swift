@@ -29,23 +29,29 @@ extension UIFont {
         return UIFont(name: "NotoSans-Regular", size: 48.0)!
     }
     
-    class var findDictH4R35: UIFont {
+    class var findDictH6R35: UIFont {
         return UIFont(name: "NotoSans-Regular", size: 35.0)!
     }
     
-    class var findDictH4R28: UIFont {
+    class var findDictB1R28: UIFont {
         return UIFont(name: "NotoSans-Regular", size: 28.0)!
     }
     
-    class var findDictH4R24: UIFont {
+    class var findDictB2R24: UIFont {
         return UIFont(name: "NotoSans-Regular", size: 24.0)!
     }
     
+    class var findDictB3R20: UIFont {
+        return UIFont(name: "NotoSans-Regular", size: 20.0)!
     class var findDictB1R15: UIFont {
         return UIFont(name: "NotoSans-Regular", size: 15.0)!
     }
     
-    class var findDictB7R12: UIFont {
+    class var findDictB4R16: UIFont {
+        return UIFont(name: "NotoSans-Regular", size: 16.0)!
+    }
+    
+    class var findDictB5R12: UIFont {
         return UIFont(name: "NotoSans-Regular", size: 12.0)!
     }
 }

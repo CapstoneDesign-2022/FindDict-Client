@@ -21,7 +21,7 @@ class DictionaryCard: UIView {
     private let englishWordLabel: UILabel = UILabel().then{
         $0.textColor = .black
         $0.text = "영어단어"
-        $0.font = .findDictH4R28
+        $0.font = .findDictB1R28
     }
 
     private let pictureButton: UIButton = UIButton().then{

@@ -38,7 +38,7 @@ class HintModalVC: UIViewController {
     private let hintLabel: UILabel = UILabel().then{
         $0.text = "HINT"
         $0.textColor = .black
-        $0.font = .findDictH4R35
+        $0.font = .findDictH6R35
     }
     
     private let closeButton: UIButton = UIButton().then{

@@ -30,7 +30,7 @@ class ModalBaseVC: UIViewController {
         $0.layer.cornerRadius = 10
         $0.setTitle("다시 게임하기", for: .normal)
         $0.backgroundColor = .modalButtonDarkYellow
-        $0.titleLabel?.font = .findDictH4R35
+        $0.titleLabel?.font = .findDictH6R35
         $0.snp.makeConstraints{
             $0.height.equalTo(129)
         }
@@ -40,13 +40,13 @@ class ModalBaseVC: UIViewController {
         $0.layer.cornerRadius = 10
         $0.setTitle("단어장", for: .normal)
         $0.backgroundColor = .modalButtonLightYellow
-        $0.titleLabel?.font = .findDictH4R24
+        $0.titleLabel?.font = .findDictB2R24
     }
     internal let mainViewButton: GameResultButton = GameResultButton().then{
         $0.layer.cornerRadius = 10
         $0.setTitle("메인화면", for: .normal)
         $0.backgroundColor = .modalButtonLightYellow
-        $0.titleLabel?.font = .findDictH4R24
+        $0.titleLabel?.font = .findDictB2R24
     }
     
     lazy var bottomButtonStackView: UIStackView = UIStackView(arrangedSubviews: [dictionaryButton, mainViewButton]).then{
