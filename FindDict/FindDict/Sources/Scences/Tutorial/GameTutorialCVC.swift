@@ -12,37 +12,37 @@ import Then
 class GameTutorialCVC: UICollectionViewCell {
     
     // MARK: - Properties
-    private let tutorialTitleView: UIView = UIView().then{
-        //TODO: merge 후 backgroundColor 수정
-        $0.backgroundColor = .buttonOrange
-        $0.layer.cornerRadius = 10
-    }
-    
-    private let tutorialTitleLabel: UILabel = UILabel().then{
-        $0.font = .findDictH1B30
-    }
-    
-    lazy var pageButton: UIButton = UIButton().then{
-        $0.layer.cornerRadius = 10
-        $0.backgroundColor = .white
-        $0.setTitleColor(.black, for: .normal)
-        $0.titleLabel?.font = .findDictH4R28
-    }
-    
     private let tutorialImage: UIImageView = UIImageView().then{
         $0.layer.cornerRadius = 43
         $0.clipsToBounds = true
         $0.contentMode = .scaleAspectFit
     }
+    private lazy var contentsStackView: UIStackView = UIStackView(arrangedSubviews: [tutorialTitleLabel, tutorialTextLabel]).then{
+        $0.axis = .vertical
+        $0.spacing = 30
+    }
+    
+    private let tutorialTitleLabel: UILabel = UILabel().then{
+        $0.font = .findDictH3B36
+    }
     
     private let tutorialTextLabel: UILabel = UILabel().then{
-        $0.font = .findDictH2B18
+        $0.font = .findDictB3R20
+        $0.lineBreakMode = .byCharWrapping
         $0.numberOfLines = 0    // 자동 줄바꿈
+    }
+    
+    lazy var pageButton: UIButton = UIButton().then{
+        $0.layer.cornerRadius = 20
+        $0.backgroundColor = .white
+        $0.setTitleColor(.black, for: .normal)
+        $0.titleLabel?.font = .findDictB4R16
+        
     }
     
     //MARK: - Functions
     func setData(_ cellData: GameTutorialCVCModel, index: Int){
-        pageButton.setTitle(" \(index) / 6  > ", for: .normal)
+        pageButton.setTitle("   \(index) / 6  > ", for: .normal)
         tutorialImage.image = cellData.tutorialImage
         tutorialTitleLabel.text = cellData.tutorialTitle
         tutorialTextLabel.text = cellData.tutorialText
@@ -64,39 +64,30 @@ class GameTutorialCVC: UICollectionViewCell {
     // MARK: - UI
     extension GameTutorialCVC {
         private func setLayout() {
-            self.addSubViews([tutorialTitleView, tutorialImage, tutorialTextLabel, pageButton])
-            tutorialTitleView.addSubViews([tutorialTitleLabel])
-            
-            tutorialTitleView.snp.makeConstraints{
-                $0.centerX.equalTo(self.safeAreaLayoutGuide)
-                $0.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(82)
-                $0.height.equalTo(85)
-                $0.width.equalTo(334)
-            }
-            
-            tutorialTitleLabel.snp.makeConstraints{
-                $0.centerX.equalTo(tutorialTitleView)
-                $0.centerY.equalTo(tutorialTitleView)
-            }
+            self.addSubViews([tutorialImage, contentsStackView, pageButton])
             
             tutorialImage.snp.makeConstraints{
-                $0.top.equalTo(tutorialTitleView.snp.bottom).offset(25)
-                $0.leading.equalTo(self.safeAreaLayoutGuide.snp.leading).offset(30)
-                $0.width.equalTo(750)
-                $0.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).inset(50)
+                $0.top.equalToSuperview().offset(150)
+                $0.left.equalToSuperview().offset(30)
+                $0.width.equalTo(700)
+                $0.height.equalTo(500)
             }
             
-            tutorialTextLabel.snp.makeConstraints{
-                $0.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(350)
-                $0.leading.equalTo(tutorialImage.snp.trailing).offset(25)
-                $0.trailing.equalTo(self.safeAreaLayoutGuide.snp.trailing).inset(25)
+            contentsStackView.snp.makeConstraints{
+                $0.top.equalToSuperview().offset(180)
+                $0.left.equalTo(tutorialImage.snp.right).offset(50)
+                $0.right.equalToSuperview().inset(30)
+//                $0.bottom.equalToSuperview().inset(200)
             }
+
             
             pageButton.snp.makeConstraints{
-                $0.height.equalTo(60)
-                $0.width.equalTo(126)
-                $0.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).inset(150)
-                $0.trailing.equalTo(self.safeAreaLayoutGuide.snp.trailing).inset(40)
+//                $0.top.equalTo(tutorialImage.snp.bottom).offset(40)
+                $0.height.equalTo(40)
+                $0.width.equalTo(80)
+//                $0.centerX.equalToSuperview()
+                $0.bottom.equalToSuperview().offset(-186)
+                $0.right.equalToSuperview().inset(48)
             }
         }
     }
