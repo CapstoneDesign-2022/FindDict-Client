@@ -14,7 +14,7 @@ class GuessedRightWordVC: UIViewController {
     
     // MARK: - Properties
     private let englishLabel: UILabel = UILabel().then {
-        $0.font = .findDictH4R35
+        $0.font = .findDictH6R35
         $0.textColor = .black
     }
     
