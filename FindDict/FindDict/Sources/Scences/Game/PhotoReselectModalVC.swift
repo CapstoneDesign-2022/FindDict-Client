@@ -26,7 +26,7 @@ final class PhotoReselectModalVC: UIViewController {
         $0.text = "사진에 있는 단어가 부족해요.\n새로운 사진을 넣어봐요!"
         $0.numberOfLines = 2
         $0.textAlignment = .center
-        $0.font = .findDictH4R24
+        $0.font = .findDictB2R24
         $0.textColor = .black
     }
     

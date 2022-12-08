@@ -52,6 +52,7 @@ final class GameVC: ViewController {
         }
     }
     
+    
     private var croppedImage: UIImage = UIImage(){
         didSet{
             requestPostWord(body: CreateWordBodyModel(english: croppedImageString), image: (croppedImage ?? UIImage(named: "GameOver"))!)
@@ -68,6 +69,8 @@ final class GameVC: ViewController {
     }
     
     var buttonLayer: UIView = UIView()
+    
+   
     
     private lazy var buttons: [UIButton] = [] {
         didSet{
@@ -90,9 +93,6 @@ final class GameVC: ViewController {
         }
     }
     
-    // TODO: 버튼 부분 아닌 곳 클릭했을 경우 x표시 나타나기
-    
-    
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,6 +100,22 @@ final class GameVC: ViewController {
         setLayout()
       self.navigationController?.navigationBar.isHidden = true
         naviView.setDelegate(delegate: self)
+ 
+                let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapView(_:)))
+        buttonLayer.addGestureRecognizer(tapGestureRecognizer)
+
+    }
+    
+    @objc func didTapView(_ sender: UITapGestureRecognizer) {
+        let location: CGPoint = sender.location(in: sender.view)
+        let wrongLabel = UILabel(frame: CGRect(x: location.x - 25, y: location.y - 25, width:  50, height: 50))
+        wrongLabel.text = "🥲"
+        wrongLabel.font = .findDictH5R48
+        buttonLayer.addSubview(wrongLabel)
+        
+        UIView.animate(withDuration: 2) {
+            wrongLabel.alpha = 0
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {

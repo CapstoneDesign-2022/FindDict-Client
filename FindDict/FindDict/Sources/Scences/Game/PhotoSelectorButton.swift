@@ -23,7 +23,7 @@ class PhotoSelectorButton: UIButton {
     // MARK: - UI
     private func setUI(){
         self.layer.cornerRadius = 35
-        self.titleLabel?.font = .findDictH4R35
+        self.titleLabel?.font = .findDictH6R35
         self.setTitleColor(.black, for: .normal)
         self.addShadow(location: .bottomRight)
     }
