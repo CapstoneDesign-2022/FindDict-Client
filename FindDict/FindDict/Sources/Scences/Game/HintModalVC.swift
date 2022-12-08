@@ -40,6 +40,7 @@ final class HintModalVC: UIViewController {
         $0.text = "HINT"
         $0.textColor = .black
         $0.font = .findDictH6R35
+        $0.sizeToFit()
     }
     
     private let closeButton: UIButton = UIButton().then{
@@ -129,25 +130,24 @@ extension HintModalVC {
     private func setLayout() {
         view.addSubViews([modalView, hintLabel, closeButton, imageStackView])
         modalView.snp.makeConstraints{
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(236)
-            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(223)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(223)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(92)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(170)
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(220)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(220)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(90)
         }
         hintLabel.snp.makeConstraints{
-            $0.top.equalTo(modalView.snp.top).offset(4)
+            $0.top.equalTo(modalView.snp.top).offset(20)
             $0.centerX.equalTo(modalView)
         }
         closeButton.snp.makeConstraints{
-            $0.top.equalTo(modalView.snp.top).offset(16)
-            $0.trailing.equalTo(modalView.snp.trailing).offset(-20)
-            
+            $0.top.equalTo(modalView.snp.top).offset(30)
+            $0.trailing.equalTo(modalView.snp.trailing).inset(24)
         }
         imageStackView.snp.makeConstraints{
-            $0.top.equalTo(modalView.snp.top).offset(75)
-            $0.leading.equalTo(modalView.snp.leading).offset(59)
-            $0.trailing.equalTo(modalView.snp.trailing).inset(59)
-            $0.bottom.equalTo(modalView.snp.bottom).inset(18)
+            $0.top.equalTo(modalView.snp.top).offset(90)
+            $0.leading.equalTo(modalView.snp.leading).offset(60)
+            $0.trailing.equalTo(modalView.snp.trailing).inset(60)
+            $0.bottom.equalTo(modalView.snp.bottom).inset(36)
         }
     }
 }
