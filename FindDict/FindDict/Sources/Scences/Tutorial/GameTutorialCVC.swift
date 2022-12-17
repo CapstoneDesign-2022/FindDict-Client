@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-class GameTutorialCVC: UICollectionViewCell {
+final class GameTutorialCVC: UICollectionViewCell {
     
     // MARK: - Properties
     private let tutorialImage: UIImageView = UIImageView().then{
@@ -32,12 +32,23 @@ class GameTutorialCVC: UICollectionViewCell {
         $0.numberOfLines = 0    // 자동 줄바꿈
     }
     
-    lazy var pageButton: UIButton = UIButton().then{
+    private lazy var pageButton: UIButton = UIButton().then{
         $0.layer.cornerRadius = 20
         $0.backgroundColor = .white
         $0.setTitleColor(.black, for: .normal)
         $0.titleLabel?.font = .findDictB4R16
-        
+    }
+    
+    // MARK: - Initialization
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setLayout()
+        self.backgroundColor = .fdLightYellow
+    }
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError()
     }
     
     //MARK: - Functions
@@ -46,18 +57,6 @@ class GameTutorialCVC: UICollectionViewCell {
         tutorialImage.image = cellData.tutorialImage
         tutorialTitleLabel.text = cellData.tutorialTitle
         tutorialTextLabel.text = cellData.tutorialText
-    }
-    
-    // MARK: - Initialization
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setLayout()
-        self.backgroundColor = .bgYellow
-    }
-    
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError()
     }
 }
 
@@ -79,7 +78,6 @@ class GameTutorialCVC: UICollectionViewCell {
                 $0.right.equalToSuperview().inset(30)
             }
 
-            
             pageButton.snp.makeConstraints{
                 $0.height.equalTo(40)
                 $0.width.equalTo(80)

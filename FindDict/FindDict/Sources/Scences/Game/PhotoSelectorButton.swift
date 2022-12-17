@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PhotoSelectorButton: UIButton {
+final class PhotoSelectorButton: UIButton {
 
     // MARK: - Initialization
     override init(frame: CGRect) {

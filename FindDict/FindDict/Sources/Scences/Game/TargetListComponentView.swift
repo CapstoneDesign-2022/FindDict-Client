@@ -9,36 +9,33 @@ import UIKit
 import SnapKit
 import Then
 
-
 protocol TargetComponentViewDelegate: AnyObject {
     func hintButtonClicked(korean: String)
 }
 
-class TargetListComponentView: UIView {
+final class TargetListComponentView: UIView {
     
+    // MARK: - Properties
     private var delegate: TargetComponentViewDelegate?
+    
+    // MARK: - UI Properties
     private let englishButton: UIButton = UIButton().then{
         if #available(iOS 15.0, *) {
             $0.configuration = .plain()
             $0.configuration?.buttonSize = .large
-        } else {
-            // Fallback on earlier versions
         }
-        
         $0.makeRounded(cornerRadius: 20)
-        
-        $0.backgroundColor = .buttonYellow
+        $0.backgroundColor = .fdYellow
         $0.setTitleColor(.black, for: .normal)
+        $0.titleLabel?.font = UIFont(name: "NotoSans-Regular", size: 16.0)
     }
     
-
     private let koreanLabelBoundaryView: UIView = UIView().then {
         $0.backgroundColor = .white
         $0.makeRounded(cornerRadius: 15)
         $0.addShadow(location: .bottomRight)
     }
     
-
     private let koreanLabel: UILabel = UILabel().then{
         $0.textAlignment = .center
         $0.textColor = .black
@@ -60,6 +57,10 @@ class TargetListComponentView: UIView {
     }
     
     // MARK: - Functions
+    func setDelegate(delegate: TargetComponentViewDelegate){
+        self.delegate = delegate
+    }
+    
     func setData(korean: String, english: String){
         englishButton.setTitle(english, for: .normal)
         koreanLabelText = korean
@@ -76,16 +77,21 @@ class TargetListComponentView: UIView {
     }
     
     func handleGuessedRightView(){
-        englishButton.isUserInteractionEnabled = false
         koreanLabel.text = koreanLabelText
-        englishButton.backgroundColor = .buttonGray
-        englishButton.layer.shadowOpacity = 0
         
+        englishButton.do{
+            $0.isUserInteractionEnabled = false
+            $0.backgroundColor = .fdGray
+            $0.layer.shadowOpacity = 0
+            $0.titleLabel?.font = UIFont(name: "NotoSans-Regular", size: 16.0)
+        }
+
         containerView.snp.remakeConstraints {
             $0.top.equalTo(self.safeAreaLayoutGuide).offset(11)
             $0.leading.trailing.equalTo(self.safeAreaLayoutGuide)
             $0.bottom.equalTo(self.safeAreaLayoutGuide).inset(10)
         }
+        
         englishButton.snp.remakeConstraints {
             $0.top.equalTo(containerView)
             $0.height.equalTo(40)
@@ -95,8 +101,12 @@ class TargetListComponentView: UIView {
     }
     
     func enableEnglishButton() {
-        englishButton.isUserInteractionEnabled = true
-        englishButton.backgroundColor = .buttonOrange
+        englishButton.do{
+            $0.isUserInteractionEnabled = true
+            $0.backgroundColor = .fdOrange
+            $0.titleLabel?.font = UIFont(name: "NotoSans-Bold", size: 18.0)
+        }
+        
         englishButton.snp.remakeConstraints {
             $0.height.equalTo(60)
             $0.width.equalToSuperview()
@@ -104,27 +114,24 @@ class TargetListComponentView: UIView {
     }
     
     func disableEnglishButton() {
-        englishButton.isUserInteractionEnabled = false
-        englishButton.backgroundColor = .bgYellow
-        englishButton.addShadow(location: .bottomRight)
+        englishButton.do{
+            $0.isUserInteractionEnabled = false
+            $0.backgroundColor = .fdLightYellow
+            $0.addShadow(location: .bottomRight)
+            $0.titleLabel?.font = UIFont(name: "NotoSans-Regular", size: 16.0)
+        }
+        
         containerView.snp.makeConstraints {
-            $0.width.equalTo(englishButton.frame.width + 20)
+            $0.width.equalTo(englishButton.frame.width + 30)
         }
     }
-    
-    func setDelegate(delegate: TargetComponentViewDelegate){
-        self.delegate = delegate
-    }
-    
 }
 
 // MARK: - UI
 extension TargetListComponentView {
-    func setLayout() {
+    private func setLayout() {
         self.addSubViews([containerView])
-        containerView.addSubViews([englishButton
-                                   ,koreanLabelBoundaryView
-                                   ,koreanLabel])
+        containerView.addSubViews([englishButton, koreanLabelBoundaryView, koreanLabel])
         
         containerView.snp.makeConstraints {
             $0.top.equalTo(self.safeAreaLayoutGuide).offset(11)

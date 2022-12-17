@@ -10,27 +10,9 @@ import SnapKit
 import Then
 import AVFAudio
 
-class DictionaryDetailVC: UIViewController{
+final class DictionaryDetailVC: UIViewController{
     
     // MARK: - Properties
-    private let modalView: UIView = UIView().then{
-        $0.backgroundColor = .modalButtonLightYellow
-        $0.addShadow(location: .bottom)
-    }
-    
-    private let closeButton: UIButton = UIButton().then{
-        $0.setImage(UIImage(named: "closeImage"), for: .normal)
-    }
-    
-    private let wordLabel: UILabel = UILabel().then{
-        $0.textColor = .black
-        $0.font = .findDictH4M35
-        $0.backgroundColor = .modalButtonDarkYellow
-        $0.textAlignment = .center
-        $0.layer.masksToBounds = true
-        $0.layer.cornerRadius = 10
-    }
-    
     private var worldLabelText: String = "" {
         didSet{
             wordLabel.text = worldLabelText
@@ -40,28 +22,6 @@ class DictionaryDetailVC: UIViewController{
     
     private let synthesizer: AVSpeechSynthesizer = AVSpeechSynthesizer()
     
-    private let americanSpeeachButton: SpeechButton = SpeechButton().then{
-        $0.setTitle("🇺🇸 미국식 발음", for: .normal)
-        $0.backgroundColor = .modalButtonDarkYellow
-    }
-    
-    private let englishSpeeachButton: SpeechButton = SpeechButton().then{
-        $0.setTitle("🇬🇧 영국식 발음", for: .normal)
-        $0.backgroundColor = .modalButtonDarkYellow
-    }
-    
-    private let australianSpeeachButton: SpeechButton = SpeechButton().then{
-        $0.setTitle("🇦🇺 호주식 발음", for: .normal)
-        $0.backgroundColor = .modalButtonDarkYellow
-    }
-    
-    private lazy var buttonStackView: UIStackView = UIStackView(arrangedSubviews: [americanSpeeachButton,englishSpeeachButton,australianSpeeachButton]).then{
-        $0.axis = .horizontal
-        $0.spacing = 30
-        $0.distribution = .fillEqually
-    }
-    
-    // TODO: - 로딩 전 이미지 파인드딕트 이미지로 넣어두기
     private var dataSource : [String] = ["https://finddict.s3.ap-northeast-2.amazonaws.com/test/1668622382989_launchScreen.png"]{
         didSet{
             self.increasedDataSource =  dataSource + dataSource + dataSource
@@ -83,6 +43,46 @@ class DictionaryDetailVC: UIViewController{
     private var scrollToEnd: Bool = false
     private var scrollToBegin: Bool = false
     
+    // MARK: - UI Properties
+    private let modalView: UIView = UIView().then{
+        $0.backgroundColor = .fdLightYellow
+        $0.addShadow(location: .bottom)
+    }
+    
+    private let closeButton: UIButton = UIButton().then{
+        $0.setImage(UIImage(named: "closeImage"), for: .normal)
+    }
+    
+    private let wordLabel: UILabel = UILabel().then{
+        $0.textColor = .black
+        $0.font = .findDictH4M35
+        $0.backgroundColor = .fdDarkYellow
+        $0.textAlignment = .center
+        $0.layer.masksToBounds = true
+        $0.layer.cornerRadius = 10
+    }
+    
+    private let americanSpeeachButton: SpeechButton = SpeechButton().then{
+        $0.setTitle("🇺🇸 미국식 발음", for: .normal)
+        $0.backgroundColor = .fdDarkYellow
+    }
+    
+    private let englishSpeeachButton: SpeechButton = SpeechButton().then{
+        $0.setTitle("🇬🇧 영국식 발음", for: .normal)
+        $0.backgroundColor = .fdDarkYellow
+    }
+    
+    private let australianSpeeachButton: SpeechButton = SpeechButton().then{
+        $0.setTitle("🇦🇺 호주식 발음", for: .normal)
+        $0.backgroundColor = .fdDarkYellow
+    }
+    
+    private lazy var buttonStackView: UIStackView = UIStackView(arrangedSubviews: [americanSpeeachButton,englishSpeeachButton,australianSpeeachButton]).then{
+        $0.axis = .horizontal
+        $0.spacing = 30
+        $0.distribution = .fillEqually
+    }
+    
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,14 +101,13 @@ class DictionaryDetailVC: UIViewController{
     
     // MARK: - Functions
     private func setCV() {
-        dictionaryDetailCV.delegate = self
-        dictionaryDetailCV.dataSource = self
-        
-        dictionaryDetailCV.register(DictionaryDetailCVC.self, forCellWithReuseIdentifier: "DictionaryDetailCVC")
-        
-        dictionaryDetailCV.showsHorizontalScrollIndicator = false
-        
-        dictionaryDetailCV.isPagingEnabled = true
+        dictionaryDetailCV.do{
+            $0.delegate = self
+            $0.dataSource = self
+            $0.register(DictionaryDetailCVC.self, forCellWithReuseIdentifier: "DictionaryDetailCVC")
+            $0.showsHorizontalScrollIndicator = false
+            $0.isPagingEnabled = true
+        }
         
         CVFlowLayout.scrollDirection = .horizontal
     }
@@ -171,7 +170,6 @@ extension DictionaryDetailVC {
             default:
                 print(MessageType.networkError.message)
             }
-        
         }
     }
 }

@@ -9,29 +9,28 @@ import UIKit
 import SnapKit
 import Then
 
-class DictionaryDetailCVC: UICollectionViewCell {
+final class DictionaryDetailCVC: UICollectionViewCell {
     
     // MARK: - Properties
     private let wordImageView: UIImageView = UIImageView().then{
         $0.contentMode = .scaleAspectFit
     }
     
-    
-    //MARK: - Functions
-    func setData(_ cellData: String, index: Int){
-        wordImageView.load(cellData)
-    }
-    
     // MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
         setLayout()
-        self.backgroundColor = .modalButtonLightYellow
+        self.backgroundColor = .fdLightYellow
     }
     
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError()
+    }
+    
+    //MARK: - Functions
+    func setData(_ cellData: String, index: Int){
+        wordImageView.load(cellData)
     }
 }
 

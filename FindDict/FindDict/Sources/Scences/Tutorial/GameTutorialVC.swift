@@ -9,10 +9,10 @@ import UIKit
 import SnapKit
 import Then
 
-class GameTutorialVC: UIViewController{
+final class GameTutorialVC: UIViewController{
     
     // MARK: - Properties
-    var dataSource: [GameTutorialCVCModel] = GameTutorialCVCModel.sampleData
+    private var dataSource: [GameTutorialCVCModel] = GameTutorialCVCModel.sampleData
     
     private let naviView = DefaultNavigationBar(isHomeButtonIncluded: false).then {
         $0.setTitleLabel(title: "Game Tutorial")
@@ -34,7 +34,7 @@ class GameTutorialVC: UIViewController{
         super.viewDidLoad()
         setLayout()
         setCV()
-        view.backgroundColor = .bgYellow
+        view.backgroundColor = .fdLightYellow
         self.navigationController?.navigationBar.isHidden = true
         naviView.setDelegate(delegate: self)
     }
@@ -43,11 +43,8 @@ class GameTutorialVC: UIViewController{
     private func setCV() {
         gameTutorialCV.delegate = self
         gameTutorialCV.dataSource = self
-        
         gameTutorialCV.register(GameTutorialCVC.self, forCellWithReuseIdentifier: "GameTutorialCVC")
-        
         gameTutorialCV.showsHorizontalScrollIndicator = false
-        
         gameTutorialCV.isPagingEnabled = true
         
         CVFlowLayout.scrollDirection = .horizontal

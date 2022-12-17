@@ -13,21 +13,21 @@ protocol ObjectDetectorDelegate: AnyObject {
 }
 
 final class ObjectDetector {
-
+    
     // MARK: - Vision Properties
     private var request: VNCoreMLRequest?
     private var visionModel: VNCoreMLModel?
     private var isInferencing: Bool = false
     private let semaphore: DispatchSemaphore = DispatchSemaphore(value: 1)
     private let objectDectectionModel = yolov5m()
-//    yolov7()
-//    yolov5m()
+    //    yolov7()
+    //    yolov5m()
     
     // MARK: - Properties
     private var gameVC: GameVC = GameVC()
     private var navigation: UINavigationController?
     private var delegate: ObjectDetectorDelegate?
-        
+    
     private var pixelBuffer: CVPixelBuffer? = nil {
         didSet{
             configureModel()
@@ -69,7 +69,6 @@ final class ObjectDetector {
         self.navigation = navigationController
     }
     
-    
     private func configureModel() {
         if let visionModel = try? VNCoreMLModel(for: objectDectectionModel.model) {
             self.visionModel = visionModel
@@ -80,7 +79,6 @@ final class ObjectDetector {
         }
     }
     
-    /// 사진이 선택되면 pixelBuffer 값 역시 할당됩니다. 할당된 값을 이용하여 객체 인식을 시작합니다.
     private func handleImage(pixelBuffer: CVPixelBuffer?){
         if !self.isInferencing, let pixelBuffer = pixelBuffer {
             self.isInferencing = true
@@ -95,10 +93,9 @@ final class ObjectDetector {
         try? handler.perform([request])
     }
     
-    /// 객체 인식이 끝나고 나면 인식 결과를 프로퍼티에 저장하고 버튼을 올릴 레이어를 준비합니다.
     private func visionRequestDidComplete(request: VNRequest, error: Error?) {
         if let predictions = request.results as? [VNRecognizedObjectObservation] {
-                self.predictedObjects = predictions
+            self.predictedObjects = predictions
         }
         self.isInferencing = false
         self.semaphore.signal()

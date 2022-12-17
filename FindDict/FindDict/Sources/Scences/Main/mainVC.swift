@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-class MainVC: UIViewController {
+final class MainVC: UIViewController {
     
     // MARK: - Properties
     private let logoImage: UIImageView = UIImageView().then{
@@ -23,17 +23,17 @@ class MainVC: UIViewController {
     }
     
     private let gameStartButton: MainButton = MainButton().then{
-        $0.backgroundColor = .buttonOrange
+        $0.backgroundColor = .fdOrange
         $0.setTitle("게임 시작", for: .normal)
     }
     
     private let dictionaryButton: MainButton = MainButton().then{
-        $0.backgroundColor = .buttonOrange
+        $0.backgroundColor = .fdOrange
         $0.setTitle("단어장", for: .normal)
     }
     
     private let gameRuleButton: MainButton = MainButton().then{
-        $0.backgroundColor = .buttonYellow
+        $0.backgroundColor = .fdYellow
         $0.setTitle("게임 방법", for: .normal)
     }
     
@@ -43,11 +43,11 @@ class MainVC: UIViewController {
         super.viewDidLoad()
         setLayout()
         setButtonActions()
-        view.backgroundColor = .bgYellow
+        view.backgroundColor = .fdLightYellow
     }
-
+    
     // MARK: - Functions
-    func setButtonActions(){
+    private func setButtonActions(){
         gameStartButton.press{
             let initiatingGameVC = PhotoSelectorVC()
             self.navigationController?.pushViewController(initiatingGameVC, animated: true)
@@ -74,7 +74,7 @@ extension MainVC {
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
             $0.height.equalTo(120)
         }
-
+        
         buttonStackView.snp.makeConstraints{
             $0.top.equalTo(logoImage.snp.bottom).offset(60)
             $0.centerX.equalTo(view.safeAreaLayoutGuide)

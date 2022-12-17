@@ -12,7 +12,7 @@ import SnapKit
 import Then
 import AVFoundation
 
-final class GameVC: ViewController {
+final class GameVC: UIViewController {
     
     // MARK: - Properties
     private var player: AVAudioPlayer?
@@ -95,7 +95,7 @@ final class GameVC: ViewController {
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .bgBeige
+        view.backgroundColor = .fdBeige
         setLayout()
         self.navigationController?.navigationBar.isHidden = true
         naviView.setDelegate(delegate: self)
@@ -245,12 +245,12 @@ final class GameVC: ViewController {
         let guessedRightWordVC = GuessedRightWordVC()
         guessedRightWordVC.setEnglishText(text: text)
         guessedRightWordVC.modalPresentationStyle = .overCurrentContext
-        guessedRightWordVC.presentingVC = self
+        guessedRightWordVC.setPresentingVC(self)
         self.present(guessedRightWordVC, animated: true)
     }
     
     
-    func resizeImage(image: UIImage, size: CGSize, x: CGFloat, y: CGFloat) -> CGImage {
+    private func resizeImage(image: UIImage, size: CGSize, x: CGFloat, y: CGFloat) -> CGImage {
         UIGraphicsBeginImageContext(size)
         image.draw(in:CGRect(x: x, y: y, width: size.width, height:size.height))
         let renderImage = UIGraphicsGetImageFromCurrentImageContext()

@@ -62,8 +62,6 @@
 		4DB7B4A3291C201B000485E1 /* WordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB7B4A2291C201B000485E1 /* WordService.swift */; };
 		4DBDEC1428D4EFE2002252B3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDEC1328D4EFE2002252B3 /* AppDelegate.swift */; };
 		4DBDEC1628D4EFE2002252B3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDEC1528D4EFE2002252B3 /* SceneDelegate.swift */; };
-		4DBDEC1828D4EFE2002252B3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDEC1728D4EFE2002252B3 /* ViewController.swift */; };
-		4DBDEC1B28D4EFE2002252B3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DBDEC1928D4EFE2002252B3 /* Main.storyboard */; };
 		4DBDEC1D28D4EFE3002252B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DBDEC1C28D4EFE3002252B3 /* Assets.xcassets */; };
 		4DBDEC2028D4EFE3002252B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DBDEC1E28D4EFE3002252B3 /* LaunchScreen.storyboard */; };
 		4DBDEC2C28D4F169002252B3 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DBDEC2B28D4F169002252B3 /* BaseVC.swift */; };
@@ -96,7 +94,7 @@
 
 /* Begin PBXFileReference section */
 		4D0B1E1128E5A9A4007F16DB /* GameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVC.swift; sourceTree = "<group>"; };
-		4D0B1E1328E5AA2C007F16DB /* yolov5m.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = yolov5m.mlmodel; path = ../../../../../../../../Downloads/yolov5m.mlmodel; sourceTree = "<group>"; };
+		4D0B1E1328E5AA2C007F16DB /* yolov5m.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = yolov5m.mlmodel; path = ../../../../../../../Downloads/yolov5m.mlmodel; sourceTree = "<group>"; };
 		4D0B1E1528E5B213007F16DB /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		4D14BD6728E1B924002B2165 /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
 		4D14BD6928E1C0F9002B2165 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TextField.swift; path = FindDict/Global/Extensions/TextField.swift; sourceTree = SOURCE_ROOT; };
@@ -119,7 +117,7 @@
 		4D85DFC92941BC170016ABF9 /* GameClear.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = GameClear.wav; sourceTree = "<group>"; };
 		4D85DFCA2941BC170016ABF9 /* CorrectAnswer.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = CorrectAnswer.wav; sourceTree = "<group>"; };
 		4D85DFCD2941BC950016ABF9 /* WrongAnswer.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = WrongAnswer.wav; sourceTree = "<group>"; };
-		4D8E9F3228F001C00013B7E7 /* yolov7.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = yolov7.mlmodel; path = ../../../../../../../../Downloads/yolov7.mlmodel; sourceTree = "<group>"; };
+		4D8E9F3228F001C00013B7E7 /* yolov7.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = yolov7.mlmodel; path = ../../../../../../../Downloads/yolov7.mlmodel; sourceTree = "<group>"; };
 		4D94E904292E371C00867289 /* PhotoSelectorVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSelectorVC.swift; sourceTree = "<group>"; };
 		4D9ADC0628E018DB008CF9F3 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
 		4DA65AAD28E86914002DEFE3 /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
@@ -148,8 +146,6 @@
 		4DBDEC1028D4EFE2002252B3 /* FindDict.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FindDict.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DBDEC1328D4EFE2002252B3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4DBDEC1528D4EFE2002252B3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		4DBDEC1728D4EFE2002252B3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		4DBDEC1A28D4EFE2002252B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4DBDEC1C28D4EFE3002252B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4DBDEC1F28D4EFE3002252B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4DBDEC2128D4EFE3002252B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -173,7 +169,6 @@
 		F8823AA228E022CC00798374 /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
 		F8823AA628E5740F00798374 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		F8823AA828E575D300798374 /* MainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButton.swift; sourceTree = "<group>"; };
-		F8D9DAD0291B869200AAA355 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		F8DB7A5928DB1D3100EE3D66 /* BeforeSignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeforeSignInVC.swift; sourceTree = "<group>"; };
 		F8DB7A5B28DB1FA700EE3D66 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		F8DB7A5D28DB29F700EE3D66 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
@@ -307,7 +302,6 @@
 		4DBDEC1228D4EFE2002252B3 /* FindDict */ = {
 			isa = PBXGroup;
 			children = (
-				F8560AC728EEF3D500C52203 /* Protocols */,
 				4DBDEC2128D4EFE3002252B3 /* Info.plist */,
 				4DA65AC528E86C1F002DEFE3 /* Model */,
 				4DBDEC2728D4F020002252B3 /* Application */,
@@ -421,8 +415,6 @@
 				4D14BD6D28E20653002B2165 /* Game */,
 				F8823AAA28E590E400798374 /* Main */,
 				4D14BD6628E1B677002B2165 /* Auth */,
-				4DBDEC1728D4EFE2002252B3 /* ViewController.swift */,
-				4DBDEC1928D4EFE2002252B3 /* Main.storyboard */,
 				4DBDEC1E28D4EFE3002252B3 /* LaunchScreen.storyboard */,
 			);
 			path = Scences;
@@ -447,14 +439,6 @@
 				F82979C028EEC3A40031BBC3 /* GameResultFailVC.swift */,
 			);
 			path = GameResultModal;
-			sourceTree = "<group>";
-		};
-		F8560AC728EEF3D500C52203 /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				F8D9DAD0291B869200AAA355 /* Reusable.swift */,
-			);
-			path = Protocols;
 			sourceTree = "<group>";
 		};
 		F860B79B28E6CF870032A39B /* Dictionary */ = {
@@ -564,7 +548,6 @@
 				4DBDEC1D28D4EFE3002252B3 /* Assets.xcassets in Resources */,
 				4D85DFCC2941BC170016ABF9 /* CorrectAnswer.wav in Resources */,
 				4D85DFCB2941BC170016ABF9 /* GameClear.wav in Resources */,
-				4DBDEC1B28D4EFE2002252B3 /* Main.storyboard in Resources */,
 				4D85DFCE2941BC950016ABF9 /* WrongAnswer.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -582,7 +565,6 @@
 				4DB7B49D291C1DED000485E1 /* WordListModel.swift in Sources */,
 				4D8E9F3328F001C00013B7E7 /* yolov7.mlmodel in Sources */,
 				4D2FC6DD29226A4500FAB324 /* HintResponseModel.swift in Sources */,
-				4DBDEC1828D4EFE2002252B3 /* ViewController.swift in Sources */,
 				4D2A6E6229376F5B00B53C7A /* UIStackView+.swift in Sources */,
 				4DB7B493291BD97F000485E1 /* SignUpBodyModel.swift in Sources */,
 				4D2FC6D9292264EE00FAB324 /* CreateWordBodyModel.swift in Sources */,
@@ -654,14 +636,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		4DBDEC1928D4EFE2002252B3 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4DBDEC1A28D4EFE2002252B3 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		4DBDEC1E28D4EFE3002252B3 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -803,7 +777,6 @@
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "앨범에서 사진 선택";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -836,7 +809,6 @@
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "앨범에서 사진 선택";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;

@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Then
 
-class DictionaryTVC: UITableViewCell {
+final class DictionaryTVC: UITableViewCell {
     
     // MARK: - Properties
     let dictionaryCard: DictionaryCard = DictionaryCard()
@@ -18,7 +18,7 @@ class DictionaryTVC: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setLayout()
-        self.backgroundColor = .bgBeige
+        self.backgroundColor = .fdBeige
         selectionStyle = .none
     }
     

@@ -8,7 +8,7 @@ import UIKit
 import Then
 import SnapKit
 
-class GameResultFailVC: ModalBaseVC {
+final class GameResultFailVC: ModalBaseVC {
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -17,13 +17,13 @@ class GameResultFailVC: ModalBaseVC {
     }
     
     // MARK: - UI
-    func setUI(){
+    private func setUI(){
         resultImage.image = UIImage(named: "failureImage")?.withAlignmentRectInsets(UIEdgeInsets(top: -40, left: 0, bottom: 0, right: -65))
         
-        resultTitleLabel.then{
+        resultTitleLabel.do{
             $0.text = "하트를 모두 사용했어요"
             $0.textColor = .white
-            $0.backgroundColor = .modalBrown
+            $0.backgroundColor = .fdBrown
         }
     }
 }

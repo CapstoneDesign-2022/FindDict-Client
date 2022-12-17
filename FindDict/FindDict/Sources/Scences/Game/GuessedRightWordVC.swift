@@ -10,9 +10,13 @@ import AVFoundation
 import SnapKit
 import Then
 
-class GuessedRightWordVC: UIViewController {
+final class GuessedRightWordVC: UIViewController {
     
     // MARK: - Properties
+    private var presentingVC: UIViewController?
+    private let synthesizer: AVSpeechSynthesizer = AVSpeechSynthesizer()
+    
+    // MARK: - UI Properties
     private let englishLabel: UILabel = UILabel().then {
         $0.font = .findDictH6R35
         $0.textColor = .black
@@ -25,10 +29,8 @@ class GuessedRightWordVC: UIViewController {
         }
     }
     
-    private let synthesizer: AVSpeechSynthesizer = AVSpeechSynthesizer()
-    
     private let modalView: UIView = UIView().then{
-        $0.backgroundColor = .bgBeige
+        $0.backgroundColor = .fdBeige
         $0.layer.shadowRadius = 4
         $0.layer.shadowOffset = CGSize(width: 0, height: 4)
         $0.layer.shadowColor = UIColor.black.cgColor
@@ -55,8 +57,6 @@ class GuessedRightWordVC: UIViewController {
         $0.distribution = .fillEqually
     }
     
-    var presentingVC: UIViewController?
-    
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +68,10 @@ class GuessedRightWordVC: UIViewController {
     // MARK: - Functions
     func setEnglishText(text: String){
         englishText = text
+    }
+    
+    func setPresentingVC(_ presentingVC: UIViewController){
+        self.presentingVC = presentingVC
     }
     
     private func setButtonActions(){
@@ -120,28 +124,28 @@ extension GuessedRightWordVC {
         view.addSubViews([modalView, englishLabel, closeButton, buttonStackView])
         
         modalView.snp.makeConstraints{
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(236)
-            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(223)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(223)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(92)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(190)
+            $0.leading.equalTo(view.safeAreaLayoutGuide.snp.leading).offset(220)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).inset(220)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(110)
         }
         
         englishLabel.snp.makeConstraints{
-            $0.top.equalTo(modalView.snp.top).offset(40)
+            $0.top.equalTo(modalView.snp.top).offset(30)
             $0.centerX.equalTo(modalView)
             $0.height.equalTo(50)
         }
         
         closeButton.snp.makeConstraints{
-            $0.top.equalTo(modalView.snp.top).offset(16)
-            $0.trailing.equalTo(modalView.snp.trailing).inset(20)
+            $0.top.equalTo(modalView.snp.top).offset(40)
+            $0.trailing.equalTo(modalView.snp.trailing).inset(36)
         }
         
         buttonStackView.snp.makeConstraints{
-            $0.top.equalTo(englishLabel.snp.bottom).offset(30)
+            $0.top.equalTo(englishLabel.snp.bottom).offset(40)
             $0.leading.equalTo(modalView.snp.leading).offset(30)
             $0.trailing.equalTo(modalView.snp.trailing).inset(30)
-            $0.bottom.equalTo(modalView.snp.bottom).inset(30)
+            $0.bottom.equalTo(modalView.snp.bottom).inset(40)
         }
     }
 }

@@ -9,21 +9,24 @@ import UIKit
 import SnapKit
 import Then
 
-class SignUpVC: AuthBaseVC {
+final class SignUpVC: AuthBaseVC {
     
     // MARK: - Properties
+    private var isIdConfirmed: Bool = false
+    
+    // MARK: - UI Properties
     private let idTextField: TextField = TextField().then{
         $0.placeholder = "아이디"
     }
     
     private let idCheckButton: UIButton = UIButton().then{
-        $0.backgroundColor = .buttonOrange
+        $0.backgroundColor = .fdOrange
         $0.setTitleColor(.black, for: .normal)
         $0.setTitle("중복 확인", for: .normal)
         $0.layer.cornerRadius = 24
     }
     
-    lazy var textFieldStackView: UIStackView = UIStackView(arrangedSubviews: [ageTextField, passwordTextField,passwordConfirmTextField]).then {
+    private lazy var textFieldStackView: UIStackView = UIStackView(arrangedSubviews: [ageTextField, passwordTextField,passwordConfirmTextField]).then {
         $0.axis = .vertical
         $0.spacing = 18
         $0.distribution = .fillEqually
@@ -48,14 +51,12 @@ class SignUpVC: AuthBaseVC {
     }
     
     private let signUpButton: UIButton = UIButton().then{
-        $0.backgroundColor = .buttonYellow
+        $0.backgroundColor = .fdYellow
         $0.setTitleColor(.black, for: .normal)
         $0.setTitle("회원가입하기", for: .normal)
         $0.layer.cornerRadius = 24
         
     }
-    
-    private var isIdConfirmed: Bool = false   // 아이디 중복 검사 했는지
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -170,27 +171,27 @@ extension SignUpVC {
 }
 
 // MARK: - UITextFieldDelegate
-extension SignUpVC: UITextFieldDelegate{
+extension SignUpVC: UITextFieldDelegate {
     
-    func setTextFieldDelegate(){
+    private func setTextFieldDelegate(){
         idTextField.delegate = self
         ageTextField.delegate = self
         passwordTextField.delegate = self
         passwordConfirmTextField.delegate = self
     }
     
-    func setNotificationCenter(){
+    private func setNotificationCenter(){
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name:  UIResponder.keyboardWillShowNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    internal func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    internal func textFieldDidEndEditing(_ textField: UITextField) {
         if (passwordTextField.text?.isEmpty ?? true || passwordConfirmTextField.text?.isEmpty ?? true) {return};
         if(passwordTextField.text == passwordConfirmTextField.text ) {
             passwordVerificationLabel.text = "입력한 비밀번호와 일치합니다."
@@ -202,12 +203,12 @@ extension SignUpVC: UITextFieldDelegate{
     }
     
     @objc
-    func keyboardWillShow(_ sender:Notification) {
+    private func keyboardWillShow(_ sender:Notification) {
         self.view.frame.origin.y = -300
     }
     
     @objc
-    func keyboardWillHide(_ sender:Notification) {
+    private func keyboardWillHide(_ sender:Notification) {
         self.view.frame.origin.y = 0 
     }
 }
